@@ -1,0 +1,459 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A984CE3DB0CF0680E9FDFF6 /* NSLayoutConstraint+PureLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FB175B1239FB893FCE13D7E /* NSLayoutConstraint+PureLayout.h */; };
+		258163A946FFD61FADCDB51D /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B80C8A5EE00F247D499604C9 /* ALView+PureLayout.m */; };
+		3198B69480955803F8AE242A /* PureLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B76DB50B3011A2D629DD7BE /* PureLayout.h */; };
+		322A06D6939E72828C967110 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D3A200AEEE96C86592BEC2 /* Foundation.framework */; };
+		325C9E9F20FF74CE5D681D25 /* PureLayoutDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 389F21DC26A5F3D233B268AA /* PureLayoutDefines.h */; };
+		4A3B67B3BAE5240704700077 /* Pods-HackerNews-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDD838E01319859CE297F0E /* Pods-HackerNews-dummy.m */; };
+		60DB20EC3F0B72C24B9A4329 /* PureLayout+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 973295270DD79CE235F0C85A /* PureLayout+Internal.h */; };
+		6F917D2EE7E14548649C653E /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 25CB689653FFBFCEB3502F1D /* NSLayoutConstraint+PureLayout.m */; };
+		7FBAAA12CE0AD5F8D1D285E7 /* NSArray+PureLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 4699C6EE4F265065C28E8D9A /* NSArray+PureLayout.h */; };
+		86260F479705E22576CBBCBF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D3A200AEEE96C86592BEC2 /* Foundation.framework */; };
+		972CF680E4ACD505B5262A45 /* Pods-HackerNews-PureLayout-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5B6A97E5066B866A6BCEB2 /* Pods-HackerNews-PureLayout-dummy.m */; };
+		B8F223C45E1E778FA1CFDB68 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A26DCA323F9B8BDA7AD3527 /* NSArray+PureLayout.m */; };
+		DCBA53FD19919A620111A502 /* ALView+PureLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = E3F1F866E802274C0F2F3F19 /* ALView+PureLayout.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1BCCD87ABEFFFC2FF75D3103 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E4115D1DDF8CE22EDE095B1B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF3DB40A3327BBDA39CB3122;
+			remoteInfo = "Pods-HackerNews-PureLayout";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1A26DCA323F9B8BDA7AD3527 /* NSArray+PureLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+PureLayout.m"; path = "PureLayout/PureLayout/NSArray+PureLayout.m"; sourceTree = "<group>"; };
+		1B76DB50B3011A2D629DD7BE /* PureLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PureLayout.h; path = PureLayout/PureLayout/PureLayout.h; sourceTree = "<group>"; };
+		1CB5505F89108A28F36AFF5A /* libPods-HackerNews.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HackerNews.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		25CB689653FFBFCEB3502F1D /* NSLayoutConstraint+PureLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSLayoutConstraint+PureLayout.m"; path = "PureLayout/PureLayout/NSLayoutConstraint+PureLayout.m"; sourceTree = "<group>"; };
+		389F21DC26A5F3D233B268AA /* PureLayoutDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PureLayoutDefines.h; path = PureLayout/PureLayout/PureLayoutDefines.h; sourceTree = "<group>"; };
+		3A9EE78CBADEA81FCC96DB22 /* Pods-HackerNews-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-HackerNews-acknowledgements.markdown"; sourceTree = "<group>"; };
+		4699C6EE4F265065C28E8D9A /* NSArray+PureLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+PureLayout.h"; path = "PureLayout/PureLayout/NSArray+PureLayout.h"; sourceTree = "<group>"; };
+		4C8D552EEA8F3D3B09C299FF /* Pods-HackerNews-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-HackerNews-acknowledgements.plist"; sourceTree = "<group>"; };
+		6A4E39F3E0912BEB7573AFA8 /* Pods-HackerNews-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-HackerNews-environment.h"; sourceTree = "<group>"; };
+		88B92691F331E1316FA5E830 /* Pods-HackerNews-PureLayout-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HackerNews-PureLayout-Private.xcconfig"; sourceTree = "<group>"; };
+		8E823ECD7583D6DDDE2C0139 /* Pods-HackerNews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HackerNews.release.xcconfig"; sourceTree = "<group>"; };
+		973295270DD79CE235F0C85A /* PureLayout+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "PureLayout+Internal.h"; path = "PureLayout/PureLayout/PureLayout+Internal.h"; sourceTree = "<group>"; };
+		9FB175B1239FB893FCE13D7E /* NSLayoutConstraint+PureLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSLayoutConstraint+PureLayout.h"; path = "PureLayout/PureLayout/NSLayoutConstraint+PureLayout.h"; sourceTree = "<group>"; };
+		A08BB5DD60012D68F71F97FA /* Pods-HackerNews-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-HackerNews-resources.sh"; sourceTree = "<group>"; };
+		A320BA14219FDD5059729637 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B80C8A5EE00F247D499604C9 /* ALView+PureLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "ALView+PureLayout.m"; path = "PureLayout/PureLayout/ALView+PureLayout.m"; sourceTree = "<group>"; };
+		BCDD838E01319859CE297F0E /* Pods-HackerNews-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-HackerNews-dummy.m"; sourceTree = "<group>"; };
+		CDB7831D315FBC71DA4EE932 /* libPods-HackerNews-PureLayout.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HackerNews-PureLayout.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE3ECAF81AEA1A2A72FC7DD3 /* Pods-HackerNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HackerNews.debug.xcconfig"; sourceTree = "<group>"; };
+		DC5B6A97E5066B866A6BCEB2 /* Pods-HackerNews-PureLayout-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-HackerNews-PureLayout-dummy.m"; sourceTree = "<group>"; };
+		E3F1F866E802274C0F2F3F19 /* ALView+PureLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ALView+PureLayout.h"; path = "PureLayout/PureLayout/ALView+PureLayout.h"; sourceTree = "<group>"; };
+		E4D3A200AEEE96C86592BEC2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		EB016077BE0955226B4077A0 /* Pods-HackerNews-PureLayout.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HackerNews-PureLayout.xcconfig"; sourceTree = "<group>"; };
+		ED2C863748E8759BE94AD7B4 /* Pods-HackerNews-PureLayout-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-HackerNews-PureLayout-prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3E9B8FB2A54F914F169B59A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86260F479705E22576CBBCBF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5CB2244CE4CA3308E763A7AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				322A06D6939E72828C967110 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		277C11C18F0FE4F86F61A578 = {
+			isa = PBXGroup;
+			children = (
+				A320BA14219FDD5059729637 /* Podfile */,
+				90FDFE5583B94AC37C6B6386 /* Frameworks */,
+				ED4EB68BC08DFBF9D720DD47 /* Pods */,
+				52DBC0661D832CFD7D02EF31 /* Products */,
+				3FA3ABAB85B5B643024E8D14 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		2FC87FA504CD65049F08522B /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				E4D3A200AEEE96C86592BEC2 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		3FA3ABAB85B5B643024E8D14 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C261348283FF7C5D0FEF5077 /* Pods-HackerNews */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		464BA98C7FCEA61221623BA9 /* PureLayout */ = {
+			isa = PBXGroup;
+			children = (
+				E3F1F866E802274C0F2F3F19 /* ALView+PureLayout.h */,
+				B80C8A5EE00F247D499604C9 /* ALView+PureLayout.m */,
+				4699C6EE4F265065C28E8D9A /* NSArray+PureLayout.h */,
+				1A26DCA323F9B8BDA7AD3527 /* NSArray+PureLayout.m */,
+				9FB175B1239FB893FCE13D7E /* NSLayoutConstraint+PureLayout.h */,
+				25CB689653FFBFCEB3502F1D /* NSLayoutConstraint+PureLayout.m */,
+				1B76DB50B3011A2D629DD7BE /* PureLayout.h */,
+				973295270DD79CE235F0C85A /* PureLayout+Internal.h */,
+				389F21DC26A5F3D233B268AA /* PureLayoutDefines.h */,
+				E4D1E7815C83E82AB9D7E490 /* Support Files */,
+			);
+			path = PureLayout;
+			sourceTree = "<group>";
+		};
+		52DBC0661D832CFD7D02EF31 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1CB5505F89108A28F36AFF5A /* libPods-HackerNews.a */,
+				CDB7831D315FBC71DA4EE932 /* libPods-HackerNews-PureLayout.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		90FDFE5583B94AC37C6B6386 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2FC87FA504CD65049F08522B /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C261348283FF7C5D0FEF5077 /* Pods-HackerNews */ = {
+			isa = PBXGroup;
+			children = (
+				3A9EE78CBADEA81FCC96DB22 /* Pods-HackerNews-acknowledgements.markdown */,
+				4C8D552EEA8F3D3B09C299FF /* Pods-HackerNews-acknowledgements.plist */,
+				BCDD838E01319859CE297F0E /* Pods-HackerNews-dummy.m */,
+				6A4E39F3E0912BEB7573AFA8 /* Pods-HackerNews-environment.h */,
+				A08BB5DD60012D68F71F97FA /* Pods-HackerNews-resources.sh */,
+				CE3ECAF81AEA1A2A72FC7DD3 /* Pods-HackerNews.debug.xcconfig */,
+				8E823ECD7583D6DDDE2C0139 /* Pods-HackerNews.release.xcconfig */,
+			);
+			name = "Pods-HackerNews";
+			path = "Target Support Files/Pods-HackerNews";
+			sourceTree = "<group>";
+		};
+		E4D1E7815C83E82AB9D7E490 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				EB016077BE0955226B4077A0 /* Pods-HackerNews-PureLayout.xcconfig */,
+				88B92691F331E1316FA5E830 /* Pods-HackerNews-PureLayout-Private.xcconfig */,
+				DC5B6A97E5066B866A6BCEB2 /* Pods-HackerNews-PureLayout-dummy.m */,
+				ED2C863748E8759BE94AD7B4 /* Pods-HackerNews-PureLayout-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-HackerNews-PureLayout";
+			sourceTree = "<group>";
+		};
+		ED4EB68BC08DFBF9D720DD47 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				464BA98C7FCEA61221623BA9 /* PureLayout */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		823E65E37BD248826E180F9B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCBA53FD19919A620111A502 /* ALView+PureLayout.h in Headers */,
+				7FBAAA12CE0AD5F8D1D285E7 /* NSArray+PureLayout.h in Headers */,
+				1A984CE3DB0CF0680E9FDFF6 /* NSLayoutConstraint+PureLayout.h in Headers */,
+				60DB20EC3F0B72C24B9A4329 /* PureLayout+Internal.h in Headers */,
+				3198B69480955803F8AE242A /* PureLayout.h in Headers */,
+				325C9E9F20FF74CE5D681D25 /* PureLayoutDefines.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		274EF0D3C859CD8EBE696DFE /* Pods-HackerNews */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 836FD90EC5CEA3885BD63D11 /* Build configuration list for PBXNativeTarget "Pods-HackerNews" */;
+			buildPhases = (
+				B376F02E2BB53B3BDFA4399F /* Sources */,
+				3E9B8FB2A54F914F169B59A3 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BA51B13A15E3CBB984CAE71F /* PBXTargetDependency */,
+			);
+			name = "Pods-HackerNews";
+			productName = "Pods-HackerNews";
+			productReference = 1CB5505F89108A28F36AFF5A /* libPods-HackerNews.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		BF3DB40A3327BBDA39CB3122 /* Pods-HackerNews-PureLayout */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 99D5237C7D7C1E474FA94BCA /* Build configuration list for PBXNativeTarget "Pods-HackerNews-PureLayout" */;
+			buildPhases = (
+				825CCC753C6793AE23E0E4AE /* Sources */,
+				5CB2244CE4CA3308E763A7AA /* Frameworks */,
+				823E65E37BD248826E180F9B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-HackerNews-PureLayout";
+			productName = "Pods-HackerNews-PureLayout";
+			productReference = CDB7831D315FBC71DA4EE932 /* libPods-HackerNews-PureLayout.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E4115D1DDF8CE22EDE095B1B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+			};
+			buildConfigurationList = 3C5AAE347F5A72185232A14B /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 277C11C18F0FE4F86F61A578;
+			productRefGroup = 52DBC0661D832CFD7D02EF31 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				274EF0D3C859CD8EBE696DFE /* Pods-HackerNews */,
+				BF3DB40A3327BBDA39CB3122 /* Pods-HackerNews-PureLayout */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		825CCC753C6793AE23E0E4AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				258163A946FFD61FADCDB51D /* ALView+PureLayout.m in Sources */,
+				B8F223C45E1E778FA1CFDB68 /* NSArray+PureLayout.m in Sources */,
+				6F917D2EE7E14548649C653E /* NSLayoutConstraint+PureLayout.m in Sources */,
+				972CF680E4ACD505B5262A45 /* Pods-HackerNews-PureLayout-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B376F02E2BB53B3BDFA4399F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A3B67B3BAE5240704700077 /* Pods-HackerNews-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BA51B13A15E3CBB984CAE71F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-HackerNews-PureLayout";
+			target = BF3DB40A3327BBDA39CB3122 /* Pods-HackerNews-PureLayout */;
+			targetProxy = 1BCCD87ABEFFFC2FF75D3103 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		060FAF3824550C8BF5FA3F2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3F0BA503DD931AC0057DACBA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E823ECD7583D6DDDE2C0139 /* Pods-HackerNews.release.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		610FBE29D8AC80F0410BF7C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 88B92691F331E1316FA5E830 /* Pods-HackerNews-PureLayout-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-HackerNews-PureLayout/Pods-HackerNews-PureLayout-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		AA085D1458B9F614975277CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE3ECAF81AEA1A2A72FC7DD3 /* Pods-HackerNews.debug.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		AD91FA6D8F35BF08F835C6CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 88B92691F331E1316FA5E830 /* Pods-HackerNews-PureLayout-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-HackerNews-PureLayout/Pods-HackerNews-PureLayout-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		B366002074BE2560D64ACD83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3C5AAE347F5A72185232A14B /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B366002074BE2560D64ACD83 /* Debug */,
+				060FAF3824550C8BF5FA3F2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		836FD90EC5CEA3885BD63D11 /* Build configuration list for PBXNativeTarget "Pods-HackerNews" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA085D1458B9F614975277CE /* Debug */,
+				3F0BA503DD931AC0057DACBA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		99D5237C7D7C1E474FA94BCA /* Build configuration list for PBXNativeTarget "Pods-HackerNews-PureLayout" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				610FBE29D8AC80F0410BF7C7 /* Debug */,
+				AD91FA6D8F35BF08F835C6CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E4115D1DDF8CE22EDE095B1B /* Project object */;
+}

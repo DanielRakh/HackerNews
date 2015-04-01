@@ -17,8 +17,6 @@
 @property (nonatomic) NSNumber *time;
 @property (nonatomic) NSString *text;
 @property (nonatomic) BOOL dead;
-
-
 @property (nonatomic) NSNumber *parent;
 @property (nonatomic) NSArray *kids;
 @property (nonatomic) NSString *url;
