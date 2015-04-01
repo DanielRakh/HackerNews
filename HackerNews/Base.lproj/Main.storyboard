@@ -52,6 +52,9 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Cached" id="3RH-5B-fvS"/>
+                    <connections>
+                        <outlet property="tableView" destination="Izx-jd-EcJ" id="vTb-QH-nJS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

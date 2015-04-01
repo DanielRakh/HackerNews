@@ -18,7 +18,7 @@ CGFloat const kInnerViewInset = 8;
 @interface HNFeedTableViewCell ()
 
 @property (nonatomic) UIView *cardView;
-@property (nonatomic) UILabel *titleLabel;
+//@property (nonatomic) UILabel *titleLabel;
 @property (nonatomic) UILabel *infoLabel;
 @property (nonatomic) HNThinLineButton *commentsButton;
 

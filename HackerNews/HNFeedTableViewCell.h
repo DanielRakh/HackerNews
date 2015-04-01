@@ -10,4 +10,7 @@
 
 @interface HNFeedTableViewCell : UITableViewCell
 
+@property (nonatomic) UILabel *titleLabel;
+
+
 @end
