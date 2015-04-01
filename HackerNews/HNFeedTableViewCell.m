@@ -8,6 +8,8 @@
 
 #import "HNFeedTableViewCell.h"
 #import "PureLayout.h"
+#import "HNThinLineButton.h"
+#import "UIColor+HNColorPalette.h"
 
 CGFloat const kCardViewInset = 10;
 CGFloat const kInnerViewInset = 8;
@@ -18,9 +20,7 @@ CGFloat const kInnerViewInset = 8;
 @property (nonatomic) UIView *cardView;
 @property (nonatomic) UILabel *titleLabel;
 @property (nonatomic) UILabel *infoLabel;
-
-#warning "Switch This to CDThinLineButon"
-@property (nonatomic) UIButton *commentsButton;
+@property (nonatomic) HNThinLineButton *commentsButton;
 
 @property (nonatomic, assign) BOOL didSetupConstraints;
 
@@ -57,11 +57,10 @@ CGFloat const kInnerViewInset = 8;
     
     // Set up Card View - rounded corner cell background
     self.cardView = [UIView newAutoLayoutView];
-    #warning "Create color pallate"
-    self.cardView.backgroundColor = [UIColor whiteColor]; //HNWhite
+    self.cardView.backgroundColor = [UIColor HNWhite];
     self.cardView.layer.cornerRadius = 8.0;
     self.cardView.layer.borderWidth = 0.5;
-    self.cardView.layer.borderColor =  [UIColor blackColor].CGColor; //HNLightgray
+    self.cardView.layer.borderColor =  [UIColor HNLightGray].CGColor;
     
     [self.contentView addSubview:self.cardView];
     
@@ -86,7 +85,8 @@ CGFloat const kInnerViewInset = 8;
     
     
     // Set up Comments Button
-#warning Add HNLineThinButton here to the card view
+    self.commentsButton = [HNThinLineButton newAutoLayoutView];
+    [self.cardView addSubview:self.commentsButton];
 
 }
 

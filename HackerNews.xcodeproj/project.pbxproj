@@ -18,6 +18,8 @@
 		8E2352651ACC574C0009552D /* HNPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352641ACC574C0009552D /* HNPost.m */; };
 		8E23526C1ACC651F0009552D /* HNFeedViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E23526B1ACC651F0009552D /* HNFeedViewModel.m */; };
 		8E23526F1ACC69200009552D /* HNFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E23526E1ACC69200009552D /* HNFeedTableViewCell.m */; };
+		8E2352721ACC72F80009552D /* HNThinLineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352711ACC72F80009552D /* HNThinLineButton.m */; };
+		8E2352751ACC73BE0009552D /* UIColor+HNColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352741ACC73BE0009552D /* UIColor+HNColorPalette.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,10 @@
 		8E23526B1ACC651F0009552D /* HNFeedViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNFeedViewModel.m; sourceTree = "<group>"; };
 		8E23526D1ACC69200009552D /* HNFeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNFeedTableViewCell.h; sourceTree = "<group>"; };
 		8E23526E1ACC69200009552D /* HNFeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNFeedTableViewCell.m; sourceTree = "<group>"; };
+		8E2352701ACC72F80009552D /* HNThinLineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNThinLineButton.h; sourceTree = "<group>"; };
+		8E2352711ACC72F80009552D /* HNThinLineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNThinLineButton.m; sourceTree = "<group>"; };
+		8E2352731ACC73BE0009552D /* UIColor+HNColorPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HNColorPalette.h"; sourceTree = "<group>"; };
+		8E2352741ACC73BE0009552D /* UIColor+HNColorPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HNColorPalette.m"; sourceTree = "<group>"; };
 		E6E214A4479710CF3CF8F84E /* Pods-HackerNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HackerNews/Pods-HackerNews.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,6 +129,8 @@
 				8E23524A1ACC571F0009552D /* Images.xcassets */,
 				8E23524C1ACC571F0009552D /* LaunchScreen.xib */,
 				8E23523D1ACC571F0009552D /* Supporting Files */,
+				8E2352731ACC73BE0009552D /* UIColor+HNColorPalette.h */,
+				8E2352741ACC73BE0009552D /* UIColor+HNColorPalette.m */,
 			);
 			path = HackerNews;
 			sourceTree = "<group>";
@@ -186,6 +194,8 @@
 				8E2352451ACC571F0009552D /* HNFeedViewController.m */,
 				8E23526D1ACC69200009552D /* HNFeedTableViewCell.h */,
 				8E23526E1ACC69200009552D /* HNFeedTableViewCell.m */,
+				8E2352701ACC72F80009552D /* HNThinLineButton.h */,
+				8E2352711ACC72F80009552D /* HNThinLineButton.m */,
 			);
 			name = Feed;
 			sourceTree = "<group>";
@@ -330,7 +340,9 @@
 				8E2352431ACC571F0009552D /* AppDelegate.m in Sources */,
 				8E2352401ACC571F0009552D /* main.m in Sources */,
 				8E2352651ACC574C0009552D /* HNPost.m in Sources */,
+				8E2352721ACC72F80009552D /* HNThinLineButton.m in Sources */,
 				8E23526F1ACC69200009552D /* HNFeedTableViewCell.m in Sources */,
+				8E2352751ACC73BE0009552D /* UIColor+HNColorPalette.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
