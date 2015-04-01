@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Daniel Rakhamimov. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "HNFeedViewController.h"
 
-@interface ViewController ()
+@interface HNFeedViewController ()
 
 @end
 
-@implementation ViewController
+@implementation HNFeedViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
