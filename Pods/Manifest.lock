@@ -1,10 +1,13 @@
 PODS:
+  - Firebase (2.2.0)
   - PureLayout (2.0.5)
 
 DEPENDENCIES:
+  - Firebase (>= 2.2.0)
   - PureLayout
 
 SPEC CHECKSUMS:
+  Firebase: e5f9cf72c72a9fdaf7e136012b6c52a263a23ca7
   PureLayout: a0fe75f1cf485801e7e00b723b8a3c32dca558e2
 
 COCOAPODS: 0.36.0

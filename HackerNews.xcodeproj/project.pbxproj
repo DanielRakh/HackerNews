@@ -21,6 +21,7 @@
 		8E2352721ACC72F80009552D /* HNThinLineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352711ACC72F80009552D /* HNThinLineButton.m */; };
 		8E2352751ACC73BE0009552D /* UIColor+HNColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352741ACC73BE0009552D /* UIColor+HNColorPalette.m */; };
 		8E2352AD1ACD1C3C0009552D /* HNCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352AC1ACD1C3C0009552D /* HNCellViewModel.m */; };
+		8E2352B11ACDC34F0009552D /* HNNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352B01ACDC34F0009552D /* HNNetworkService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,8 @@
 		8E2352A91ACD0CBC0009552D /* HNPostTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNPostTableViewCell.m; sourceTree = "<group>"; };
 		8E2352AB1ACD1C3C0009552D /* HNCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCellViewModel.h; sourceTree = "<group>"; };
 		8E2352AC1ACD1C3C0009552D /* HNCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCellViewModel.m; sourceTree = "<group>"; };
+		8E2352AF1ACDC34F0009552D /* HNNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNNetworkService.h; sourceTree = "<group>"; };
+		8E2352B01ACDC34F0009552D /* HNNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNNetworkService.m; sourceTree = "<group>"; };
 		E6E214A4479710CF3CF8F84E /* Pods-HackerNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HackerNews/Pods-HackerNews.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,6 +128,7 @@
 		8E23523C1ACC571F0009552D /* HackerNews */ = {
 			isa = PBXGroup;
 			children = (
+				8E2352AE1ACDC2380009552D /* Networking */,
 				8E2352681ACC5C480009552D /* Model */,
 				8E2352671ACC5C370009552D /* View Model */,
 				8E2352661ACC5C290009552D /* View */,
@@ -207,6 +211,15 @@
 				8E2352A91ACD0CBC0009552D /* HNPostTableViewCell.m */,
 			);
 			name = Feed;
+			sourceTree = "<group>";
+		};
+		8E2352AE1ACDC2380009552D /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				8E2352AF1ACDC34F0009552D /* HNNetworkService.h */,
+				8E2352B01ACDC34F0009552D /* HNNetworkService.m */,
+			);
+			name = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,6 +363,7 @@
 				8E2352431ACC571F0009552D /* AppDelegate.m in Sources */,
 				8E2352401ACC571F0009552D /* main.m in Sources */,
 				8E2352651ACC574C0009552D /* HNPost.m in Sources */,
+				8E2352B11ACDC34F0009552D /* HNNetworkService.m in Sources */,
 				8E2352721ACC72F80009552D /* HNThinLineButton.m in Sources */,
 				8E23526F1ACC69200009552D /* HNFeedTableViewCell.m in Sources */,
 				8E2352751ACC73BE0009552D /* UIColor+HNColorPalette.m in Sources */,
