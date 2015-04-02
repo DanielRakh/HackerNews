@@ -9,13 +9,14 @@
 #import "HNFeedViewController.h"
 #import "UIColor+HNColorPalette.h"
 #import "HNFeedTableViewCell.h"
-//#import "HNPostTableViewCell.h"
+#import "HNFeedViewModel.h"
 
 NSString *const kFeedCellIdentifier = @"CardCell";
 
 @interface HNFeedViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) HNFeedViewModel *viewModel;
 
 @end
 
@@ -26,6 +27,11 @@ NSString *const kFeedCellIdentifier = @"CardCell";
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.dataSource = self;
     self.view.backgroundColor = [UIColor HNOffWhite];
+    
+    
+    self.viewModel = [HNFeedViewModel new];
+    
+    
     [self initalizeTableView];
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -48,13 +54,14 @@ NSString *const kFeedCellIdentifier = @"CardCell";
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 30;
+    return self.viewModel.posts.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     HNFeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFeedCellIdentifier forIndexPath:indexPath];
+    
     cell.titleLabel.text = indexPath.row % 2 == 0 ? @"Algorithims Every Programmer Should" : @"Algorithims Every Programmer Should Algorithims Every Programmer Should";
     cell.scoreLabel.text = @"460 Points";
     cell.infoLabel.text = @"by danielrak | 5 hrs ago";

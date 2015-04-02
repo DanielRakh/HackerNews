@@ -10,4 +10,6 @@
 
 @interface HNFeedViewModel : NSObject
 
+@property (nonatomic, strong) NSMutableArray *posts;
+
 @end
