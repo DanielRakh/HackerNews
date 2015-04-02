@@ -36,7 +36,7 @@
     self.layer.cornerRadius = 4.0;
     self.layer.borderColor = [UIColor HNOrange].CGColor;
     self.layer.borderWidth = 0.5;
-    self.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:10.0];
+    self.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:10.0];
     [self setTitleColor:[UIColor HNOrange] forState:UIControlStateNormal];
     [self setTitle:@"10 Comments" forState:UIControlStateNormal];
     

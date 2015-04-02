@@ -9,6 +9,7 @@
 #import "HNFeedViewController.h"
 #import "UIColor+HNColorPalette.h"
 #import "HNFeedTableViewCell.h"
+//#import "HNPostTableViewCell.h"
 
 NSString *const kFeedCellIdentifier = @"CardCell";
 
@@ -39,7 +40,7 @@ NSString *const kFeedCellIdentifier = @"CardCell";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0);
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 90;
+    self.tableView.estimatedRowHeight = 118;
     [self.tableView registerClass:[HNFeedTableViewCell class] forCellReuseIdentifier:kFeedCellIdentifier];
 }
 
@@ -54,7 +55,10 @@ NSString *const kFeedCellIdentifier = @"CardCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     HNFeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFeedCellIdentifier forIndexPath:indexPath];
-    cell.titleLabel.text = @"sdsds";
+    cell.titleLabel.text = indexPath.row % 2 == 0 ? @"Algorithims Every Programmer Should" : @"Algorithims Every Programmer Should Algorithims Every Programmer Should";
+    cell.scoreLabel.text = @"460 Points";
+    cell.infoLabel.text = @"by danielrak | 5 hrs ago";
+    
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
     return cell;

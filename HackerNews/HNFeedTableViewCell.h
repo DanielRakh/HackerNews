@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class HNThinLineButton;
+
 @interface HNFeedTableViewCell : UITableViewCell
 
 @property (nonatomic) UILabel *titleLabel;
+@property (nonatomic) UILabel *scoreLabel;
+@property (nonatomic) UILabel *infoLabel;
+@property (nonatomic) HNThinLineButton *commentsButton;
 
 
 @end
