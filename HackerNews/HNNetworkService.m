@@ -7,7 +7,25 @@
 //
 
 #import "HNNetworkService.h"
+#import <Firebase/Firebase.h>
+
+
+@interface HNNetworkService ()
+
+@property (nonatomic) Firebase *topStoriesRef;
+
+@end
 
 @implementation HNNetworkService
+
+-(instancetype)init {
+    self = [super init];
+    if (self) {
+    }
+    return self;
+}
+
+
+
 
 @end
