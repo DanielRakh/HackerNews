@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class HNThinLineButton;
+@class HNCellViewModel;
 
 @interface HNFeedTableViewCell : UITableViewCell
 
@@ -17,5 +18,7 @@
 @property (nonatomic) UILabel *infoLabel;
 @property (nonatomic) HNThinLineButton *commentsButton;
 
+
+- (void)configureWithViewModel:(HNCellViewModel *)viewModel;
 
 @end

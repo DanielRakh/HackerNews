@@ -16,28 +16,37 @@
 @implementation HNDataManager
 
 
+
 - (RACSignal *)topPostsWithCount:(NSInteger)count {
-    
-    
-//    [[[HNNetworkService sharedManager] topItemsWithCount:count] subscribeNext:^(NSArray *items) {
-//        [items enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//            if (![obj isKindOfClass:[NSNull class]]) {
-//                HNPost *post = [HNPost new];
-//                post.id = stories[idx]["id"];
-//                
-//            }
-//        }];
-//    } error:^(NSError *error) {
-//        NSLog(@"There was an error: %@", error);
-//    }];
-    
-//    return [[[HNNetworkService sharedManager] topItemsWithCount:count] map:^id(id value) {
-//        NSLog(@"%@",value);
-//        return [NSMutableArray array];
-//    }];
-//
-    return [RACSignal empty];
+
+    return [[[HNNetworkService sharedManager] topItemsWithCount:count]
+             map:^id(NSArray *items) {
+                 
+                 return [[items.rac_sequence
+                          map:^id(NSDictionary *dict) {
+                              
+                              HNPost *post = [HNPost new];
+                              post.id = dict[@"id"];
+                              post.deleted = dict[@"deleted"];
+                              post.type = dict[@"type"];
+                              post.by = dict[@"by"];
+                              post.time = dict[@"time"];
+                              post.text = dict[@"text"];
+                              post.dead = dict[@"dead"];
+                              post.parent = dict[@"parent"];
+                              post.kids = dict[@"kids"];
+                              post.url = dict[@"url"];
+                              post.score = dict[@"score"];
+                              post.title = dict[@"title"];
+                              post.parts = dict[@"parts"];
+                              post.descendants = dict[@"descendants"];
+                              return post;
+                              
+                          }] array];
+             }];
     
 }
+            
+
 
 @end

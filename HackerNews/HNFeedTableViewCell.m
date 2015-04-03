@@ -10,6 +10,7 @@
 #import "PureLayout.h"
 #import "UIColor+HNColorPalette.h"
 #import "HNThinLineButton.h"
+#import "HNCellViewModel.h"
 
 
 CGFloat const kVerticalInset = 10;
@@ -36,8 +37,6 @@ CGFloat const kHorizontalInset = 8;
     return self;
 }
 
-
-
 - (instancetype)initWithCoder:(NSCoder *)coder
 {
     self = [super initWithCoder:coder];
@@ -47,6 +46,12 @@ CGFloat const kHorizontalInset = 8;
     return self;
 }
 
+- (void)configureWithViewModel:(HNCellViewModel *)viewModel {
+    self.titleLabel.text = viewModel.title;
+    self.scoreLabel.text = viewModel.score;
+    [self.commentsButton setTitle:[NSString stringWithFormat:@"%@ Comments", viewModel.commentsCount] forState:UIControlStateNormal];
+    self.infoLabel.text = viewModel.info;
+}
 
 - (void)initalizeViews {
     

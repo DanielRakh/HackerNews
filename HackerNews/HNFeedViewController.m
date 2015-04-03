@@ -14,6 +14,7 @@
 
 #import "HNNetworkService.h"
 #import "HNPost.h"
+#import "HNCellViewModel.h"
 
 NSString *const kFeedCellIdentifier = @"CardCell";
 
@@ -33,42 +34,14 @@ NSString *const kFeedCellIdentifier = @"CardCell";
     self.view.backgroundColor = [UIColor HNOffWhite];
     
     [self initalizeTableView];
-    
-    [[[[HNNetworkService sharedManager] topItemsWithCount:5] map:^id(NSArray *items) {
-        return [[items.rac_sequence map:^id(NSDictionary *dict) {
-            
-            HNPost *post = [HNPost new];
-            post.id = dict[@"id"];
-            post.deleted = dict[@"deleted"];
-            post.type = dict[@"type"];
-            post.by = dict[@"by"];
-            post.time = dict[@"time"];
-            post.text = dict[@"text"];
-            post.dead = dict[@"dead"];
-            post.parent = dict[@"parent"];
-            post.kids = dict[@"kids"];
-            post.url = dict[@"url"];
-            post.score = dict[@"score"];
-            post.title = dict[@"title"];
-            post.parts = dict[@"parts"];
-            post.descendants = dict[@"descendants"];
-            
-            return post;
-        }] array];
-    }] subscribeNext:^(NSArray *collection) {
-        NSLog(@"%@",collection[4]);
+    [self bindViewModel];
 
-    }];
-    
  
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.tableView reloadData];
     self.tableView.delegate = self;
-    
 }
 
 - (void)initalizeTableView {
@@ -82,11 +55,18 @@ NSString *const kFeedCellIdentifier = @"CardCell";
 
 - (void)bindViewModel {
     
+    @weakify(self);
+    [RACObserve(self, viewModel.posts) subscribeNext:^(id x) {
+        @strongify(self);
+        NSLog(@"RELOAD");
+        [self.tableView reloadData];
+    }];
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"numberOfRowsInSection");
     return self.viewModel.posts.count;
 }
 
@@ -95,12 +75,11 @@ NSString *const kFeedCellIdentifier = @"CardCell";
     
     HNFeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFeedCellIdentifier forIndexPath:indexPath];
     
-    cell.titleLabel.text = indexPath.row % 2 == 0 ? @"Algorithims Every Programmer Should" : @"Algorithims Every Programmer Should Algorithims Every Programmer Should";
-    cell.scoreLabel.text = @"460 Points";
-    cell.infoLabel.text = @"by danielrak | 5 hrs ago";
+    [cell configureWithViewModel:self.viewModel.posts[indexPath.row]];
     
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
+    
     return cell;
 }
 
