@@ -13,8 +13,10 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import "HNNetworkService.h"
+#import "HNPost.h"
 
 NSString *const kFeedCellIdentifier = @"CardCell";
+
 
 @interface HNFeedViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -32,14 +34,33 @@ NSString *const kFeedCellIdentifier = @"CardCell";
     
     [self initalizeTableView];
     
-    [[[[HNNetworkService sharedManager] topItemsWithCount:5] map:^id(id value) {
-        NSLog(@"%ld",[value count]);
-        return [NSArray array];
-    }] subscribeNext:^(id x) {
-        NSLog(@"%@",[x class]);
+    [[[[HNNetworkService sharedManager] topItemsWithCount:5] map:^id(NSArray *items) {
+        return [[items.rac_sequence map:^id(NSDictionary *dict) {
+            
+            HNPost *post = [HNPost new];
+            post.id = dict[@"id"];
+            post.deleted = dict[@"deleted"];
+            post.type = dict[@"type"];
+            post.by = dict[@"by"];
+            post.time = dict[@"time"];
+            post.text = dict[@"text"];
+            post.dead = dict[@"dead"];
+            post.parent = dict[@"parent"];
+            post.kids = dict[@"kids"];
+            post.url = dict[@"url"];
+            post.score = dict[@"score"];
+            post.title = dict[@"title"];
+            post.parts = dict[@"parts"];
+            post.descendants = dict[@"descendants"];
+            
+            return post;
+        }] array];
+    }] subscribeNext:^(NSArray *collection) {
+        NSLog(@"%@",collection[4]);
 
     }];
     
+ 
     
 }
 
