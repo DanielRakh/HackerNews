@@ -5,6 +5,7 @@ target 'HackerNews' do
 
 pod 'PureLayout'
 pod 'Firebase', '>= 2.2.0'
+pod 'ReactiveCocoa'
 
 end
 

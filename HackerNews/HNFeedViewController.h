@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class HNFeedViewModel;
+
 @interface HNFeedViewController : UIViewController
 
+@property (nonatomic) HNFeedViewModel *viewModel;
 
 @end
 

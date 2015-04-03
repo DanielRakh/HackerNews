@@ -22,6 +22,7 @@
 		8E2352751ACC73BE0009552D /* UIColor+HNColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352741ACC73BE0009552D /* UIColor+HNColorPalette.m */; };
 		8E2352AD1ACD1C3C0009552D /* HNCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352AC1ACD1C3C0009552D /* HNCellViewModel.m */; };
 		8E2352B11ACDC34F0009552D /* HNNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352B01ACDC34F0009552D /* HNNetworkService.m */; };
+		8E2352B41ACE102C0009552D /* HNDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352B31ACE102C0009552D /* HNDataManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		8E2352AC1ACD1C3C0009552D /* HNCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCellViewModel.m; sourceTree = "<group>"; };
 		8E2352AF1ACDC34F0009552D /* HNNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNNetworkService.h; sourceTree = "<group>"; };
 		8E2352B01ACDC34F0009552D /* HNNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNNetworkService.m; sourceTree = "<group>"; };
+		8E2352B21ACE102C0009552D /* HNDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNDataManager.h; sourceTree = "<group>"; };
+		8E2352B31ACE102C0009552D /* HNDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNDataManager.m; sourceTree = "<group>"; };
 		E6E214A4479710CF3CF8F84E /* Pods-HackerNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HackerNews/Pods-HackerNews.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -194,6 +197,8 @@
 			children = (
 				8E2352631ACC574C0009552D /* HNPost.h */,
 				8E2352641ACC574C0009552D /* HNPost.m */,
+				8E2352B21ACE102C0009552D /* HNDataManager.h */,
+				8E2352B31ACE102C0009552D /* HNDataManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -361,6 +366,7 @@
 				8E23526C1ACC651F0009552D /* HNFeedViewModel.m in Sources */,
 				8E2352AD1ACD1C3C0009552D /* HNCellViewModel.m in Sources */,
 				8E2352431ACC571F0009552D /* AppDelegate.m in Sources */,
+				8E2352B41ACE102C0009552D /* HNDataManager.m in Sources */,
 				8E2352401ACC571F0009552D /* main.m in Sources */,
 				8E2352651ACC574C0009552D /* HNPost.m in Sources */,
 				8E2352B11ACDC34F0009552D /* HNNetworkService.m in Sources */,

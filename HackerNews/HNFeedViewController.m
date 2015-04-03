@@ -10,13 +10,15 @@
 #import "UIColor+HNColorPalette.h"
 #import "HNFeedTableViewCell.h"
 #import "HNFeedViewModel.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+
+#import "HNNetworkService.h"
 
 NSString *const kFeedCellIdentifier = @"CardCell";
 
 @interface HNFeedViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) HNFeedViewModel *viewModel;
 
 @end
 
@@ -28,18 +30,24 @@ NSString *const kFeedCellIdentifier = @"CardCell";
     self.tableView.dataSource = self;
     self.view.backgroundColor = [UIColor HNOffWhite];
     
-    
-    self.viewModel = [HNFeedViewModel new];
-    
-    
     [self initalizeTableView];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    [[[[HNNetworkService sharedManager] topItemsWithCount:5] map:^id(id value) {
+        NSLog(@"%ld",[value count]);
+        return [NSArray array];
+    }] subscribeNext:^(id x) {
+        NSLog(@"%@",[x class]);
+
+    }];
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.tableView reloadData];
     self.tableView.delegate = self;
+    
 }
 
 - (void)initalizeTableView {
@@ -50,6 +58,10 @@ NSString *const kFeedCellIdentifier = @"CardCell";
     [self.tableView registerClass:[HNFeedTableViewCell class] forCellReuseIdentifier:kFeedCellIdentifier];
 }
 
+
+- (void)bindViewModel {
+    
+}
 
 #pragma mark - UITableViewDataSource
 

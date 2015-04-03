@@ -8,6 +8,7 @@
 
 #import "HNNetworkService.h"
 #import <Firebase/Firebase.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 
 @interface HNNetworkService ()
@@ -18,6 +19,15 @@
 
 @implementation HNNetworkService
 
++ (id)sharedManager {
+    static HNNetworkService *sharedMyManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedMyManager = [[self alloc] init];
+    });
+    return sharedMyManager;
+}
+
 -(instancetype)init {
     self = [super init];
     if (self) {
@@ -25,7 +35,40 @@
     return self;
 }
 
-
+- (RACSignal *)topItemsWithCount:(NSInteger)count {
+    
+    NSMutableArray *posts = [NSMutableArray arrayWithCapacity:count];
+    
+    self.topStoriesRef = [[Firebase alloc]initWithUrl:@"https://hacker-news.firebaseio.com/v0/topstories"];
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        [[self.topStoriesRef queryLimitedToFirst:count]observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+            
+            [snapshot.children.allObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                
+                Firebase *itemRef = [[[Firebase alloc]initWithUrl:@"https://hacker-news.firebaseio.com/v0/item/"] childByAppendingPath:[NSString stringWithFormat:@"%@", ((FDataSnapshot *)obj).value]];
+            
+                [itemRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+                    
+                    [posts addObject:snapshot.value];
+                    
+                    if (posts.count == count) {
+                        [subscriber sendNext:posts];
+                        [subscriber sendCompleted];
+                    }
+                    
+                }];
+               
+            }];
+            
+        } withCancelBlock:^(NSError *error) {
+            [subscriber sendError:error];
+        }];
+        
+    
+        return nil;
+    }];
+}
 
 
 @end

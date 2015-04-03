@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "HNFeedViewModel.h"
+#import "HNFeedViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +19,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
+    HNFeedViewController *feedController = (HNFeedViewController *)navController.topViewController;
+    feedController.viewModel = [HNFeedViewModel new];
+
     return YES;
 }
 

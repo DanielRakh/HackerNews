@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class RACSignal;
+
+
 @interface HNNetworkService : NSObject
+
++ (id)sharedManager;
+
+- (RACSignal *)topItemsWithCount:(NSInteger)count;
 
 @end
