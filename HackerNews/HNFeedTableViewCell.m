@@ -32,6 +32,7 @@ CGFloat const kHorizontalInset = 8;
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self initalizeViews];
     }
     return self;
@@ -41,6 +42,7 @@ CGFloat const kHorizontalInset = 8;
 {
     self = [super initWithCoder:coder];
     if (self) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self initalizeViews];
     }
     return self;

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "HNFeedViewModel.h"
 #import "HNFeedViewController.h"
+#import "UIColor+HNColorPalette.h"
 
 @interface AppDelegate ()
 
@@ -23,6 +24,9 @@
     UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
     HNFeedViewController *feedController = (HNFeedViewController *)navController.topViewController;
     feedController.viewModel = [HNFeedViewModel new];
+    
+    [[UINavigationBar appearance] setTintColor:[UIColor HNOrange]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{ NSFontAttributeName : [UIFont fontWithName:@"AvenirNext-DemiBold" size:16.0], NSForegroundColorAttributeName : [UIColor HNOrange]}];
 
     return YES;
 }

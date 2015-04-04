@@ -29,6 +29,9 @@ NSString *const kFeedCellIdentifier = @"CardCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"Hacker News";
+    
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.dataSource = self;
     self.view.backgroundColor = [UIColor HNOffWhite];
@@ -66,7 +69,6 @@ NSString *const kFeedCellIdentifier = @"CardCell";
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"numberOfRowsInSection");
     return self.viewModel.posts.count;
 }
 
@@ -76,12 +78,14 @@ NSString *const kFeedCellIdentifier = @"CardCell";
     HNFeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFeedCellIdentifier forIndexPath:indexPath];
     
     [cell configureWithViewModel:self.viewModel.posts[indexPath.row]];
-    
+
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
     
     return cell;
 }
+
+#pragma mark - UITableViewDelegate
 
 
 @end

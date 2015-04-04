@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class HNPost;
+
 @interface HNCellViewModel : NSObject
 
 @property (nonatomic, strong) NSString *score;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *commentsCount;
 @property (nonatomic, strong) NSString *info;
+
+- (instancetype)initWithPost:(HNPost *)post;
 
 @end

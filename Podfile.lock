@@ -1,4 +1,5 @@
 PODS:
+  - DateTools (1.5.0)
   - Firebase (2.2.0)
   - PureLayout (2.0.5)
   - ReactiveCocoa (2.4.7):
@@ -10,11 +11,13 @@ PODS:
     - ReactiveCocoa/Core
 
 DEPENDENCIES:
+  - DateTools
   - Firebase (>= 2.2.0)
   - PureLayout
   - ReactiveCocoa
 
 SPEC CHECKSUMS:
+  DateTools: b93a2c2017747329c6077c7d7e8a75106e23d0d7
   Firebase: e5f9cf72c72a9fdaf7e136012b6c52a263a23ca7
   PureLayout: a0fe75f1cf485801e7e00b723b8a3c32dca558e2
   ReactiveCocoa: eb38dee0a0e698f73a9b25e5c1faea2bb4c79240

@@ -35,11 +35,7 @@
     
     return [[self.dataManager topPostsWithCount:30] map:^id(NSArray *posts) {
         return [[posts.rac_sequence map:^id(HNPost *post) {
-            HNCellViewModel *cellViewModel = [HNCellViewModel new];
-            cellViewModel.title = post.title;
-            cellViewModel.commentsCount = @"100";
-            cellViewModel.info = @"by danielrak | 12 hrs ago";
-            cellViewModel.score = @"500 pts";
+            HNCellViewModel *cellViewModel = [[HNCellViewModel alloc]initWithPost:post];
             return cellViewModel;
         }] array];
     }];

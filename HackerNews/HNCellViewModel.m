@@ -7,22 +7,28 @@
 //
 
 #import "HNCellViewModel.h"
+#import "HNPost.h"
+#import <DateTools/NSDate+DateTools.h>
 
 @implementation HNCellViewModel
 
-- (instancetype)init {
+- (instancetype)initWithPost:(HNPost *)post {
     self = [super init];
     if (self) {
-//        _score = @"500 Pts";
-//        _title = @"This is a fugazy title";
-//        _commentsCount = @"88";
-//        _info = @"by danielrak | 12 hrs ago";
+        _score = [NSString stringWithFormat:@"%@ Points", post.score.stringValue];
+        _title = post.title;
+        _commentsCount = post.descendants.stringValue;
+        _info = [NSString stringWithFormat: @"by %@ | %@", post.by, [self formattedStringForTime:post.time]];
     }
     return self;
 }
 
 
-
+- (NSString *)formattedStringForTime:(NSNumber *)time {
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:time.doubleValue];
+    NSString *timeString = date.timeAgoSinceNow;
+    return timeString;
+}
 
 
 @end
