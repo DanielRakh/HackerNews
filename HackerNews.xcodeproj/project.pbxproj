@@ -23,6 +23,8 @@
 		8E2352AD1ACD1C3C0009552D /* HNCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352AC1ACD1C3C0009552D /* HNCellViewModel.m */; };
 		8E2352B11ACDC34F0009552D /* HNNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352B01ACDC34F0009552D /* HNNetworkService.m */; };
 		8E2352B41ACE102C0009552D /* HNDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352B31ACE102C0009552D /* HNDataManager.m */; };
+		8E395ED81AD0732F00EE0DB9 /* HNBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395ED71AD0732F00EE0DB9 /* HNBrowserViewController.m */; };
+		8E395EDD1AD073F700EE0DB9 /* HNBrowserViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395EDC1AD073F700EE0DB9 /* HNBrowserViewModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,10 @@
 		8E2352B01ACDC34F0009552D /* HNNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNNetworkService.m; sourceTree = "<group>"; };
 		8E2352B21ACE102C0009552D /* HNDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNDataManager.h; sourceTree = "<group>"; };
 		8E2352B31ACE102C0009552D /* HNDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNDataManager.m; sourceTree = "<group>"; };
+		8E395ED61AD0732F00EE0DB9 /* HNBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNBrowserViewController.h; sourceTree = "<group>"; };
+		8E395ED71AD0732F00EE0DB9 /* HNBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNBrowserViewController.m; sourceTree = "<group>"; };
+		8E395EDB1AD073F700EE0DB9 /* HNBrowserViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNBrowserViewModel.h; sourceTree = "<group>"; };
+		8E395EDC1AD073F700EE0DB9 /* HNBrowserViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNBrowserViewModel.m; sourceTree = "<group>"; };
 		E6E214A4479710CF3CF8F84E /* Pods-HackerNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HackerNews/Pods-HackerNews.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,18 +137,17 @@
 		8E23523C1ACC571F0009552D /* HackerNews */ = {
 			isa = PBXGroup;
 			children = (
-				8E2352AE1ACDC2380009552D /* Networking */,
-				8E2352681ACC5C480009552D /* Model */,
-				8E2352671ACC5C370009552D /* View Model */,
-				8E2352661ACC5C290009552D /* View */,
 				8E2352411ACC571F0009552D /* AppDelegate.h */,
 				8E2352421ACC571F0009552D /* AppDelegate.m */,
+				8E395ED51AD0731100EE0DB9 /* Browser */,
+				8E2352691ACC5C560009552D /* Feed */,
+				8E2352AE1ACDC2380009552D /* Networking */,
+				8E2352681ACC5C480009552D /* Model */,
+				8E395EDE1AD0742200EE0DB9 /* Categories */,
 				8E2352471ACC571F0009552D /* Main.storyboard */,
 				8E23524A1ACC571F0009552D /* Images.xcassets */,
 				8E23524C1ACC571F0009552D /* LaunchScreen.xib */,
 				8E23523D1ACC571F0009552D /* Supporting Files */,
-				8E2352731ACC73BE0009552D /* UIColor+HNColorPalette.h */,
-				8E2352741ACC73BE0009552D /* UIColor+HNColorPalette.m */,
 			);
 			path = HackerNews;
 			sourceTree = "<group>";
@@ -176,7 +181,8 @@
 		8E2352661ACC5C290009552D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8E2352691ACC5C560009552D /* Feed */,
+				8E395ED61AD0732F00EE0DB9 /* HNBrowserViewController.h */,
+				8E395ED71AD0732F00EE0DB9 /* HNBrowserViewController.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -184,10 +190,8 @@
 		8E2352671ACC5C370009552D /* View Model */ = {
 			isa = PBXGroup;
 			children = (
-				8E23526A1ACC651F0009552D /* HNFeedViewModel.h */,
-				8E23526B1ACC651F0009552D /* HNFeedViewModel.m */,
-				8E2352AB1ACD1C3C0009552D /* HNCellViewModel.h */,
-				8E2352AC1ACD1C3C0009552D /* HNCellViewModel.m */,
+				8E395EDB1AD073F700EE0DB9 /* HNBrowserViewModel.h */,
+				8E395EDC1AD073F700EE0DB9 /* HNBrowserViewModel.m */,
 			);
 			name = "View Model";
 			sourceTree = "<group>";
@@ -206,14 +210,8 @@
 		8E2352691ACC5C560009552D /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				8E2352441ACC571F0009552D /* HNFeedViewController.h */,
-				8E2352451ACC571F0009552D /* HNFeedViewController.m */,
-				8E23526D1ACC69200009552D /* HNFeedTableViewCell.h */,
-				8E23526E1ACC69200009552D /* HNFeedTableViewCell.m */,
-				8E2352701ACC72F80009552D /* HNThinLineButton.h */,
-				8E2352711ACC72F80009552D /* HNThinLineButton.m */,
-				8E2352A81ACD0CBC0009552D /* HNPostTableViewCell.h */,
-				8E2352A91ACD0CBC0009552D /* HNPostTableViewCell.m */,
+				8E395ED91AD073AB00EE0DB9 /* View */,
+				8E395EDA1AD073BC00EE0DB9 /* View Model */,
 			);
 			name = Feed;
 			sourceTree = "<group>";
@@ -225,6 +223,50 @@
 				8E2352B01ACDC34F0009552D /* HNNetworkService.m */,
 			);
 			name = Networking;
+			sourceTree = "<group>";
+		};
+		8E395ED51AD0731100EE0DB9 /* Browser */ = {
+			isa = PBXGroup;
+			children = (
+				8E2352661ACC5C290009552D /* View */,
+				8E2352671ACC5C370009552D /* View Model */,
+			);
+			name = Browser;
+			sourceTree = "<group>";
+		};
+		8E395ED91AD073AB00EE0DB9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8E2352441ACC571F0009552D /* HNFeedViewController.h */,
+				8E2352451ACC571F0009552D /* HNFeedViewController.m */,
+				8E23526D1ACC69200009552D /* HNFeedTableViewCell.h */,
+				8E23526E1ACC69200009552D /* HNFeedTableViewCell.m */,
+				8E2352701ACC72F80009552D /* HNThinLineButton.h */,
+				8E2352711ACC72F80009552D /* HNThinLineButton.m */,
+				8E2352A81ACD0CBC0009552D /* HNPostTableViewCell.h */,
+				8E2352A91ACD0CBC0009552D /* HNPostTableViewCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		8E395EDA1AD073BC00EE0DB9 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				8E23526A1ACC651F0009552D /* HNFeedViewModel.h */,
+				8E23526B1ACC651F0009552D /* HNFeedViewModel.m */,
+				8E2352AB1ACD1C3C0009552D /* HNCellViewModel.h */,
+				8E2352AC1ACD1C3C0009552D /* HNCellViewModel.m */,
+			);
+			name = "View Model";
+			sourceTree = "<group>";
+		};
+		8E395EDE1AD0742200EE0DB9 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				8E2352731ACC73BE0009552D /* UIColor+HNColorPalette.h */,
+				8E2352741ACC73BE0009552D /* UIColor+HNColorPalette.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,6 +414,8 @@
 				8E2352B11ACDC34F0009552D /* HNNetworkService.m in Sources */,
 				8E2352721ACC72F80009552D /* HNThinLineButton.m in Sources */,
 				8E23526F1ACC69200009552D /* HNFeedTableViewCell.m in Sources */,
+				8E395EDD1AD073F700EE0DB9 /* HNBrowserViewModel.m in Sources */,
+				8E395ED81AD0732F00EE0DB9 /* HNBrowserViewController.m in Sources */,
 				8E2352751ACC73BE0009552D /* UIColor+HNColorPalette.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

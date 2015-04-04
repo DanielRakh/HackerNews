@@ -12,19 +12,20 @@
 #import "HNPost.h"
 
 
+@interface HNDataManager ()
+
+@end
 
 @implementation HNDataManager
 
-
-
 - (RACSignal *)topPostsWithCount:(NSInteger)count {
 
-    return [[[HNNetworkService sharedManager] topItemsWithCount:count]
+    return [[[[HNNetworkService sharedManager] topItemsWithCount:count]
              map:^id(NSArray *items) {
                  
                  return [[items.rac_sequence
                           map:^id(NSDictionary *dict) {
-                              
+
                               HNPost *post = [HNPost new];
                               post.id = dict[@"id"];
                               post.deleted = dict[@"deleted"];
@@ -43,6 +44,8 @@
                               return post;
                               
                           }] array];
+             }] doNext:^(id x) {
+                 _posts = [NSArray arrayWithArray:x];
              }];
     
 }

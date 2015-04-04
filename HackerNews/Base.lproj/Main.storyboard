@@ -54,11 +54,30 @@
                     <navigationItem key="navigationItem" title="Cached" id="3RH-5B-fvS"/>
                     <connections>
                         <outlet property="tableView" destination="Izx-jd-EcJ" id="vTb-QH-nJS"/>
+                        <segue destination="CN4-9f-hMH" kind="show" identifier="presentBrowser" id="w6f-2M-2RF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1240" y="-318"/>
+        </scene>
+        <!--Browser View Controller-->
+        <scene sceneID="FB1-3C-dBn">
+            <objects>
+                <viewController storyboardIdentifier="HNBrowserVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CN4-9f-hMH" customClass="HNBrowserViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gIf-B2-zrp"/>
+                        <viewControllerLayoutGuide type="bottom" id="C9t-3z-LzM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8s9-UQ-9Tt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WaL-XA-ib3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2125.5" y="-318"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QXH-IO-ipJ">

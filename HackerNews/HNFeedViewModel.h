@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class HNBrowserViewModel;
+
 @interface HNFeedViewModel : NSObject
 
-
 @property (nonatomic, strong) NSArray *posts;
+
+- (HNBrowserViewModel *)browserViewModelForIndexPath:(NSIndexPath *)indexPath;
 
 @end

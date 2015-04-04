@@ -6,15 +6,19 @@
 //  Copyright (c) 2015 Daniel Rakhamimov. All rights reserved.
 //
 
-#import "HNFeedViewController.h"
-#import "UIColor+HNColorPalette.h"
-#import "HNFeedTableViewCell.h"
-#import "HNFeedViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "UIColor+HNColorPalette.h"
 
-#import "HNNetworkService.h"
-#import "HNPost.h"
+// Views
+#import "HNFeedViewController.h"
+#import "HNBrowserViewController.h"
+#import "HNFeedTableViewCell.h"
+
+//View Models
+#import "HNFeedViewModel.h"
 #import "HNCellViewModel.h"
+#import "HNBrowserViewModel.h"
+
 
 NSString *const kFeedCellIdentifier = @"CardCell";
 
@@ -38,8 +42,6 @@ NSString *const kFeedCellIdentifier = @"CardCell";
     
     [self initalizeTableView];
     [self bindViewModel];
-
- 
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -66,6 +68,7 @@ NSString *const kFeedCellIdentifier = @"CardCell";
     }];
 }
 
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -87,5 +90,16 @@ NSString *const kFeedCellIdentifier = @"CardCell";
 
 #pragma mark - UITableViewDelegate
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"presentBrowser" sender:self];
+}
+
+#pragma mark - Navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"presentBrowser"]) {
+        HNBrowserViewModel *viewModel = [self.viewModel browserViewModelForIndexPath:self.tableView.indexPathForSelectedRow];
+        ((HNBrowserViewController *)segue.destinationViewController).viewModel = viewModel;
+    }
+}
 
 @end

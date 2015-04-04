@@ -12,6 +12,7 @@
 
 @interface HNDataManager : NSObject
 
+@property (nonatomic, readonly) NSArray *posts;
 
 - (RACSignal *)topPostsWithCount:(NSInteger)count;
 

@@ -6,11 +6,14 @@
 //  Copyright (c) 2015 Daniel Rakhamimov. All rights reserved.
 //
 
+#import <ReactiveCocoa/ReactiveCocoa.h>
+
+
 #import "HNFeedViewModel.h"
 #import "HNPost.h"
 #import "HNDataManager.h"
-#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "HNCellViewModel.h"
+#import "HNBrowserViewModel.h"
 
 
 @interface HNFeedViewModel ()
@@ -39,6 +42,12 @@
             return cellViewModel;
         }] array];
     }];
+}
+
+
+- (HNBrowserViewModel *)browserViewModelForIndexPath:(NSIndexPath *)indexPath {
+    HNPost *selectedPost =  self.dataManager.posts[indexPath.row];
+    return [[HNBrowserViewModel alloc]initWithPost:selectedPost];
 }
 
 @end
