@@ -69,6 +69,8 @@ NSString *const kFeedCellIdentifier = @"CardCell";
 }
 
 
+
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -81,7 +83,7 @@ NSString *const kFeedCellIdentifier = @"CardCell";
     HNFeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFeedCellIdentifier forIndexPath:indexPath];
     
     [cell configureWithViewModel:self.viewModel.posts[indexPath.row]];
-
+    [cell setNavController:self.navigationController];
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
     
@@ -91,7 +93,7 @@ NSString *const kFeedCellIdentifier = @"CardCell";
 #pragma mark - UITableViewDelegate
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"presentBrowser" sender:self];
+//    [self performSegueWithIdentifier:@"presentBrowser" sender:self];
 }
 
 #pragma mark - Navigation

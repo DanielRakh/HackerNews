@@ -1,27 +1,26 @@
 //
-//  HNBrowserController.m
+//  HNCommentsViewController.m
 //  HackerNews
 //
-//  Created by Daniel on 4/4/15.
+//  Created by Daniel on 4/5/15.
 //  Copyright (c) 2015 Daniel Rakhamimov. All rights reserved.
 //
 
-#import "HNBrowserViewController.h"
-#import "HNBrowserViewModel.h"
+#import "HNCommentsViewController.h"
+#import "UIColor+HNColorPalette.h"
+#import "HNCommentsViewModel.h"
 
-@interface HNBrowserViewController ()
-
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@interface HNCommentsViewController ()
 
 @end
 
-@implementation HNBrowserViewController
+@implementation HNCommentsViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = self.viewModel.url.absoluteString;
-    [self.webView loadRequest:[NSURLRequest requestWithURL:self.viewModel.url]];
-
+    self.view.backgroundColor = [UIColor HNOffWhite];
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {

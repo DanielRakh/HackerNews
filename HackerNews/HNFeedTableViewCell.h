@@ -17,8 +17,10 @@
 @property (nonatomic) UILabel *scoreLabel;
 @property (nonatomic) UILabel *infoLabel;
 @property (nonatomic) HNThinLineButton *commentsButton;
+@property (nonatomic, weak) UINavigationController *navController;
 
 
 - (void)configureWithViewModel:(HNCellViewModel *)viewModel;
+
 
 @end

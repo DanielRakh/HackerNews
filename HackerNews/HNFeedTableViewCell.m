@@ -11,6 +11,8 @@
 #import "UIColor+HNColorPalette.h"
 #import "HNThinLineButton.h"
 #import "HNCellViewModel.h"
+#import "HNCommentsViewModel.h"
+#import "HNCommentsViewController.h"
 
 
 CGFloat const kVerticalInset = 10;
@@ -20,10 +22,8 @@ CGFloat const kHorizontalInset = 8;
 @interface HNFeedTableViewCell ()
 
 @property (nonatomic) UIView *cardView;
-
-
 @property (nonatomic, assign) BOOL didSetupConstraints;
-
+@property (nonatomic) HNCellViewModel *viewModel;
 
 @end
 
@@ -49,9 +49,11 @@ CGFloat const kHorizontalInset = 8;
 }
 
 - (void)configureWithViewModel:(HNCellViewModel *)viewModel {
+    self.viewModel = viewModel;
     self.titleLabel.text = viewModel.title;
     self.scoreLabel.text = viewModel.score;
     [self.commentsButton setTitle:[NSString stringWithFormat:@"%@ Comments", viewModel.commentsCount] forState:UIControlStateNormal];
+    [self.commentsButton addTarget:self action:@selector(commentsButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
     self.infoLabel.text = viewModel.info;
 }
 
@@ -155,5 +157,19 @@ CGFloat const kHorizontalInset = 8;
 }
 
 
+
+- (void)commentsButtonDidTap:(id)sender {
+    [self pushCommentsController];
+}
+
+
+- (void)pushCommentsController {
+    HNCommentsViewModel *viewModel = [[HNCommentsViewModel alloc]initWithPost:self.viewModel.post];
+    UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    HNCommentsViewController *commentsController =[mainSB instantiateViewControllerWithIdentifier:@"CommentsController"];
+    commentsController.viewModel = viewModel;
+
+    [self.navController pushViewController:commentsController animated:YES];
+}
 
 @end
