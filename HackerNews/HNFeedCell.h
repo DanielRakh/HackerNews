@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class HNThinLineButton;
-@class HNCellViewModel;
+@class HNFeedCellViewModel;
 
 @interface HNFeedCell : UITableViewCell
 
@@ -20,7 +20,7 @@
 @property (nonatomic, weak) UINavigationController *navController;
 
 
-- (void)configureWithViewModel:(HNCellViewModel *)viewModel;
+- (void)configureWithViewModel:(HNFeedCellViewModel *)viewModel;
 
 
 @end

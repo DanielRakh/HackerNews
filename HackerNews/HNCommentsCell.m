@@ -6,18 +6,96 @@
 //  Copyright (c) 2015 Daniel Rakhamimov. All rights reserved.
 //
 
+#import "PureLayout.h"
+#import "UIColor+HNColorPalette.h"
+
+//View
 #import "HNCommentsCell.h"
+
+//View Model
+#import "HNCommentsCellViewModel.h"
+
+
+CGFloat const kCommentsVerticalInset = 10;
+CGFloat const kCommentsHorizontalInset = 8;
+
+
+@interface HNCommentsCell ()
+
+@property (nonatomic) UIView *cardView;
+@property (nonatomic, assign) BOOL didSetupConstraints;
+@property (nonatomic) HNCommentsCellViewModel *viewModel;
+
+@end
 
 @implementation HNCommentsCell
 
-- (void)awakeFromNib {
-    // Initialization code
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        [self initalizeViews];
+    }
+    return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        [self initalizeViews];
+    }
+    return self;
+}
 
-    // Configure the view for the selected state
+- (void)initalizeViews {
+    
+    self.didSetupConstraints = NO;
+    // We are creating a rounded corner view to serve as the background
+    // of the cell so we need to make the real cell background clear.
+    self.backgroundColor = [UIColor clearColor];
+    self.contentView.backgroundColor = [UIColor clearColor];
+    
+    // Set up Card View - rounded corner cell background
+    self.cardView = [UIView newAutoLayoutView];
+    self.cardView.backgroundColor = [UIColor HNWhite];
+    self.cardView.layer.cornerRadius = 8.0;
+    self.cardView.layer.borderWidth = 0.5;
+    self.cardView.layer.borderColor =  [UIColor HNLightGray].CGColor;
+    
+    [self.contentView addSubview:self.cardView];
+    
+    /*
+    // Set up Score Label
+    self.scoreLabel = [UILabel newAutoLayoutView];
+    self.scoreLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+    self.scoreLabel.numberOfLines = 1;
+    self.scoreLabel.text = NSTextAlignmentLeft;
+    self.scoreLabel.textColor = [UIColor HNOrange];
+    self.scoreLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:10.0];
+    
+    [self.cardView addSubview:self.scoreLabel];
+    */
+}
+
+-(void)updateConstraints {
+    
+    if (self.didSetupConstraints == NO) {
+        
+        // Card View Constraints
+        [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeTop];
+        [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
+        [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
+        [UIView autoSetPriority:750 forConstraints:^{
+            [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
+        }];
+    
+        self.didSetupConstraints = YES;
+    }
+    
+    
+    [super updateConstraints];
 }
 
 @end

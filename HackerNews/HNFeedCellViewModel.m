@@ -6,18 +6,18 @@
 //  Copyright (c) 2015 Daniel Rakhamimov. All rights reserved.
 //
 
-#import "HNCellViewModel.h"
+#import "HNFeedCellViewModel.h"
 #import "HNPost.h"
 #import <DateTools/NSDate+DateTools.h>
 #import "HNCommentsViewModel.h"
 
-@interface HNCellViewModel ()
+@interface HNFeedCellViewModel ()
 
 @property (nonatomic, readwrite) HNPost *post;
 
 @end
 
-@implementation HNCellViewModel
+@implementation HNFeedCellViewModel
 
 - (instancetype)initWithPost:(HNPost *)post {
     self = [super init];

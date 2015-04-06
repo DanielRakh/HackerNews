@@ -12,7 +12,7 @@
 #import "HNFeedViewModel.h"
 #import "HNPost.h"
 #import "HNDataManager.h"
-#import "HNCellViewModel.h"
+#import "HNFeedCellViewModel.h"
 #import "HNBrowserViewModel.h"
 
 
@@ -38,7 +38,7 @@
     
     return [[self.dataManager topPostsWithCount:30] map:^id(NSArray *posts) {
         return [[posts.rac_sequence map:^id(HNPost *post) {
-            HNCellViewModel *cellViewModel = [[HNCellViewModel alloc]initWithPost:post];
+            HNFeedCellViewModel *cellViewModel = [[HNFeedCellViewModel alloc]initWithPost:post];
             return cellViewModel;
         }] array];
     }];

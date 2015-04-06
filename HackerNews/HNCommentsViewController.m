@@ -6,10 +6,18 @@
 //  Copyright (c) 2015 Daniel Rakhamimov. All rights reserved.
 //
 
-#import "HNCommentsViewController.h"
 #import "UIColor+HNColorPalette.h"
-#import "HNCommentsViewModel.h"
+
+//View
+#import "HNCommentsViewController.h"
 #import "HNTableView.h"
+#import "HNCommentsCell.h"
+
+//View Model
+#import "HNCommentsViewModel.h"
+
+NSString *const kCommentsCellIdentifier = @"CommentsCell";
+
 
 @interface HNCommentsViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet HNTableView *tableView;
@@ -30,7 +38,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 118;
-//    [self.tableView registerClass:[HNFeedTableViewCell class] forCellReuseIdentifier:kFeedCellIdentifier];
+    [self.tableView registerClass:[HNCommentsCell class] forCellReuseIdentifier:kCommentsCellIdentifier];
 }
 
 #pragma mark - UITableViewDataSource
@@ -40,7 +48,9 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    HNCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
+    [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
     return cell;
 }
 

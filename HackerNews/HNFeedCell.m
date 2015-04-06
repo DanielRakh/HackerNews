@@ -6,13 +6,17 @@
 //  Copyright (c) 2015 Daniel Rakhamimov. All rights reserved.
 //
 
-#import "HNFeedCell.h"
 #import "PureLayout.h"
 #import "UIColor+HNColorPalette.h"
+
+//View
+#import "HNFeedCell.h"
 #import "HNThinLineButton.h"
-#import "HNCellViewModel.h"
-#import "HNCommentsViewModel.h"
 #import "HNCommentsViewController.h"
+
+//View Model
+#import "HNFeedCellViewModel.h"
+#import "HNCommentsViewModel.h"
 
 
 CGFloat const kVerticalInset = 10;
@@ -23,7 +27,7 @@ CGFloat const kHorizontalInset = 8;
 
 @property (nonatomic) UIView *cardView;
 @property (nonatomic, assign) BOOL didSetupConstraints;
-@property (nonatomic) HNCellViewModel *viewModel;
+@property (nonatomic) HNFeedCellViewModel *viewModel;
 
 @end
 
@@ -48,7 +52,7 @@ CGFloat const kHorizontalInset = 8;
     return self;
 }
 
-- (void)configureWithViewModel:(HNCellViewModel *)viewModel {
+- (void)configureWithViewModel:(HNFeedCellViewModel *)viewModel {
     self.viewModel = viewModel;
     self.titleLabel.text = viewModel.title;
     self.scoreLabel.text = viewModel.score;

@@ -11,7 +11,7 @@
 @class HNPost;
 @class HNCommentsViewModel;
 
-@interface HNCellViewModel : NSObject
+@interface HNFeedCellViewModel : NSObject
 
 @property (nonatomic, readonly) NSString *score;
 @property (nonatomic, readonly) NSString *title;

@@ -20,7 +20,7 @@
 		8E23526F1ACC69200009552D /* HNFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E23526E1ACC69200009552D /* HNFeedCell.m */; };
 		8E2352721ACC72F80009552D /* HNThinLineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352711ACC72F80009552D /* HNThinLineButton.m */; };
 		8E2352751ACC73BE0009552D /* UIColor+HNColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352741ACC73BE0009552D /* UIColor+HNColorPalette.m */; };
-		8E2352AD1ACD1C3C0009552D /* HNCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352AC1ACD1C3C0009552D /* HNCellViewModel.m */; };
+		8E2352AD1ACD1C3C0009552D /* HNFeedCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352AC1ACD1C3C0009552D /* HNFeedCellViewModel.m */; };
 		8E2352B11ACDC34F0009552D /* HNNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352B01ACDC34F0009552D /* HNNetworkService.m */; };
 		8E2352B41ACE102C0009552D /* HNDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352B31ACE102C0009552D /* HNDataManager.m */; };
 		8E395ED81AD0732F00EE0DB9 /* HNBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395ED71AD0732F00EE0DB9 /* HNBrowserViewController.m */; };
@@ -29,6 +29,7 @@
 		8E395EE71AD1A75300EE0DB9 /* HNCommentsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395EE61AD1A75300EE0DB9 /* HNCommentsViewModel.m */; };
 		8E395EEB1AD3312B00EE0DB9 /* HNTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395EEA1AD3312B00EE0DB9 /* HNTableView.m */; };
 		8E395EEE1AD3386A00EE0DB9 /* HNCommentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395EED1AD3386A00EE0DB9 /* HNCommentsCell.m */; };
+		8E395EF11AD33AD200EE0DB9 /* HNCommentsCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395EF01AD33AD200EE0DB9 /* HNCommentsCellViewModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,8 +70,8 @@
 		8E2352741ACC73BE0009552D /* UIColor+HNColorPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HNColorPalette.m"; sourceTree = "<group>"; };
 		8E2352A81ACD0CBC0009552D /* HNPostTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNPostTableViewCell.h; sourceTree = "<group>"; };
 		8E2352A91ACD0CBC0009552D /* HNPostTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNPostTableViewCell.m; sourceTree = "<group>"; };
-		8E2352AB1ACD1C3C0009552D /* HNCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCellViewModel.h; sourceTree = "<group>"; };
-		8E2352AC1ACD1C3C0009552D /* HNCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCellViewModel.m; sourceTree = "<group>"; };
+		8E2352AB1ACD1C3C0009552D /* HNFeedCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNFeedCellViewModel.h; sourceTree = "<group>"; };
+		8E2352AC1ACD1C3C0009552D /* HNFeedCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNFeedCellViewModel.m; sourceTree = "<group>"; };
 		8E2352AF1ACDC34F0009552D /* HNNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNNetworkService.h; sourceTree = "<group>"; };
 		8E2352B01ACDC34F0009552D /* HNNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNNetworkService.m; sourceTree = "<group>"; };
 		8E2352B21ACE102C0009552D /* HNDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNDataManager.h; sourceTree = "<group>"; };
@@ -87,6 +88,8 @@
 		8E395EEA1AD3312B00EE0DB9 /* HNTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNTableView.m; sourceTree = "<group>"; };
 		8E395EEC1AD3386A00EE0DB9 /* HNCommentsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsCell.h; sourceTree = "<group>"; };
 		8E395EED1AD3386A00EE0DB9 /* HNCommentsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsCell.m; sourceTree = "<group>"; };
+		8E395EEF1AD33AD200EE0DB9 /* HNCommentsCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsCellViewModel.h; sourceTree = "<group>"; };
+		8E395EF01AD33AD200EE0DB9 /* HNCommentsCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsCellViewModel.m; sourceTree = "<group>"; };
 		E6E214A4479710CF3CF8F84E /* Pods-HackerNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HackerNews/Pods-HackerNews.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -268,8 +271,8 @@
 			children = (
 				8E23526A1ACC651F0009552D /* HNFeedViewModel.h */,
 				8E23526B1ACC651F0009552D /* HNFeedViewModel.m */,
-				8E2352AB1ACD1C3C0009552D /* HNCellViewModel.h */,
-				8E2352AC1ACD1C3C0009552D /* HNCellViewModel.m */,
+				8E2352AB1ACD1C3C0009552D /* HNFeedCellViewModel.h */,
+				8E2352AC1ACD1C3C0009552D /* HNFeedCellViewModel.m */,
 			);
 			name = "View Model";
 			sourceTree = "<group>";
@@ -308,6 +311,8 @@
 			children = (
 				8E395EE51AD1A75300EE0DB9 /* HNCommentsViewModel.h */,
 				8E395EE61AD1A75300EE0DB9 /* HNCommentsViewModel.m */,
+				8E395EEF1AD33AD200EE0DB9 /* HNCommentsCellViewModel.h */,
+				8E395EF01AD33AD200EE0DB9 /* HNCommentsCellViewModel.m */,
 			);
 			name = "View Model";
 			sourceTree = "<group>";
@@ -459,9 +464,10 @@
 				8E2352461ACC571F0009552D /* HNFeedViewController.m in Sources */,
 				8E395EEB1AD3312B00EE0DB9 /* HNTableView.m in Sources */,
 				8E23526C1ACC651F0009552D /* HNFeedViewModel.m in Sources */,
-				8E2352AD1ACD1C3C0009552D /* HNCellViewModel.m in Sources */,
+				8E2352AD1ACD1C3C0009552D /* HNFeedCellViewModel.m in Sources */,
 				8E2352431ACC571F0009552D /* AppDelegate.m in Sources */,
 				8E2352B41ACE102C0009552D /* HNDataManager.m in Sources */,
+				8E395EF11AD33AD200EE0DB9 /* HNCommentsCellViewModel.m in Sources */,
 				8E395EE71AD1A75300EE0DB9 /* HNCommentsViewModel.m in Sources */,
 				8E2352401ACC571F0009552D /* main.m in Sources */,
 				8E2352651ACC574C0009552D /* HNPost.m in Sources */,

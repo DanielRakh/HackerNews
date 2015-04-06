@@ -17,11 +17,11 @@
 
 //View Models
 #import "HNFeedViewModel.h"
-#import "HNCellViewModel.h"
+#import "HNFeedCellViewModel.h"
 #import "HNBrowserViewModel.h"
 
 
-NSString *const kFeedCellIdentifier = @"CardCell";
+NSString *const kFeedCellIdentifier = @"FeedCell";
 
 
 @interface HNFeedViewController () <UITableViewDataSource, UITableViewDelegate>
