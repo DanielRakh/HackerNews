@@ -17,7 +17,7 @@
 		8E23525A1ACC571F0009552D /* HackerNewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352591ACC571F0009552D /* HackerNewsTests.m */; };
 		8E2352651ACC574C0009552D /* HNPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352641ACC574C0009552D /* HNPost.m */; };
 		8E23526C1ACC651F0009552D /* HNFeedViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E23526B1ACC651F0009552D /* HNFeedViewModel.m */; };
-		8E23526F1ACC69200009552D /* HNFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E23526E1ACC69200009552D /* HNFeedTableViewCell.m */; };
+		8E23526F1ACC69200009552D /* HNFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E23526E1ACC69200009552D /* HNFeedCell.m */; };
 		8E2352721ACC72F80009552D /* HNThinLineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352711ACC72F80009552D /* HNThinLineButton.m */; };
 		8E2352751ACC73BE0009552D /* UIColor+HNColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352741ACC73BE0009552D /* UIColor+HNColorPalette.m */; };
 		8E2352AD1ACD1C3C0009552D /* HNCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352AC1ACD1C3C0009552D /* HNCellViewModel.m */; };
@@ -28,6 +28,7 @@
 		8E395EE21AD1978A00EE0DB9 /* HNCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395EE11AD1978A00EE0DB9 /* HNCommentsViewController.m */; };
 		8E395EE71AD1A75300EE0DB9 /* HNCommentsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395EE61AD1A75300EE0DB9 /* HNCommentsViewModel.m */; };
 		8E395EEB1AD3312B00EE0DB9 /* HNTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395EEA1AD3312B00EE0DB9 /* HNTableView.m */; };
+		8E395EEE1AD3386A00EE0DB9 /* HNCommentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395EED1AD3386A00EE0DB9 /* HNCommentsCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,8 +61,8 @@
 		8E2352641ACC574C0009552D /* HNPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNPost.m; sourceTree = "<group>"; };
 		8E23526A1ACC651F0009552D /* HNFeedViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNFeedViewModel.h; sourceTree = "<group>"; };
 		8E23526B1ACC651F0009552D /* HNFeedViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNFeedViewModel.m; sourceTree = "<group>"; };
-		8E23526D1ACC69200009552D /* HNFeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNFeedTableViewCell.h; sourceTree = "<group>"; };
-		8E23526E1ACC69200009552D /* HNFeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNFeedTableViewCell.m; sourceTree = "<group>"; };
+		8E23526D1ACC69200009552D /* HNFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNFeedCell.h; sourceTree = "<group>"; };
+		8E23526E1ACC69200009552D /* HNFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNFeedCell.m; sourceTree = "<group>"; };
 		8E2352701ACC72F80009552D /* HNThinLineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNThinLineButton.h; sourceTree = "<group>"; };
 		8E2352711ACC72F80009552D /* HNThinLineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNThinLineButton.m; sourceTree = "<group>"; };
 		8E2352731ACC73BE0009552D /* UIColor+HNColorPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HNColorPalette.h"; sourceTree = "<group>"; };
@@ -84,6 +85,8 @@
 		8E395EE61AD1A75300EE0DB9 /* HNCommentsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsViewModel.m; sourceTree = "<group>"; };
 		8E395EE91AD3312B00EE0DB9 /* HNTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNTableView.h; sourceTree = "<group>"; };
 		8E395EEA1AD3312B00EE0DB9 /* HNTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNTableView.m; sourceTree = "<group>"; };
+		8E395EEC1AD3386A00EE0DB9 /* HNCommentsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsCell.h; sourceTree = "<group>"; };
+		8E395EED1AD3386A00EE0DB9 /* HNCommentsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsCell.m; sourceTree = "<group>"; };
 		E6E214A4479710CF3CF8F84E /* Pods-HackerNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HackerNews/Pods-HackerNews.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -250,8 +253,8 @@
 			children = (
 				8E2352441ACC571F0009552D /* HNFeedViewController.h */,
 				8E2352451ACC571F0009552D /* HNFeedViewController.m */,
-				8E23526D1ACC69200009552D /* HNFeedTableViewCell.h */,
-				8E23526E1ACC69200009552D /* HNFeedTableViewCell.m */,
+				8E23526D1ACC69200009552D /* HNFeedCell.h */,
+				8E23526E1ACC69200009552D /* HNFeedCell.m */,
 				8E2352701ACC72F80009552D /* HNThinLineButton.h */,
 				8E2352711ACC72F80009552D /* HNThinLineButton.m */,
 				8E2352A81ACD0CBC0009552D /* HNPostTableViewCell.h */,
@@ -294,6 +297,8 @@
 			children = (
 				8E395EE01AD1978A00EE0DB9 /* HNCommentsViewController.h */,
 				8E395EE11AD1978A00EE0DB9 /* HNCommentsViewController.m */,
+				8E395EEC1AD3386A00EE0DB9 /* HNCommentsCell.h */,
+				8E395EED1AD3386A00EE0DB9 /* HNCommentsCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -460,10 +465,11 @@
 				8E395EE71AD1A75300EE0DB9 /* HNCommentsViewModel.m in Sources */,
 				8E2352401ACC571F0009552D /* main.m in Sources */,
 				8E2352651ACC574C0009552D /* HNPost.m in Sources */,
+				8E395EEE1AD3386A00EE0DB9 /* HNCommentsCell.m in Sources */,
 				8E2352B11ACDC34F0009552D /* HNNetworkService.m in Sources */,
 				8E395EE21AD1978A00EE0DB9 /* HNCommentsViewController.m in Sources */,
 				8E2352721ACC72F80009552D /* HNThinLineButton.m in Sources */,
-				8E23526F1ACC69200009552D /* HNFeedTableViewCell.m in Sources */,
+				8E23526F1ACC69200009552D /* HNFeedCell.m in Sources */,
 				8E395EDD1AD073F700EE0DB9 /* HNBrowserViewModel.m in Sources */,
 				8E395ED81AD0732F00EE0DB9 /* HNBrowserViewController.m in Sources */,
 				8E2352751ACC73BE0009552D /* UIColor+HNColorPalette.m in Sources */,

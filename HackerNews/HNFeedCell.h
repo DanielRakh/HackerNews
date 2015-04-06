@@ -11,7 +11,7 @@
 @class HNThinLineButton;
 @class HNCellViewModel;
 
-@interface HNFeedTableViewCell : UITableViewCell
+@interface HNFeedCell : UITableViewCell
 
 @property (nonatomic) UILabel *titleLabel;
 @property (nonatomic) UILabel *scoreLabel;

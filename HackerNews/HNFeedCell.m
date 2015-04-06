@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Daniel Rakhamimov. All rights reserved.
 //
 
-#import "HNFeedTableViewCell.h"
+#import "HNFeedCell.h"
 #import "PureLayout.h"
 #import "UIColor+HNColorPalette.h"
 #import "HNThinLineButton.h"
@@ -19,7 +19,7 @@ CGFloat const kVerticalInset = 10;
 CGFloat const kHorizontalInset = 8;
 
 
-@interface HNFeedTableViewCell ()
+@interface HNFeedCell ()
 
 @property (nonatomic) UIView *cardView;
 @property (nonatomic, assign) BOOL didSetupConstraints;
@@ -27,7 +27,7 @@ CGFloat const kHorizontalInset = 8;
 
 @end
 
-@implementation HNFeedTableViewCell
+@implementation HNFeedCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

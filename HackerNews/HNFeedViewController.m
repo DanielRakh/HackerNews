@@ -12,7 +12,7 @@
 // Views
 #import "HNFeedViewController.h"
 #import "HNBrowserViewController.h"
-#import "HNFeedTableViewCell.h"
+#import "HNFeedCell.h"
 #import "HNTableView.h"
 
 //View Models
@@ -47,7 +47,7 @@ NSString *const kFeedCellIdentifier = @"CardCell";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 118;
-    [self.tableView registerClass:[HNFeedTableViewCell class] forCellReuseIdentifier:kFeedCellIdentifier];
+    [self.tableView registerClass:[HNFeedCell class] forCellReuseIdentifier:kFeedCellIdentifier];
 }
 
 - (void)bindViewModel {
@@ -68,7 +68,7 @@ NSString *const kFeedCellIdentifier = @"CardCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    HNFeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFeedCellIdentifier forIndexPath:indexPath];
+    HNFeedCell *cell = [tableView dequeueReusableCellWithIdentifier:kFeedCellIdentifier forIndexPath:indexPath];
     
     [cell configureWithViewModel:self.viewModel.posts[indexPath.row]];
     [cell setNavController:self.navigationController];
