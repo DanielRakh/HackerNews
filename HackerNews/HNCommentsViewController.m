@@ -9,8 +9,10 @@
 #import "HNCommentsViewController.h"
 #import "UIColor+HNColorPalette.h"
 #import "HNCommentsViewModel.h"
+#import "HNTableView.h"
 
-@interface HNCommentsViewController ()
+@interface HNCommentsViewController () <UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet HNTableView *tableView;
 
 @end
 
@@ -21,21 +23,26 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor HNOffWhite];
     self.navigationController.navigationBarHidden = YES;
+    [self initalizeTableView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)initalizeTableView {
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.estimatedRowHeight = 118;
+//    [self.tableView registerClass:[HNFeedTableViewCell class] forCellReuseIdentifier:kFeedCellIdentifier];
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - UITableViewDataSource
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 20;
 }
-*/
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    return cell;
+}
+
 
 @end

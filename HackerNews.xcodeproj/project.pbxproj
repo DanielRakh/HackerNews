@@ -27,6 +27,7 @@
 		8E395EDD1AD073F700EE0DB9 /* HNBrowserViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395EDC1AD073F700EE0DB9 /* HNBrowserViewModel.m */; };
 		8E395EE21AD1978A00EE0DB9 /* HNCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395EE11AD1978A00EE0DB9 /* HNCommentsViewController.m */; };
 		8E395EE71AD1A75300EE0DB9 /* HNCommentsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395EE61AD1A75300EE0DB9 /* HNCommentsViewModel.m */; };
+		8E395EEB1AD3312B00EE0DB9 /* HNTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395EEA1AD3312B00EE0DB9 /* HNTableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,8 @@
 		8E395EE11AD1978A00EE0DB9 /* HNCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsViewController.m; sourceTree = "<group>"; };
 		8E395EE51AD1A75300EE0DB9 /* HNCommentsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsViewModel.h; sourceTree = "<group>"; };
 		8E395EE61AD1A75300EE0DB9 /* HNCommentsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsViewModel.m; sourceTree = "<group>"; };
+		8E395EE91AD3312B00EE0DB9 /* HNTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNTableView.h; sourceTree = "<group>"; };
+		8E395EEA1AD3312B00EE0DB9 /* HNTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNTableView.m; sourceTree = "<group>"; };
 		E6E214A4479710CF3CF8F84E /* Pods-HackerNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HackerNews/Pods-HackerNews.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +146,7 @@
 		8E23523C1ACC571F0009552D /* HackerNews */ = {
 			isa = PBXGroup;
 			children = (
+				8E395EE81AD3311500EE0DB9 /* Common */,
 				8E2352411ACC571F0009552D /* AppDelegate.h */,
 				8E2352421ACC571F0009552D /* AppDelegate.m */,
 				8E2352AE1ACDC2380009552D /* Networking */,
@@ -303,6 +307,15 @@
 			name = "View Model";
 			sourceTree = "<group>";
 		};
+		8E395EE81AD3311500EE0DB9 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				8E395EE91AD3312B00EE0DB9 /* HNTableView.h */,
+				8E395EEA1AD3312B00EE0DB9 /* HNTableView.m */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -439,6 +452,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E2352461ACC571F0009552D /* HNFeedViewController.m in Sources */,
+				8E395EEB1AD3312B00EE0DB9 /* HNTableView.m in Sources */,
 				8E23526C1ACC651F0009552D /* HNFeedViewModel.m in Sources */,
 				8E2352AD1ACD1C3C0009552D /* HNCellViewModel.m in Sources */,
 				8E2352431ACC571F0009552D /* AppDelegate.m in Sources */,

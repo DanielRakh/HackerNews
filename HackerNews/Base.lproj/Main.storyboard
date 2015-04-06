@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="118" sectionHeaderHeight="22" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Izx-jd-EcJ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="118" sectionHeaderHeight="22" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Izx-jd-EcJ" customClass="HNTableView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -53,7 +53,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Cached" id="3RH-5B-fvS"/>
                     <connections>
-                        <outlet property="tableView" destination="Izx-jd-EcJ" id="vTb-QH-nJS"/>
+                        <outlet property="tableView" destination="Izx-jd-EcJ" id="blB-UX-iGB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -225,36 +225,55 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="CPc-u1-Yfa" customClass="HNTableView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="GXn-bq-1XZ" secondAttribute="trailing" id="ArH-SS-TAa"/>
+                            <constraint firstAttribute="trailing" secondItem="CPc-u1-Yfa" secondAttribute="trailing" id="FiV-vq-6oW"/>
                             <constraint firstItem="GXn-bq-1XZ" firstAttribute="top" secondItem="PM9-6r-sgy" secondAttribute="bottom" constant="-20" id="Jfp-By-6qr"/>
                             <constraint firstItem="GXn-bq-1XZ" firstAttribute="leading" secondItem="fbZ-wV-1WD" secondAttribute="leading" id="JrH-Ot-cEC"/>
+                            <constraint firstItem="CPc-u1-Yfa" firstAttribute="top" secondItem="GXn-bq-1XZ" secondAttribute="bottom" id="OBH-X1-eVB"/>
+                            <constraint firstItem="hci-fK-1wR" firstAttribute="top" secondItem="CPc-u1-Yfa" secondAttribute="bottom" id="hOg-Aq-Edu"/>
+                            <constraint firstItem="CPc-u1-Yfa" firstAttribute="leading" secondItem="fbZ-wV-1WD" secondAttribute="leading" id="zlk-MS-3ZX"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="GXn-bq-1XZ"/>
+                                <exclude reference="CPc-u1-Yfa"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="ArH-SS-TAa"/>
                                 <exclude reference="Jfp-By-6qr"/>
                                 <exclude reference="JrH-Ot-cEC"/>
+                                <exclude reference="FiV-vq-6oW"/>
+                                <exclude reference="OBH-X1-eVB"/>
+                                <exclude reference="zlk-MS-3ZX"/>
+                                <exclude reference="hOg-Aq-Edu"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="GXn-bq-1XZ"/>
+                                <include reference="CPc-u1-Yfa"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="ArH-SS-TAa"/>
                                 <include reference="Jfp-By-6qr"/>
                                 <include reference="JrH-Ot-cEC"/>
+                                <include reference="FiV-vq-6oW"/>
+                                <include reference="OBH-X1-eVB"/>
+                                <include reference="zlk-MS-3ZX"/>
+                                <include reference="hOg-Aq-Edu"/>
                             </mask>
                         </variation>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="tableView" destination="CPc-u1-Yfa" id="5Rp-In-UiW"/>
                         <outlet property="titleLabel" destination="uUN-ja-iRL" id="iak-X9-kiF"/>
                     </connections>
                 </viewController>

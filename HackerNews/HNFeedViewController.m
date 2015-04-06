@@ -13,6 +13,7 @@
 #import "HNFeedViewController.h"
 #import "HNBrowserViewController.h"
 #import "HNFeedTableViewCell.h"
+#import "HNTableView.h"
 
 //View Models
 #import "HNFeedViewModel.h"
@@ -25,7 +26,7 @@ NSString *const kFeedCellIdentifier = @"CardCell";
 
 @interface HNFeedViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet HNTableView *tableView;
 
 @end
 
@@ -35,28 +36,19 @@ NSString *const kFeedCellIdentifier = @"CardCell";
     [super viewDidLoad];
     
     self.title = @"Hacker News";
-    
-    self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.dataSource = self;
     self.view.backgroundColor = [UIColor HNOffWhite];
     
     [self initalizeTableView];
+    
     [self bindViewModel];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    self.tableView.delegate = self;
-}
-
 - (void)initalizeTableView {
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0);
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 118;
     [self.tableView registerClass:[HNFeedTableViewCell class] forCellReuseIdentifier:kFeedCellIdentifier];
 }
-
 
 - (void)bindViewModel {
     
@@ -68,15 +60,11 @@ NSString *const kFeedCellIdentifier = @"CardCell";
     }];
 }
 
-
-
-
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.viewModel.posts.count;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
