@@ -49,6 +49,7 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HNCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
+//    [cell configureWithViewModel:(HNCommentsCellViewModel *)]
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
     return cell;

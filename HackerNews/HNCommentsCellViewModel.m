@@ -10,4 +10,12 @@
 
 @implementation HNCommentsCellViewModel
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _origination = [[NSAttributedString alloc]initWithString:@"by danielrak | 5 hrs ago"];
+    }
+    return self;
+}
+
 @end

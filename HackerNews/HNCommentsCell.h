@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class HNCommentsCellViewModel;
+
 @interface HNCommentsCell : UITableViewCell
+
+- (void)configureWithViewModel:(HNCommentsCellViewModel *)viewModel;
+
 
 @end

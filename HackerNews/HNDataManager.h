@@ -9,11 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @class RACSignal;
+@class HNPost;
 
 @interface HNDataManager : NSObject
 
 @property (nonatomic, readonly) NSArray *posts;
 
 - (RACSignal *)topPostsWithCount:(NSInteger)count;
+
+//- (RACSignal *)topCommentsForPost:(HNPost *)
 
 @end

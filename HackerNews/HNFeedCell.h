@@ -8,17 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class HNThinLineButton;
 @class HNFeedCellViewModel;
 
 @interface HNFeedCell : UITableViewCell
 
-@property (nonatomic) UILabel *titleLabel;
-@property (nonatomic) UILabel *scoreLabel;
-@property (nonatomic) UILabel *infoLabel;
-@property (nonatomic) HNThinLineButton *commentsButton;
 @property (nonatomic, weak) UINavigationController *navController;
-
 
 - (void)configureWithViewModel:(HNFeedCellViewModel *)viewModel;
 

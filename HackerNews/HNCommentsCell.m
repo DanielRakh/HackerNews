@@ -22,8 +22,17 @@ CGFloat const kCommentsHorizontalInset = 8;
 
 @interface HNCommentsCell ()
 
-@property (nonatomic) UIView *cardView;
 @property (nonatomic, assign) BOOL didSetupConstraints;
+
+
+@property (nonatomic) UIView *cardView;
+@property (nonatomic) UILabel *originationLabel;
+//@property (nonatomic
+
+
+
+
+
 @property (nonatomic) HNCommentsCellViewModel *viewModel;
 
 @end
@@ -49,6 +58,10 @@ CGFloat const kCommentsHorizontalInset = 8;
     return self;
 }
 
+- (void)configureWithViewModel:(HNCommentsCellViewModel *)viewModel {
+    self.originationLabel.attributedText = viewModel.origination;
+}
+
 - (void)initalizeViews {
     
     self.didSetupConstraints = NO;
@@ -65,6 +78,15 @@ CGFloat const kCommentsHorizontalInset = 8;
     self.cardView.layer.borderColor =  [UIColor HNLightGray].CGColor;
     
     [self.contentView addSubview:self.cardView];
+    
+    
+    // Set up Origination Label
+    self.originationLabel = [UILabel newAutoLayoutView];
+    self.originationLabel.numberOfLines = 1;
+    self.originationLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+    self.originationLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:10.0];
+    
+    [self.cardView addSubview:self.originationLabel];
     
     /*
     // Set up Score Label
@@ -90,7 +112,12 @@ CGFloat const kCommentsHorizontalInset = 8;
         [UIView autoSetPriority:750 forConstraints:^{
             [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
         }];
+        
+        // Origination Label Constraints
+        [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
+        [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kCommentsVerticalInset];
     
+        
         self.didSetupConstraints = YES;
     }
     

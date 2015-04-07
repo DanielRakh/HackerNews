@@ -25,8 +25,14 @@ CGFloat const kHorizontalInset = 8;
 
 @interface HNFeedCell ()
 
-@property (nonatomic) UIView *cardView;
 @property (nonatomic, assign) BOOL didSetupConstraints;
+
+@property (nonatomic) UIView *cardView;
+@property (nonatomic) UILabel *titleLabel;
+@property (nonatomic) UILabel *scoreLabel;
+@property (nonatomic) UILabel *originationLabel;
+
+@property (nonatomic) HNThinLineButton *commentsButton;
 @property (nonatomic) HNFeedCellViewModel *viewModel;
 
 @end
@@ -58,7 +64,7 @@ CGFloat const kHorizontalInset = 8;
     self.scoreLabel.text = viewModel.score;
     [self.commentsButton setTitle:[NSString stringWithFormat:@"%@ Comments", viewModel.commentsCount] forState:UIControlStateNormal];
     [self.commentsButton addTarget:self action:@selector(commentsButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
-    self.infoLabel.text = viewModel.info;
+    self.originationLabel.text = viewModel.info;
 }
 
 - (void)initalizeViews {
@@ -103,14 +109,14 @@ CGFloat const kHorizontalInset = 8;
     
     
     // Set up Info Label
-    self.infoLabel = [UILabel newAutoLayoutView];
-    self.infoLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-    self.infoLabel.numberOfLines = 1;
-    self.infoLabel.text = NSTextAlignmentLeft;
-    self.infoLabel.textColor = [UIColor lightGrayColor];
-    self.infoLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:10.0];
+    self.originationLabel = [UILabel newAutoLayoutView];
+    self.originationLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+    self.originationLabel.numberOfLines = 1;
+    self.originationLabel.text = NSTextAlignmentLeft;
+    self.originationLabel.textColor = [UIColor lightGrayColor];
+    self.originationLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:10.0];
     
-    [self.cardView addSubview:self.infoLabel];
+    [self.cardView addSubview:self.originationLabel];
     
     
     // Set up Comments Button
@@ -149,8 +155,8 @@ CGFloat const kHorizontalInset = 8;
         
         // Info Label Constraints
         
-        [self.infoLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:self.titleLabel];
-        [self.infoLabel autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.commentsButton];
+        [self.originationLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:self.titleLabel];
+        [self.originationLabel autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.commentsButton];
         
         
         self.didSetupConstraints = YES;
@@ -168,8 +174,11 @@ CGFloat const kHorizontalInset = 8;
 
 
 - (void)pushCommentsController {
+    
     HNCommentsViewModel *viewModel = [[HNCommentsViewModel alloc]initWithPost:self.viewModel.post];
+    
     UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
     HNCommentsViewController *commentsController =[mainSB instantiateViewControllerWithIdentifier:@"CommentsController"];
     commentsController.viewModel = viewModel;
 

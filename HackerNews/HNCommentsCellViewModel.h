@@ -10,4 +10,6 @@
 
 @interface HNCommentsCellViewModel : NSObject
 
+@property (nonatomic) NSAttributedString *origination;
+
 @end
