@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7535.1" systemVersion="14D113c" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="HNComment" parentEntity="HNItem" syncable="YES">
-        <attribute name="parent" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14D113c" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="HNComment" representedClassName="HNComment" parentEntity="HNItem" syncable="YES">
+        <attribute name="parent_" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="kids" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="HNComment" inverseName="kids" inverseEntity="HNComment" syncable="YES"/>
         <relationship name="story" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HNStory" inverseName="comments" inverseEntity="HNStory" syncable="YES"/>
     </entity>
-    <entity name="HNItem" isAbstract="YES" syncable="YES">
-        <attribute name="by" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="dead" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="deleted" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="time" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="HNItem" representedClassName="HNItem" isAbstract="YES" syncable="YES">
+        <attribute name="by_" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dead_" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="deleted_" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="id_" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="text_" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time_" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="type_" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="HNStory" parentEntity="HNItem" syncable="YES">
-        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="HNStory" representedClassName="HNStory" parentEntity="HNItem" syncable="YES">
+        <attribute name="title_" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url_" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="HNComment" inverseName="story" inverseEntity="HNComment" syncable="YES"/>
     </entity>
     <elements>
-        <element name="HNItem" positionX="-207" positionY="-141" width="128" height="150"/>
-        <element name="HNStory" positionX="-20" positionY="135" width="128" height="90"/>
-        <element name="HNComment" positionX="180" positionY="-108" width="128" height="90"/>
+        <element name="HNComment" positionX="180" positionY="-108" width="128" height="88"/>
+        <element name="HNItem" positionX="-207" positionY="-141" width="128" height="148"/>
+        <element name="HNStory" positionX="-20" positionY="135" width="128" height="88"/>
     </elements>
 </model>
