@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HNCoreDataStack.h"
+
 
 @class RACSignal;
 @class HNPost;
@@ -14,6 +16,10 @@
 @interface HNDataManager : NSObject
 
 @property (nonatomic, readonly) NSArray *posts;
+
+@property (nonatomic, strong, readonly) HNCoreDataStack *coreDataStack;
+
++ (id)sharedManager;
 
 - (RACSignal *)topPostsWithCount:(NSInteger)count;
 

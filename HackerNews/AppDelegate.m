@@ -6,10 +6,15 @@
 //  Copyright (c) 2015 Daniel Rakhamimov. All rights reserved.
 //
 
+@import CoreData;
+
 #import "AppDelegate.h"
 #import "HNFeedViewModel.h"
 #import "HNFeedViewController.h"
 #import "UIColor+HNColorPalette.h"
+
+#import "HNDataManager.h"
+
 
 @interface AppDelegate ()
 
@@ -25,6 +30,8 @@
     HNFeedViewController *feedController = (HNFeedViewController *)navController.topViewController;
     feedController.viewModel = [HNFeedViewModel new];
     
+    
+    
     [[UINavigationBar appearance] setTintColor:[UIColor HNOrange]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{ NSFontAttributeName : [UIFont fontWithName:@"AvenirNext-DemiBold" size:16.0], NSForegroundColorAttributeName : [UIColor HNOrange]}];
 
@@ -39,6 +46,7 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [[[HNDataManager sharedManager] coreDataStack] saveContext];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -51,6 +59,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [[[HNDataManager sharedManager] coreDataStack] saveContext];
 }
 
 @end

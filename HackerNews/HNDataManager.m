@@ -6,17 +6,38 @@
 //  Copyright (c) 2015 Daniel Rakhamimov. All rights reserved.
 //
 
+
 #import "HNDataManager.h"
 #import "HNNetworkService.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "HNPost.h"
 
-
 @interface HNDataManager ()
+
+@property (nonatomic, strong, readwrite) HNCoreDataStack *coreDataStack;
+
 
 @end
 
 @implementation HNDataManager
+
++ (id)sharedManager {
+    static HNDataManager *sharedMyManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedMyManager = [[self alloc] init];
+    });
+    return sharedMyManager;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _coreDataStack = [HNCoreDataStack new];
+    }
+    return self;
+}
 
 - (RACSignal *)topPostsWithCount:(NSInteger)count {
 
@@ -49,7 +70,5 @@
              }];
     
 }
-            
-
 
 @end

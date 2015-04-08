@@ -18,7 +18,7 @@
 
 @interface HNFeedViewModel ()
 
-@property (nonatomic) HNDataManager *dataManager;
+@property (weak, nonatomic) HNDataManager *dataManager;
 
 @end
 
@@ -27,7 +27,7 @@
 -(instancetype)init {
     self = [super init];
     if (self) {
-        _dataManager = [HNDataManager new];
+        _dataManager = [HNDataManager sharedManager];
         RAC(self, posts) = [self fetchTopPosts];
     }
     return self;

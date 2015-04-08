@@ -30,6 +30,8 @@
 		8E395EEB1AD3312B00EE0DB9 /* HNTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395EEA1AD3312B00EE0DB9 /* HNTableView.m */; };
 		8E395EEE1AD3386A00EE0DB9 /* HNCommentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395EED1AD3386A00EE0DB9 /* HNCommentsCell.m */; };
 		8E395EF11AD33AD200EE0DB9 /* HNCommentsCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395EF01AD33AD200EE0DB9 /* HNCommentsCellViewModel.m */; };
+		8E395F291AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8E395F271AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld */; };
+		8E395F2C1AD475B000EE0DB9 /* HNCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395F2B1AD475B000EE0DB9 /* HNCoreDataStack.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,9 @@
 		8E395EED1AD3386A00EE0DB9 /* HNCommentsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsCell.m; sourceTree = "<group>"; };
 		8E395EEF1AD33AD200EE0DB9 /* HNCommentsCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsCellViewModel.h; sourceTree = "<group>"; };
 		8E395EF01AD33AD200EE0DB9 /* HNCommentsCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsCellViewModel.m; sourceTree = "<group>"; };
+		8E395F281AD46BE500EE0DB9 /* HNPostModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HNPostModel.xcdatamodel; sourceTree = "<group>"; };
+		8E395F2A1AD475B000EE0DB9 /* HNCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCoreDataStack.h; sourceTree = "<group>"; };
+		8E395F2B1AD475B000EE0DB9 /* HNCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCoreDataStack.m; sourceTree = "<group>"; };
 		E6E214A4479710CF3CF8F84E /* Pods-HackerNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HackerNews/Pods-HackerNews.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -220,6 +225,9 @@
 				8E2352641ACC574C0009552D /* HNPost.m */,
 				8E2352B21ACE102C0009552D /* HNDataManager.h */,
 				8E2352B31ACE102C0009552D /* HNDataManager.m */,
+				8E395F271AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld */,
+				8E395F2A1AD475B000EE0DB9 /* HNCoreDataStack.h */,
+				8E395F2B1AD475B000EE0DB9 /* HNCoreDataStack.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -478,7 +486,9 @@
 				8E23526F1ACC69200009552D /* HNFeedCell.m in Sources */,
 				8E395EDD1AD073F700EE0DB9 /* HNBrowserViewModel.m in Sources */,
 				8E395ED81AD0732F00EE0DB9 /* HNBrowserViewController.m in Sources */,
+				8E395F291AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld in Sources */,
 				8E2352751ACC73BE0009552D /* UIColor+HNColorPalette.m in Sources */,
+				8E395F2C1AD475B000EE0DB9 /* HNCoreDataStack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -689,6 +699,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8E395F271AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8E395F281AD46BE500EE0DB9 /* HNPostModel.xcdatamodel */,
+			);
+			currentVersion = 8E395F281AD46BE500EE0DB9 /* HNPostModel.xcdatamodel */;
+			path = HNPostModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8E2352321ACC571F0009552D /* Project object */;
 }
