@@ -17,4 +17,6 @@
 
 - (RACSignal *)topItemsWithCount:(NSInteger)count;
 
+- (RACSignal *)childrenForItem:(NSNumber *)itemId;
+
 @end

@@ -7,8 +7,6 @@
 //
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
-
-
 #import "HNFeedViewModel.h"
 #import "HNPost.h"
 #import "HNDataManager.h"

@@ -37,9 +37,7 @@ NSString *const kFeedCellIdentifier = @"FeedCell";
     
     self.title = @"Hacker News";
     self.view.backgroundColor = [UIColor HNOffWhite];
-    
     [self initalizeTableView];
-    
     [self bindViewModel];
 }
 

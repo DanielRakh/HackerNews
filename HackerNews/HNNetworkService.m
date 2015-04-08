@@ -71,4 +71,9 @@
 }
 
 
+- (RACSignal *)childrenForItem:(NSNumber *)itemId {
+    
+    return [RACSignal empty];
+}
+
 @end

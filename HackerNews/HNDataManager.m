@@ -71,4 +71,11 @@
     
 }
 
+
+- (RACSignal *)topCommentsForPost:(HNPost *)post {
+    
+    return [RACSignal empty];
+}
+
+
 @end
