@@ -8,6 +8,7 @@ pod 'Firebase', '>= 2.2.0'
 pod 'ReactiveCocoa'
 pod 'DateTools'
 pod 'ReactiveCoreData', '>= 0.0'
+pod 'ReactiveViewModel', '>= 0.3'
 
 end
 

@@ -46,7 +46,7 @@
 
 - (RACSignal *)topPostsWithCount:(NSInteger)count {
 
-    return [[[[[HNNetworkService sharedManager] topItemsWithCount:count]
+    return [[[[HNNetworkService sharedManager] topItemsWithCount:count]
              map:^id(NSArray *items) {
                  
                  return [[[items.rac_sequence filter:^BOOL(NSDictionary *dict) {
@@ -68,38 +68,11 @@
                      }];
                  }] array];
                  
-                 
-//                 return [[items.rac_sequence
-//                          map:^id(NSDictionary *dict) {
-//                              
-//                              [HNStory insert:^(HNStory *story) {
-//                                  story.id_ = dict[@"id"];
-//                                  
-//                                  
-//                              }];
-//
-//                              HNPost *post = [HNPost new];
-//                              post.id = dict[@"id"];
-//                              post.deleted = dict[@"deleted"];
-//                              post.type = dict[@"type"];
-//                              post.by = dict[@"by"];
-//                              post.time = dict[@"time"];
-//                              post.text = dict[@"text"];
-//                              post.dead = dict[@"dead"];
-//                              post.parent = dict[@"parent"];
-//                              post.kids = dict[@"kids"];
-//                              post.url = dict[@"url"];
-//                              post.score = dict[@"score"];
-//                              post.title = dict[@"title"];
-//                              post.parts = dict[@"parts"];
-//                              post.descendants = dict[@"descendants"];
-//                              return post;
-//                              
-//                          }] array];
-                 
-             }] saveContext] doNext:^(id x) {
-                 _posts = [NSArray arrayWithArray:x];
-             }];
+             }] saveContext];
+            
+//            doNext:^(id x) {
+//                 _posts = [NSArray arrayWithArray:x];
+//             }];
     
 }
 

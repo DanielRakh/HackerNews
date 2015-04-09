@@ -15,7 +15,6 @@
 		8E23524B1ACC571F0009552D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E23524A1ACC571F0009552D /* Images.xcassets */; };
 		8E23524E1ACC571F0009552D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E23524C1ACC571F0009552D /* LaunchScreen.xib */; };
 		8E23525A1ACC571F0009552D /* HackerNewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352591ACC571F0009552D /* HackerNewsTests.m */; };
-		8E2352651ACC574C0009552D /* HNPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352641ACC574C0009552D /* HNPost.m */; };
 		8E23526C1ACC651F0009552D /* HNFeedViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E23526B1ACC651F0009552D /* HNFeedViewModel.m */; };
 		8E23526F1ACC69200009552D /* HNFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E23526E1ACC69200009552D /* HNFeedCell.m */; };
 		8E2352721ACC72F80009552D /* HNThinLineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352711ACC72F80009552D /* HNThinLineButton.m */; };
@@ -63,8 +62,6 @@
 		8E2352531ACC571F0009552D /* HackerNewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HackerNewsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E2352581ACC571F0009552D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E2352591ACC571F0009552D /* HackerNewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HackerNewsTests.m; sourceTree = "<group>"; };
-		8E2352631ACC574C0009552D /* HNPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNPost.h; sourceTree = "<group>"; };
-		8E2352641ACC574C0009552D /* HNPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNPost.m; sourceTree = "<group>"; };
 		8E23526A1ACC651F0009552D /* HNFeedViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNFeedViewModel.h; sourceTree = "<group>"; };
 		8E23526B1ACC651F0009552D /* HNFeedViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNFeedViewModel.m; sourceTree = "<group>"; };
 		8E23526D1ACC69200009552D /* HNFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNFeedCell.h; sourceTree = "<group>"; };
@@ -231,8 +228,6 @@
 			isa = PBXGroup;
 			children = (
 				8E5251531AD5D26E00EE080D /* Managed Objects */,
-				8E2352631ACC574C0009552D /* HNPost.h */,
-				8E2352641ACC574C0009552D /* HNPost.m */,
 				8E2352B21ACE102C0009552D /* HNDataManager.h */,
 				8E2352B31ACE102C0009552D /* HNDataManager.m */,
 				8E395F271AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld */,
@@ -503,7 +498,6 @@
 				8E5251521AD5D1F300EE080D /* HNItem.m in Sources */,
 				8E395EE71AD1A75300EE0DB9 /* HNCommentsViewModel.m in Sources */,
 				8E2352401ACC571F0009552D /* main.m in Sources */,
-				8E2352651ACC574C0009552D /* HNPost.m in Sources */,
 				8E395EEE1AD3386A00EE0DB9 /* HNCommentsCell.m in Sources */,
 				8E2352B11ACDC34F0009552D /* HNNetworkService.m in Sources */,
 				8E395EE21AD1978A00EE0DB9 /* HNCommentsViewController.m in Sources */,

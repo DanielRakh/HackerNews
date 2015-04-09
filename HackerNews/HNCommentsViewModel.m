@@ -7,7 +7,6 @@
 //
 
 #import "HNCommentsViewModel.h"
-#import "HNPost.h"
 
 @interface HNCommentsViewModel ()
 
@@ -18,13 +17,13 @@
 
 @implementation HNCommentsViewModel
 
-- (instancetype)initWithPost:(HNPost *)post {
-    self = [super init];
-    if (self) {
-        _post = post;
-    }
-    return self;
-}
+//- (instancetype)initWithPost:(HNPost *)post {
+//    self = [super init];
+//    if (self) {
+//        _post = post;
+//    }
+//    return self;
+//}
 
 
 

@@ -7,7 +7,6 @@
 //
 
 #import "HNBrowserViewModel.h"
-#import "HNPost.h"
 
 @interface HNBrowserViewModel ()
 
@@ -17,13 +16,13 @@
 
 @implementation HNBrowserViewModel
 
-- (instancetype)initWithPost:(HNPost *)post {
-    self = [super init];
-    if (self) {
-        _url = [NSURL URLWithString:post.url];
-    }
-    return self;
-}
+//- (instancetype)initWithPost:(HNPost *)post {
+//    self = [super init];
+//    if (self) {
+////        _url = [NSURL URLWithString:post.url];
+//    }
+//    return self;
+//}
 
 
 

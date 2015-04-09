@@ -11,11 +11,9 @@
 
 
 @class RACSignal;
-@class HNPost;
 
 @interface HNDataManager : NSObject
 
-@property (nonatomic, readonly) NSArray *posts;
 
 @property (nonatomic, strong, readonly) HNCoreDataStack *coreDataStack;
 

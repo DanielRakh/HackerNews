@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class HNPost;
+@class HNStory;
 @class HNCommentsViewModel;
 
 @interface HNFeedCellViewModel : NSObject
@@ -17,9 +17,8 @@
 @property (nonatomic, readonly) NSString *title;
 @property (nonatomic, readonly) NSString *commentsCount;
 @property (nonatomic, readonly) NSString *info;
-@property (nonatomic, readonly) HNPost *post;
 
-- (instancetype)initWithPost:(HNPost *)post;
+- (instancetype)initWithStory:(HNStory *)story;
 
 - (HNCommentsViewModel *)commentsViewModel;
 

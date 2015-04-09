@@ -32,6 +32,13 @@ NSString *const kFeedCellIdentifier = @"FeedCell";
 
 @implementation HNFeedViewController
 
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.viewModel.active = YES;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -51,24 +58,27 @@ NSString *const kFeedCellIdentifier = @"FeedCell";
 - (void)bindViewModel {
     
     @weakify(self);
-    [RACObserve(self, viewModel.posts) subscribeNext:^(id x) {
+    [self.viewModel.updatedContentSignal subscribeNext:^(id x) {
         @strongify(self);
-        NSLog(@"RELOAD");
         [self.tableView reloadData];
     }];
 }
 
 #pragma mark - UITableViewDataSource
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [self.viewModel numberOfSections];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.viewModel.posts.count;
+    return [self.viewModel numberOfItemsInSection:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     HNFeedCell *cell = [tableView dequeueReusableCellWithIdentifier:kFeedCellIdentifier forIndexPath:indexPath];
     
-    [cell configureWithViewModel:self.viewModel.posts[indexPath.row]];
+    [cell configureWithViewModel:[self.viewModel feedCellViewModelForIndexPath:indexPath]];
     [cell setNavController:self.navigationController];
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];

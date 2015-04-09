@@ -6,14 +6,21 @@
 //  Copyright (c) 2015 Daniel Rakhamimov. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
-@class HNBrowserViewModel;
+#import "ReactiveViewModel.h"
 
-@interface HNFeedViewModel : NSObject
+@class HNFeedCellViewModel, HNBrowserViewModel;
 
-@property (nonatomic, strong) NSArray *posts;
+@interface HNFeedViewModel : RVMViewModel
 
+@property (nonatomic, readonly) RACSignal *updatedContentSignal;
+
+
+-(NSInteger)numberOfSections;
+-(NSInteger)numberOfItemsInSection:(NSInteger)section;
+
+
+- (HNFeedCellViewModel *)feedCellViewModelForIndexPath:(NSIndexPath *)indexPath;
 - (HNBrowserViewModel *)browserViewModelForIndexPath:(NSIndexPath *)indexPath;
 
 @end
