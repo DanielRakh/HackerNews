@@ -15,6 +15,8 @@
         <attribute name="type_" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="HNStory" representedClassName="HNStory" parentEntity="HNItem" syncable="YES">
+        <attribute name="descendants_" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="score_" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="title_" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url_" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="HNComment" inverseName="story" inverseEntity="HNComment" syncable="YES"/>
@@ -22,6 +24,6 @@
     <elements>
         <element name="HNComment" positionX="180" positionY="-108" width="128" height="88"/>
         <element name="HNItem" positionX="-207" positionY="-141" width="128" height="148"/>
-        <element name="HNStory" positionX="-20" positionY="135" width="128" height="88"/>
+        <element name="HNStory" positionX="-20" positionY="135" width="128" height="28"/>
     </elements>
 </model>

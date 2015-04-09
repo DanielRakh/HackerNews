@@ -48,3 +48,9 @@
 #define COCOAPODS_VERSION_MINOR_ReactiveCocoa_no_arc 4
 #define COCOAPODS_VERSION_PATCH_ReactiveCocoa_no_arc 7
 
+// ReactiveCoreData
+#define COCOAPODS_POD_AVAILABLE_ReactiveCoreData
+#define COCOAPODS_VERSION_MAJOR_ReactiveCoreData 0
+#define COCOAPODS_VERSION_MINOR_ReactiveCoreData 0
+#define COCOAPODS_VERSION_PATCH_ReactiveCoreData 2
+

@@ -16,6 +16,8 @@
 
 @property (nonatomic, retain) NSString * title_;
 @property (nonatomic, retain) NSString * url_;
+@property (nonatomic, retain) NSNumber * score_;
+@property (nonatomic, retain) NSNumber * descendants_;
 @property (nonatomic, retain) NSOrderedSet *comments;
 @end
 

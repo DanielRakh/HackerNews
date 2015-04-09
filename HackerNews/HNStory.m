@@ -14,6 +14,8 @@
 
 @dynamic title_;
 @dynamic url_;
+@dynamic score_;
+@dynamic descendants_;
 @dynamic comments;
 
 @end
