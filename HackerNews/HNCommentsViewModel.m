@@ -10,8 +10,6 @@
 
 @interface HNCommentsViewModel ()
 
-@property (nonatomic) HNPost *post;
-
 @end
 
 

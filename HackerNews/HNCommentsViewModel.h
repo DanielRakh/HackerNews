@@ -8,11 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@class HNPost;
-
 @interface HNCommentsViewModel : NSObject
 
 
-- (instancetype)initWithPost:(HNPost *)post;
 
 @end

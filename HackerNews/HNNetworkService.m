@@ -13,7 +13,7 @@
 
 @interface HNNetworkService ()
 
-@property (nonatomic) Firebase *topStoriesRef;
+//@property (nonatomic) Firebase *topStoriesRef;
 
 @end
 
@@ -39,10 +39,10 @@
     
     NSMutableArray *posts = [NSMutableArray arrayWithCapacity:count];
     
-    self.topStoriesRef = [[Firebase alloc]initWithUrl:@"https://hacker-news.firebaseio.com/v0/topstories"];
+    Firebase *topStoriesRef = [[Firebase alloc]initWithUrl:@"https://hacker-news.firebaseio.com/v0/topstories"];
     
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        [[self.topStoriesRef queryLimitedToFirst:count]observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        [[topStoriesRef queryLimitedToFirst:count]observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
             
             [snapshot.children.allObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 
@@ -72,6 +72,9 @@
 
 
 - (RACSignal *)childrenForItem:(NSNumber *)itemId {
+    
+    
+    
     
     return [RACSignal empty];
 }

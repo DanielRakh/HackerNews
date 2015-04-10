@@ -13,6 +13,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "ReactiveCoreData.h"
 #import "HNStory.h"
+#import "HNComment.h"
 
 
 @interface HNDataManager ()
@@ -45,6 +46,7 @@
 
 - (RACSignal *)topPostsWithCount:(NSInteger)count {
     
+    //Clear any existing data. 
     [self.coreDataStack clearAllDataForEntity:@"HNStory"];
     
     return [[[[HNNetworkService sharedManager] topItemsWithCount:count]
@@ -66,6 +68,7 @@
                          story.title_ = dict[@"title"];
                          story.descendants_ = dict[@"descendants"];
                          
+                         [story addComments:[NSOrderedSet orderedSetWithArray:@[]]];
                      }];
                  }] array];
                  
