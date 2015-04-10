@@ -1,9 +1,9 @@
 //
 //  HNItem.m
-//  HackerNews
+//  
 //
-//  Created by Daniel on 4/8/15.
-//  Copyright (c) 2015 Daniel Rakhamimov. All rights reserved.
+//  Created by Daniel on 4/10/15.
+//
 //
 
 #import "HNItem.h"
@@ -18,5 +18,6 @@
 @dynamic text_;
 @dynamic time_;
 @dynamic type_;
+@dynamic kids_;
 
 @end

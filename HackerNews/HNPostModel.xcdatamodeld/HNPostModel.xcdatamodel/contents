@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14D113c" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D131" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="HNComment" representedClassName="HNComment" parentEntity="HNItem" syncable="YES">
         <attribute name="parent_" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="kids" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="HNComment" inverseName="kids" inverseEntity="HNComment" syncable="YES"/>
@@ -10,6 +10,7 @@
         <attribute name="dead_" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="deleted_" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="id_" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="kids_" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="text_" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="time_" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="type_" optional="YES" attributeType="String" syncable="YES"/>
@@ -23,7 +24,7 @@
     </entity>
     <elements>
         <element name="HNComment" positionX="180" positionY="-108" width="128" height="88"/>
-        <element name="HNItem" positionX="-207" positionY="-141" width="128" height="148"/>
+        <element name="HNItem" positionX="-207" positionY="-141" width="128" height="165"/>
         <element name="HNStory" positionX="-20" positionY="135" width="128" height="28"/>
     </elements>
 </model>

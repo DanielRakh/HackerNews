@@ -1,9 +1,9 @@
 //
 //  HNItem.h
-//  HackerNews
+//  
 //
-//  Created by Daniel on 4/8/15.
-//  Copyright (c) 2015 Daniel Rakhamimov. All rights reserved.
+//  Created by Daniel on 4/10/15.
+//
 //
 
 #import <Foundation/Foundation.h>
@@ -19,5 +19,6 @@
 @property (nonatomic, retain) NSString * text_;
 @property (nonatomic, retain) NSNumber * time_;
 @property (nonatomic, retain) NSString * type_;
+@property (nonatomic, retain) id kids_;
 
 @end

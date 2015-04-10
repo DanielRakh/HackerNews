@@ -32,8 +32,8 @@
 		8E395F291AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8E395F271AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld */; };
 		8E395F2C1AD475B000EE0DB9 /* HNCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395F2B1AD475B000EE0DB9 /* HNCoreDataStack.m */; };
 		8E52514F1AD5D1F300EE080D /* HNComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E52514E1AD5D1F300EE080D /* HNComment.m */; };
-		8E5251521AD5D1F300EE080D /* HNItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E5251511AD5D1F300EE080D /* HNItem.m */; };
 		8E52515F1AD5FA3300EE080D /* HNStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E52515E1AD5FA3300EE080D /* HNStory.m */; };
+		8EA8736D1AD85A3C009C01F8 /* HNItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8736C1AD85A3C009C01F8 /* HNItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,10 +97,10 @@
 		8E395F2B1AD475B000EE0DB9 /* HNCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCoreDataStack.m; sourceTree = "<group>"; };
 		8E52514D1AD5D1F300EE080D /* HNComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNComment.h; sourceTree = "<group>"; };
 		8E52514E1AD5D1F300EE080D /* HNComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNComment.m; sourceTree = "<group>"; };
-		8E5251501AD5D1F300EE080D /* HNItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNItem.h; sourceTree = "<group>"; };
-		8E5251511AD5D1F300EE080D /* HNItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNItem.m; sourceTree = "<group>"; };
 		8E52515D1AD5FA3300EE080D /* HNStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNStory.h; sourceTree = "<group>"; };
 		8E52515E1AD5FA3300EE080D /* HNStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNStory.m; sourceTree = "<group>"; };
+		8EA8736B1AD85A3C009C01F8 /* HNItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNItem.h; sourceTree = "<group>"; };
+		8EA8736C1AD85A3C009C01F8 /* HNItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNItem.m; sourceTree = "<group>"; };
 		E6E214A4479710CF3CF8F84E /* Pods-HackerNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HackerNews/Pods-HackerNews.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -342,10 +342,10 @@
 		8E5251531AD5D26E00EE080D /* Managed Objects */ = {
 			isa = PBXGroup;
 			children = (
+				8EA8736B1AD85A3C009C01F8 /* HNItem.h */,
+				8EA8736C1AD85A3C009C01F8 /* HNItem.m */,
 				8E52515D1AD5FA3300EE080D /* HNStory.h */,
 				8E52515E1AD5FA3300EE080D /* HNStory.m */,
-				8E5251501AD5D1F300EE080D /* HNItem.h */,
-				8E5251511AD5D1F300EE080D /* HNItem.m */,
 				8E52514D1AD5D1F300EE080D /* HNComment.h */,
 				8E52514E1AD5D1F300EE080D /* HNComment.m */,
 			);
@@ -495,9 +495,9 @@
 				8E2352431ACC571F0009552D /* AppDelegate.m in Sources */,
 				8E2352B41ACE102C0009552D /* HNDataManager.m in Sources */,
 				8E395EF11AD33AD200EE0DB9 /* HNCommentsCellViewModel.m in Sources */,
-				8E5251521AD5D1F300EE080D /* HNItem.m in Sources */,
 				8E395EE71AD1A75300EE0DB9 /* HNCommentsViewModel.m in Sources */,
 				8E2352401ACC571F0009552D /* main.m in Sources */,
+				8EA8736D1AD85A3C009C01F8 /* HNItem.m in Sources */,
 				8E395EEE1AD3386A00EE0DB9 /* HNCommentsCell.m in Sources */,
 				8E2352B11ACDC34F0009552D /* HNNetworkService.m in Sources */,
 				8E395EE21AD1978A00EE0DB9 /* HNCommentsViewController.m in Sources */,
