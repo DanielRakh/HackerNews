@@ -12,7 +12,6 @@
 #import "HNNetworkService.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "ReactiveCoreData.h"
-#import "HNPost.h"
 #import "HNStory.h"
 
 
@@ -45,7 +44,9 @@
 }
 
 - (RACSignal *)topPostsWithCount:(NSInteger)count {
-
+    
+    [self.coreDataStack clearAllDataForEntity:@"HNStory"];
+    
     return [[[[HNNetworkService sharedManager] topItemsWithCount:count]
              map:^id(NSArray *items) {
                  
@@ -69,18 +70,13 @@
                  }] array];
                  
              }] saveContext];
-            
-//            doNext:^(id x) {
-//                 _posts = [NSArray arrayWithArray:x];
-//             }];
-    
 }
 
 
-- (RACSignal *)topCommentsForPost:(HNPost *)post {
-    
-    return [RACSignal empty];
-}
+//- (RACSignal *)topCommentsForPost:(HNPost *)post {
+//    
+//    return [RACSignal empty];
+//}
 
 
 @end

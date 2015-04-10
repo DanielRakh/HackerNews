@@ -51,7 +51,7 @@
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
-    
+        
     }
     
     return self;
@@ -78,6 +78,24 @@
     }
 }
 
+
+#pragma mark - Core Data Deleting
+
+- (void)clearAllDataForEntity:(NSString *)nameEntity {
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:nameEntity];
+    [fetchRequest setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+    
+    NSError *error;
+    NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    for (NSManagedObject *object in fetchedObjects)
+    {
+        [self.managedObjectContext deleteObject:object];
+    }
+    
+    error = nil;
+    [self.managedObjectContext save:&error];
+}
 
 
 

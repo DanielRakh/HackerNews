@@ -57,4 +57,9 @@ static NSString const *kRCDMainManagedObjectContext;
 
 // Actually creates a new child context for the passed main context
 + (NSManagedObjectContext *)contextWithMainContext:(NSManagedObjectContext *)mainContext;
+
+- (RACSignal *)clearAllDataForEntity:(NSString *)nameEntity;
+
+
+
 @end

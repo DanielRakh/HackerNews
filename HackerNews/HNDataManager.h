@@ -21,7 +21,7 @@
 
 - (RACSignal *)topPostsWithCount:(NSInteger)count;
 
-- (RACSignal *)topCommentsForPost:(HNPost *)post;
+//- (RACSignal *)topCommentsForPost:(HNPost *)post;
 
 
 @end

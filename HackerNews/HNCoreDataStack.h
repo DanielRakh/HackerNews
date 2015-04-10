@@ -14,5 +14,6 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 - (void)saveContext;
+- (void)clearAllDataForEntity:(NSString *)nameEntity;
 
 @end

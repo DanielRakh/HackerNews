@@ -154,4 +154,41 @@ static NSString const *kRCDMainManagedObjectContext = @"kRCDMainManagedObjectCon
 {
     return [[self perform] performInBackgroundContext];
 }
+
+- (RACSignal *)clearAllDataForEntity:(NSString *)nameEntity {
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:nameEntity];
+        [fetchRequest setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+        NSError *error = nil;
+        
+        NSArray *fetchedObjects = [self.mainContext executeFetchRequest:fetchRequest error:&error];
+        
+        if (error != nil) {
+            [subscriber sendError:error];
+        } else {
+            for (NSManagedObject *object in fetchedObjects)
+            {
+                [self.mainContext deleteObject:object];
+            }
+        }
+        
+        error = nil;
+        
+        if (self.mainContext.hasChanges) {
+            [self.mainContext save:&error];
+            if (error) {
+                [subscriber sendError:error];
+            } else {
+                [subscriber sendNext:nil];
+                [subscriber sendCompleted];
+            }
+        }
+       
+        return nil;
+    }];
+}
+
+
+
 @end
