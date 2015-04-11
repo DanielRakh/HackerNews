@@ -67,14 +67,21 @@
                          story.score_ = dict[@"score"];
                          story.title_ = dict[@"title"];
                          story.descendants_ = dict[@"descendants"];
+                         story.kids_ = dict[@"kids"];
                          
-                         [story addComments:[NSOrderedSet orderedSetWithArray:@[]]];
                      }];
                  }] array];
                  
              }] saveContext];
 }
 
+- (RACSignal *)topCommentsForStory:(HNStory *)story {
+    
+    //1. Take the kids of the story
+    //2. Hit network to pull those items.
+    //3. This is the top of the tree nodes.
+    
+}
 
 //- (RACSignal *)topCommentsForPost:(HNPost *)post {
 //    
