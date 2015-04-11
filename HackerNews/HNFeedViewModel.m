@@ -46,7 +46,7 @@
 }
 
 - (void)requestTopPosts {
-    [[self.dataManager topPostsWithCount:30] subscribeNext:^(id x) {
+    [[self.dataManager topStoriesWithCount:30] subscribeNext:^(id x) {
         [self.fetchedResultsController performFetch:nil];
     }];
 }
@@ -94,7 +94,7 @@
     fetchRequest.entity = [NSEntityDescription entityForName:@"HNStory" inManagedObjectContext:self.dataManager.coreDataStack.managedObjectContext];
     fetchRequest.fetchBatchSize = 30;
     
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"by_" ascending:YES];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"rank_" ascending:YES];
     fetchRequest.sortDescriptors = @[sortDescriptor];
     
     NSFetchedResultsController *aFRC = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequest managedObjectContext:self.dataManager.coreDataStack.managedObjectContext sectionNameKeyPath:nil cacheName:nil];

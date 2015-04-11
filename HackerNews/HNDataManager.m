@@ -44,7 +44,7 @@
     return self;
 }
 
-- (RACSignal *)topPostsWithCount:(NSInteger)count {
+- (RACSignal *)topStoriesWithCount:(NSInteger)count {
     
     //Clear any existing data. 
     [self.coreDataStack clearAllDataForEntity:@"HNStory"];
@@ -68,19 +68,20 @@
                          story.title_ = dict[@"title"];
                          story.descendants_ = dict[@"descendants"];
                          story.kids_ = dict[@"kids"];
-                         
+                         story.rank_ = @([items indexOfObject:dict]);
                      }];
                  }] array];
                  
              }] saveContext];
 }
 
-- (RACSignal *)topCommentsForStory:(HNStory *)story {
+- (RACSignal *)commentsForItem:(HNItem *)item {
     
-    //1. Take the kids of the story
+    //1. Take the kids of the item
     //2. Hit network to pull those items.
     //3. This is the top of the tree nodes.
     
+    return nil;
 }
 
 //- (RACSignal *)topCommentsForPost:(HNPost *)post {

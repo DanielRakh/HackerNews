@@ -19,7 +19,7 @@
 
 + (id)sharedManager;
 
-- (RACSignal *)topPostsWithCount:(NSInteger)count;
+- (RACSignal *)topStoriesWithCount:(NSInteger)count;
 
 //- (RACSignal *)topCommentsForPost:(HNPost *)post;
 

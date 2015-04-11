@@ -6,10 +6,17 @@
 //  Copyright (c) 2015 Daniel Rakhamimov. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "ReactiveViewModel.h"
 
-@interface HNCommentsViewModel : NSObject
+@class HNCommentsCellViewModel;
 
+@interface HNCommentsViewModel : RVMViewModel
 
+@property (nonatomic, readonly) RACSignal *updatedContentSignal;
+
+-(NSInteger)numberOfSections;
+-(NSInteger)numberOfItemsInSection:(NSInteger)section;
+
+- (HNCommentsCellViewModel *)commentsCellViewModelForIndexPath:(NSIndexPath *)indexPath;
 
 @end

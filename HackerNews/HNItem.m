@@ -19,5 +19,6 @@
 @dynamic time_;
 @dynamic type_;
 @dynamic kids_;
+@dynamic rank_;
 
 @end

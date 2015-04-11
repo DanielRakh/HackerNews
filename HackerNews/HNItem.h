@@ -12,6 +12,7 @@
 
 @interface HNItem : NSManagedObject
 
+@property (nonatomic, retain) NSNumber *rank_;
 @property (nonatomic, retain) NSString * by_;
 @property (nonatomic, retain) NSNumber * dead_;
 @property (nonatomic, retain) NSNumber * deleted_;
