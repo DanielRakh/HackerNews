@@ -98,5 +98,11 @@
 }
 
 
+- (void)clearAllDataForItem {
+    
+    // Fetch request for specific item
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"HNComment"];
+    
+}
 
 @end

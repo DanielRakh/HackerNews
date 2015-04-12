@@ -77,7 +77,13 @@
 
 - (RACSignal *)commentsForItem:(HNItem *)item {
     
+    //0. Clear all data for specific item:
+    
+    
     //1. Take the kids of the item
+    
+    return [[HNNetworkService sharedManager] childrenForItem:item.id_];
+    
     //2. Hit network to pull those items.
     //3. This is the top of the tree nodes.
     

@@ -10,10 +10,11 @@
 #import <Firebase/Firebase.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
+static NSString *FireBaseURLPath = @"https://hacker-news.firebaseio.com/v0";
 
 @interface HNNetworkService ()
 
-//@property (nonatomic) Firebase *topStoriesRef;
+@property (nonatomic) Firebase *fireBaseRef;
 
 @end
 
@@ -31,6 +32,7 @@
 -(instancetype)init {
     self = [super init];
     if (self) {
+        _fireBaseRef = [[Firebase alloc]initWithUrl:FireBaseURLPath];
     }
     return self;
 }
@@ -39,14 +41,14 @@
     
     NSMutableArray *posts = [NSMutableArray arrayWithCapacity:count];
     
-    Firebase *topStoriesRef = [[Firebase alloc]initWithUrl:@"https://hacker-news.firebaseio.com/v0/topstories"];
+    Firebase *topStoriesRef = [self.fireBaseRef childByAppendingPath:@"topstories"];
     
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         [[topStoriesRef queryLimitedToFirst:count]observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
             
             [snapshot.children.allObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 
-                Firebase *itemRef = [[[Firebase alloc]initWithUrl:@"https://hacker-news.firebaseio.com/v0/item/"] childByAppendingPath:[NSString stringWithFormat:@"%@", ((FDataSnapshot *)obj).value]];
+                Firebase *itemRef = [self.fireBaseRef childByAppendingPath:[NSString stringWithFormat:@"item/%@", ((FDataSnapshot *)obj).value]];
             
                 [itemRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
                     
@@ -65,7 +67,6 @@
             [subscriber sendError:error];
         }];
         
-    
         return nil;
     }];
 }
@@ -73,10 +74,25 @@
 
 - (RACSignal *)childrenForItem:(NSNumber *)itemId {
     
+    Firebase *commentsRef = [self.fireBaseRef childByAppendingPath:[NSString stringWithFormat:@"item/%@/kids", itemId]];;
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        [commentsRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+            
+//            snapshot.children
+        } withCancelBlock:^(NSError *error) {
+            //
+        }];
+        
+        [subscriber sendNext:nil];
+        [subscriber sendCompleted];
+        return nil;
+    }];
     
     
     
-    return [RACSignal empty];
+    
+//    return [RACSignal empty];
 }
 
 @end
