@@ -10,6 +10,8 @@
 #import <Firebase/Firebase.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
+#import "FQuery+RACExtensions.h"
+
 static NSString *FireBaseURLPath = @"https://hacker-news.firebaseio.com/v0";
 
 @interface HNNetworkService ()
@@ -37,38 +39,48 @@ static NSString *FireBaseURLPath = @"https://hacker-news.firebaseio.com/v0";
     return self;
 }
 
-- (RACSignal *)topItemsWithCount:(NSInteger)count {
+- (RACSignal *)observeSingleEventValueWithRef:(Firebase *)ref withQueryLimit:(NSInteger)count {
     
-    NSMutableArray *posts = [NSMutableArray arrayWithCapacity:count];
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        [[ref queryLimitedToFirst:count] observeSingleEventOfType:FEventTypeValue
+                            withBlock:^(FDataSnapshot *snapshot) {
+                                [subscriber sendNext:snapshot.children.allObjects.rac_sequence];
+                                [subscriber sendCompleted];
+                            }  withCancelBlock:^(NSError *error) {
+                                [subscriber sendError:error];
+                            }];
+        return nil;
+    }];
+}
+
+- (RACSignal *)observeSingleEventValueWithRef:(Firebase *)ref {
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        [ref observeSingleEventOfType:FEventTypeValue
+                                                        withBlock:^(FDataSnapshot *snapshot) {
+                                                            [subscriber sendNext:snapshot.value];
+                                                            [subscriber sendCompleted];
+                                                        }  withCancelBlock:^(NSError *error) {
+                                                            [subscriber sendError:error];
+                                                        }];
+        return nil;
+    }];
+}
+
+
+- (RACSignal *)topItemsWithCount:(NSInteger)count {
     
     Firebase *topStoriesRef = [self.fireBaseRef childByAppendingPath:@"topstories"];
     
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        [[topStoriesRef queryLimitedToFirst:count]observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-            
-            [snapshot.children.allObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                
-                Firebase *itemRef = [self.fireBaseRef childByAppendingPath:[NSString stringWithFormat:@"item/%@", ((FDataSnapshot *)obj).value]];
-            
-                [itemRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-                    
-                    [posts addObject:snapshot.value];
-                    
-                    if (posts.count == count) {
-                        [subscriber sendNext:posts];
-                        [subscriber sendCompleted];
-                    }
-                    
-                }];
-               
-            }];
-            
-        } withCancelBlock:^(NSError *error) {
-            [subscriber sendError:error];
-        }];
-        
-        return nil;
-    }];
+    return [[[topStoriesRef queryLimitedToFirst:30] rac_valueSignal]
+                                   flattenMap:^RACStream *(FDataSnapshot *value) {
+    
+                                       return [value.children.allObjects.rac_sequence.signal
+                                               flattenMap:^RACStream *(FDataSnapshot *item) {
+                                                   
+                                                   return [[self.fireBaseRef childByAppendingPath:[NSString stringWithFormat:@"item/%@", item.value]] rac_valueSignal];
+                                               }];
+                                   }];
 }
 
 

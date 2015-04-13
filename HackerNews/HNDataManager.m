@@ -44,16 +44,31 @@
     return self;
 }
 
+
 - (RACSignal *)topStoriesWithCount:(NSInteger)count {
     
+    RACSignal *networkSignal = [[HNNetworkService sharedManager]topItemsWithCount:30];
+    
+    
+    [networkSignal subscribeNext:^(id x) {
+        NSLog(@"%@", x);
+    } completed:^{
+        NSLog(@"COMPLETED!");
+    }];
+    
+    return nil;
+    
+    
+    /*
     //Clear any existing data. 
     [self.coreDataStack clearAllDataForEntity:@"HNStory"];
     
-    return [[[[HNNetworkService sharedManager] topItemsWithCount:count]
+    
+    return [[[[[HNNetworkService sharedManager] topItemsWithCount:count] collect]
              map:^id(NSArray *items) {
-                 
                  return [[[items.rac_sequence filter:^BOOL(NSDictionary *dict) {
                      return [dict[@"type"] isEqualToString:@"story"];
+                     
                  }] map:^id(NSDictionary *dict) {
                      
                      return [HNStory insert:^(HNStory *story) {
@@ -73,6 +88,7 @@
                  }] array];
                  
              }] saveContext];
+    */
 }
 
 - (RACSignal *)commentsForItem:(HNItem *)item {

@@ -18,6 +18,12 @@
 #define COCOAPODS_VERSION_MINOR_Firebase 2
 #define COCOAPODS_VERSION_PATCH_Firebase 0
 
+// Firebase-RACExtensions
+#define COCOAPODS_POD_AVAILABLE_Firebase_RACExtensions
+#define COCOAPODS_VERSION_MAJOR_Firebase_RACExtensions 0
+#define COCOAPODS_VERSION_MINOR_Firebase_RACExtensions 2
+#define COCOAPODS_VERSION_PATCH_Firebase_RACExtensions 0
+
 // PureLayout
 #define COCOAPODS_POD_AVAILABLE_PureLayout
 #define COCOAPODS_VERSION_MAJOR_PureLayout 2
