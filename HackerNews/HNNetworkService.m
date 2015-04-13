@@ -72,7 +72,7 @@ static NSString *FireBaseURLPath = @"https://hacker-news.firebaseio.com/v0";
     
     Firebase *topStoriesRef = [self.fireBaseRef childByAppendingPath:@"topstories"];
     
-    return [[[topStoriesRef queryLimitedToFirst:30] rac_valueSignal]
+    return [[[[topStoriesRef queryLimitedToFirst:30] rac_valueSignal]
                                    flattenMap:^RACStream *(FDataSnapshot *value) {
     
                                        return [value.children.allObjects.rac_sequence.signal
@@ -80,6 +80,9 @@ static NSString *FireBaseURLPath = @"https://hacker-news.firebaseio.com/v0";
                                                    
                                                    return [[self.fireBaseRef childByAppendingPath:[NSString stringWithFormat:@"item/%@", item.value]] rac_valueSignal];
                                                }];
+                                       
+                                   }] map:^id(FDataSnapshot *snap) {
+                                       return snap.value;
                                    }];
 }
 
