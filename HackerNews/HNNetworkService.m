@@ -39,35 +39,6 @@ static NSString *FireBaseURLPath = @"https://hacker-news.firebaseio.com/v0";
     return self;
 }
 
-- (RACSignal *)observeSingleEventValueWithRef:(Firebase *)ref withQueryLimit:(NSInteger)count {
-    
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        [[ref queryLimitedToFirst:count] observeSingleEventOfType:FEventTypeValue
-                            withBlock:^(FDataSnapshot *snapshot) {
-                                [subscriber sendNext:snapshot.children.allObjects.rac_sequence];
-                                [subscriber sendCompleted];
-                            }  withCancelBlock:^(NSError *error) {
-                                [subscriber sendError:error];
-                            }];
-        return nil;
-    }];
-}
-
-- (RACSignal *)observeSingleEventValueWithRef:(Firebase *)ref {
-    
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        [ref observeSingleEventOfType:FEventTypeValue
-                                                        withBlock:^(FDataSnapshot *snapshot) {
-                                                            [subscriber sendNext:snapshot.value];
-                                                            [subscriber sendCompleted];
-                                                        }  withCancelBlock:^(NSError *error) {
-                                                            [subscriber sendError:error];
-                                                        }];
-        return nil;
-    }];
-}
-
-
 - (RACSignal *)topItemsWithCount:(NSInteger)count {
     
     Firebase *topStoriesRef = [self.fireBaseRef childByAppendingPath:@"topstories"];
@@ -86,28 +57,19 @@ static NSString *FireBaseURLPath = @"https://hacker-news.firebaseio.com/v0";
                                    }];
 }
 
-
 - (RACSignal *)childrenForItem:(NSNumber *)itemId {
     
-    Firebase *commentsRef = [self.fireBaseRef childByAppendingPath:[NSString stringWithFormat:@"item/%@/kids", itemId]];;
+    Firebase *commentsRef = [self.fireBaseRef childByAppendingPath:[NSString stringWithFormat:@"item/%@/kids", itemId]];
     
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        [commentsRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-            
-//            snapshot.children
-        } withCancelBlock:^(NSError *error) {
-            //
-        }];
-        
-        [subscriber sendNext:nil];
-        [subscriber sendCompleted];
-        return nil;
+    return [[[commentsRef rac_valueSignal] flattenMap:^RACStream *(FDataSnapshot *value) {
+        return [value.children.allObjects.rac_sequence.signal
+                              flattenMap:^RACStream *(FDataSnapshot *item) {
+                                  
+                                  return [[self.fireBaseRef childByAppendingPath:[NSString stringWithFormat:@"item/%@", item.value]] rac_valueSignal];
+                              }];
+    }] map:^id(FDataSnapshot *snap) {
+        return snap.value;
     }];
-    
-    
-    
-    
-//    return [RACSignal empty];
 }
 
 @end

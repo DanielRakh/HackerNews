@@ -47,6 +47,9 @@
 
 - (RACSignal *)topStoriesWithCount:(NSInteger)count {
     
+    [[HNNetworkService sharedManager] childrenForItem:@(9370068)];
+    
+    /*
     //Clear any existing data.
     [self.coreDataStack clearAllDataForEntity:@"HNStory"];
 
@@ -75,6 +78,9 @@
                  }] array];
                  
              }] saveContext];
+    
+    */
+    return nil;
 
 }
 
