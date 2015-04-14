@@ -45,11 +45,56 @@
 }
 
 
+
 - (RACSignal *)topStoriesWithCount:(NSInteger)count {
+
+
+    //Fetch storty for ID
+//   [[[[HNStory findOne] where:@"id_" equals:@(9374927)] fetch] subscribeNext:^(id x) {
+//        NSLog(@"%@",x);
+//    } completed:^{
+//        NSLog(@"COMPLETE");
+//    }];
+//
+//    return nil;
     
-    [[HNNetworkService sharedManager] childrenForItem:@(9370068)];
     
-    /*
+ 
+    
+    //Grab comments for ID
+    RACSignal *tst = [[[[[[HNNetworkService sharedManager] childrenForItem:@(9374927)] collect] map:^id(NSArray *items) {
+        return [[items.rac_sequence map:^id(NSDictionary *dict) {
+            return [HNComment insert:^(HNComment *comment) {
+                comment.id_ = dict[@"id"];
+                comment.deleted_ = dict[@"deleted"];
+                comment.by_ = dict[@"by"];
+                comment.parent_ = dict[@"parent"];
+                comment.kids_ = dict[@"kids"];
+                comment.text_ = dict[@"text"];
+                comment.time_ = dict[@"time"];
+                comment.type_ = dict[@"type"];
+                comment.rank_ = @([items indexOfObject:dict]);
+            }];
+        }] array];
+    }] doNext:^(NSArray *comments) {
+        [[[[HNStory findOne] where:@"id_" equals:@(9374927)] fetch]
+         subscribeNext:^(HNStory *story) {
+            [story addComments:[NSOrderedSet orderedSetWithArray:comments]];
+        } completed:^{
+            //
+        }];
+    }] saveContext];
+    //Create HNComment Items
+    
+    
+    [tst subscribeNext:^(id x) {
+        NSLog(@"%@", x);
+    } completed:^{
+        NSLog(@"Completed!");
+    }];
+    
+    
+  /*
     //Clear any existing data.
     [self.coreDataStack clearAllDataForEntity:@"HNStory"];
 
@@ -73,6 +118,7 @@
                          story.title_ = dict[@"title"];
                          story.descendants_ = dict[@"descendants"];
                          story.kids_ = dict[@"kids"];
+                         story.type_ = dict[@"type"];
                          story.rank_ = @([items indexOfObject:dict]);
                      }];
                  }] array];
@@ -80,8 +126,8 @@
              }] saveContext];
     
     */
+    
     return nil;
-
 }
 
 - (RACSignal *)commentsForItem:(HNItem *)item {

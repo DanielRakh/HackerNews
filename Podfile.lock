@@ -1,6 +1,6 @@
 PODS:
   - DateTools (1.5.0)
-  - Firebase (2.2.0)
+  - Firebase (2.2.1)
   - Firebase-RACExtensions (0.2.0):
     - Firebase (~> 2.0)
     - ReactiveCocoa (~> 2.3)
@@ -30,7 +30,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   DateTools: b93a2c2017747329c6077c7d7e8a75106e23d0d7
-  Firebase: e5f9cf72c72a9fdaf7e136012b6c52a263a23ca7
+  Firebase: a3d54b42f090ca275b22dcdf103b8ab6ac6f353c
   Firebase-RACExtensions: 6ae340c67e7ec7e845e6603f8223770586278fe6
   PureLayout: a0fe75f1cf485801e7e00b723b8a3c32dca558e2
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
