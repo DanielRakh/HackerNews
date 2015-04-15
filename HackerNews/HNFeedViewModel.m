@@ -46,15 +46,13 @@
 }
 
 - (void)requestTopPosts {
-    [[self.dataManager topStoriesWithCount:30] subscribeNext:^(id x) {
+    [[self.dataManager topStoriesWithCount:30] subscribeCompleted:^{
         [self.fetchedResultsController performFetch:nil];
     }];
+
 }
 
-
-
 - (HNFeedCellViewModel *)feedCellViewModelForIndexPath:(NSIndexPath *)indexPath {
-    
     HNFeedCellViewModel *viewModel = [[HNFeedCellViewModel alloc]initWithStory:[self storyForIndexPath:indexPath]];
     return viewModel;
 }

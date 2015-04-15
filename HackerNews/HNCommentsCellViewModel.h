@@ -8,8 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class HNComment;
+
 @interface HNCommentsCellViewModel : NSObject
 
-@property (nonatomic) NSAttributedString *origination;
+@property (nonatomic, readonly) NSAttributedString *origination;
+@property (nonatomic, readonly) NSAttributedString *text;
+
+
+- (instancetype)initWithComment:(HNComment *)comment;
 
 @end

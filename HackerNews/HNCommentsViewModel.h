@@ -8,11 +8,14 @@
 
 #import "ReactiveViewModel.h"
 
-@class HNCommentsCellViewModel;
+@class HNCommentsCellViewModel, HNStory;
 
 @interface HNCommentsViewModel : RVMViewModel
 
 @property (nonatomic, readonly) RACSignal *updatedContentSignal;
+
+
+- (instancetype)initWithStory:(HNStory *)story;
 
 -(NSInteger)numberOfSections;
 -(NSInteger)numberOfItemsInSection:(NSInteger)section;

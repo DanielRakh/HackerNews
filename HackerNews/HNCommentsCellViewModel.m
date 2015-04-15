@@ -7,13 +7,27 @@
 //
 
 #import "HNCommentsCellViewModel.h"
+#import "HNComment.h"
+
+@interface HNCommentsCellViewModel ()
+
+@property (nonatomic) HNComment *comment;
+
+@property (nonatomic, readwrite) NSAttributedString *origination;
+@property (nonatomic, readwrite) NSAttributedString *text;
+
+@end
 
 @implementation HNCommentsCellViewModel
 
-- (instancetype)init {
+
+
+- (instancetype)initWithComment:(HNComment *)comment {
     self = [super init];
     if (self) {
+        _comment = comment;
         _origination = [[NSAttributedString alloc]initWithString: @"by danielrak | 5 hrs ago"];
+        _text = [[NSAttributedString alloc]initWithString:comment.text_];
     }
     return self;
 }

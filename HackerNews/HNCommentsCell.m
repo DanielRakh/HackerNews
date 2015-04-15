@@ -27,7 +27,7 @@ CGFloat const kCommentsHorizontalInset = 8;
 
 @property (nonatomic) UIView *cardView;
 @property (nonatomic) UILabel *originationLabel;
-//@property (nonatomic
+@property (nonatomic) UILabel *commentTextLabel;
 
 
 
@@ -59,7 +59,9 @@ CGFloat const kCommentsHorizontalInset = 8;
 }
 
 - (void)configureWithViewModel:(HNCommentsCellViewModel *)viewModel {
+    self.viewModel = viewModel;
     self.originationLabel.attributedText = viewModel.origination;
+    self.commentTextLabel.attributedText = viewModel.text;
 }
 
 - (void)initalizeViews {
@@ -87,6 +89,15 @@ CGFloat const kCommentsHorizontalInset = 8;
     self.originationLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:10.0];
     
     [self.cardView addSubview:self.originationLabel];
+    
+    
+    self.commentTextLabel = [UILabel newAutoLayoutView];
+    self.commentTextLabel.numberOfLines = 0;
+    self.commentTextLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+    self.commentTextLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:12.0];
+    
+    [self.cardView addSubview:self.commentTextLabel];
+
     
     /*
     // Set up Score Label
@@ -117,6 +128,12 @@ CGFloat const kCommentsHorizontalInset = 8;
         [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
         [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kCommentsVerticalInset];
     
+        
+        [self.commentTextLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.originationLabel withOffset:kCommentsVerticalInset];
+        [self.commentTextLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
+        [self.commentTextLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
+        [self.commentTextLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
+        
         
         self.didSetupConstraints = YES;
     }

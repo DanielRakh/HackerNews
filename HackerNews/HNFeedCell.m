@@ -154,7 +154,6 @@ CGFloat const kHorizontalInset = 8;
         
         
         // Info Label Constraints
-        
         [self.originationLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:self.titleLabel];
         [self.originationLabel autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.commentsButton];
         
@@ -175,14 +174,11 @@ CGFloat const kHorizontalInset = 8;
 
 - (void)pushCommentsController {
     
-//    HNCommentsViewModel *viewModel = [[HNCommentsViewModel alloc]initWithPost:self.viewModel.post];
-//    
-//    UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    
-//    HNCommentsViewController *commentsController =[mainSB instantiateViewControllerWithIdentifier:@"CommentsController"];
-//    commentsController.viewModel = viewModel;
-//
-//    [self.navController pushViewController:commentsController animated:YES];
+    HNCommentsViewModel *commentsViewModel = [self.viewModel commentsViewModel];
+    UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    HNCommentsViewController *commentsController =[mainSB instantiateViewControllerWithIdentifier:@"CommentsController"];
+    commentsController.viewModel = commentsViewModel;
+    [self.navController pushViewController:commentsController animated:YES];
 }
 
 @end

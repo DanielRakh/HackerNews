@@ -10,14 +10,19 @@
 
 // View Model
 #import "HNCommentsViewModel.h"
+#import "HNCommentsCellViewModel.h"
 
 
 // Model
 #import "HNDataManager.h"
+#import "HNComment.h"
+
+
 
 @interface HNCommentsViewModel () <NSFetchedResultsControllerDelegate>
 
 @property (weak, nonatomic) HNDataManager *dataManager;
+@property (nonatomic) HNStory *story;
 @property (nonatomic, readwrite) RACSignal *updatedContentSignal;
 @property (nonatomic) NSFetchedResultsController *fetchedResultsController;
 
@@ -26,10 +31,11 @@
 
 @implementation HNCommentsViewModel
 
--(instancetype)init {
+-(instancetype)initWithStory:(HNStory *)story {
     self = [super init];
     if (self) {
         
+        _story = story;
         _dataManager = [HNDataManager sharedManager];
         
         self.updatedContentSignal = [[RACSubject subject] setNameWithFormat:@"HNCommentsViewModel updatedContentSignal"];
@@ -37,7 +43,7 @@
         @weakify(self)
         [self.didBecomeActiveSignal subscribeNext:^(id x) {
             @strongify(self);
-            [self requestTopComments];
+            [self requestTopCommentsForItem:(HNItem *)story];
         }];
     }
     
@@ -45,8 +51,34 @@
 }
 
 
-- (void)requestTopComments {
-    //
+- (void)requestTopCommentsForItem:(HNItem *)item {
+    [[self.dataManager commentsForItem:item] subscribeNext:^(id x) {
+        [self.fetchedResultsController performFetch:nil];
+
+    }];
+}
+
+- (HNCommentsCellViewModel *)commentsCellViewModelForIndexPath:(NSIndexPath *)indexPath {
+    HNCommentsCellViewModel *viewModel = [[HNCommentsCellViewModel alloc]initWithComment:[self commentForIndexPath:indexPath]];
+    return viewModel;
+}
+
+
+#pragma mark - Public Methods
+
+-(NSInteger)numberOfSections {
+    return [[self.fetchedResultsController sections] count];
+}
+
+-(NSInteger)numberOfItemsInSection:(NSInteger)section {
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+    return [sectionInfo numberOfObjects];
+}
+
+#pragma mark - Private Methods
+
+- (HNComment *)commentForIndexPath:(NSIndexPath *)indexPath {
+    return [self.fetchedResultsController objectAtIndexPath:indexPath];
 }
 
 #pragma mark - Fetched Results Controller
@@ -59,7 +91,10 @@
     
     NSFetchRequest *fetchRequest = [NSFetchRequest new];
     fetchRequest.entity = [NSEntityDescription entityForName:@"HNComment" inManagedObjectContext:self.dataManager.coreDataStack.managedObjectContext];
-    fetchRequest.fetchBatchSize = 0;
+//    fetchRequest.fetchBatchSize = 0;
+    
+    NSPredicate *commentsPredicate =[NSPredicate predicateWithFormat:@"ANY story == %@", self.story];
+    fetchRequest.predicate = commentsPredicate;
     
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"by_" ascending:YES];
     fetchRequest.sortDescriptors = @[sortDescriptor];
@@ -86,7 +121,5 @@
     
     [(RACSubject *)self.updatedContentSignal sendNext:nil];
 }
-
-
 
 @end

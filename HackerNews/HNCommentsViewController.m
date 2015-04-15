@@ -5,7 +5,7 @@
 //  Created by Daniel on 4/5/15.
 //  Copyright (c) 2015 Daniel Rakhamimov. All rights reserved.
 //
-
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "UIColor+HNColorPalette.h"
 
 //View
@@ -27,11 +27,23 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 @implementation HNCommentsViewController
 
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.viewModel.active = YES;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor HNOffWhite];
     self.navigationController.navigationBarHidden = YES;
     [self initalizeTableView];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self bindViewModel];
+
 }
 
 - (void)initalizeTableView {
@@ -41,15 +53,26 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     [self.tableView registerClass:[HNCommentsCell class] forCellReuseIdentifier:kCommentsCellIdentifier];
 }
 
+- (void)bindViewModel {
+    
+    @weakify(self);
+    [self.viewModel.updatedContentSignal subscribeNext:^(id x) {
+        @strongify(self);
+        [self.tableView reloadData];
+    }];
+}
+
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return [self.viewModel numberOfSections];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HNCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
-//    [cell configureWithViewModel:(HNCommentsCellViewModel *)]
+    
+    [cell configureWithViewModel:[self.viewModel commentsCellViewModelForIndexPath:indexPath]];
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
     return cell;

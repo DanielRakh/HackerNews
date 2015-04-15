@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7525" systemVersion="14D113c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yqG-qj-OmD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yqG-qj-OmD">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <scenes>
         <!--Cached-->
@@ -100,13 +100,13 @@
                                 <exclude reference="NBP-Y0-iVg"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="Ipr-tG-YrS"/>
-                                <exclude reference="NWK-JR-w6l"/>
-                                <exclude reference="RyE-p1-Iba"/>
+                                <exclude reference="9Ow-Hu-Ply"/>
                                 <exclude reference="16B-8a-Bk0"/>
                                 <exclude reference="A6m-y8-ao4"/>
                                 <exclude reference="wOK-Fz-fYw"/>
-                                <exclude reference="9Ow-Hu-Ply"/>
+                                <exclude reference="Ipr-tG-YrS"/>
+                                <exclude reference="NWK-JR-w6l"/>
+                                <exclude reference="RyE-p1-Iba"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -115,13 +115,13 @@
                                 <include reference="NBP-Y0-iVg"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="Ipr-tG-YrS"/>
-                                <include reference="NWK-JR-w6l"/>
-                                <include reference="RyE-p1-Iba"/>
+                                <include reference="9Ow-Hu-Ply"/>
                                 <include reference="16B-8a-Bk0"/>
                                 <include reference="A6m-y8-ao4"/>
                                 <include reference="wOK-Fz-fYw"/>
-                                <include reference="9Ow-Hu-Ply"/>
+                                <include reference="Ipr-tG-YrS"/>
+                                <include reference="NWK-JR-w6l"/>
+                                <include reference="RyE-p1-Iba"/>
                             </mask>
                         </variation>
                     </view>
@@ -142,6 +142,7 @@
                         <viewControllerLayoutGuide type="bottom" id="hci-fK-1wR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fbZ-wV-1WD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GXn-bq-1XZ">
@@ -150,13 +151,13 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Algorithims Every Programmer Should Know" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUN-ja-iRL">
                                         <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="500 Points" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhF-yD-zwI">
                                         <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by danielrak | 5 hrs ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usg-g7-GvX">
@@ -167,7 +168,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="168 Comments" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="229-tJ-ory">
                                         <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLQ-AA-7aO">
@@ -202,18 +203,18 @@
                                         <exclude reference="iLQ-AA-7aO"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <exclude reference="FOe-fs-Yyz"/>
-                                        <exclude reference="PM4-v4-69N"/>
+                                        <exclude reference="7Nk-dG-XVX"/>
+                                        <exclude reference="Exq-4x-Iy3"/>
+                                        <exclude reference="KCy-KZ-flW"/>
                                         <exclude reference="DWV-7H-F13"/>
                                         <exclude reference="HZR-iE-qnS"/>
                                         <exclude reference="W6n-LL-bXT"/>
                                         <exclude reference="jsj-rZ-HY7"/>
                                         <exclude reference="jxk-uZ-4G1"/>
-                                        <exclude reference="7Nk-dG-XVX"/>
-                                        <exclude reference="Exq-4x-Iy3"/>
-                                        <exclude reference="KCy-KZ-flW"/>
                                         <exclude reference="FlE-JY-Uxy"/>
                                         <exclude reference="YQf-z0-BWd"/>
+                                        <exclude reference="FOe-fs-Yyz"/>
+                                        <exclude reference="PM4-v4-69N"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
@@ -225,18 +226,18 @@
                                         <include reference="iLQ-AA-7aO"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <include reference="FOe-fs-Yyz"/>
-                                        <include reference="PM4-v4-69N"/>
+                                        <include reference="7Nk-dG-XVX"/>
+                                        <include reference="Exq-4x-Iy3"/>
+                                        <include reference="KCy-KZ-flW"/>
                                         <include reference="DWV-7H-F13"/>
                                         <include reference="HZR-iE-qnS"/>
                                         <include reference="W6n-LL-bXT"/>
                                         <include reference="jsj-rZ-HY7"/>
                                         <include reference="jxk-uZ-4G1"/>
-                                        <include reference="7Nk-dG-XVX"/>
-                                        <include reference="Exq-4x-Iy3"/>
-                                        <include reference="KCy-KZ-flW"/>
                                         <include reference="FlE-JY-Uxy"/>
                                         <include reference="YQf-z0-BWd"/>
+                                        <include reference="FOe-fs-Yyz"/>
+                                        <include reference="PM4-v4-69N"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -261,13 +262,13 @@
                                 <exclude reference="CPc-u1-Yfa"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="ArH-SS-TAa"/>
-                                <exclude reference="Jfp-By-6qr"/>
-                                <exclude reference="JrH-Ot-cEC"/>
+                                <exclude reference="d9n-5U-bhq"/>
                                 <exclude reference="03e-Bn-qBk"/>
                                 <exclude reference="LC6-Lu-j8t"/>
                                 <exclude reference="yWD-Ol-2Gk"/>
-                                <exclude reference="d9n-5U-bhq"/>
+                                <exclude reference="ArH-SS-TAa"/>
+                                <exclude reference="Jfp-By-6qr"/>
+                                <exclude reference="JrH-Ot-cEC"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -276,13 +277,13 @@
                                 <include reference="CPc-u1-Yfa"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="ArH-SS-TAa"/>
-                                <include reference="Jfp-By-6qr"/>
-                                <include reference="JrH-Ot-cEC"/>
+                                <include reference="d9n-5U-bhq"/>
                                 <include reference="03e-Bn-qBk"/>
                                 <include reference="LC6-Lu-j8t"/>
                                 <include reference="yWD-Ol-2Gk"/>
-                                <include reference="d9n-5U-bhq"/>
+                                <include reference="ArH-SS-TAa"/>
+                                <include reference="Jfp-By-6qr"/>
+                                <include reference="JrH-Ot-cEC"/>
                             </mask>
                         </variation>
                     </view>
@@ -296,7 +297,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kIS-n2-HiL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2103" y="-303"/>
+            <point key="canvasLocation" x="2122.5" y="-318"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QXH-IO-ipJ">
