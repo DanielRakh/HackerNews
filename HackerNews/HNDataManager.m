@@ -78,12 +78,13 @@
                  }] array];
                 // Save the context
              }] saveContext];
+    
 }
 
 - (RACSignal *)commentsForItem:(HNItem *)item {
     
     //Pull comments data for item from network and collect into an array
-    return [[[[[[HNNetworkService sharedManager] childrenForItem:item.id_] collect]
+    RACSignal *tst = [[[[[[HNNetworkService sharedManager] childrenForItem:item.id_] collect]
               map:^id(NSArray *items) {
                   // Map the array from an Array of Dictionaries to an array of HNComments
                   return [[items.rac_sequence
@@ -113,7 +114,57 @@
                    }];
                   // Save the context
               }] saveContext];
+    
+    
+    [tst subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    }];
+    
+    return nil;
+
 }
 
+
+
+- (RACSignal *)testCommentsForItem:(NSNumber *)testID {
+    //Pull comments data for item from network and collect into an array
+    RACSignal *tst = [[[[[[HNNetworkService sharedManager] childrenForItem:testID] collect]
+                        map:^id(NSArray *items) {
+                            // Map the array from an Array of Dictionaries to an array of HNComments
+                            return [[items.rac_sequence
+                                     map:^id(NSDictionary *dict) {
+                                         // Create an NSManagedObject for HNComment
+                                         return [HNComment insert:^(HNComment *comment) {
+                                             comment.id_ = dict[@"id"];
+                                             comment.deleted_ = dict[@"deleted"];
+                                             comment.by_ = dict[@"by"];
+                                             comment.parent_ = dict[@"parent"];
+                                             comment.kids_ = dict[@"kids"];
+                                             comment.text_ = dict[@"text"];
+                                             comment.time_ = dict[@"time"];
+                                             comment.type_ = dict[@"type"];
+                                             comment.rank_ = @([items indexOfObject:dict]);
+                                         }];
+                                     }] array];
+                        }] doNext:^(NSArray *comments) {
+                            // Fetch the corresponding Story from CD
+                            [[[[HNStory findOne] where:@"id_" equals:testID] fetch]
+                             // Form a relationship between the Story -> Comments
+                             subscribeNext:^(HNStory *story) {
+                                 if (story.comments) {
+                                     [story removeComments:story.comments];
+                                 }
+                                 [story addComments:[NSOrderedSet orderedSetWithArray:comments]];
+                             }];
+                            // Save the context
+                        }] saveContext];
+    
+    
+    [tst subscribeNext:^(id x) {
+        NSLog(@"%@",[x class]);
+    }];
+    
+    return nil;
+}
 
 @end

@@ -23,5 +23,7 @@
 
 - (RACSignal *)commentsForItem:(HNItem *)item;
 
+- (RACSignal *)testCommentsForItem:(NSNumber *)testID;
+
 
 @end

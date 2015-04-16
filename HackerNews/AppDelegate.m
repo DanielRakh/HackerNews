@@ -26,6 +26,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    
+//    [[HNDataManager sharedManager] testCommentsForItem:@(9382933)];
+    
+    
     UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
     HNFeedViewController *feedController = (HNFeedViewController *)navController.topViewController;
     feedController.viewModel = [HNFeedViewModel new];
@@ -34,6 +38,8 @@
     
     [[UINavigationBar appearance] setTintColor:[UIColor HNOrange]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{ NSFontAttributeName : [UIFont fontWithName:@"AvenirNext-DemiBold" size:16.0], NSForegroundColorAttributeName : [UIColor HNOrange]}];
+    
+    
 
     return YES;
 }
