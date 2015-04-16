@@ -16,6 +16,7 @@
 // Model
 #import "HNDataManager.h"
 #import "HNComment.h"
+#import "HNStory.h"
 
 
 
@@ -91,10 +92,9 @@
     
     NSFetchRequest *fetchRequest = [NSFetchRequest new];
     fetchRequest.entity = [NSEntityDescription entityForName:@"HNComment" inManagedObjectContext:self.dataManager.coreDataStack.managedObjectContext];
-//    fetchRequest.fetchBatchSize = 0;
     
-    NSPredicate *commentsPredicate =[NSPredicate predicateWithFormat:@"ANY story == %@", self.story];
-    fetchRequest.predicate = commentsPredicate;
+//    NSPredicate *commentsPredicate =[NSPredicate predicateWithFormat:@"ANY parent_ == %@", self.story.id_];
+//    fetchRequest.predicate = commentsPredicate;
     
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"by_" ascending:YES];
     fetchRequest.sortDescriptors = @[sortDescriptor];

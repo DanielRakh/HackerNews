@@ -38,11 +38,12 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     self.view.backgroundColor = [UIColor HNOffWhite];
     self.navigationController.navigationBarHidden = YES;
     [self initalizeTableView];
+    [self bindViewModel];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self bindViewModel];
 
 }
 
@@ -65,8 +66,12 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [self.viewModel numberOfSections];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.viewModel numberOfItemsInSection:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
