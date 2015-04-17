@@ -11,6 +11,7 @@
 
 //View
 #import "HNCommentsCell.h"
+#import "HNThinLineButton.h"
 
 //View Model
 #import "HNCommentsCellViewModel.h"
@@ -28,6 +29,7 @@ CGFloat const kCommentsHorizontalInset = 8;
 @property (nonatomic) UIView *cardView;
 @property (nonatomic) UILabel *originationLabel;
 @property (nonatomic) UILabel *commentTextLabel;
+@property (nonatomic) HNThinLineButton *thinLineButton; 
 
 
 
@@ -91,12 +93,18 @@ CGFloat const kCommentsHorizontalInset = 8;
     [self.cardView addSubview:self.originationLabel];
     
     
+    //Set up Comments Label
     self.commentTextLabel = [UILabel newAutoLayoutView];
     self.commentTextLabel.numberOfLines = 0;
 //    self.commentTextLabel.lineBreakMode = NSLineBreakByTruncatingTail;
 //    self.commentTextLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:12.0];
     
     [self.cardView addSubview:self.commentTextLabel];
+    
+    
+    //Set up Comments Button
+    self.thinLineButton = [HNThinLineButton newAutoLayoutView];
+    [self.cardView addSubview:self.thinLineButton];
 
     
     /*
@@ -132,7 +140,13 @@ CGFloat const kCommentsHorizontalInset = 8;
         [self.commentTextLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.originationLabel withOffset:kCommentsVerticalInset];
         [self.commentTextLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
         [self.commentTextLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
-        [self.commentTextLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
+
+        
+        [self.thinLineButton autoSetDimension:ALDimensionHeight toSize:26.0];
+        [self.thinLineButton autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
+        [self.thinLineButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
+        [self.thinLineButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
+        [self.thinLineButton autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.commentTextLabel withOffset:kCommentsVerticalInset relation:NSLayoutRelationEqual];
         
         
         self.didSetupConstraints = YES;

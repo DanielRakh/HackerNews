@@ -269,8 +269,6 @@
 				8E2352451ACC571F0009552D /* HNFeedViewController.m */,
 				8E23526D1ACC69200009552D /* HNFeedCell.h */,
 				8E23526E1ACC69200009552D /* HNFeedCell.m */,
-				8E2352701ACC72F80009552D /* HNThinLineButton.h */,
-				8E2352711ACC72F80009552D /* HNThinLineButton.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -329,6 +327,8 @@
 		8E395EE81AD3311500EE0DB9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8E2352701ACC72F80009552D /* HNThinLineButton.h */,
+				8E2352711ACC72F80009552D /* HNThinLineButton.m */,
 				8E395EE91AD3312B00EE0DB9 /* HNTableView.h */,
 				8E395EEA1AD3312B00EE0DB9 /* HNTableView.m */,
 			);
