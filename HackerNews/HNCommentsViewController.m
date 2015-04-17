@@ -18,9 +18,16 @@
 
 NSString *const kCommentsCellIdentifier = @"CommentsCell";
 
-
 @interface HNCommentsViewController () <UITableViewDataSource, UITableViewDelegate>
+
 @property (weak, nonatomic) IBOutlet HNTableView *tableView;
+
+@property (weak, nonatomic) IBOutlet UIView *containerHeader;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *originationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *commentsCountLabel;
+
 
 @end
 
@@ -32,11 +39,12 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     self.viewModel.active = YES;
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor HNOffWhite];
+    self.containerHeader.backgroundColor = [UIColor HNWhite];
     self.navigationController.navigationBarHidden = YES;
+    [self setupHeaderView];
     [self initalizeTableView];
     [self bindViewModel];
 
@@ -44,7 +52,12 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+}
 
+
+- (void)setupHeaderView {
+    self.commentsCountLabel.textColor = [UIColor HNOrange];
+    self.scoreLabel.textColor = [UIColor HNOrange];
 }
 
 - (void)initalizeTableView {
@@ -61,8 +74,13 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
         @strongify(self);
         [self.tableView reloadData];
     }];
+    
+    self.titleLabel.text = self.viewModel.title;
+    self.scoreLabel.text = self.viewModel.score;
+    self.originationLabel.text = self.viewModel.info;
+    self.commentsCountLabel.text = self.viewModel.commentsCount; 
+    
 }
-
 
 #pragma mark - UITableViewDataSource
 
@@ -75,11 +93,12 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    HNCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
     
+    HNCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
     [cell configureWithViewModel:[self.viewModel commentsCellViewModelForIndexPath:indexPath]];
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
+    
     return cell;
 }
 

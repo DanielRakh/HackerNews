@@ -46,9 +46,19 @@
 }
 
 - (void)requestTopPosts {
-    [[self.dataManager topStoriesWithCount:30] subscribeCompleted:^{
+    [[self.dataManager topStoriesWithCount:30] subscribeNext:^(id x) {
         [self.fetchedResultsController performFetch:nil];
+    } completed:^{
+        NSLog(@"Top stories count singal completed");
     }];
+     
+     
+//     subscribeCompleted:^{
+////#warning Make sure to uncomment this after done testing
+//        NSLog(@"Top stories count singal completed");
+//        [self.fetchedResultsController performFetch:nil];
+//    }];
+
 
 }
 

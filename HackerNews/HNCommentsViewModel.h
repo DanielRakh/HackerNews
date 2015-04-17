@@ -14,6 +14,11 @@
 
 @property (nonatomic, readonly) RACSignal *updatedContentSignal;
 
+@property (nonatomic, readonly) NSString *score;
+@property (nonatomic, readonly) NSString *title;
+@property (nonatomic, readonly) NSString *commentsCount;
+@property (nonatomic, readonly) NSString *info;
+
 
 - (instancetype)initWithStory:(HNStory *)story;
 

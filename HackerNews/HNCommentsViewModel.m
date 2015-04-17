@@ -6,19 +6,17 @@
 //  Copyright (c) 2015 Daniel Rakhamimov. All rights reserved.
 //
 
+#import <DateTools/NSDate+DateTools.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 // View Model
 #import "HNCommentsViewModel.h"
 #import "HNCommentsCellViewModel.h"
 
-
 // Model
 #import "HNDataManager.h"
 #import "HNComment.h"
 #import "HNStory.h"
-
-
 
 @interface HNCommentsViewModel () <NSFetchedResultsControllerDelegate>
 
@@ -37,6 +35,11 @@
     if (self) {
         
         _story = story;
+        _score = [NSString stringWithFormat:@"%@ Points", story.score_];
+        _title = story.title_;
+        _commentsCount = [self formattedStringForCommentsCount:story.descendants_];
+        _info = [NSString stringWithFormat: @"by %@ | %@", story.by_, [self formattedStringForTime:story.time_]];
+        
         _dataManager = [HNDataManager sharedManager];
         
         self.updatedContentSignal = [[RACSubject subject] setNameWithFormat:@"HNCommentsViewModel updatedContentSignal"];
@@ -55,7 +58,6 @@
 - (void)requestTopCommentsForItem:(HNItem *)item {
     [[self.dataManager commentsForItem:item] subscribeNext:^(id x) {
         [self.fetchedResultsController performFetch:nil];
-
     }];
 }
 
@@ -114,12 +116,23 @@
     return _fetchedResultsController;
 }
 
-
 #pragma mark - Fetched
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     
     [(RACSubject *)self.updatedContentSignal sendNext:nil];
+}
+
+#pragma mark - Helper Methods
+
+- (NSString *)formattedStringForTime:(NSNumber *)time {
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:time.doubleValue];
+    NSString *timeString = date.timeAgoSinceNow;
+    return timeString;
+}
+
+- (NSString *)formattedStringForCommentsCount:(NSNumber *)commentsCount {
+    return [commentsCount isEqualToNumber:@(1)] ? [NSString stringWithFormat: @"1 Comment"] : [NSString stringWithFormat:@"%@ Comments", commentsCount];
 }
 
 @end

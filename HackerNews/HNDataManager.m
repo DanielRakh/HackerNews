@@ -45,39 +45,72 @@
 }
 
 
+- (RACSignal *)tstTopStoriesWithCount:(NSInteger)count {
+    
+    //Clear any existing data.
+    [self.coreDataStack clearAllDataForEntity:@"HNStory"];
+    
+    // Pull top stories data from network and collect into an array
+    RACSignal *tst = [[[[[HNNetworkService sharedManager] topItemsWithCount:count] collect] doNext:^(NSArray *items) {
+        
+        [RACSignal concat:[[items.rac_sequence
+                            filter:^BOOL(NSDictionary *dict) {
+                                return [dict[@"type"] isEqualToString:@"story"];
+                            }] map:^id(NSDictionary *dict) {
+                                return [HNStory insert:^(HNStory *story) {
+                                    story.id_ = dict[@"id"];
+                                    story.deleted_ = dict[@"deleted"];
+                                    story.by_ = dict[@"by"];
+                                    story.time_ = dict[@"time"];
+                                    story.text_ = dict[@"text"];
+                                    story.dead_ = dict[@"dead"];
+                                    story.url_ = dict[@"url"];
+                                    story.score_ = dict[@"score"];
+                                    story.title_ = dict[@"title"];
+                                    story.descendants_ = dict[@"descendants"];
+                                    story.kids_ = dict[@"kids"];
+                                    story.type_ = dict[@"type"];
+                                    story.rank_ = @([items indexOfObject:dict]);
+                                }];
+                            }]];
+    }] saveContext];
+    
+    
+    //Map the array from an array of Dictionaries to an array of HNStorie
+
+    return tst;
+}
+
 
 - (RACSignal *)topStoriesWithCount:(NSInteger)count {
     
     //Clear any existing data.
     [self.coreDataStack clearAllDataForEntity:@"HNStory"];
-
+    
     // Pull top stories data from network and collect into an array
-    return [[[[[HNNetworkService sharedManager] topItemsWithCount:count] collect]
-             //Map the array from an array of Dictionaries to an array of HNStories
-             map:^id(NSArray *items) {
-                 // Filter the items for "story" type.
-                 return [[[items.rac_sequence filter:^BOOL(NSDictionary *dict) {
-                     return [dict[@"type"] isEqualToString:@"story"];
-                 }] map:^id(NSDictionary *dict) {
-                     // Create an NSManagedObject for HNStory
-                     return [HNStory insert:^(HNStory *story) {
-                         story.id_ = dict[@"id"];
-                         story.deleted_ = dict[@"deleted"];
-                         story.by_ = dict[@"by"];
-                         story.time_ = dict[@"time"];
-                         story.text_ = dict[@"text"];
-                         story.dead_ = dict[@"dead"];
-                         story.url_ = dict[@"url"];
-                         story.score_ = dict[@"score"];
-                         story.title_ = dict[@"title"];
-                         story.descendants_ = dict[@"descendants"];
-                         story.kids_ = dict[@"kids"];
-                         story.type_ = dict[@"type"];
-                         story.rank_ = @([items indexOfObject:dict]);
-                     }];
-                 }] array];
-                // Save the context
-             }] saveContext];
+    return [[[[[HNNetworkService sharedManager] topItemsWithCount:count] collect] doNext:^(NSArray *items) {
+        
+        [RACSignal concat:[[items.rac_sequence
+                            filter:^BOOL(NSDictionary *dict) {
+                                return [dict[@"type"] isEqualToString:@"story"];
+                            }] map:^id(NSDictionary *dict) {
+                                return [HNStory insert:^(HNStory *story) {
+                                    story.id_ = dict[@"id"];
+                                    story.deleted_ = dict[@"deleted"];
+                                    story.by_ = dict[@"by"];
+                                    story.time_ = dict[@"time"];
+                                    story.text_ = dict[@"text"];
+                                    story.dead_ = dict[@"dead"];
+                                    story.url_ = dict[@"url"];
+                                    story.score_ = dict[@"score"];
+                                    story.title_ = dict[@"title"];
+                                    story.descendants_ = dict[@"descendants"];
+                                    story.kids_ = dict[@"kids"];
+                                    story.type_ = dict[@"type"];
+                                    story.rank_ = @([items indexOfObject:dict]);
+                                }];
+                            }]];
+    }] saveContext];
     
 }
 
@@ -128,7 +161,7 @@
 
 - (RACSignal *)testCommentsForItem:(NSNumber *)testID {
     //Pull comments data for item from network and collect into an array
-    RACSignal *tst = [[[[[[HNNetworkService sharedManager] childrenForItem:testID] collect]
+    RACSignal *tst = [[[[[HNNetworkService sharedManager] childrenForItem:testID]
                         map:^id(NSArray *items) {
                             // Map the array from an Array of Dictionaries to an array of HNComments
                             return [[items.rac_sequence
@@ -158,7 +191,6 @@
                              }];
                             // Save the context
                         }] saveContext];
-    
     
     [tst subscribeNext:^(id x) {
         NSLog(@"%@",[x class]);

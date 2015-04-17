@@ -12,9 +12,6 @@
 
 @interface HNCommentsViewController : UIViewController
 
-
-
 @property (nonatomic) HNCommentsViewModel *viewModel;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end

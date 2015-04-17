@@ -25,5 +25,7 @@
 
 - (RACSignal *)testCommentsForItem:(NSNumber *)testID;
 
+- (RACSignal *)tstTopStoriesWithCount:(NSInteger)count;
+
 
 @end
