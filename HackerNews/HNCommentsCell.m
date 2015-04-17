@@ -93,7 +93,7 @@ CGFloat const kCommentsHorizontalInset = 8;
     
     self.commentTextLabel = [UILabel newAutoLayoutView];
     self.commentTextLabel.numberOfLines = 0;
-    self.commentTextLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+//    self.commentTextLabel.lineBreakMode = NSLineBreakByTruncatingTail;
 //    self.commentTextLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:12.0];
     
     [self.cardView addSubview:self.commentTextLabel];
