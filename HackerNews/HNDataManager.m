@@ -147,13 +147,8 @@
                    }];
                   // Save the context
               }] saveContext];
-    
-    
-    [tst subscribeNext:^(id x) {
-        NSLog(@"%@",x);
-    }];
-    
-    return nil;
+
+    return tst;
 
 }
 
