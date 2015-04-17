@@ -159,29 +159,26 @@
 
 
 
-- (RACSignal *)testCommentsForItem:(NSNumber *)testID {
+- (RACSignal *)testCommentsForItem:(HNItem *)item {
     //Pull comments data for item from network and collect into an array
-    RACSignal *tst = [[[[[HNNetworkService sharedManager] childrenForItem:testID]
-                        map:^id(NSArray *items) {
-                            // Map the array from an Array of Dictionaries to an array of HNComments
-                            return [[items.rac_sequence
-                                     map:^id(NSDictionary *dict) {
-                                         // Create an NSManagedObject for HNComment
-                                         return [HNComment insert:^(HNComment *comment) {
-                                             comment.id_ = dict[@"id"];
-                                             comment.deleted_ = dict[@"deleted"];
-                                             comment.by_ = dict[@"by"];
-                                             comment.parent_ = dict[@"parent"];
-                                             comment.kids_ = dict[@"kids"];
-                                             comment.text_ = dict[@"text"];
-                                             comment.time_ = dict[@"time"];
-                                             comment.type_ = dict[@"type"];
-                                             comment.rank_ = @([items indexOfObject:dict]);
-                                         }];
-                                     }] array];
+    RACSignal *tst = [[[[[HNNetworkService sharedManager] childrenForItem:item.id_]
+                        doNext:^(NSArray *items) {
+                            [[RACSignal concat:[items.rac_sequence map:^id(NSDictionary *dict) {
+                                return [HNComment insert:^(HNComment *comment) {
+                                    comment.id_ = dict[@"id"];
+                                    comment.deleted_ = dict[@"deleted"];
+                                    comment.by_ = dict[@"by"];
+                                    comment.parent_ = dict[@"parent"];
+                                    comment.kids_ = dict[@"kids"];
+                                    comment.text_ = dict[@"text"];
+                                    comment.time_ = dict[@"time"];
+                                    comment.type_ = dict[@"type"];
+                                    comment.rank_ = @([items indexOfObject:dict]);
+                                }];
+                            }]] toArray];
                         }] doNext:^(NSArray *comments) {
                             // Fetch the corresponding Story from CD
-                            [[[[HNStory findOne] where:@"id_" equals:testID] fetch]
+                            [[[[HNStory findOne] where:@"id_" equals:item.id_] fetch]
                              // Form a relationship between the Story -> Comments
                              subscribeNext:^(HNStory *story) {
                                  if (story.comments) {

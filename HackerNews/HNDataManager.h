@@ -23,7 +23,7 @@
 
 - (RACSignal *)commentsForItem:(HNItem *)item;
 
-- (RACSignal *)testCommentsForItem:(NSNumber *)testID;
+- (RACSignal *)testCommentsForItem:(HNItem *)item;
 
 - (RACSignal *)tstTopStoriesWithCount:(NSInteger)count;
 
