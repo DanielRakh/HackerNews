@@ -167,16 +167,10 @@
 		8E23523C1ACC571F0009552D /* HackerNews */ = {
 			isa = PBXGroup;
 			children = (
-				8E87C4401AE3424800CD004E /* NSString+RemoveTag.h */,
-				8E87C4411AE3424800CD004E /* NSString+RemoveTag.m */,
-				8E87C43D1AE3421100CD004E /* Utils.h */,
-				8E87C43E1AE3421100CD004E /* Utils.m */,
-				8E87C4371AE31FFD00CD004E /* HNTableView.h */,
-				8E87C4381AE31FFD00CD004E /* HNTableView.m */,
-				8E87C4391AE31FFD00CD004E /* HNThinLineButton.h */,
-				8E87C43A1AE31FFD00CD004E /* HNThinLineButton.m */,
 				8E2352411ACC571F0009552D /* AppDelegate.h */,
 				8E2352421ACC571F0009552D /* AppDelegate.m */,
+				8E87C46F1AE466CC00CD004E /* Shared */,
+				8E87C46E1AE466BE00CD004E /* Utilities */,
 				8E2352AE1ACDC2380009552D /* Networking */,
 				8E2352681ACC5C480009552D /* Model */,
 				8E395EDF1AD1976800EE0DB9 /* Comments */,
@@ -348,6 +342,28 @@
 				8E52514E1AD5D1F300EE080D /* HNComment.m */,
 			);
 			name = "Managed Objects";
+			sourceTree = "<group>";
+		};
+		8E87C46E1AE466BE00CD004E /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				8E87C4401AE3424800CD004E /* NSString+RemoveTag.h */,
+				8E87C4411AE3424800CD004E /* NSString+RemoveTag.m */,
+				8E87C43D1AE3421100CD004E /* Utils.h */,
+				8E87C43E1AE3421100CD004E /* Utils.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		8E87C46F1AE466CC00CD004E /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				8E87C4371AE31FFD00CD004E /* HNTableView.h */,
+				8E87C4381AE31FFD00CD004E /* HNTableView.m */,
+				8E87C4391AE31FFD00CD004E /* HNThinLineButton.h */,
+				8E87C43A1AE31FFD00CD004E /* HNThinLineButton.m */,
+			);
+			name = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

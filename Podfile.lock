@@ -1,16 +1,5 @@
 PODS:
   - DateTools (1.5.0)
-  - DTCoreText (1.6.15):
-    - DTFoundation/Core (~> 1.7.5)
-    - DTFoundation/DTAnimatedGIF (~> 1.7.5)
-    - DTFoundation/DTHTMLParser (~> 1.7.5)
-    - DTFoundation/UIKit (~> 1.7.5)
-  - DTFoundation/Core (1.7.5)
-  - DTFoundation/DTAnimatedGIF (1.7.5)
-  - DTFoundation/DTHTMLParser (1.7.5):
-    - DTFoundation/Core
-  - DTFoundation/UIKit (1.7.5):
-    - DTFoundation/Core
   - Firebase (2.2.1)
   - Firebase-RACExtensions (0.2.0):
     - Firebase (~> 2.0)
@@ -31,7 +20,6 @@ PODS:
 
 DEPENDENCIES:
   - DateTools
-  - DTCoreText
   - Firebase (>= 2.2.0)
   - Firebase-RACExtensions
   - PureLayout
@@ -42,8 +30,6 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   DateTools: b93a2c2017747329c6077c7d7e8a75106e23d0d7
-  DTCoreText: 13ce06e63204a3b47c9db974e3d9be982bb0b1ed
-  DTFoundation: 1d28080c20c3da041706545363f8238ab53a6204
   Firebase: a3d54b42f090ca275b22dcdf103b8ab6ac6f353c
   Firebase-RACExtensions: 6ae340c67e7ec7e845e6603f8223770586278fe6
   PureLayout: a0fe75f1cf485801e7e00b723b8a3c32dca558e2

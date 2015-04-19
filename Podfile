@@ -11,8 +11,6 @@ pod 'ReactiveCoreData', '>= 0.0'
 pod 'ReactiveViewModel', '>= 0.3'
 pod 'Reachability', '>= 3.2'
 pod "Firebase-RACExtensions"
-pod 'DTCoreText'
-
 
 
 end

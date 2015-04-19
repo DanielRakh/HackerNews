@@ -8,7 +8,6 @@
 
 #import "PureLayout.h"
 #import "UIColor+HNColorPalette.h"
-#import <DTCoreText/DTCoreText.h>
 
 //View
 #import "HNCommentsCell.h"
@@ -29,12 +28,8 @@ CGFloat const kCommentsHorizontalInset = 8;
 
 @property (nonatomic) UIView *cardView;
 @property (nonatomic) UILabel *originationLabel;
-@property (nonatomic) UILabel *commentTextLabel;
 @property (nonatomic) HNThinLineButton *repliesButton;
-
-
-
-
+@property (nonatomic) UITextView *commentTextView;
 
 @property (nonatomic) HNCommentsCellViewModel *viewModel;
 
@@ -64,7 +59,8 @@ CGFloat const kCommentsHorizontalInset = 8;
 - (void)configureWithViewModel:(HNCommentsCellViewModel *)viewModel {
     self.viewModel = viewModel;
     self.originationLabel.attributedText = viewModel.origination;
-    self.commentTextLabel.attributedText = viewModel.text;
+//    [self.commentTextLabel setHtml:viewModel.text];
+    self.commentTextView.attributedText = viewModel.text;
     [self.repliesButton setTitle:viewModel.repliesCount forState:UIControlStateNormal];
 }
 
@@ -93,15 +89,17 @@ CGFloat const kCommentsHorizontalInset = 8;
     self.originationLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:10.0];
     
     [self.cardView addSubview:self.originationLabel];
+
     
-    
-    //Set up Comments Label
-    self.commentTextLabel = [[UILabel alloc]initForAutoLayout];
-    self.commentTextLabel.numberOfLines = 0;
-    self.commentTextLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-    self.commentTextLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:12.0];
-    
-    [self.cardView addSubview:self.commentTextLabel];
+    self.commentTextView = [UITextView newAutoLayoutView];
+    self.commentTextView.editable = NO;
+    self.commentTextView.scrollEnabled = NO;
+    self.commentTextView.selectable = YES;
+    self.commentTextView.dataDetectorTypes = UIDataDetectorTypeAll;
+    self.commentTextView.scrollEnabled = NO;
+    self.commentTextView.font =  [UIFont fontWithName:@"AvenirNext-Medium" size:10.0];
+
+    [self.cardView addSubview:self.commentTextView];
     
     
     //Set up Comments Button
@@ -139,9 +137,9 @@ CGFloat const kCommentsHorizontalInset = 8;
         [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kCommentsVerticalInset];
     
         
-        [self.commentTextLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.originationLabel withOffset:kCommentsVerticalInset];
-        [self.commentTextLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
-        [self.commentTextLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
+        [self.commentTextView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.originationLabel withOffset:kCommentsVerticalInset];
+        [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
+        [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
 //        [UIView autoSetPriority:750 forConstraints:^{
 //            [self.commentTextLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
 //        }];
@@ -149,7 +147,7 @@ CGFloat const kCommentsHorizontalInset = 8;
         [self.repliesButton autoSetDimensionsToSize:CGSizeMake(84, 26)];
         [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
         [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
-        [self.repliesButton autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.commentTextLabel withOffset:kCommentsVerticalInset relation:NSLayoutRelationEqual];
+        [self.repliesButton autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.commentTextView withOffset:kCommentsVerticalInset relation:NSLayoutRelationEqual];
 
         
 //        [self.repliesButton autoSetDimension:ALDimensionHeight toSize:26.0];
