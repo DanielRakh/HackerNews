@@ -8,6 +8,8 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "UIColor+HNColorPalette.h"
 
+
+
 //View
 #import "HNCommentsViewController.h"
 #import "HNTableView.h"
@@ -82,6 +84,10 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     
 }
 
+- (IBAction)backButtonDidTap:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -96,6 +102,7 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     
     HNCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
     [cell configureWithViewModel:[self.viewModel commentsCellViewModelForIndexPath:indexPath]];
+
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
     

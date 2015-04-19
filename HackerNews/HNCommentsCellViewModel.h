@@ -14,6 +14,7 @@
 
 @property (nonatomic, readonly) NSAttributedString *origination;
 @property (nonatomic, readonly) NSAttributedString *text;
+@property (nonatomic, readonly) NSString *repliesCount;
 
 
 - (instancetype)initWithComment:(HNComment *)comment;

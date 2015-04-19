@@ -8,6 +8,7 @@
 
 #import "PureLayout.h"
 #import "UIColor+HNColorPalette.h"
+#import <DTCoreText/DTCoreText.h>
 
 //View
 #import "HNCommentsCell.h"
@@ -29,7 +30,7 @@ CGFloat const kCommentsHorizontalInset = 8;
 @property (nonatomic) UIView *cardView;
 @property (nonatomic) UILabel *originationLabel;
 @property (nonatomic) UILabel *commentTextLabel;
-@property (nonatomic) HNThinLineButton *thinLineButton; 
+@property (nonatomic) HNThinLineButton *repliesButton;
 
 
 
@@ -64,6 +65,7 @@ CGFloat const kCommentsHorizontalInset = 8;
     self.viewModel = viewModel;
     self.originationLabel.attributedText = viewModel.origination;
     self.commentTextLabel.attributedText = viewModel.text;
+    [self.repliesButton setTitle:viewModel.repliesCount forState:UIControlStateNormal];
 }
 
 - (void)initalizeViews {
@@ -94,17 +96,17 @@ CGFloat const kCommentsHorizontalInset = 8;
     
     
     //Set up Comments Label
-    self.commentTextLabel = [UILabel newAutoLayoutView];
+    self.commentTextLabel = [[UILabel alloc]initForAutoLayout];
     self.commentTextLabel.numberOfLines = 0;
-//    self.commentTextLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-//    self.commentTextLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:12.0];
+    self.commentTextLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+    self.commentTextLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:12.0];
     
     [self.cardView addSubview:self.commentTextLabel];
     
     
     //Set up Comments Button
-    self.thinLineButton = [HNThinLineButton newAutoLayoutView];
-    [self.cardView addSubview:self.thinLineButton];
+    self.repliesButton = [HNThinLineButton newAutoLayoutView];
+    [self.cardView addSubview:self.repliesButton];
 
     
     /*
@@ -140,14 +142,22 @@ CGFloat const kCommentsHorizontalInset = 8;
         [self.commentTextLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.originationLabel withOffset:kCommentsVerticalInset];
         [self.commentTextLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
         [self.commentTextLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
+//        [UIView autoSetPriority:750 forConstraints:^{
+//            [self.commentTextLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
+//        }];
+        
+        [self.repliesButton autoSetDimensionsToSize:CGSizeMake(84, 26)];
+        [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
+        [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
+        [self.repliesButton autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.commentTextLabel withOffset:kCommentsVerticalInset relation:NSLayoutRelationEqual];
 
         
-        [self.thinLineButton autoSetDimension:ALDimensionHeight toSize:26.0];
-        [self.thinLineButton autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
-        [self.thinLineButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
-        [self.thinLineButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
-        [self.thinLineButton autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.commentTextLabel withOffset:kCommentsVerticalInset relation:NSLayoutRelationEqual];
-        
+//        [self.repliesButton autoSetDimension:ALDimensionHeight toSize:26.0];
+//        [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
+//        [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
+//        [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
+//        [self.repliesButton autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.commentTextLabel withOffset:kCommentsVerticalInset relation:NSLayoutRelationEqual];
+//        
         
         self.didSetupConstraints = YES;
     }

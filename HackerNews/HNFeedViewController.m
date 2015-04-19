@@ -36,6 +36,7 @@ NSString *const kFeedCellIdentifier = @"FeedCell";
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.viewModel.active = YES;
+    self.navigationController.navigationBarHidden = NO;
 }
 
 
