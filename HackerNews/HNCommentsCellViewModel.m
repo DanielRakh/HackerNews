@@ -8,7 +8,6 @@
 
 #import "HNCommentsCellViewModel.h"
 #import "HNComment.h"
-//#import <DTCoreText/DTCoreText.h>
 #import "Utils.h"
 
 
