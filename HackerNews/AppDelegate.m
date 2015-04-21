@@ -12,6 +12,7 @@
 #import "HNFeedViewModel.h"
 #import "HNFeedViewController.h"
 #import "UIColor+HNColorPalette.h"
+#import "UIFont+HNFont.h"
 
 #import "HNDataManager.h"
 
@@ -37,7 +38,7 @@
     
     
     [[UINavigationBar appearance] setTintColor:[UIColor HNOrange]];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{ NSFontAttributeName : [UIFont fontWithName:@"AvenirNext-DemiBold" size:16.0], NSForegroundColorAttributeName : [UIColor HNOrange]}];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{ NSFontAttributeName : [UIFont proximaNovaWithWeight:TypeWeightSemibold size:18.0], NSForegroundColorAttributeName : [UIColor HNOrange]}];
     
     
 

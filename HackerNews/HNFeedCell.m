@@ -8,6 +8,7 @@
 
 #import "PureLayout.h"
 #import "UIColor+HNColorPalette.h"
+#import "UIFont+HNFont.h"
 
 //View
 #import "HNFeedCell.h"
@@ -21,7 +22,6 @@
 
 CGFloat const kVerticalInset = 10;
 CGFloat const kHorizontalInset = 8;
-
 
 @interface HNFeedCell ()
 
@@ -70,17 +70,28 @@ CGFloat const kHorizontalInset = 8;
 - (void)initalizeViews {
     
     self.didSetupConstraints = NO;
+    
     // We are creating a rounded corner view to serve as the background
     // of the cell so we need to make the real cell background clear.
     self.backgroundColor = [UIColor clearColor];
     self.contentView.backgroundColor = [UIColor clearColor];
+    self.contentView.clipsToBounds = NO;
     
     // Set up Card View - rounded corner cell background
     self.cardView = [UIView newAutoLayoutView];
     self.cardView.backgroundColor = [UIColor HNWhite];
-    self.cardView.layer.cornerRadius = 8.0;
+    self.cardView.layer.cornerRadius = 2.0;
     self.cardView.layer.borderWidth = 0.5;
-    self.cardView.layer.borderColor =  [UIColor HNLightGray].CGColor;
+    self.cardView.layer.borderColor =  [UIColor colorWithRed:0.290 green:0.290 blue:0.290 alpha:0.2].CGColor;
+    
+  
+    self.cardView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.cardView.layer.shadowRadius  = 4.0;
+    self.cardView.layer.shadowOpacity = 0.05;
+    self.cardView.layer.shadowOffset = CGSizeMake(0, 1);
+    self.cardView.layer.shouldRasterize = YES;
+    self.cardView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    self.cardView.layer.masksToBounds = NO;
     
     [self.contentView addSubview:self.cardView];
     
@@ -91,7 +102,7 @@ CGFloat const kHorizontalInset = 8;
     self.scoreLabel.numberOfLines = 1;
     self.scoreLabel.text = NSTextAlignmentLeft;
     self.scoreLabel.textColor = [UIColor HNOrange];
-    self.scoreLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:10.0];
+    self.scoreLabel.font = [UIFont proximaNovaWithWeight:TypeWeightSemibold size:14.0];
     
     [self.cardView addSubview:self.scoreLabel];
 
@@ -126,6 +137,7 @@ CGFloat const kHorizontalInset = 8;
 
 }
 
+
 -(void)updateConstraints {
     
     if (self.didSetupConstraints == NO) {
@@ -137,8 +149,8 @@ CGFloat const kHorizontalInset = 8;
         [UIView autoSetPriority:750 forConstraints:^{
             [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kVerticalInset];
         }];
-        
-        
+
+
         [self.scoreLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kVerticalInset];
         [self.scoreLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kHorizontalInset];
         

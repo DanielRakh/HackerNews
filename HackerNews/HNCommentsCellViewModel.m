@@ -18,10 +18,9 @@
 @property (nonatomic, readwrite) NSAttributedString *origination;
 @property (nonatomic, readwrite) NSAttributedString *text;
 
-
 @end
-@implementation HNCommentsCellViewModel
 
+@implementation HNCommentsCellViewModel
 
 
 - (instancetype)initWithComment:(HNComment *)comment {
