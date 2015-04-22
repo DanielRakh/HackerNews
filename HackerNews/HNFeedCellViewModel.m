@@ -27,6 +27,7 @@
 - (instancetype)initWithStory:(HNStory *)story {
     self = [super init];
     if (self) {
+        
         _story = story;
         _score = [NSString stringWithFormat:@"%@ Points", story.score_.stringValue];
         _title = story.title_;

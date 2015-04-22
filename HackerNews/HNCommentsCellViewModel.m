@@ -6,10 +6,12 @@
 //  Copyright (c) 2015 Daniel Rakhamimov. All rights reserved.
 //
 
+#import <DateTools/NSDate+DateTools.h>
 #import "HNCommentsCellViewModel.h"
 #import "HNComment.h"
 #import "Utils.h"
 #import "UIFont+HNFont.h"
+#import "UIColor+HNColorPalette.h"
 
 
 @interface HNCommentsCellViewModel ()
@@ -29,15 +31,15 @@
     if (self) {
 
         _comment = comment;
-        _origination = [[NSAttributedString alloc]initWithString: @"by danielrak | 5 hrs ago"];
-        _text = [self prettifyHTML:comment.text_];
+        _origination = [self originationLabelForAuthor:comment.by_ time:comment.time_];
+        _text = [self formatCommentHTML:comment.text_];
 
     }
     
     return self;
 }
 
-- (NSAttributedString *)prettifyHTML:(NSString *)uglyHTML {
+- (NSAttributedString *)formatCommentHTML:(NSString *)uglyHTML {
     
     NSMutableParagraphStyle *pStyle = [NSMutableParagraphStyle new];
     pStyle.lineSpacing = 5.0;
@@ -51,5 +53,27 @@
     
     return prettyString;
 }
+
+- (NSAttributedString *)originationLabelForAuthor:(NSString *)author time:(NSNumber *)time  {
+    
+    NSAttributedString *authorString = [[NSAttributedString alloc]initWithString:author attributes:@{NSForegroundColorAttributeName : [UIColor HNOrange]}];
+   
+    NSAttributedString *timeString = [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@" | %@", [self formattedStringForTime:time]] attributes:@{NSForegroundColorAttributeName : [UIColor HNLightGray]}];
+    
+    NSMutableAttributedString *combinedStr = [[NSMutableAttributedString alloc] initWithAttributedString:authorString];
+    [combinedStr appendAttributedString:timeString];
+    
+    return combinedStr;
+}
+
+
+- (NSString *)formattedStringForTime:(NSNumber *)time {
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:time.doubleValue];
+    NSString *timeString = date.timeAgoSinceNow;
+    return timeString;
+}
+
+
+                                      
 
 @end
