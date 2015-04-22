@@ -37,8 +37,6 @@
     return self;
 }
 
-
-
 - (NSAttributedString *)prettifyHTML:(NSString *)uglyHTML {
     
     NSMutableParagraphStyle *pStyle = [NSMutableParagraphStyle new];

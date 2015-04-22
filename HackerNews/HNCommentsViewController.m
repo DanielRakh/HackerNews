@@ -7,6 +7,7 @@
 //
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "UIColor+HNColorPalette.h"
+#import "UIFont+HNFont.h"
 
 
 
