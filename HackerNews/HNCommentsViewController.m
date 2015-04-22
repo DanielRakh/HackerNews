@@ -23,7 +23,7 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 @interface HNCommentsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet HNTableView *tableView;
-
+@property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIView *cardView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
@@ -46,6 +46,7 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     [self setupHeaderView];
     [self initalizeTableView];
     [self bindViewModel];
+    [self rejiggerTableHeaderView];
 }
 
 
@@ -69,6 +70,29 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     self.scoreLabel.textColor = [UIColor HNOrange];
 }
 
+
+- (void)rejiggerTableHeaderView
+{
+    self.tableView.tableHeaderView = nil;
+    
+    UIView *header = self.headerView;
+    CGRect frame = header.frame;
+    frame.size.width = self.tableView.frame.size.width;
+    header.frame = frame;
+    
+    [header setNeedsLayout];
+    [header layoutIfNeeded];
+    
+    CGFloat height = [header systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    
+    CGRect headerFrame = header.frame;
+    headerFrame.size.height = height;
+    
+    header.frame = headerFrame;
+    
+    self.tableView.tableHeaderView = header;
+}
+
 - (void)initalizeTableView {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -85,9 +109,9 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     }];
     
     self.title = self.viewModel.commentsCount;
-//    self.titleLabel.text = self.viewModel.title;
-//    self.scoreLabel.text = self.viewModel.score;
-//    self.originationLabel.text = self.viewModel.info;
+    self.titleLabel.text = self.viewModel.title;
+    self.scoreLabel.text = self.viewModel.score;
+    self.originationLabel.text = self.viewModel.info;
 }
 
 - (IBAction)backButtonDidTap:(id)sender {
