@@ -46,8 +46,11 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     [self setupHeaderView];
     [self initalizeTableView];
     [self bindViewModel];
+    
+    // We need to "rejigger" the header view because Autolayout is fucking shit.
     [self rejiggerTableHeaderView];
 }
+
 
 
 - (void)setupHeaderView {
@@ -68,6 +71,7 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     self.titleLabel.textColor = [UIColor darkTextColor];
     self.originationLabel.textColor = [UIColor HNLightGray];
     self.scoreLabel.textColor = [UIColor HNOrange];
+    
 }
 
 
@@ -83,7 +87,7 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     [header setNeedsLayout];
     [header layoutIfNeeded];
     
-    CGFloat height = [header systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    CGFloat height = [self.cardView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
     
     CGRect headerFrame = header.frame;
     headerFrame.size.height = height;
@@ -96,7 +100,7 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 - (void)initalizeTableView {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.estimatedRowHeight = 118;
+    self.tableView.estimatedRowHeight = 93;
     [self.tableView registerClass:[HNCommentsCell class] forCellReuseIdentifier:kCommentsCellIdentifier];
 }
 

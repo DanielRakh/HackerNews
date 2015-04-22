@@ -55,7 +55,6 @@
 		8ED804CA1AE6B26C00BE4AB0 /* ProximaNovaCond-SemiboldIt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8ED804B91AE6B26C00BE4AB0 /* ProximaNovaCond-SemiboldIt.otf */; };
 		8ED804D01AE6D35100BE4AB0 /* UIFont+HNFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED804CF1AE6D35100BE4AB0 /* UIFont+HNFont.m */; };
 		8ED804D31AE754AB00BE4AB0 /* HNCommentTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED804D21AE754AB00BE4AB0 /* HNCommentTableViewHeader.m */; };
-		8ED804D61AE7828100BE4AB0 /* HNMultilineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED804D51AE7828100BE4AB0 /* HNMultilineLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,8 +145,6 @@
 		8ED804CF1AE6D35100BE4AB0 /* UIFont+HNFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+HNFont.m"; sourceTree = "<group>"; };
 		8ED804D11AE754AB00BE4AB0 /* HNCommentTableViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentTableViewHeader.h; sourceTree = "<group>"; };
 		8ED804D21AE754AB00BE4AB0 /* HNCommentTableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentTableViewHeader.m; sourceTree = "<group>"; };
-		8ED804D41AE7828100BE4AB0 /* HNMultilineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNMultilineLabel.h; sourceTree = "<group>"; };
-		8ED804D51AE7828100BE4AB0 /* HNMultilineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNMultilineLabel.m; sourceTree = "<group>"; };
 		E6E214A4479710CF3CF8F84E /* Pods-HackerNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HackerNews/Pods-HackerNews.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -213,8 +210,6 @@
 				8ED804A71AE6B22E00BE4AB0 /* Assets */,
 				8E2352411ACC571F0009552D /* AppDelegate.h */,
 				8E2352421ACC571F0009552D /* AppDelegate.m */,
-				8ED804D41AE7828100BE4AB0 /* HNMultilineLabel.h */,
-				8ED804D51AE7828100BE4AB0 /* HNMultilineLabel.m */,
 				8E87C46F1AE466CC00CD004E /* Shared */,
 				8E87C46E1AE466BE00CD004E /* Utilities */,
 				8E2352AE1ACDC2380009552D /* Networking */,
@@ -618,7 +613,6 @@
 				8E87C43B1AE31FFD00CD004E /* HNTableView.m in Sources */,
 				8E395EE21AD1978A00EE0DB9 /* HNCommentsViewController.m in Sources */,
 				8E87C43C1AE31FFD00CD004E /* HNThinLineButton.m in Sources */,
-				8ED804D61AE7828100BE4AB0 /* HNMultilineLabel.m in Sources */,
 				8E23526F1ACC69200009552D /* HNFeedCell.m in Sources */,
 				8E395EDD1AD073F700EE0DB9 /* HNBrowserViewModel.m in Sources */,
 				8E395ED81AD0732F00EE0DB9 /* HNBrowserViewController.m in Sources */,
