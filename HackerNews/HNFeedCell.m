@@ -113,6 +113,7 @@ CGFloat const kHorizontalInset = 8;
     self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     self.titleLabel.numberOfLines = 0;
     self.titleLabel.textAlignment = NSTextAlignmentLeft;
+    self.titleLabel.textColor = [UIColor darkTextColor];
     self.titleLabel.font = [UIFont proximaNovaWithWeight:TypeWeightSemibold size:18.0];
     
     [self.cardView addSubview:self.titleLabel];

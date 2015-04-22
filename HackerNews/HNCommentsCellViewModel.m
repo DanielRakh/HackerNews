@@ -9,6 +9,7 @@
 #import "HNCommentsCellViewModel.h"
 #import "HNComment.h"
 #import "Utils.h"
+#import "UIFont+HNFont.h"
 
 
 @interface HNCommentsCellViewModel ()
@@ -29,11 +30,28 @@
 
         _comment = comment;
         _origination = [[NSAttributedString alloc]initWithString: @"by danielrak | 5 hrs ago"];
-        _text = [Utils convertHTMLToAttributedString:comment.text_];
+        _text = [self prettifyHTML:comment.text_];
 
     }
     
     return self;
+}
+
+
+
+- (NSAttributedString *)prettifyHTML:(NSString *)uglyHTML {
+    
+    NSMutableParagraphStyle *pStyle = [NSMutableParagraphStyle new];
+    pStyle.lineSpacing = 5.0;
+    
+    NSAttributedString *convertedHTML = [Utils convertHTMLToAttributedString:uglyHTML];
+    NSMutableAttributedString *prettyString = [[NSMutableAttributedString alloc]initWithAttributedString:convertedHTML];
+    [prettyString addAttributes: @{
+                                   NSFontAttributeName : [UIFont proximaNovaWithWeight:TypeWeightRegular size:14.0],
+                                   NSForegroundColorAttributeName : [UIColor darkTextColor], NSParagraphStyleAttributeName : pStyle
+                                   } range:NSMakeRange(0, convertedHTML.length)];
+    
+    return prettyString;
 }
 
 @end

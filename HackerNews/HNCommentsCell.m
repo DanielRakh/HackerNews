@@ -8,6 +8,7 @@
 
 #import "PureLayout.h"
 #import "UIColor+HNColorPalette.h"
+#import "UIFont+HNFont.h"
 
 //View
 #import "HNCommentsCell.h"
@@ -75,18 +76,29 @@ CGFloat const kCommentsHorizontalInset = 8;
     // Set up Card View - rounded corner cell background
     self.cardView = [UIView newAutoLayoutView];
     self.cardView.backgroundColor = [UIColor HNWhite];
-    self.cardView.layer.cornerRadius = 8.0;
+    self.cardView.layer.cornerRadius = 2.0;
     self.cardView.layer.borderWidth = 0.5;
-    self.cardView.layer.borderColor =  [UIColor HNLightGray].CGColor;
+    self.cardView.layer.borderColor =  [UIColor colorWithRed:0.290 green:0.290 blue:0.290 alpha:0.2].CGColor;
+    
+    
+    self.cardView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.cardView.layer.shadowRadius  = 4.0;
+    self.cardView.layer.shadowOpacity = 0.05;
+    self.cardView.layer.shadowOffset = CGSizeMake(0, 1);
+    self.cardView.layer.shouldRasterize = YES;
+    self.cardView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    self.cardView.layer.masksToBounds = NO;
     
     [self.contentView addSubview:self.cardView];
+
     
     
     // Set up Origination Label
     self.originationLabel = [UILabel newAutoLayoutView];
     self.originationLabel.numberOfLines = 1;
+    self.originationLabel.textColor = [UIColor lightGrayColor];
     self.originationLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-    self.originationLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:10.0];
+    self.originationLabel.font = [UIFont proximaNovaWithWeight:TypeWeightSemibold size:12.0];
     
     [self.cardView addSubview:self.originationLabel];
 
@@ -97,13 +109,14 @@ CGFloat const kCommentsHorizontalInset = 8;
     self.commentTextView.selectable = YES;
     self.commentTextView.dataDetectorTypes = UIDataDetectorTypeAll;
     self.commentTextView.scrollEnabled = NO;
-    self.commentTextView.font =  [UIFont fontWithName:@"AvenirNext-Medium" size:10.0];
-
+    self.commentTextView.textContainer.lineFragmentPadding = 0;
+    
     [self.cardView addSubview:self.commentTextView];
     
     
     //Set up Comments Button
     self.repliesButton = [HNThinLineButton newAutoLayoutView];
+    self.repliesButton.titleLabel.font = [UIFont proximaNovaWithWeight:TypeWeightRegular size:12.0];
     [self.cardView addSubview:self.repliesButton];
 
     
@@ -144,8 +157,9 @@ CGFloat const kCommentsHorizontalInset = 8;
 //            [self.commentTextLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
 //        }];
         
-        [self.repliesButton autoSetDimensionsToSize:CGSizeMake(84, 26)];
+        [self.repliesButton autoSetDimension:ALDimensionHeight toSize:30.0];
         [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
+        [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
         [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
         [self.repliesButton autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.commentTextView withOffset:kCommentsVerticalInset relation:NSLayoutRelationEqual];
 
