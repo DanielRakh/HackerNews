@@ -8,6 +8,8 @@
 
 
 #import <DateTools/NSDate+DateTools.h>
+#import "UIColor+HNColorPalette.h"
+#import "UIFont+HNFont.h"
 
 //View Model
 #import "HNCommentsViewModel.h"
@@ -30,7 +32,7 @@
         
         _story = story;
         _score = [NSString stringWithFormat:@"%@ Points", story.score_.stringValue];
-        _title = story.title_;
+        _title = [self formattedStringForTitle:story.title_ andURL:story.url_];
         _commentsCount = story.descendants_.stringValue;
         _info = [NSString stringWithFormat: @"by %@ | %@", story.by_, [self formattedStringForTime:story.time_]];
     }
@@ -51,5 +53,27 @@
     NSString *timeString = date.timeAgoSinceNow;
     return timeString;
 }
+
+- (NSAttributedString *)formattedStringForTitle:(NSString *)title andURL:(NSString *)url {
+    
+    NSAttributedString *titleString = [[NSAttributedString alloc]initWithString:title
+                                                                     attributes:@{NSForegroundColorAttributeName : [UIColor darkTextColor]}];
+    
+    NSAttributedString *urlString = [[NSAttributedString alloc]initWithString:
+                                     [NSString stringWithFormat:@" (%@)", url.pathComponents[1]] attributes:@{
+                                                                            NSForegroundColorAttributeName : [UIColor HNLightGray],
+                                                                                NSFontAttributeName : [UIFont proximaNovaWithWeight:TypeWeightSemibold size:12.0],
+                                                                            NSBaselineOffsetAttributeName : @1.8}];
+    
+    NSMutableAttributedString *combinedString = [[NSMutableAttributedString alloc]initWithAttributedString:titleString];
+    
+    [combinedString appendAttributedString:urlString];
+    
+    return combinedString;
+    
+
+}
+
+
 
 @end

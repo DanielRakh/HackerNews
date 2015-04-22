@@ -60,7 +60,7 @@ CGFloat const kHorizontalInset = 8;
 
 - (void)configureWithViewModel:(HNFeedCellViewModel *)viewModel {
     self.viewModel = viewModel;
-    self.titleLabel.text = viewModel.title;
+    self.titleLabel.attributedText = viewModel.title;
     self.scoreLabel.text = viewModel.score;
     [self.commentsButton setTitle:[NSString stringWithFormat:@"%@ Comments", viewModel.commentsCount] forState:UIControlStateNormal];
     [self.commentsButton addTarget:self action:@selector(commentsButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
