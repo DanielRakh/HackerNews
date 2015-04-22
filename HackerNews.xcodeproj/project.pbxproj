@@ -54,6 +54,7 @@
 		8ED804C91AE6B26C00BE4AB0 /* ProximaNovaCond-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8ED804B81AE6B26C00BE4AB0 /* ProximaNovaCond-Semibold.otf */; };
 		8ED804CA1AE6B26C00BE4AB0 /* ProximaNovaCond-SemiboldIt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8ED804B91AE6B26C00BE4AB0 /* ProximaNovaCond-SemiboldIt.otf */; };
 		8ED804D01AE6D35100BE4AB0 /* UIFont+HNFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED804CF1AE6D35100BE4AB0 /* UIFont+HNFont.m */; };
+		8ED804D31AE754AB00BE4AB0 /* HNCommentTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED804D21AE754AB00BE4AB0 /* HNCommentTableViewHeader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +143,8 @@
 		8ED804B91AE6B26C00BE4AB0 /* ProximaNovaCond-SemiboldIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaCond-SemiboldIt.otf"; sourceTree = "<group>"; };
 		8ED804CE1AE6D35100BE4AB0 /* UIFont+HNFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+HNFont.h"; sourceTree = "<group>"; };
 		8ED804CF1AE6D35100BE4AB0 /* UIFont+HNFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+HNFont.m"; sourceTree = "<group>"; };
+		8ED804D11AE754AB00BE4AB0 /* HNCommentTableViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentTableViewHeader.h; sourceTree = "<group>"; };
+		8ED804D21AE754AB00BE4AB0 /* HNCommentTableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentTableViewHeader.m; sourceTree = "<group>"; };
 		E6E214A4479710CF3CF8F84E /* Pods-HackerNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HackerNews/Pods-HackerNews.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -354,6 +357,8 @@
 				8E395EE11AD1978A00EE0DB9 /* HNCommentsViewController.m */,
 				8E395EEC1AD3386A00EE0DB9 /* HNCommentsCell.h */,
 				8E395EED1AD3386A00EE0DB9 /* HNCommentsCell.m */,
+				8ED804D11AE754AB00BE4AB0 /* HNCommentTableViewHeader.h */,
+				8ED804D21AE754AB00BE4AB0 /* HNCommentTableViewHeader.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -601,6 +606,7 @@
 				8E395EE71AD1A75300EE0DB9 /* HNCommentsViewModel.m in Sources */,
 				8E2352401ACC571F0009552D /* main.m in Sources */,
 				8EA8736D1AD85A3C009C01F8 /* HNItem.m in Sources */,
+				8ED804D31AE754AB00BE4AB0 /* HNCommentTableViewHeader.m in Sources */,
 				8E395EEE1AD3386A00EE0DB9 /* HNCommentsCell.m in Sources */,
 				8E2352B11ACDC34F0009552D /* HNNetworkService.m in Sources */,
 				8E87C4421AE3424800CD004E /* NSString+RemoveTag.m in Sources */,

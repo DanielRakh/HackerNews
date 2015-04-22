@@ -35,15 +35,22 @@ NSString *const kFeedCellIdentifier = @"FeedCell";
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.title = @"Hacker News";
     self.viewModel.active = YES;
     self.navigationController.navigationBarHidden = NO;
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.title = @"Back";
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationItem.backBarButtonItem setTitle:@"SSS"];
     
-    self.title = @"Hacker News";
+//    = [[UIBarButtonItem alloc]initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:nil];
+    
     self.view.backgroundColor = [UIColor HNOffWhite];
     [self initalizeTableView];
     [self bindViewModel];
@@ -55,6 +62,7 @@ NSString *const kFeedCellIdentifier = @"FeedCell";
     self.tableView.estimatedRowHeight = 118;
     [self.tableView registerClass:[HNFeedCell class] forCellReuseIdentifier:kFeedCellIdentifier];
 }
+
 
 - (void)bindViewModel {
     

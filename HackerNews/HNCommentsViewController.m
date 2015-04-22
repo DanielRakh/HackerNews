@@ -24,11 +24,10 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 
 @property (weak, nonatomic) IBOutlet HNTableView *tableView;
 
-@property (weak, nonatomic) IBOutlet UIView *containerHeader;
+@property (weak, nonatomic) IBOutlet UIView *cardView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *originationLabel;
-@property (weak, nonatomic) IBOutlet UILabel *commentsCountLabel;
 
 
 @end
@@ -44,21 +43,29 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor HNOffWhite];
-    self.containerHeader.backgroundColor = [UIColor HNWhite];
-    self.navigationController.navigationBarHidden = YES;
     [self setupHeaderView];
     [self initalizeTableView];
     [self bindViewModel];
-
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
 }
 
 
 - (void)setupHeaderView {
-    self.commentsCountLabel.textColor = [UIColor HNOrange];
+    
+    self.cardView.backgroundColor = [UIColor HNWhite];
+    self.cardView.layer.cornerRadius = 2.0;
+    self.cardView.layer.borderWidth = 0.5;
+    self.cardView.layer.borderColor =  [UIColor colorWithRed:0.290 green:0.290 blue:0.290 alpha:0.2].CGColor;
+    self.cardView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.cardView.layer.shadowRadius  = 4.0;
+    self.cardView.layer.shadowOpacity = 0.05;
+    self.cardView.layer.shadowOffset = CGSizeMake(0, 1);
+    self.cardView.layer.shouldRasterize = YES;
+    self.cardView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    self.cardView.layer.masksToBounds = NO;
+    
+    
+    self.titleLabel.textColor = [UIColor darkTextColor];
+    self.originationLabel.textColor = [UIColor HNLightGray];
     self.scoreLabel.textColor = [UIColor HNOrange];
 }
 
@@ -77,11 +84,10 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
         [self.tableView reloadData];
     }];
     
-    self.titleLabel.text = self.viewModel.title;
-    self.scoreLabel.text = self.viewModel.score;
-    self.originationLabel.text = self.viewModel.info;
-    self.commentsCountLabel.text = self.viewModel.commentsCount; 
-    
+    self.title = self.viewModel.commentsCount;
+//    self.titleLabel.text = self.viewModel.title;
+//    self.scoreLabel.text = self.viewModel.score;
+//    self.originationLabel.text = self.viewModel.info;
 }
 
 - (IBAction)backButtonDidTap:(id)sender {

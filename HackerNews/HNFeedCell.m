@@ -113,8 +113,7 @@ CGFloat const kHorizontalInset = 8;
     self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     self.titleLabel.numberOfLines = 0;
     self.titleLabel.textAlignment = NSTextAlignmentLeft;
-    self.titleLabel.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:16.0];
-    self.titleLabel.backgroundColor = [UIColor orangeColor];
+    self.titleLabel.font = [UIFont proximaNovaWithWeight:TypeWeightSemibold size:18.0];
     
     [self.cardView addSubview:self.titleLabel];
     
@@ -126,13 +125,14 @@ CGFloat const kHorizontalInset = 8;
     self.originationLabel.numberOfLines = 1;
     self.originationLabel.text = NSTextAlignmentLeft;
     self.originationLabel.textColor = [UIColor lightGrayColor];
-    self.originationLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:10.0];
+    self.originationLabel.font = [UIFont proximaNovaWithWeight:TypeWeightRegular size:12.0];
     
     [self.cardView addSubview:self.originationLabel];
     
     
     // Set up Comments Button
     self.commentsButton = [HNThinLineButton newAutoLayoutView];
+    self.commentsButton.titleLabel.font = [UIFont proximaNovaWithWeight:TypeWeightRegular size:12.0];
     [self.cardView addSubview:self.commentsButton];
 
 }
@@ -160,7 +160,7 @@ CGFloat const kHorizontalInset = 8;
         [self.titleLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalInset];
         
         // Comments Button Constraints
-        [self.commentsButton autoSetDimensionsToSize:CGSizeMake(84, 26)];
+        [self.commentsButton autoSetDimensionsToSize:CGSizeMake(100, 30)];
         [self.commentsButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalInset];
          [self.commentsButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kVerticalInset];
         [self.commentsButton autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.titleLabel withOffset:kVerticalInset relation:NSLayoutRelationEqual];
