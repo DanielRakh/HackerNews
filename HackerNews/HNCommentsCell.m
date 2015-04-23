@@ -60,7 +60,6 @@ CGFloat const kCommentsHorizontalInset = 8;
 - (void)configureWithViewModel:(HNCommentsCellViewModel *)viewModel {
     self.viewModel = viewModel;
     self.originationLabel.attributedText = viewModel.origination;
-//    [self.commentTextLabel setHtml:viewModel.text];
     self.commentTextView.attributedText = viewModel.text;
     [self.repliesButton setTitle:viewModel.repliesCount forState:UIControlStateNormal];
 }
@@ -105,11 +104,13 @@ CGFloat const kCommentsHorizontalInset = 8;
     
     self.commentTextView = [UITextView newAutoLayoutView];
     self.commentTextView.editable = NO;
+    self.commentTextView.linkTextAttributes = @{NSForegroundColorAttributeName : [UIColor HNOrange]};
     self.commentTextView.scrollEnabled = NO;
     self.commentTextView.selectable = YES;
-    self.commentTextView.dataDetectorTypes = UIDataDetectorTypeAll;
+    self.commentTextView.dataDetectorTypes = UIDataDetectorTypeLink;
     self.commentTextView.scrollEnabled = NO;
     self.commentTextView.textContainer.lineFragmentPadding = 0;
+    self.commentTextView.textContainerInset = UIEdgeInsetsZero;
     
     [self.cardView addSubview:self.commentTextView];
     
@@ -149,28 +150,18 @@ CGFloat const kCommentsHorizontalInset = 8;
         [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
         [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kCommentsVerticalInset];
     
-        
+        // Comment Text View Constraints
         [self.commentTextView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.originationLabel withOffset:kCommentsVerticalInset];
         [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
         [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
-//        [UIView autoSetPriority:750 forConstraints:^{
-//            [self.commentTextLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
-//        }];
-        
+
+        // Replies Button Constraints
         [self.repliesButton autoSetDimension:ALDimensionHeight toSize:30.0];
         [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
         [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
         [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
         [self.repliesButton autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.commentTextView withOffset:kCommentsVerticalInset relation:NSLayoutRelationEqual];
 
-        
-//        [self.repliesButton autoSetDimension:ALDimensionHeight toSize:26.0];
-//        [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
-//        [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
-//        [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
-//        [self.repliesButton autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.commentTextLabel withOffset:kCommentsVerticalInset relation:NSLayoutRelationEqual];
-//        
-        
         self.didSetupConstraints = YES;
     }
     

@@ -33,7 +33,7 @@
         _comment = comment;
         _origination = [self originationLabelForAuthor:comment.by_ time:comment.time_];
         _text = [self formatCommentHTML:comment.text_];
-
+        _repliesCount = [NSString stringWithFormat:@"%ld Replies", comment.kids.count];
     }
     
     return self;
@@ -56,7 +56,7 @@
 
 - (NSAttributedString *)originationLabelForAuthor:(NSString *)author time:(NSNumber *)time  {
     
-    NSAttributedString *authorString = [[NSAttributedString alloc]initWithString:author attributes:@{NSForegroundColorAttributeName : [UIColor HNOrange]}];
+    NSAttributedString *authorString = [[NSAttributedString alloc]initWithString:@"drak" attributes:@{NSForegroundColorAttributeName : [UIColor HNOrange]}];
    
     NSAttributedString *timeString = [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@" | %@", [self formattedStringForTime:time]] attributes:@{NSForegroundColorAttributeName : [UIColor HNLightGray]}];
     

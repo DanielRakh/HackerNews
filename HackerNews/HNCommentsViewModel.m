@@ -95,8 +95,8 @@
     NSFetchRequest *fetchRequest = [NSFetchRequest new];
     fetchRequest.entity = [NSEntityDescription entityForName:@"HNComment" inManagedObjectContext:self.dataManager.coreDataStack.managedObjectContext];
     
-//    NSPredicate *commentsPredicate =[NSPredicate predicateWithFormat:@"ANY parent_ == %@", self.story.id_];
-//    fetchRequest.predicate = commentsPredicate;
+    NSPredicate *commentsPredicate =[NSPredicate predicateWithFormat:@"%K == %@", @"parent_", self.story.id_];
+    fetchRequest.predicate = commentsPredicate;
     
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"by_" ascending:YES];
     fetchRequest.sortDescriptors = @[sortDescriptor];
@@ -132,7 +132,21 @@
 }
 
 - (NSString *)formattedStringForCommentsCount:(NSNumber *)commentsCount {
-    return [commentsCount isEqualToNumber:@(1)] ? [NSString stringWithFormat: @"1 Comment"] : [NSString stringWithFormat:@"%@ Comments", commentsCount];
+    
+    NSString *commentsCountString;
+    
+    switch (commentsCount.integerValue) {
+        case 0:
+            commentsCountString = @"No Comments";
+            break;
+        case 1:
+            commentsCountString = @"1 Comment";
+            break;
+        default:
+            commentsCountString = [NSString stringWithFormat:@"%@ Comments", commentsCount];
+            break;
+    }
+    return commentsCountString;
 }
 
 @end

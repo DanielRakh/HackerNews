@@ -140,7 +140,7 @@
                   [[[[HNStory findOne] where:@"id_" equals:item.id_] fetch]
                    // Form a relationship between the Story -> Comments
                    subscribeNext:^(HNStory *story) {
-                       if (story.comments) {
+                       if (story.comments.count != 0) {
                            [story removeComments:story.comments];
                        }
                        [story addComments:[NSOrderedSet orderedSetWithArray:comments]];
