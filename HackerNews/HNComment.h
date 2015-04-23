@@ -1,9 +1,9 @@
 //
 //  HNComment.h
-//  HackerNews
+//  
 //
-//  Created by Daniel on 4/8/15.
-//  Copyright (c) 2015 Daniel Rakhamimov. All rights reserved.
+//  Created by Daniel on 4/23/15.
+//
 //
 
 #import <Foundation/Foundation.h>
@@ -15,21 +15,21 @@
 @interface HNComment : HNItem
 
 @property (nonatomic, retain) NSNumber * parent_;
-@property (nonatomic, retain) NSOrderedSet *kids;
+@property (nonatomic, retain) NSOrderedSet *replies;
 @property (nonatomic, retain) HNStory *story;
+@property (nonatomic, retain) HNComment *reply;
 @end
 
 @interface HNComment (CoreDataGeneratedAccessors)
 
-- (void)insertObject:(HNComment *)value inKidsAtIndex:(NSUInteger)idx;
-- (void)removeObjectFromKidsAtIndex:(NSUInteger)idx;
-- (void)insertKids:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
-- (void)removeKidsAtIndexes:(NSIndexSet *)indexes;
-- (void)replaceObjectInKidsAtIndex:(NSUInteger)idx withObject:(HNComment *)value;
-- (void)replaceKidsAtIndexes:(NSIndexSet *)indexes withKids:(NSArray *)values;
-- (void)addKidsObject:(HNComment *)value;
-- (void)removeKidsObject:(HNComment *)value;
-- (void)addKids:(NSOrderedSet *)values;
-- (void)removeKids:(NSOrderedSet *)values;
-
+- (void)insertObject:(HNComment *)value inRepliesAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromRepliesAtIndex:(NSUInteger)idx;
+- (void)insertReplies:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeRepliesAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInRepliesAtIndex:(NSUInteger)idx withObject:(HNComment *)value;
+- (void)replaceRepliesAtIndexes:(NSIndexSet *)indexes withReplies:(NSArray *)values;
+- (void)addRepliesObject:(HNComment *)value;
+- (void)removeRepliesObject:(HNComment *)value;
+- (void)addReplies:(NSOrderedSet *)values;
+- (void)removeReplies:(NSOrderedSet *)values;
 @end

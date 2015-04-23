@@ -2,7 +2,8 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D131" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="HNComment" representedClassName="HNComment" parentEntity="HNItem" syncable="YES">
         <attribute name="parent_" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <relationship name="kids" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="HNComment" inverseName="kids" inverseEntity="HNComment" syncable="YES"/>
+        <relationship name="replies" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="HNComment" inverseName="reply" inverseEntity="HNComment" syncable="YES"/>
+        <relationship name="reply" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HNComment" inverseName="replies" inverseEntity="HNComment" syncable="YES"/>
         <relationship name="story" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HNStory" inverseName="comments" inverseEntity="HNStory" syncable="YES"/>
     </entity>
     <entity name="HNItem" representedClassName="HNItem" isAbstract="YES" syncable="YES">
@@ -25,7 +26,7 @@
     </entity>
     <fetchRequest name="FetchRequest" entity="HNStory" predicateString="descendants_ == 0"/>
     <elements>
-        <element name="HNComment" positionX="180" positionY="-108" width="128" height="90"/>
+        <element name="HNComment" positionX="180" positionY="-108" width="128" height="105"/>
         <element name="HNItem" positionX="-207" positionY="-141" width="128" height="180"/>
         <element name="HNStory" positionX="-20" positionY="135" width="128" height="120"/>
     </elements>

@@ -33,7 +33,7 @@
         _comment = comment;
         _origination = [self originationLabelForAuthor:comment.by_ time:comment.time_];
         _text = [self formatCommentHTML:comment.text_];
-        _repliesCount = [NSString stringWithFormat:@"%ld Replies", comment.kids.count];
+        _repliesCount = [NSString stringWithFormat:@"%ld Replies", comment.kids_.count];
     }
     
     return self;

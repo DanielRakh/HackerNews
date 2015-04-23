@@ -20,6 +20,6 @@
 @property (nonatomic, retain) NSString * text_;
 @property (nonatomic, retain) NSNumber * time_;
 @property (nonatomic, retain) NSString * type_;
-@property (nonatomic, retain) id kids_;
+@property (nonatomic, retain) NSArray *kids_;
 
 @end
