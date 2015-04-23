@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Daniel Rakhamimov. All rights reserved.
 //
 
-#import <DateTools/NSDate+DateTools.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "HNUtilities.h"
 
 // View Model
 #import "HNCommentsViewModel.h"
@@ -37,8 +37,8 @@
         _story = story;
         _score = [NSString stringWithFormat:@"%@ Points", story.score_];
         _title = story.title_;
-        _commentsCount = [self formattedStringForCommentsCount:story.descendants_];
-        _info = [NSString stringWithFormat: @"by %@ | %@", story.by_, [self formattedStringForTime:story.time_]];
+        _commentsCount = [HNUtilities stringForCommentsCount:story.descendants_];
+        _info = [NSString stringWithFormat: @"by %@ | %@", story.by_, [HNUtilities timeAgoFromTimestamp:story.time_]];
         
         _dataManager = [HNDataManager sharedManager];
         
@@ -123,30 +123,5 @@
     [(RACSubject *)self.updatedContentSignal sendNext:nil];
 }
 
-#pragma mark - Helper Methods
-
-- (NSString *)formattedStringForTime:(NSNumber *)time {
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:time.doubleValue];
-    NSString *timeString = date.timeAgoSinceNow;
-    return timeString;
-}
-
-- (NSString *)formattedStringForCommentsCount:(NSNumber *)commentsCount {
-    
-    NSString *commentsCountString;
-    
-    switch (commentsCount.integerValue) {
-        case 0:
-            commentsCountString = @"No Comments";
-            break;
-        case 1:
-            commentsCountString = @"1 Comment";
-            break;
-        default:
-            commentsCountString = [NSString stringWithFormat:@"%@ Comments", commentsCount];
-            break;
-    }
-    return commentsCountString;
-}
 
 @end

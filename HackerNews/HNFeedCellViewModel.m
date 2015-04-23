@@ -7,9 +7,7 @@
 //
 
 
-#import <DateTools/NSDate+DateTools.h>
-#import "UIColor+HNColorPalette.h"
-#import "UIFont+HNFont.h"
+#import "HNUtilities.h"
 
 //View Model
 #import "HNCommentsViewModel.h"
@@ -32,9 +30,9 @@
         
         _story = story;
         _score = [NSString stringWithFormat:@"%@ Points", story.score_.stringValue];
-        _title = [self formattedStringForTitle:story.title_ andURL:story.url_];
-        _commentsCount = story.descendants_.stringValue;
-        _info = [NSString stringWithFormat: @"by %@ | %@", story.by_, [self formattedStringForTime:story.time_]];
+        _title = [HNUtilities proximaNovaStyleStringForTitle:story.title_ withURL:story.url_];
+        _commentsCount = [HNUtilities stringForCommentsCount:story.descendants_];
+        _info = [NSString stringWithFormat: @"by %@ | %@", story.by_, [HNUtilities timeAgoFromTimestamp:story.time_]];
     }
     
     return self;
@@ -46,33 +44,6 @@
 }
 
 
-#pragma mark - Helper Methods
-
-- (NSString *)formattedStringForTime:(NSNumber *)time {
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:time.doubleValue];
-    NSString *timeString = date.timeAgoSinceNow;
-    return timeString;
-}
-
-- (NSAttributedString *)formattedStringForTitle:(NSString *)title andURL:(NSString *)url {
-    
-    NSAttributedString *titleString = [[NSAttributedString alloc]initWithString:title
-                                                                     attributes:@{NSForegroundColorAttributeName : [UIColor darkTextColor]}];
-    
-    NSAttributedString *urlString = [[NSAttributedString alloc]initWithString:
-                                     [NSString stringWithFormat:@" (%@)", url.pathComponents[1]] attributes:@{
-                                                                            NSForegroundColorAttributeName : [UIColor HNLightGray],
-                                                                                NSFontAttributeName : [UIFont proximaNovaWithWeight:TypeWeightSemibold size:12.0],
-                                                                            NSBaselineOffsetAttributeName : @1.8}];
-    
-    NSMutableAttributedString *combinedString = [[NSMutableAttributedString alloc]initWithAttributedString:titleString];
-    
-    [combinedString appendAttributedString:urlString];
-    
-    return combinedString;
-    
-
-}
 
 
 

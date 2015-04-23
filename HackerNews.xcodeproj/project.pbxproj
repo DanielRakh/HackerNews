@@ -32,7 +32,7 @@
 		8E52515F1AD5FA3300EE080D /* HNStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E52515E1AD5FA3300EE080D /* HNStory.m */; };
 		8E87C43B1AE31FFD00CD004E /* HNTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C4381AE31FFD00CD004E /* HNTableView.m */; };
 		8E87C43C1AE31FFD00CD004E /* HNThinLineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C43A1AE31FFD00CD004E /* HNThinLineButton.m */; };
-		8E87C43F1AE3421100CD004E /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C43E1AE3421100CD004E /* Utils.m */; };
+		8E87C43F1AE3421100CD004E /* HNUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C43E1AE3421100CD004E /* HNUtilities.m */; };
 		8E87C4421AE3424800CD004E /* NSString+RemoveTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C4411AE3424800CD004E /* NSString+RemoveTag.m */; };
 		8EA8736D1AD85A3C009C01F8 /* HNItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8736C1AD85A3C009C01F8 /* HNItem.m */; };
 		8ED435021AE999FB00A99D9F /* HNComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED435011AE999FB00A99D9F /* HNComment.m */; };
@@ -116,8 +116,8 @@
 		8E87C4381AE31FFD00CD004E /* HNTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNTableView.m; sourceTree = "<group>"; };
 		8E87C4391AE31FFD00CD004E /* HNThinLineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNThinLineButton.h; sourceTree = "<group>"; };
 		8E87C43A1AE31FFD00CD004E /* HNThinLineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNThinLineButton.m; sourceTree = "<group>"; };
-		8E87C43D1AE3421100CD004E /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
-		8E87C43E1AE3421100CD004E /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		8E87C43D1AE3421100CD004E /* HNUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNUtilities.h; sourceTree = "<group>"; };
+		8E87C43E1AE3421100CD004E /* HNUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNUtilities.m; sourceTree = "<group>"; };
 		8E87C4401AE3424800CD004E /* NSString+RemoveTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RemoveTag.h"; sourceTree = "<group>"; };
 		8E87C4411AE3424800CD004E /* NSString+RemoveTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RemoveTag.m"; sourceTree = "<group>"; };
 		8EA8736B1AD85A3C009C01F8 /* HNItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNItem.h; sourceTree = "<group>"; };
@@ -392,8 +392,8 @@
 			children = (
 				8E87C4401AE3424800CD004E /* NSString+RemoveTag.h */,
 				8E87C4411AE3424800CD004E /* NSString+RemoveTag.m */,
-				8E87C43D1AE3421100CD004E /* Utils.h */,
-				8E87C43E1AE3421100CD004E /* Utils.m */,
+				8E87C43D1AE3421100CD004E /* HNUtilities.h */,
+				8E87C43E1AE3421100CD004E /* HNUtilities.m */,
 				8ED804CE1AE6D35100BE4AB0 /* UIFont+HNFont.h */,
 				8ED804CF1AE6D35100BE4AB0 /* UIFont+HNFont.m */,
 			);
@@ -620,7 +620,7 @@
 				8E2352751ACC73BE0009552D /* UIColor+HNColorPalette.m in Sources */,
 				8E395F2C1AD475B000EE0DB9 /* HNCoreDataStack.m in Sources */,
 				8ED804D01AE6D35100BE4AB0 /* UIFont+HNFont.m in Sources */,
-				8E87C43F1AE3421100CD004E /* Utils.m in Sources */,
+				8E87C43F1AE3421100CD004E /* HNUtilities.m in Sources */,
 				8E52515F1AD5FA3300EE080D /* HNStory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
