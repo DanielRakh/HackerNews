@@ -22,10 +22,9 @@ CGFloat const kCommentsVerticalInset = 10;
 CGFloat const kCommentsHorizontalInset = 8;
 
 
-@interface HNCommentsCell ()
+@interface HNCommentsCell () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, assign) BOOL didSetupConstraints;
-
 
 @property (nonatomic) UIView *cardView;
 @property (nonatomic) UILabel *originationLabel;
@@ -33,6 +32,11 @@ CGFloat const kCommentsHorizontalInset = 8;
 @property (nonatomic) UITextView *commentTextView;
 
 @property (nonatomic) HNCommentsCellViewModel *viewModel;
+
+@property (nonatomic) UITableView *tableView;
+
+
+
 
 @end
 
@@ -121,6 +125,20 @@ CGFloat const kCommentsHorizontalInset = 8;
     [self.cardView addSubview:self.repliesButton];
 
     
+    
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.tableView.backgroundColor = [UIColor greenColor];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.rowHeight = 150;
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+    [self.cardView addSubview:self.tableView];
+    [self.cardView bringSubviewToFront:self.tableView];
+    
+    [self setNeedsUpdateConstraints];
+    
+//    [self layoutIfNeeded];
+    
     /*
     // Set up Score Label
     self.scoreLabel = [UILabel newAutoLayoutView];
@@ -159,14 +177,50 @@ CGFloat const kCommentsHorizontalInset = 8;
         [self.repliesButton autoSetDimension:ALDimensionHeight toSize:30.0];
         [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
         [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
-        [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
+//        [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
         [self.repliesButton autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.commentTextView withOffset:kCommentsVerticalInset relation:NSLayoutRelationEqual];
-
+        
+        
+        [self.tableView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.repliesButton withOffset:0];
+        [self.tableView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
+        [self.tableView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
+        [self.tableView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
+        
         self.didSetupConstraints = YES;
     }
     
     
     [super updateConstraints];
 }
+
+
+
+#pragma mark - Table View Data Soruce
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return 10;
+}
+
+// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
+// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    cell.contentView.backgroundColor = [UIColor redColor];
+    cell.textLabel.text = @"SADSAD";
+    
+    return cell;
+}
+
+
+
+
 
 @end
