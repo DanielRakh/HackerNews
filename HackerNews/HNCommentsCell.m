@@ -9,6 +9,7 @@
 #import "PureLayout.h"
 #import "UIColor+HNColorPalette.h"
 #import "UIFont+HNFont.h"
+#import "ReactiveCocoa/ReactiveCocoa.h"
 
 //View
 #import "HNCommentsCell.h"
@@ -66,6 +67,8 @@ CGFloat const kCommentsHorizontalInset = 8;
     self.originationLabel.attributedText = viewModel.origination;
     self.commentTextView.attributedText = viewModel.text;
     [self.repliesButton setTitle:viewModel.repliesCount forState:UIControlStateNormal];
+    
+    self.repliesButton.rac_command = self.viewModel.repliesButtonCommand;
 }
 
 - (void)initalizeViews {
@@ -122,6 +125,7 @@ CGFloat const kCommentsHorizontalInset = 8;
     //Set up Comments Button
     self.repliesButton = [HNThinLineButton newAutoLayoutView];
     self.repliesButton.titleLabel.font = [UIFont proximaNovaWithWeight:TypeWeightRegular size:12.0];
+    [self.repliesButton addTarget:self action:@selector(repliesButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
     [self.cardView addSubview:self.repliesButton];
 
     
@@ -130,14 +134,9 @@ CGFloat const kCommentsHorizontalInset = 8;
     self.tableView.backgroundColor = [UIColor greenColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.rowHeight = 150;
+    self.tableView.rowHeight = 50;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
     [self.cardView addSubview:self.tableView];
-    [self.cardView bringSubviewToFront:self.tableView];
-    
-    [self setNeedsUpdateConstraints];
-    
-//    [self layoutIfNeeded];
     
     /*
     // Set up Score Label
@@ -155,7 +154,7 @@ CGFloat const kCommentsHorizontalInset = 8;
 -(void)updateConstraints {
     
     if (self.didSetupConstraints == NO) {
-        
+    
         // Card View Constraints
         [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeTop];
         [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
@@ -179,21 +178,43 @@ CGFloat const kCommentsHorizontalInset = 8;
         [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
 //        [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
         [self.repliesButton autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.commentTextView withOffset:kCommentsVerticalInset relation:NSLayoutRelationEqual];
+    
         
-        
-        [self.tableView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.repliesButton withOffset:0];
+        [self.tableView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.repliesButton withOffset:kCommentsVerticalInset];
+        [self.tableView autoSetDimension:ALDimensionHeight toSize:(10*50)];
         [self.tableView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
         [self.tableView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
         [self.tableView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
-        
+    
         self.didSetupConstraints = YES;
     }
-    
+
     
     [super updateConstraints];
+        
 }
 
 
+- (void)repliesButtonDidTap:(id)sender {
+    
+    NSLog(@"Replies did tap!");
+    
+    //1. Fade out Replies Button
+//    [UIView animateWithDuration:0.25
+//                     animations:^{
+//                         self.repliesButton.alpha = 0;
+//                     } completion:^(BOOL finished) {
+//                         /
+//                     }];
+    
+    //2.
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    NSLog(@"CARD VIEW: %@", NSStringFromCGRect(self.cardView.frame));
+    NSLog(@"%@",NSStringFromCGRect(self.tableView.frame));
+}
 
 #pragma mark - Table View Data Soruce
 
@@ -214,13 +235,12 @@ CGFloat const kCommentsHorizontalInset = 8;
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     cell.contentView.backgroundColor = [UIColor redColor];
-    cell.textLabel.text = @"SADSAD";
+//    [cell setNeedsUpdateConstraints];
+//    [cell updateConstraintsIfNeeded];
+
     
     return cell;
 }
-
-
-
 
 
 @end

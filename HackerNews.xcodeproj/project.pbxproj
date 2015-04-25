@@ -55,6 +55,7 @@
 		8ED804CA1AE6B26C00BE4AB0 /* ProximaNovaCond-SemiboldIt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8ED804B91AE6B26C00BE4AB0 /* ProximaNovaCond-SemiboldIt.otf */; };
 		8ED804D01AE6D35100BE4AB0 /* UIFont+HNFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED804CF1AE6D35100BE4AB0 /* UIFont+HNFont.m */; };
 		8ED804D31AE754AB00BE4AB0 /* HNCommentTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED804D21AE754AB00BE4AB0 /* HNCommentTableViewHeader.m */; };
+		8ED923AB1AEB562300801543 /* HNRepliesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED923AA1AEB562300801543 /* HNRepliesCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +146,8 @@
 		8ED804CF1AE6D35100BE4AB0 /* UIFont+HNFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+HNFont.m"; sourceTree = "<group>"; };
 		8ED804D11AE754AB00BE4AB0 /* HNCommentTableViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentTableViewHeader.h; sourceTree = "<group>"; };
 		8ED804D21AE754AB00BE4AB0 /* HNCommentTableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentTableViewHeader.m; sourceTree = "<group>"; };
+		8ED923A91AEB562300801543 /* HNRepliesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNRepliesCell.h; sourceTree = "<group>"; };
+		8ED923AA1AEB562300801543 /* HNRepliesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNRepliesCell.m; sourceTree = "<group>"; };
 		E6E214A4479710CF3CF8F84E /* Pods-HackerNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HackerNews/Pods-HackerNews.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -359,6 +362,8 @@
 				8E395EED1AD3386A00EE0DB9 /* HNCommentsCell.m */,
 				8ED804D11AE754AB00BE4AB0 /* HNCommentTableViewHeader.h */,
 				8ED804D21AE754AB00BE4AB0 /* HNCommentTableViewHeader.m */,
+				8ED923A91AEB562300801543 /* HNRepliesCell.h */,
+				8ED923AA1AEB562300801543 /* HNRepliesCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -619,6 +624,7 @@
 				8E395F291AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld in Sources */,
 				8E2352751ACC73BE0009552D /* UIColor+HNColorPalette.m in Sources */,
 				8E395F2C1AD475B000EE0DB9 /* HNCoreDataStack.m in Sources */,
+				8ED923AB1AEB562300801543 /* HNRepliesCell.m in Sources */,
 				8ED804D01AE6D35100BE4AB0 /* UIFont+HNFont.m in Sources */,
 				8E87C43F1AE3421100CD004E /* HNUtilities.m in Sources */,
 				8E52515F1AD5FA3300EE080D /* HNStory.m in Sources */,

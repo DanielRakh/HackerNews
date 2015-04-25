@@ -34,6 +34,10 @@
         _origination = [HNUtilities originationLabelForAuthor:comment.by_ time:comment.time_];
         _text = [HNUtilities proximaNovaStyledCommentStringForHTML:comment.text_];
         _repliesCount = [NSString stringWithFormat:@"%ld Replies", comment.kids_.count];
+        
+        [_repliesButtonCommand.executing subscribeNext:^(id x) {
+            NSLog(@"%@",x);
+        }];
     }
     
     return self;

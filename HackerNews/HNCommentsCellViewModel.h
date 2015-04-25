@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ReactiveCocoa/ReactiveCocoa.h"
 
 @class HNComment;
 
@@ -15,6 +16,7 @@
 @property (nonatomic, readonly) NSAttributedString *origination;
 @property (nonatomic, readonly) NSAttributedString *text;
 @property (nonatomic, readonly) NSString *repliesCount;
+@property (nonatomic) RACCommand *repliesButtonCommand;
 
 
 - (instancetype)initWithComment:(HNComment *)comment;

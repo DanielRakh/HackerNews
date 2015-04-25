@@ -181,11 +181,15 @@
     NSAttributedString *titleString = [[NSAttributedString alloc]initWithString:title
                                                                      attributes:@{NSForegroundColorAttributeName : [UIColor darkTextColor]}];
     
-    NSAttributedString *urlString = [[NSAttributedString alloc]initWithString:
-                                     [NSString stringWithFormat:@" (%@)", url.pathComponents[1]] attributes:@{
-                                                                                                              NSForegroundColorAttributeName : [UIColor HNLightGray],
-                                                                                                              NSFontAttributeName : [UIFont proximaNovaWithWeight:TypeWeightSemibold size:12.0],
-                                                                                                              NSBaselineOffsetAttributeName : @1.8}];
+    NSAttributedString *urlString;
+    
+    if (url != nil) {
+        urlString = [[NSAttributedString alloc]initWithString:
+                     [NSString stringWithFormat:@" (%@)", url.pathComponents[1]] attributes:@{
+                                                                                              NSForegroundColorAttributeName : [UIColor HNLightGray],
+                                                                                              NSFontAttributeName : [UIFont proximaNovaWithWeight:TypeWeightSemibold size:12.0],
+                                                                                              NSBaselineOffsetAttributeName : @1.8}];
+    }
     
     NSMutableAttributedString *combinedString = [[NSMutableAttributedString alloc]initWithAttributedString:titleString];
     
