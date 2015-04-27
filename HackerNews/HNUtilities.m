@@ -181,9 +181,9 @@
     NSAttributedString *titleString = [[NSAttributedString alloc]initWithString:title
                                                                      attributes:@{NSForegroundColorAttributeName : [UIColor darkTextColor]}];
     
-    NSAttributedString *urlString;
+    NSAttributedString *urlString = [[NSAttributedString alloc]initWithString:@""];
     
-    if (url != nil) {
+    if (url.length > 0) {
         urlString = [[NSAttributedString alloc]initWithString:
                      [NSString stringWithFormat:@" (%@)", url.pathComponents[1]] attributes:@{
                                                                                               NSForegroundColorAttributeName : [UIColor HNLightGray],

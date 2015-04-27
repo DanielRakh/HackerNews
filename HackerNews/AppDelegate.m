@@ -14,7 +14,10 @@
 #import "UIColor+HNColorPalette.h"
 #import "UIFont+HNFont.h"
 
+
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "HNDataManager.h"
+#import "HNNetworkService.h"
 
 
 @interface AppDelegate ()
@@ -41,7 +44,19 @@
     [[UINavigationBar appearance] setTitleTextAttributes:@{ NSFontAttributeName : [UIFont proximaNovaWithWeight:TypeWeightSemibold size:18.0], NSForegroundColorAttributeName : [UIColor HNOrange]}];
     
     
-
+//    
+//    [[[HNNetworkService sharedManager] valueForItem:@9442381] subscribeNext:^(id x) {
+//        NSLog(@"%@",x[@"id"]);
+//    }];
+////
+    
+    RACSignal *tst = [[HNDataManager sharedManager] repliesForComment:@9442381];
+    
+    [tst subscribeNext:^(id x) {
+        NSLog(@"APP DELEGATE: %@",x);
+    }];
+    
+                      
     return YES;
 }
 

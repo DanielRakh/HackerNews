@@ -56,6 +56,7 @@
 		8ED804D01AE6D35100BE4AB0 /* UIFont+HNFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED804CF1AE6D35100BE4AB0 /* UIFont+HNFont.m */; };
 		8ED804D31AE754AB00BE4AB0 /* HNCommentTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED804D21AE754AB00BE4AB0 /* HNCommentTableViewHeader.m */; };
 		8ED923AB1AEB562300801543 /* HNRepliesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED923AA1AEB562300801543 /* HNRepliesCell.m */; };
+		8ED923F61AEC3B2D00801543 /* HNCommentThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED923F51AEC3B2D00801543 /* HNCommentThread.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +149,8 @@
 		8ED804D21AE754AB00BE4AB0 /* HNCommentTableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentTableViewHeader.m; sourceTree = "<group>"; };
 		8ED923A91AEB562300801543 /* HNRepliesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNRepliesCell.h; sourceTree = "<group>"; };
 		8ED923AA1AEB562300801543 /* HNRepliesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNRepliesCell.m; sourceTree = "<group>"; };
+		8ED923F41AEC3B2D00801543 /* HNCommentThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentThread.h; sourceTree = "<group>"; };
+		8ED923F51AEC3B2D00801543 /* HNCommentThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentThread.m; sourceTree = "<group>"; };
 		E6E214A4479710CF3CF8F84E /* Pods-HackerNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HackerNews/Pods-HackerNews.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -282,6 +285,8 @@
 				8E395F271AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld */,
 				8E395F2A1AD475B000EE0DB9 /* HNCoreDataStack.h */,
 				8E395F2B1AD475B000EE0DB9 /* HNCoreDataStack.m */,
+				8ED923F41AEC3B2D00801543 /* HNCommentThread.h */,
+				8ED923F51AEC3B2D00801543 /* HNCommentThread.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -618,6 +623,7 @@
 				8E87C43B1AE31FFD00CD004E /* HNTableView.m in Sources */,
 				8E395EE21AD1978A00EE0DB9 /* HNCommentsViewController.m in Sources */,
 				8E87C43C1AE31FFD00CD004E /* HNThinLineButton.m in Sources */,
+				8ED923F61AEC3B2D00801543 /* HNCommentThread.m in Sources */,
 				8E23526F1ACC69200009552D /* HNFeedCell.m in Sources */,
 				8E395EDD1AD073F700EE0DB9 /* HNBrowserViewModel.m in Sources */,
 				8E395ED81AD0732F00EE0DB9 /* HNBrowserViewController.m in Sources */,

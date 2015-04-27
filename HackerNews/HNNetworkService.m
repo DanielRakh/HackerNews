@@ -72,4 +72,29 @@ static NSString *FireBaseURLPath = @"https://hacker-news.firebaseio.com/v0";
     }];
 }
 
+- (RACSignal *)kidsForItem:(NSNumber *)itemID {
+    
+    Firebase *kidsRef = [self.fireBaseRef childByAppendingPath:[NSString stringWithFormat:@"item/%@/kids", itemID]];
+    
+    return [[kidsRef.rac_valueSignal
+            flattenMap:^RACStream *(FDataSnapshot *value) {
+                return [value.children.allObjects.rac_sequence.signal
+                        map:^id(FDataSnapshot *nestedValue) {
+                            return nestedValue.value;
+        }];
+    }] collect];
+}
+
+
+- (RACSignal *)valueForItem:(NSNumber *)itemID {
+    
+    Firebase *itemRef = [self.fireBaseRef childByAppendingPath:[NSString stringWithFormat:@"item/%@",itemID]];
+    
+    return [itemRef.rac_valueSignal map:^id(FDataSnapshot *snapshot) {
+        return snapshot.value;
+    }];
+    
+}
+
+
 @end

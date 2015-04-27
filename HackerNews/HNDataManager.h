@@ -10,7 +10,7 @@
 #import "HNCoreDataStack.h"
 
 
-@class RACSignal, HNItem;
+@class RACSignal, HNItem, HNCommentThread;
 
 @interface HNDataManager : NSObject
 
@@ -23,9 +23,11 @@
 
 - (RACSignal *)commentsForItem:(HNItem *)item;
 
-- (RACSignal *)testCommentsForItem:(HNItem *)item;
+- (RACSignal *)testCommentsForItem:(NSNumber *)item;
 
 - (RACSignal *)tstTopStoriesWithCount:(NSInteger)count;
+
+- (RACSignal *)repliesForComment:(NSNumber *)idNum;
 
 
 @end
