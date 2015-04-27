@@ -193,10 +193,10 @@
 
 #pragma mark - Comments Management
 
-// Get the replies for comment - retunrs a signal of a Dictionary. 
+// Get the replies for comment -> saves them to database -> returns an array of HNComment's.
 - (RACSignal *)repliesForComment:(NSNumber *)idNum {
 
-    return [[[HNNetworkService sharedManager] kidsForItem:idNum]
+    return [[[[[[HNNetworkService sharedManager] kidsForItem:idNum]
             //An array of ID's for the kids of this comment.
             flattenMap:^RACStream *(NSArray *idNums) {
                 // Let's iterate through those ID's
@@ -205,11 +205,71 @@
                             // Let's return the a Dictionary of values for each ID
                             return [[HNNetworkService sharedManager] valueForItem:childID];
                         }];
-            }];
+            }] map:^id(NSDictionary *commentDict) {
+                return [HNComment insert:^(HNComment *comment) {
+                    comment.id_ = commentDict[@"id"];
+                    comment.deleted_ = commentDict[@"deleted"];
+                    comment.by_ = commentDict[@"by"];
+                    comment.parent_ = commentDict[@"parent"];
+                    comment.kids_ = commentDict[@"kids"];
+                    comment.text_ = commentDict[@"text"];
+                    comment.time_ = commentDict[@"time"];
+                    comment.type_ = commentDict[@"type"];
+//                    comment.rank_ = @([items indexOfObject:dict]);
+                }];
+            }] collect] saveContext];
 }
+
+
+
+
 
 // Model them into HNComments
 
+//- (RACSignal *)saveReply:(NSDi *)replySignal {
+//
+//    [replySignal map:^id(NSDictionary *commentDict) {
+//        return [HNComment insert:^(HNComment *comment) {
+//            comment.id_ = commentDict[@"id"];
+//            comment.deleted_ = commentDict[@"deleted"];
+//            comment.by_ = commentDict[@"by"];
+//            comment.parent_ = commentDict[@"parent"];
+//            comment.kids_ = commentDict[@"kids"];
+//            comment.text_ = commentDict[@"text"];
+//            comment.time_ = commentDict[@"time"];
+//            comment.type_ = commentDict[@"type"];
+//            //           comment.rank_ = @([items indexOfObject:dict]);
+//        }];
+//    }];
+//    
+//    
+//    return [RACSignal empty];
+//}
+
+
+- (RACSignal *)repliesPlaygroundForComment:(NSNumber *)idNum {
+    
+    return [[[[[self repliesForComment:idNum]
+            flattenMap:^RACStream *(NSArray *comments) {
+                //At this point I need to FETCH the parent comment and form a relationship.
+
+                return [comments.rac_sequence.signal
+                        map:^id(id value) {
+                            return value;
+                        }];
+            }] logNext]
+             
+             
+             filter:^BOOL(HNComment *comment) {
+                return comment.kids_.count > 0;
+            }] flattenMap:^RACStream *(HNComment *commentsWithKids) {
+                return [commentsWithKids.kids_.rac_sequence.signal map:^id(NSNumber *childID) {
+                    return childID;
+                }];
+                
+                //At this point I need to start the recursion. 
+            }];
+}
 
 
 

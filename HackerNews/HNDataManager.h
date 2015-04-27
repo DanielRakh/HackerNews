@@ -29,5 +29,9 @@
 
 - (RACSignal *)repliesForComment:(NSNumber *)idNum;
 
+- (RACSignal *)saveReply:(RACSignal *)replySignal;
+
+- (RACSignal *)repliesPlaygroundForComment:(NSNumber *)idNum;
+
 
 @end

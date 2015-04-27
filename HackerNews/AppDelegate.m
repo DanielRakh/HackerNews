@@ -18,6 +18,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "HNDataManager.h"
 #import "HNNetworkService.h"
+#import "HNComment.h"
 
 
 @interface AppDelegate ()
@@ -50,12 +51,26 @@
 //    }];
 ////
     
-    RACSignal *tst = [[HNDataManager sharedManager] repliesForComment:@9442381];
+//    
+//    RACSignal *tst = [[HNDataManager sharedManager] repliesForComment:@9442381];
+//    
+//    tst
+//
+//    
+//    RACSignal *repTst = [[HNDataManager sharedManager] saveReply:[RACSignal empty]];
+//    
+//    
+//
+//    [tst subscribeNext:^(id x) {
+//        
+//    }];
     
-    [tst subscribeNext:^(id x) {
-        NSLog(@"APP DELEGATE: %@",x);
+    
+    RACSignal *t = [[HNDataManager sharedManager]repliesPlaygroundForComment:@9442381];
+    
+    [t subscribeNext:^(id x) {
+//        NSLog(@"%@",x);
     }];
-    
                       
     return YES;
 }
