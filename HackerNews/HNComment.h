@@ -24,7 +24,7 @@
 
 - (void)insertObject:(HNComment *)value inRepliesAtIndex:(NSUInteger)idx;
 - (void)removeObjectFromRepliesAtIndex:(NSUInteger)idx;
-- (void)insertReplies:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
+- (void)insertReplies:(NSArray *)values atIndexes:(NSIndexSet *)indexes;
 - (void)removeRepliesAtIndexes:(NSIndexSet *)indexes;
 - (void)replaceObjectInRepliesAtIndex:(NSUInteger)idx withObject:(HNComment *)value;
 - (void)replaceRepliesAtIndexes:(NSIndexSet *)indexes withReplies:(NSArray *)values;

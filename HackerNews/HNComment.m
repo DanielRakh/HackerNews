@@ -21,7 +21,7 @@
 
 static NSString *const kItemsKey = @"replies";
 
-- (void)insertObject:(HNComment *)value inCommentsAtIndex:(NSUInteger)idx {
+- (void)insertObject:(HNComment *)value inRepliesAtIndex:(NSUInteger)idx {
     NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
     [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:kItemsKey];
     NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self mutableOrderedSetValueForKey:kItemsKey]];
@@ -30,7 +30,7 @@ static NSString *const kItemsKey = @"replies";
     [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:kItemsKey];
 }
 
-- (void)removeObjectFromCommentsAtIndex:(NSUInteger)idx {
+- (void)removeObjectFromRepliesAtIndex:(NSUInteger)idx {
     NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
     [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:kItemsKey];
     NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self mutableOrderedSetValueForKey:kItemsKey]];
@@ -39,7 +39,7 @@ static NSString *const kItemsKey = @"replies";
     [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:kItemsKey];
 }
 
-- (void)insertComments:(NSArray *)values atIndexes:(NSIndexSet *)indexes {
+- (void)insertReplies:(NSArray *)values atIndexes:(NSIndexSet *)indexes {
     [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:kItemsKey];
     NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self mutableOrderedSetValueForKey:kItemsKey]];
     [tmpOrderedSet insertObjects:values atIndexes:indexes];
@@ -47,7 +47,7 @@ static NSString *const kItemsKey = @"replies";
     [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:kItemsKey];
 }
 
-- (void)removeCommentsAtIndexes:(NSIndexSet *)indexes {
+- (void)removeRepliesAtIndexes:(NSIndexSet *)indexes {
     [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:kItemsKey];
     NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self mutableOrderedSetValueForKey:kItemsKey]];
     [tmpOrderedSet removeObjectsAtIndexes:indexes];
@@ -55,7 +55,7 @@ static NSString *const kItemsKey = @"replies";
     [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:kItemsKey];
 }
 
-- (void)replaceObjectInCommentsAtIndex:(NSUInteger)idx withObject:(HNComment *)value {
+- (void)replaceObjectInRepliesAtIndex:(NSUInteger)idx withObject:(HNComment *)value {
     NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
     [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:kItemsKey];
     NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self mutableOrderedSetValueForKey:kItemsKey]];
@@ -64,7 +64,7 @@ static NSString *const kItemsKey = @"replies";
     [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:kItemsKey];
 }
 
-- (void)replaceCommentsAtIndexes:(NSIndexSet *)indexes withComments:(NSArray *)values {
+- (void)replaceRepliesAtIndexes:(NSIndexSet *)indexes withReplies:(NSArray *)values {
     [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:kItemsKey];
     NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self mutableOrderedSetValueForKey:kItemsKey]];
     [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:values];
@@ -72,7 +72,7 @@ static NSString *const kItemsKey = @"replies";
     [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:kItemsKey];
 }
 
-- (void)addCommentsObject:(HNComment *)value {
+- (void)addRepliesObject:(HNComment *)value {
     NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self mutableOrderedSetValueForKey:kItemsKey]];
     NSUInteger idx = [tmpOrderedSet count];
     NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
@@ -82,7 +82,7 @@ static NSString *const kItemsKey = @"replies";
     [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:kItemsKey];
 }
 
-- (void)removeCommentsObject:(HNComment *)value {
+- (void)removeRepliesObject:(HNComment *)value {
     NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self mutableOrderedSetValueForKey:kItemsKey]];
     NSUInteger idx = [tmpOrderedSet indexOfObject:value];
     if (idx != NSNotFound) {
@@ -94,7 +94,7 @@ static NSString *const kItemsKey = @"replies";
     }
 }
 
-- (void)addComments:(NSOrderedSet *)values {
+- (void)addReplies:(NSOrderedSet *)values {
     NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self mutableOrderedSetValueForKey:kItemsKey]];
     NSMutableIndexSet *indexes = [NSMutableIndexSet indexSet];
     NSUInteger valuesCount = [values count];
@@ -110,7 +110,7 @@ static NSString *const kItemsKey = @"replies";
     }
 }
 
-- (void)removeComments:(NSOrderedSet *)values {
+- (void)removeReplies:(NSOrderedSet *)values {
     NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self mutableOrderedSetValueForKey:kItemsKey]];
     NSMutableIndexSet *indexes = [NSMutableIndexSet indexSet];
     for (id value in values) {

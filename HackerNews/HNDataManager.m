@@ -224,51 +224,36 @@
 
 
 
-// Model them into HNComments
 
-//- (RACSignal *)saveReply:(NSDi *)replySignal {
-//
-//    [replySignal map:^id(NSDictionary *commentDict) {
-//        return [HNComment insert:^(HNComment *comment) {
-//            comment.id_ = commentDict[@"id"];
-//            comment.deleted_ = commentDict[@"deleted"];
-//            comment.by_ = commentDict[@"by"];
-//            comment.parent_ = commentDict[@"parent"];
-//            comment.kids_ = commentDict[@"kids"];
-//            comment.text_ = commentDict[@"text"];
-//            comment.time_ = commentDict[@"time"];
-//            comment.type_ = commentDict[@"type"];
-//            //           comment.rank_ = @([items indexOfObject:dict]);
-//        }];
-//    }];
-//    
-//    
-//    return [RACSignal empty];
-//}
-
-
-- (RACSignal *)repliesPlaygroundForComment:(NSNumber *)idNum {
+- (RACSignal *)saveThreadForComment:(NSNumber *)idNum {
     
-    return [[[[[self repliesForComment:idNum]
-            flattenMap:^RACStream *(NSArray *comments) {
-                //At this point I need to FETCH the parent comment and form a relationship.
-
-                return [comments.rac_sequence.signal
-                        map:^id(id value) {
-                            return value;
-                        }];
-            }] logNext]
-             
-             
-             filter:^BOOL(HNComment *comment) {
-                return comment.kids_.count > 0;
-            }] flattenMap:^RACStream *(HNComment *commentsWithKids) {
-                return [commentsWithKids.kids_.rac_sequence.signal map:^id(NSNumber *childID) {
-                    return childID;
-                }];
-                
-                //At this point I need to start the recursion. 
-            }];
+    return [[[[[[self repliesForComment:idNum]
+               // Just got an array of HNComments (replies to the idNum comment)
+               doNext:^(NSArray *comments) {
+                   // Side effect where we fetch the parent comment and add these comments as "replies" in it's relationship
+                   [[[[HNComment findOne] where:@"id_" equals:idNum] fetch]
+                    subscribeNext:^(HNComment *parent) {
+                        if (parent.replies.count != 0) { [parent removeReplies:parent.replies]; }
+                        [parent addReplies:[NSOrderedSet orderedSetWithArray:comments]];
+                    }];
+               }] flattenMap:^RACStream *(NSArray *comments) {
+                   // We flattenMap the array of comments to return each object in the array
+                   return [comments.rac_sequence.signal
+                           map:^id(id value) {
+                               return value;
+                           }];
+                   // Each of those objects is an HNComment
+               }] filter:^BOOL(HNComment *comment) {
+                   // We filter out each comment that doesn't have any children.
+                   return comment.kids_.count > 0;
+               }] flattenMap:^RACStream *(HNComment *commentsWithKids) {
+                   // For each comment with kids we make a recursive call with the ID of it's child
+//                   @weakify(self);
+                   return [commentsWithKids.kids_.rac_sequence.signal map:^id(NSNumber *childID) {
+//                       @strongify(self);
+                       return [self saveThreadForComment:childID];
+                   }];
+               }] collect];
 }
 
 

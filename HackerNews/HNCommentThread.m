@@ -33,7 +33,7 @@
     return [[self alloc]initWithHeadComment:headComment replies:replies];
 }
 
-- (void)addReply:(HNComment *)reply {
+- (void)addReply:(HNCommentThread *)reply {
 
     NSMutableArray *mutableCopy = [self.replies mutableCopy];
     [mutableCopy addObject:reply];

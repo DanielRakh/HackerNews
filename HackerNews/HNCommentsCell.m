@@ -63,7 +63,9 @@ CGFloat const kCommentsHorizontalInset = 8;
 }
 
 - (void)configureWithViewModel:(HNCommentsCellViewModel *)viewModel {
+    NSLog(@"CONFIGURE VIEW MODEL");
     self.viewModel = viewModel;
+    self.viewModel.active = YES;
     self.originationLabel.attributedText = viewModel.origination;
     self.commentTextView.attributedText = viewModel.text;
     [self.repliesButton setTitle:viewModel.repliesCount forState:UIControlStateNormal];
@@ -71,8 +73,9 @@ CGFloat const kCommentsHorizontalInset = 8;
     self.repliesButton.rac_command = self.viewModel.repliesButtonCommand;
 }
 
+
 - (void)initalizeViews {
-    
+        
     self.didSetupConstraints = NO;
     // We are creating a rounded corner view to serve as the background
     // of the cell so we need to make the real cell background clear.
@@ -209,12 +212,13 @@ CGFloat const kCommentsHorizontalInset = 8;
     
     //2.
 }
+//
+//- (void)layoutSubviews {
+//    [super layoutSubviews];
+//    NSLog(@"CARD VIEW: %@", NSStringFromCGRect(self.cardView.frame));
+//    NSLog(@"%@",NSStringFromCGRect(self.tableView.frame));
+//}
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    NSLog(@"CARD VIEW: %@", NSStringFromCGRect(self.cardView.frame));
-    NSLog(@"%@",NSStringFromCGRect(self.tableView.frame));
-}
 
 #pragma mark - Table View Data Soruce
 

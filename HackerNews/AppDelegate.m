@@ -43,35 +43,15 @@
     
     [[UINavigationBar appearance] setTintColor:[UIColor HNOrange]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{ NSFontAttributeName : [UIFont proximaNovaWithWeight:TypeWeightSemibold size:18.0], NSForegroundColorAttributeName : [UIColor HNOrange]}];
-    
-    
+
 //    
-//    [[[HNNetworkService sharedManager] valueForItem:@9442381] subscribeNext:^(id x) {
-//        NSLog(@"%@",x[@"id"]);
-//    }];
+//    RACSignal *t = [[HNDataManager sharedManager]saveThreadForComment:@9442381];
 ////
-    
-//    
-//    RACSignal *tst = [[HNDataManager sharedManager] repliesForComment:@9442381];
-//    
-//    tst
-//
-//    
-//    RACSignal *repTst = [[HNDataManager sharedManager] saveReply:[RACSignal empty]];
-//    
-//    
-//
-//    [tst subscribeNext:^(id x) {
-//        
+//    [t subscribeNext:^(id x) {
+//        NSLog(@"NEXT");
+////        NSLog(@"%@",x);
 //    }];
     
-    
-    RACSignal *t = [[HNDataManager sharedManager]repliesPlaygroundForComment:@9442381];
-    
-    [t subscribeNext:^(id x) {
-//        NSLog(@"%@",x);
-    }];
-                      
     return YES;
 }
 

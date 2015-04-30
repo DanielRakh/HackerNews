@@ -106,10 +106,10 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 }
 
 - (void)bindViewModel {
-    
     @weakify(self);
     [self.viewModel.updatedContentSignal subscribeNext:^(id x) {
         @strongify(self);
+        NSLog(@"RELOAD");
         [self.tableView reloadData];
     }];
     
@@ -135,14 +135,15 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    NSLog(@"CELL");
     HNCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
     [cell configureWithViewModel:[self.viewModel commentsCellViewModelForIndexPath:indexPath]];
-
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
     
     return cell;
 }
+
 
 
 @end

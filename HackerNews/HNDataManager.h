@@ -27,11 +27,7 @@
 
 - (RACSignal *)tstTopStoriesWithCount:(NSInteger)count;
 
-- (RACSignal *)repliesForComment:(NSNumber *)idNum;
-
-- (RACSignal *)saveReply:(RACSignal *)replySignal;
-
-- (RACSignal *)repliesPlaygroundForComment:(NSNumber *)idNum;
+- (RACSignal *)saveThreadForComment:(NSNumber *)idNum;
 
 
 @end
