@@ -38,6 +38,7 @@
 		8ED3D3D11AF28DFD00E5E657 /* HNItemAbstract.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D3D01AF28DFD00E5E657 /* HNItemAbstract.m */; };
 		8ED3D3D51AF28F1700E5E657 /* HNItemStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D3D41AF28F1700E5E657 /* HNItemStory.m */; };
 		8ED3D3D81AF28F5600E5E657 /* HNItemComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D3D71AF28F5600E5E657 /* HNItemComment.m */; };
+		8ED3D3DC1AF2915800E5E657 /* HNItemDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D3DB1AF2915800E5E657 /* HNItemDataManager.m */; };
 		8ED435021AE999FB00A99D9F /* HNComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED435011AE999FB00A99D9F /* HNComment.m */; };
 		8ED804BA1AE6B26C00BE4AB0 /* ProximaNova-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8ED804A91AE6B26C00BE4AB0 /* ProximaNova-Black.otf */; };
 		8ED804BB1AE6B26C00BE4AB0 /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8ED804AA1AE6B26C00BE4AB0 /* ProximaNova-Bold.otf */; };
@@ -133,6 +134,8 @@
 		8ED3D3D41AF28F1700E5E657 /* HNItemStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNItemStory.m; sourceTree = "<group>"; };
 		8ED3D3D61AF28F5600E5E657 /* HNItemComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNItemComment.h; sourceTree = "<group>"; };
 		8ED3D3D71AF28F5600E5E657 /* HNItemComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNItemComment.m; sourceTree = "<group>"; };
+		8ED3D3DA1AF2915800E5E657 /* HNItemDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNItemDataManager.h; sourceTree = "<group>"; };
+		8ED3D3DB1AF2915800E5E657 /* HNItemDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNItemDataManager.m; sourceTree = "<group>"; };
 		8ED435001AE999FB00A99D9F /* HNComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNComment.h; sourceTree = "<group>"; };
 		8ED435011AE999FB00A99D9F /* HNComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNComment.m; sourceTree = "<group>"; };
 		8ED804A91AE6B26C00BE4AB0 /* ProximaNova-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Black.otf"; sourceTree = "<group>"; };
@@ -288,15 +291,10 @@
 		8E2352681ACC5C480009552D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8ED3D3D91AF290EC00E5E657 /* Core Data */,
 				8ED3D3D21AF28EC000E5E657 /* Regular Objects */,
-				8E5251531AD5D26E00EE080D /* Managed Objects */,
-				8E2352B21ACE102C0009552D /* HNDataManager.h */,
-				8E2352B31ACE102C0009552D /* HNDataManager.m */,
-				8E395F271AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld */,
-				8E395F2A1AD475B000EE0DB9 /* HNCoreDataStack.h */,
-				8E395F2B1AD475B000EE0DB9 /* HNCoreDataStack.m */,
-				8ED923F41AEC3B2D00801543 /* HNCommentThread.h */,
-				8ED923F51AEC3B2D00801543 /* HNCommentThread.m */,
+				8ED3D3DA1AF2915800E5E657 /* HNItemDataManager.h */,
+				8ED3D3DB1AF2915800E5E657 /* HNItemDataManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -440,8 +438,23 @@
 				8ED3D3D41AF28F1700E5E657 /* HNItemStory.m */,
 				8ED3D3D61AF28F5600E5E657 /* HNItemComment.h */,
 				8ED3D3D71AF28F5600E5E657 /* HNItemComment.m */,
+				8ED923F41AEC3B2D00801543 /* HNCommentThread.h */,
+				8ED923F51AEC3B2D00801543 /* HNCommentThread.m */,
 			);
 			name = "Regular Objects";
+			sourceTree = "<group>";
+		};
+		8ED3D3D91AF290EC00E5E657 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				8E2352B21ACE102C0009552D /* HNDataManager.h */,
+				8E2352B31ACE102C0009552D /* HNDataManager.m */,
+				8E395F271AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld */,
+				8E395F2A1AD475B000EE0DB9 /* HNCoreDataStack.h */,
+				8E395F2B1AD475B000EE0DB9 /* HNCoreDataStack.m */,
+				8E5251531AD5D26E00EE080D /* Managed Objects */,
+			);
+			name = "Core Data";
 			sourceTree = "<group>";
 		};
 		8ED804A71AE6B22E00BE4AB0 /* Assets */ = {
@@ -637,6 +650,7 @@
 				8E395EF11AD33AD200EE0DB9 /* HNCommentsCellViewModel.m in Sources */,
 				8E395EE71AD1A75300EE0DB9 /* HNCommentsViewModel.m in Sources */,
 				8E2352401ACC571F0009552D /* main.m in Sources */,
+				8ED3D3DC1AF2915800E5E657 /* HNItemDataManager.m in Sources */,
 				8EA8736D1AD85A3C009C01F8 /* HNItem.m in Sources */,
 				8ED3D3D81AF28F5600E5E657 /* HNItemComment.m in Sources */,
 				8ED804D31AE754AB00BE4AB0 /* HNCommentTableViewHeader.m in Sources */,

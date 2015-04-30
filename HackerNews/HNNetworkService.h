@@ -15,7 +15,7 @@
 
 + (id)sharedManager;
 
-- (RACSignal *)topItemsWithCount:(NSInteger)count;
+- (RACSignal *)topStoryItemsWithCount:(NSInteger)count;
 
 - (RACSignal *)childrenForItem:(NSNumber *)itemId;
 

@@ -39,7 +39,7 @@ static NSString *FireBaseURLPath = @"https://hacker-news.firebaseio.com/v0";
     return self;
 }
 
-- (RACSignal *)topItemsWithCount:(NSInteger)count {
+- (RACSignal *)topStoryItemsWithCount:(NSInteger)count {
     
     Firebase *topStoriesRef = [self.fireBaseRef childByAppendingPath:@"topstories"];
     

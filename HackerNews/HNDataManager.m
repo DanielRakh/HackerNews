@@ -53,7 +53,7 @@
     [self.coreDataStack clearAllDataForEntity:@"HNStory"];
     
     // Pull top stories data from network and collect into an array
-    RACSignal *tst = [[[[[HNNetworkService sharedManager] topItemsWithCount:count] collect] doNext:^(NSArray *items) {
+    RACSignal *tst = [[[[[HNNetworkService sharedManager] topStoryItemsWithCount:count] collect] doNext:^(NSArray *items) {
         
         [RACSignal concat:[[items.rac_sequence
                             filter:^BOOL(NSDictionary *dict) {
@@ -90,7 +90,7 @@
     [self.coreDataStack clearAllDataForEntity:@"HNStory"];
     
     // Pull top stories data from network and collect into an array
-    return [[[[[HNNetworkService sharedManager] topItemsWithCount:count] collect] doNext:^(NSArray *items) {
+    return [[[[[HNNetworkService sharedManager] topStoryItemsWithCount:count] collect] doNext:^(NSArray *items) {
         
         [RACSignal concat:[[items.rac_sequence
                             filter:^BOOL(NSDictionary *dict) {
