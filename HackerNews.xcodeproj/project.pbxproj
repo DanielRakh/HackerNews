@@ -35,6 +35,9 @@
 		8E87C43F1AE3421100CD004E /* HNUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C43E1AE3421100CD004E /* HNUtilities.m */; };
 		8E87C4421AE3424800CD004E /* NSString+RemoveTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C4411AE3424800CD004E /* NSString+RemoveTag.m */; };
 		8EA8736D1AD85A3C009C01F8 /* HNItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8736C1AD85A3C009C01F8 /* HNItem.m */; };
+		8ED3D3D11AF28DFD00E5E657 /* HNItemAbstract.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D3D01AF28DFD00E5E657 /* HNItemAbstract.m */; };
+		8ED3D3D51AF28F1700E5E657 /* HNItemStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D3D41AF28F1700E5E657 /* HNItemStory.m */; };
+		8ED3D3D81AF28F5600E5E657 /* HNItemComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D3D71AF28F5600E5E657 /* HNItemComment.m */; };
 		8ED435021AE999FB00A99D9F /* HNComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED435011AE999FB00A99D9F /* HNComment.m */; };
 		8ED804BA1AE6B26C00BE4AB0 /* ProximaNova-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8ED804A91AE6B26C00BE4AB0 /* ProximaNova-Black.otf */; };
 		8ED804BB1AE6B26C00BE4AB0 /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8ED804AA1AE6B26C00BE4AB0 /* ProximaNova-Bold.otf */; };
@@ -124,6 +127,12 @@
 		8E87C4411AE3424800CD004E /* NSString+RemoveTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RemoveTag.m"; sourceTree = "<group>"; };
 		8EA8736B1AD85A3C009C01F8 /* HNItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNItem.h; sourceTree = "<group>"; };
 		8EA8736C1AD85A3C009C01F8 /* HNItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNItem.m; sourceTree = "<group>"; };
+		8ED3D3CF1AF28DFD00E5E657 /* HNItemAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNItemAbstract.h; sourceTree = "<group>"; };
+		8ED3D3D01AF28DFD00E5E657 /* HNItemAbstract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNItemAbstract.m; sourceTree = "<group>"; };
+		8ED3D3D31AF28F1700E5E657 /* HNItemStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNItemStory.h; sourceTree = "<group>"; };
+		8ED3D3D41AF28F1700E5E657 /* HNItemStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNItemStory.m; sourceTree = "<group>"; };
+		8ED3D3D61AF28F5600E5E657 /* HNItemComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNItemComment.h; sourceTree = "<group>"; };
+		8ED3D3D71AF28F5600E5E657 /* HNItemComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNItemComment.m; sourceTree = "<group>"; };
 		8ED435001AE999FB00A99D9F /* HNComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNComment.h; sourceTree = "<group>"; };
 		8ED435011AE999FB00A99D9F /* HNComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNComment.m; sourceTree = "<group>"; };
 		8ED804A91AE6B26C00BE4AB0 /* ProximaNova-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Black.otf"; sourceTree = "<group>"; };
@@ -213,13 +222,13 @@
 		8E23523C1ACC571F0009552D /* HackerNews */ = {
 			isa = PBXGroup;
 			children = (
+				8E2352681ACC5C480009552D /* Model */,
 				8ED804A71AE6B22E00BE4AB0 /* Assets */,
 				8E2352411ACC571F0009552D /* AppDelegate.h */,
 				8E2352421ACC571F0009552D /* AppDelegate.m */,
 				8E87C46F1AE466CC00CD004E /* Shared */,
 				8E87C46E1AE466BE00CD004E /* Utilities */,
 				8E2352AE1ACDC2380009552D /* Networking */,
-				8E2352681ACC5C480009552D /* Model */,
 				8E395EDF1AD1976800EE0DB9 /* Comments */,
 				8E395ED51AD0731100EE0DB9 /* Browser */,
 				8E2352691ACC5C560009552D /* Feed */,
@@ -279,6 +288,7 @@
 		8E2352681ACC5C480009552D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8ED3D3D21AF28EC000E5E657 /* Regular Objects */,
 				8E5251531AD5D26E00EE080D /* Managed Objects */,
 				8E2352B21ACE102C0009552D /* HNDataManager.h */,
 				8E2352B31ACE102C0009552D /* HNDataManager.m */,
@@ -419,6 +429,19 @@
 				8E87C43A1AE31FFD00CD004E /* HNThinLineButton.m */,
 			);
 			name = Shared;
+			sourceTree = "<group>";
+		};
+		8ED3D3D21AF28EC000E5E657 /* Regular Objects */ = {
+			isa = PBXGroup;
+			children = (
+				8ED3D3CF1AF28DFD00E5E657 /* HNItemAbstract.h */,
+				8ED3D3D01AF28DFD00E5E657 /* HNItemAbstract.m */,
+				8ED3D3D31AF28F1700E5E657 /* HNItemStory.h */,
+				8ED3D3D41AF28F1700E5E657 /* HNItemStory.m */,
+				8ED3D3D61AF28F5600E5E657 /* HNItemComment.h */,
+				8ED3D3D71AF28F5600E5E657 /* HNItemComment.m */,
+			);
+			name = "Regular Objects";
 			sourceTree = "<group>";
 		};
 		8ED804A71AE6B22E00BE4AB0 /* Assets */ = {
@@ -615,6 +638,7 @@
 				8E395EE71AD1A75300EE0DB9 /* HNCommentsViewModel.m in Sources */,
 				8E2352401ACC571F0009552D /* main.m in Sources */,
 				8EA8736D1AD85A3C009C01F8 /* HNItem.m in Sources */,
+				8ED3D3D81AF28F5600E5E657 /* HNItemComment.m in Sources */,
 				8ED804D31AE754AB00BE4AB0 /* HNCommentTableViewHeader.m in Sources */,
 				8E395EEE1AD3386A00EE0DB9 /* HNCommentsCell.m in Sources */,
 				8E2352B11ACDC34F0009552D /* HNNetworkService.m in Sources */,
@@ -626,11 +650,13 @@
 				8ED923F61AEC3B2D00801543 /* HNCommentThread.m in Sources */,
 				8E23526F1ACC69200009552D /* HNFeedCell.m in Sources */,
 				8E395EDD1AD073F700EE0DB9 /* HNBrowserViewModel.m in Sources */,
+				8ED3D3D51AF28F1700E5E657 /* HNItemStory.m in Sources */,
 				8E395ED81AD0732F00EE0DB9 /* HNBrowserViewController.m in Sources */,
 				8E395F291AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld in Sources */,
 				8E2352751ACC73BE0009552D /* UIColor+HNColorPalette.m in Sources */,
 				8E395F2C1AD475B000EE0DB9 /* HNCoreDataStack.m in Sources */,
 				8ED923AB1AEB562300801543 /* HNRepliesCell.m in Sources */,
+				8ED3D3D11AF28DFD00E5E657 /* HNItemAbstract.m in Sources */,
 				8ED804D01AE6D35100BE4AB0 /* UIFont+HNFont.m in Sources */,
 				8E87C43F1AE3421100CD004E /* HNUtilities.m in Sources */,
 				8E52515F1AD5FA3300EE080D /* HNStory.m in Sources */,
