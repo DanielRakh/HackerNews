@@ -55,6 +55,9 @@ static NSString *FireBaseURLPath = @"https://hacker-news.firebaseio.com/v0";
                                    }] map:^id(FDataSnapshot *snap) {
                                        return snap.value;
                                    }];
+    
+#warning Add some error handling up in this bitch. 
+    
 }
 
 - (RACSignal *)childrenForItem:(NSNumber *)itemId {

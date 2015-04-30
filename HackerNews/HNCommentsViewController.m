@@ -106,17 +106,34 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 }
 
 - (void)bindViewModel {
+//    @weakify(self);
+//    [self.viewModel.updatedContentSignal subscribeNext:^(id x) {
+//        @strongify(self);
+//        NSLog(@"RELOAD");
+//        [self.tableView reloadData];
+//    }];
+//    
+//    
+    
+    
+//    self.title = self.viewModel.commentsCount;
+//    self.titleLabel.text = self.viewModel.title;
+//    self.scoreLabel.text = self.viewModel.score;
+//    self.originationLabel.text = self.viewModel.info;
+    
+    
     @weakify(self);
-    [self.viewModel.updatedContentSignal subscribeNext:^(id x) {
+    [RACObserve(self.viewModel, rootComments) subscribeNext:^(id x) {
         @strongify(self);
-        NSLog(@"RELOAD");
         [self.tableView reloadData];
     }];
     
-    self.title = self.viewModel.commentsCount;
-    self.titleLabel.text = self.viewModel.title;
-    self.scoreLabel.text = self.viewModel.score;
-    self.originationLabel.text = self.viewModel.info;
+    RAC(self, title) = RACObserve(self.viewModel, commentsCount);
+    RAC(self.titleLabel, text) = RACObserve(self.viewModel, title);
+    RAC(self.scoreLabel, text) = RACObserve(self.viewModel, score);
+    RAC(self.originationLabel, text) = RACObserve(self.viewModel, info);
+
+
 }
 
 - (IBAction)backButtonDidTap:(id)sender {
@@ -124,10 +141,6 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 }
 
 #pragma mark - UITableViewDataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.viewModel numberOfSections];
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.viewModel numberOfItemsInSection:section];
@@ -137,7 +150,7 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     
     NSLog(@"CELL");
     HNCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
-    [cell configureWithViewModel:[self.viewModel commentsCellViewModelForIndexPath:indexPath]];
+//    [cell configureWithViewModel:[self.viewModel commentsCellViewModelForIndexPath:indexPath]];
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
     

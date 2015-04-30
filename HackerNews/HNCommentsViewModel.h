@@ -8,21 +8,23 @@
 
 #import "ReactiveViewModel.h"
 
-@class HNCommentsCellViewModel, HNStory;
+@class HNCommentsCellViewModel, HNItemStory;
 
 @interface HNCommentsViewModel : RVMViewModel
 
-@property (nonatomic, readonly) RACSignal *updatedContentSignal;
 
+// This an array of the head comments(which are actually just shells for a table view of replies)
+@property (nonatomic, readonly) NSArray *rootComments;
+
+// These are binded to the Header on the Table
 @property (nonatomic, readonly) NSString *score;
 @property (nonatomic, readonly) NSString *title;
 @property (nonatomic, readonly) NSString *commentsCount;
 @property (nonatomic, readonly) NSString *info;
 
 
-- (instancetype)initWithStory:(HNStory *)story;
+- (instancetype)initWithStory:(HNItemStory *)story;
 
--(NSInteger)numberOfSections;
 -(NSInteger)numberOfItemsInSection:(NSInteger)section;
 
 - (HNCommentsCellViewModel *)commentsCellViewModelForIndexPath:(NSIndexPath *)indexPath;

@@ -11,17 +11,14 @@
 //View Model
 #import "HNFeedViewModel.h"
 #import "HNFeedCellViewModel.h"
-#import "HNBrowserViewModel.h"
 
 //Model
-#import "HNDataManager.h"
+#import "HNItemDataManager.h"
 
 
-@interface HNFeedViewModel () <NSFetchedResultsControllerDelegate>
+@interface HNFeedViewModel ()
 
-@property (weak, nonatomic) HNDataManager *dataManager;
-@property (nonatomic, readwrite) RACSignal *updatedContentSignal;
-@property (nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, readwrite) NSArray *topStories;
 
 @end
 
@@ -30,11 +27,7 @@
 -(instancetype)init {
     self = [super init];
     if (self) {
-        
-        _dataManager = [HNDataManager sharedManager];
-        
-        self.updatedContentSignal = [[RACSubject subject] setNameWithFormat:@"HNFeedViewModel updatedContentSignal"];
-        
+
         @weakify(self)
         [self.didBecomeActiveSignal subscribeNext:^(id x) {
             @strongify(self);
@@ -46,20 +39,8 @@
 }
 
 - (void)requestTopPosts {
-    [[self.dataManager topStoriesWithCount:30] subscribeNext:^(id x) {
-        [self.fetchedResultsController performFetch:nil];
-    } completed:^{
-        NSLog(@"Top stories count singal completed");
-    }];
-     
-     
-//     subscribeCompleted:^{
-////#warning Make sure to uncomment this after done testing
-//        NSLog(@"Top stories count singal completed");
-//        [self.fetchedResultsController performFetch:nil];
-//    }];
-
-
+    
+    RAC(self, topStories) = [[[HNItemDataManager sharedManager]topStories:30]collect];
 }
 
 - (HNFeedCellViewModel *)feedCellViewModelForIndexPath:(NSIndexPath *)indexPath {
@@ -67,68 +48,25 @@
     return viewModel;
 }
 
-- (HNBrowserViewModel *)browserViewModelForIndexPath:(NSIndexPath *)indexPath {
-//    HNPost *selectedPost =  self.dataManager.posts[indexPath.row];
-//    return [[HNBrowserViewModel alloc]initWithPost:selectedPost];
-    return nil;
-}
+//- (HNBrowserViewModel *)browserViewModelForIndexPath:(NSIndexPath *)indexPath {
+////    HNPost *selectedPost =  self.dataManager.posts[indexPath.row];
+////    return [[HNBrowserViewModel alloc]initWithPost:selectedPost];
+//    return nil;
+//}
 
 #pragma mark - Public Methods
 
--(NSInteger)numberOfSections {
-    return [[self.fetchedResultsController sections] count];
-}
 
 -(NSInteger)numberOfItemsInSection:(NSInteger)section {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-    return [sectionInfo numberOfObjects];
+    return self.topStories.count;
 }
 
 #pragma mark - Private Methods
 
-- (HNStory *)storyForIndexPath:(NSIndexPath *)indexPath {
-    return [self.fetchedResultsController objectAtIndexPath:indexPath];
+- (HNItemStory *)storyForIndexPath:(NSIndexPath *)indexPath {
+    
+    return self.topStories[indexPath.row];
 }
-
-#pragma mark - Fetched Results Controller
-
-- (NSFetchedResultsController *)fetchedResultsController {
-    
-    if (_fetchedResultsController != nil) {
-        return _fetchedResultsController;
-    }
-    
-    NSFetchRequest *fetchRequest = [NSFetchRequest new];
-    fetchRequest.entity = [NSEntityDescription entityForName:@"HNStory" inManagedObjectContext:self.dataManager.coreDataStack.managedObjectContext];
-    fetchRequest.fetchBatchSize = 30;
-    
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"rank_" ascending:YES];
-    fetchRequest.sortDescriptors = @[sortDescriptor];
-    
-    NSFetchedResultsController *aFRC = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequest managedObjectContext:self.dataManager.coreDataStack.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-    aFRC.delegate = self;
-    self.fetchedResultsController = aFRC;
-    
-    NSError *error = nil;
-    if (![self.fetchedResultsController performFetch:&error]) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-    
-    return _fetchedResultsController;
-}
-
-
-#pragma mark - Fetched
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    
-    [(RACSubject *)self.updatedContentSignal sendNext:nil];
-}
-
-
 
 
 

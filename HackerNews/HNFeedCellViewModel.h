@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class HNStory;
+@class HNItemStory;
 @class HNCommentsViewModel;
 
 @interface HNFeedCellViewModel : NSObject
@@ -18,7 +18,7 @@
 @property (nonatomic, readonly) NSString *commentsCount;
 @property (nonatomic, readonly) NSString *info;
 
-- (instancetype)initWithStory:(HNStory *)story;
+- (instancetype)initWithStory:(HNItemStory *)story;
 
 - (HNCommentsViewModel *)commentsViewModel;
 

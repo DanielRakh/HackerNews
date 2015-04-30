@@ -14,25 +14,25 @@
 #import "HNFeedCellViewModel.h"
 
 // Model
-#import "HNStory.h"
+#import "HNItemStory.h"
 
 @interface HNFeedCellViewModel ()
 
-@property (nonatomic, readwrite) HNStory *story;
+@property (nonatomic, readwrite) HNItemStory *story;
 
 @end
 
 @implementation HNFeedCellViewModel
 
-- (instancetype)initWithStory:(HNStory *)story {
+- (instancetype)initWithStory:(HNItemStory *)story {
     self = [super init];
     if (self) {
         
         _story = story;
-        _score = [NSString stringWithFormat:@"%@ Points", story.score_.stringValue];
-        _title = [HNUtilities proximaNovaStyleStringForTitle:story.title_ withURL:story.url_];
-        _commentsCount = [HNUtilities stringForCommentsCount:story.descendants_];
-        _info = [NSString stringWithFormat: @"by %@ | %@", story.by_, [HNUtilities timeAgoFromTimestamp:story.time_]];
+        _score = [NSString stringWithFormat:@"%@ Points", story.score.stringValue];
+        _title = [HNUtilities proximaNovaStyleStringForTitle:story.title withURL:story.url];
+        _commentsCount = [HNUtilities stringForCommentsCount:story.descendantsCount];
+        _info = [NSString stringWithFormat: @"by %@ | %@", story.by, [HNUtilities timeAgoFromTimestamp:story.time]];
     }
     
     return self;

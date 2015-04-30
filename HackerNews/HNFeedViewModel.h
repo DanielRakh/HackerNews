@@ -9,18 +9,17 @@
 
 #import "ReactiveViewModel.h"
 
-@class HNFeedCellViewModel, HNBrowserViewModel;
+@class HNFeedCellViewModel;
 
 @interface HNFeedViewModel : RVMViewModel
 
-@property (nonatomic, readonly) RACSignal *updatedContentSignal;
+@property (nonatomic, readonly) NSArray *topStories;
 
 
--(NSInteger)numberOfSections;
 -(NSInteger)numberOfItemsInSection:(NSInteger)section;
 
-
 - (HNFeedCellViewModel *)feedCellViewModelForIndexPath:(NSIndexPath *)indexPath;
-- (HNBrowserViewModel *)browserViewModelForIndexPath:(NSIndexPath *)indexPath;
+
+//- (HNBrowserViewModel *)browserViewModelForIndexPath:(NSIndexPath *)indexPath;
 
 @end

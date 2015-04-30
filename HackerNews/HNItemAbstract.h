@@ -11,7 +11,7 @@
 @interface HNItemAbstract : NSObject
 
 @property (nonatomic) NSNumber * idNum;
-@property (nonatomic) NSNumber *rank;
+@property (nonatomic) NSNumber * rank;
 @property (nonatomic) NSString * by;
 @property (nonatomic) NSNumber * dead;
 @property (nonatomic) NSNumber * deleted;

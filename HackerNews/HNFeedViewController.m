@@ -23,7 +23,6 @@
 
 NSString *const kFeedCellIdentifier = @"FeedCell";
 
-
 @interface HNFeedViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet HNTableView *tableView;
@@ -42,15 +41,13 @@ NSString *const kFeedCellIdentifier = @"FeedCell";
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    self.viewModel.active = NO;
     self.title = @"Back";
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationItem.backBarButtonItem setTitle:@"SSS"];
-    
-//    = [[UIBarButtonItem alloc]initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:nil];
-    
+        
     self.view.backgroundColor = [UIColor HNOffWhite];
     [self initalizeTableView];
     [self bindViewModel];
@@ -67,17 +64,13 @@ NSString *const kFeedCellIdentifier = @"FeedCell";
 - (void)bindViewModel {
     
     @weakify(self);
-    [self.viewModel.updatedContentSignal subscribeNext:^(id x) {
+    [RACObserve(self.viewModel, topStories) subscribeNext:^(id x) {
         @strongify(self);
         [self.tableView reloadData];
     }];
 }
 
 #pragma mark - UITableViewDataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.viewModel numberOfSections];
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.viewModel numberOfItemsInSection:section];
@@ -102,11 +95,11 @@ NSString *const kFeedCellIdentifier = @"FeedCell";
 }
 
 #pragma mark - Navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"presentBrowser"]) {
-        HNBrowserViewModel *viewModel = [self.viewModel browserViewModelForIndexPath:self.tableView.indexPathForSelectedRow];
-        ((HNBrowserViewController *)segue.destinationViewController).viewModel = viewModel;
-    }
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    if ([segue.identifier isEqualToString:@"presentBrowser"]) {
+//        HNBrowserViewModel *viewModel = [self.viewModel browserViewModelForIndexPath:self.tableView.indexPathForSelectedRow];
+//        ((HNBrowserViewController *)segue.destinationViewController).viewModel = viewModel;
+//    }
+//}
 
 @end

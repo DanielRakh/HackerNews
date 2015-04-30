@@ -14,40 +14,29 @@
 #import "HNCommentsCellViewModel.h"
 
 // Model
-#import "HNDataManager.h"
-#import "HNComment.h"
-#import "HNStory.h"
+#import "HNItemDataManager.h"
+#import "HNItemStory.h"
+#import "HNItemComment.h"
 
-@interface HNCommentsViewModel () <NSFetchedResultsControllerDelegate>
+@interface HNCommentsViewModel ()
 
-@property (weak, nonatomic) HNDataManager *dataManager;
-@property (nonatomic) HNStory *story;
-@property (nonatomic, readwrite) RACSignal *updatedContentSignal;
-@property (nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, readwrite) NSArray *rootComments;
 
 @end
 
 
 @implementation HNCommentsViewModel
 
--(instancetype)initWithStory:(HNStory *)story {
+-(instancetype)initWithStory:(HNItemStory *)story {
     self = [super init];
     if (self) {
         
-        _story = story;
-        _score = [NSString stringWithFormat:@"%@ Points", story.score_];
-        _title = story.title_;
-        _commentsCount = [HNUtilities stringForCommentsCount:story.descendants_];
-        _info = [NSString stringWithFormat: @"by %@ | %@", story.by_, [HNUtilities timeAgoFromTimestamp:story.time_]];
-        
-        _dataManager = [HNDataManager sharedManager];
-        
-        self.updatedContentSignal = [[RACSubject subject] setNameWithFormat:@"HNCommentsViewModel updatedContentSignal"];
+        [self initalizeHeaderDataForStory:story];
         
         @weakify(self)
         [self.didBecomeActiveSignal subscribeNext:^(id x) {
             @strongify(self);
-            [self requestTopCommentsForItem:(HNItem *)story];
+            [self requestTopCommentsForItem:story];
         }];
     }
     
@@ -55,10 +44,17 @@
 }
 
 
-- (void)requestTopCommentsForItem:(HNItem *)item {
-    [[self.dataManager commentsForItem:item] subscribeNext:^(id x) {
-        [self.fetchedResultsController performFetch:nil];
-    }];
+- (void)initalizeHeaderDataForStory:(HNItemStory *)story {
+    _score = [NSString stringWithFormat:@"%@ Points", story.score];
+    _title = story.title;
+    _commentsCount = [HNUtilities stringForCommentsCount:story.descendantsCount];
+    _info = [NSString stringWithFormat: @"by %@ | %@", story.by, [HNUtilities timeAgoFromTimestamp:story.time]];
+}
+
+
+- (void)requestTopCommentsForItem:(HNItemStory *)item {
+    
+    RAC(self, rootComments) = [[[HNItemDataManager sharedManager] rootCommentsForStory:item]collect];
 }
 
 - (HNCommentsCellViewModel *)commentsCellViewModelForIndexPath:(NSIndexPath *)indexPath {
@@ -69,58 +65,14 @@
 
 #pragma mark - Public Methods
 
--(NSInteger)numberOfSections {
-    return [[self.fetchedResultsController sections] count];
-}
-
 -(NSInteger)numberOfItemsInSection:(NSInteger)section {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-    return [sectionInfo numberOfObjects];
+    return self.rootComments.count;
 }
 
-#pragma mark - Private Methods
 
-- (HNComment *)commentForIndexPath:(NSIndexPath *)indexPath {
-    return [self.fetchedResultsController objectAtIndexPath:indexPath];
-}
-
-#pragma mark - Fetched Results Controller
-
-- (NSFetchedResultsController *)fetchedResultsController {
+- (HNItemComment *)commentForIndexPath:(NSIndexPath *)indexPath {
     
-    if (_fetchedResultsController != nil) {
-        return _fetchedResultsController;
-    }
-    
-    NSFetchRequest *fetchRequest = [NSFetchRequest new];
-    fetchRequest.entity = [NSEntityDescription entityForName:@"HNComment" inManagedObjectContext:self.dataManager.coreDataStack.managedObjectContext];
-    
-    NSPredicate *commentsPredicate =[NSPredicate predicateWithFormat:@"%K == %@", @"parent_", self.story.id_];
-    fetchRequest.predicate = commentsPredicate;
-    
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"by_" ascending:YES];
-    fetchRequest.sortDescriptors = @[sortDescriptor];
-    
-    NSFetchedResultsController *aFRC = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequest managedObjectContext:self.dataManager.coreDataStack.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-    aFRC.delegate = self;
-    self.fetchedResultsController = aFRC;
-    
-    NSError *error = nil;
-    if (![self.fetchedResultsController performFetch:&error]) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-    
-    return _fetchedResultsController;
-}
-
-#pragma mark - Fetched
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    
-    [(RACSubject *)self.updatedContentSignal sendNext:nil];
+    return self.rootComments[indexPath.row];
 }
 
 

@@ -9,11 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
+@class HNItemStory;
+
 @interface HNItemDataManager : NSObject
 
 + (instancetype)sharedManager;
 
+- (RACSignal *)topStories:(NSUInteger)count;
+- (RACSignal *)rootCommentsForStory:(HNItemStory *)story;
 
-- (RACSignal *)topStoriesArray:(NSUInteger)count;
 
 @end
