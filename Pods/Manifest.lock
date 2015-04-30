@@ -5,6 +5,7 @@ PODS:
     - Firebase (~> 2.0)
     - ReactiveCocoa (~> 2.3)
   - PureLayout (2.0.5)
+  - RATreeView (1.0.1)
   - Reachability (3.2)
   - ReactiveCocoa (2.4.7):
     - ReactiveCocoa/UI (= 2.4.7)
@@ -23,6 +24,7 @@ DEPENDENCIES:
   - Firebase (>= 2.2.0)
   - Firebase-RACExtensions
   - PureLayout
+  - RATreeView
   - Reachability (>= 3.2)
   - ReactiveCocoa
   - ReactiveCoreData (>= 0.0)
@@ -33,6 +35,7 @@ SPEC CHECKSUMS:
   Firebase: a3d54b42f090ca275b22dcdf103b8ab6ac6f353c
   Firebase-RACExtensions: 6ae340c67e7ec7e845e6603f8223770586278fe6
   PureLayout: a0fe75f1cf485801e7e00b723b8a3c32dca558e2
+  RATreeView: 84be5d5ddc34d4874f707c02de8b70fed18bb834
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   ReactiveCocoa: eb38dee0a0e698f73a9b25e5c1faea2bb4c79240
   ReactiveCoreData: 1ca5406c2d2fdab8a40ba939f59c41eda9f469a3

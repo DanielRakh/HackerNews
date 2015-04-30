@@ -14,13 +14,8 @@
 
 @interface HNCommentsCellViewModel : RVMViewModel
 
-@property (nonatomic, readonly) NSAttributedString *origination;
-@property (nonatomic, readonly) NSAttributedString *text;
-@property (nonatomic, readonly) NSString *repliesCount;
 
-@property (nonatomic) RACCommand *repliesButtonCommand;
-
-@property (nonatomic, readonly) RACSignal *updatedContentSignal;
+//@property (nonatomic, readonly) RACSignal *updatedContentSignal;
 
 
 - (instancetype)initWithComment:(HNComment *)comment;

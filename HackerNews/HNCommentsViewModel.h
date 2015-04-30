@@ -22,7 +22,6 @@
 @property (nonatomic, readonly) NSString *commentsCount;
 @property (nonatomic, readonly) NSString *info;
 
-
 - (instancetype)initWithStory:(HNItemStory *)story;
 
 -(NSInteger)numberOfItemsInSection:(NSInteger)section;

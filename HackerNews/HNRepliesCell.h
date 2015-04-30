@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class HNRepliesCellViewModel;
+
 @interface HNRepliesCell : UITableViewCell
 
-@property (nonatomic) UITextView *commentTextView;
-//@property 
+- (void)configureWithViewModel:(HNRepliesCellViewModel *)viewModel;
 
 @end

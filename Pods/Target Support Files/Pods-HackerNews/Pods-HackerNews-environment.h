@@ -30,6 +30,12 @@
 #define COCOAPODS_VERSION_MINOR_PureLayout 0
 #define COCOAPODS_VERSION_PATCH_PureLayout 5
 
+// RATreeView
+#define COCOAPODS_POD_AVAILABLE_RATreeView
+#define COCOAPODS_VERSION_MAJOR_RATreeView 1
+#define COCOAPODS_VERSION_MINOR_RATreeView 0
+#define COCOAPODS_VERSION_PATCH_RATreeView 1
+
 // Reachability
 #define COCOAPODS_POD_AVAILABLE_Reachability
 #define COCOAPODS_VERSION_MAJOR_Reachability 3

@@ -14,32 +14,33 @@
 //View
 #import "HNCommentsCell.h"
 #import "HNThinLineButton.h"
+#import "RATreeView.h"
+#import "HNRepliesCell.h"
 
 //View Model
 #import "HNCommentsCellViewModel.h"
+#import "HNCommentThread.h"
+
 
 
 CGFloat const kCommentsVerticalInset = 10;
 CGFloat const kCommentsHorizontalInset = 8;
 
 
-@interface HNCommentsCell () <UITableViewDataSource, UITableViewDelegate>
+@interface HNCommentsCell () <RATreeViewDataSource, RATreeViewDelegate>
 
 @property (nonatomic, assign) BOOL didSetupConstraints;
 
 @property (nonatomic) UIView *cardView;
-@property (nonatomic) UILabel *originationLabel;
-@property (nonatomic) HNThinLineButton *repliesButton;
-@property (nonatomic) UITextView *commentTextView;
 
 @property (nonatomic) HNCommentsCellViewModel *viewModel;
 
-@property (nonatomic) UITableView *tableView;
+@property (nonatomic) RATreeView *treeView;
 
-
-
+@property (nonatomic) NSArray *replies;
 
 @end
+
 
 @implementation HNCommentsCell
 
@@ -66,11 +67,12 @@ CGFloat const kCommentsHorizontalInset = 8;
     NSLog(@"CONFIGURE VIEW MODEL");
     self.viewModel = viewModel;
     self.viewModel.active = YES;
-    self.originationLabel.attributedText = viewModel.origination;
-    self.commentTextView.attributedText = viewModel.text;
-    [self.repliesButton setTitle:viewModel.repliesCount forState:UIControlStateNormal];
+//    self.originationLabel.attributedText = viewModel.origination;
+//    self.commentTextView.attributedText = viewModel.text;
+//    [self.repliesButton setTitle:viewModel.repliesCount forState:UIControlStateNormal];
     
-    self.repliesButton.rac_command = self.viewModel.repliesButtonCommand;
+    
+    
 }
 
 
@@ -101,57 +103,16 @@ CGFloat const kCommentsHorizontalInset = 8;
     [self.contentView addSubview:self.cardView];
 
     
+    self.treeView = [[RATreeView alloc]initForAutoLayout];
+    self.treeView.delegate = self;
+    self.treeView.dataSource = self;
+    self.treeView.backgroundColor = [UIColor clearColor];
+    self.treeView.separatorColor = RATreeViewCellSeparatorStyleNone;
+    [self.treeView registerClass:[HNRepliesCell class] forCellReuseIdentifier:@"Cell"];
     
-    // Set up Origination Label
-    self.originationLabel = [UILabel newAutoLayoutView];
-    self.originationLabel.numberOfLines = 1;
-    self.originationLabel.textColor = [UIColor lightGrayColor];
-    self.originationLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-    self.originationLabel.font = [UIFont proximaNovaWithWeight:TypeWeightSemibold size:12.0];
+    [self.cardView addSubview:self.treeView];
     
-    [self.cardView addSubview:self.originationLabel];
 
-    
-    self.commentTextView = [UITextView newAutoLayoutView];
-    self.commentTextView.editable = NO;
-    self.commentTextView.linkTextAttributes = @{NSForegroundColorAttributeName : [UIColor HNOrange]};
-    self.commentTextView.scrollEnabled = NO;
-    self.commentTextView.selectable = YES;
-    self.commentTextView.dataDetectorTypes = UIDataDetectorTypeLink;
-    self.commentTextView.scrollEnabled = NO;
-    self.commentTextView.textContainer.lineFragmentPadding = 0;
-    self.commentTextView.textContainerInset = UIEdgeInsetsZero;
-    
-    [self.cardView addSubview:self.commentTextView];
-    
-    
-    //Set up Comments Button
-    self.repliesButton = [HNThinLineButton newAutoLayoutView];
-    self.repliesButton.titleLabel.font = [UIFont proximaNovaWithWeight:TypeWeightRegular size:12.0];
-    [self.repliesButton addTarget:self action:@selector(repliesButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
-    [self.cardView addSubview:self.repliesButton];
-
-    
-    
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
-    self.tableView.backgroundColor = [UIColor greenColor];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.rowHeight = 50;
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
-    [self.cardView addSubview:self.tableView];
-    
-    /*
-    // Set up Score Label
-    self.scoreLabel = [UILabel newAutoLayoutView];
-    self.scoreLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-    self.scoreLabel.numberOfLines = 1;
-    self.scoreLabel.text = NSTextAlignmentLeft;
-    self.scoreLabel.textColor = [UIColor HNOrange];
-    self.scoreLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:10.0];
-    
-    [self.cardView addSubview:self.scoreLabel];
-    */
 }
 
 -(void)updateConstraints {
@@ -166,28 +127,13 @@ CGFloat const kCommentsHorizontalInset = 8;
             [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
         }];
         
-        // Origination Label Constraints
-        [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
-        [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kCommentsVerticalInset];
-    
-        // Comment Text View Constraints
-        [self.commentTextView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.originationLabel withOffset:kCommentsVerticalInset];
-        [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
-        [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
-
-        // Replies Button Constraints
-        [self.repliesButton autoSetDimension:ALDimensionHeight toSize:30.0];
-        [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
-        [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
-//        [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
-        [self.repliesButton autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.commentTextView withOffset:kCommentsVerticalInset relation:NSLayoutRelationEqual];
-    
         
-        [self.tableView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.repliesButton withOffset:kCommentsVerticalInset];
-        [self.tableView autoSetDimension:ALDimensionHeight toSize:(10*50)];
-        [self.tableView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
-        [self.tableView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
-        [self.tableView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
+        [self.treeView autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.cardView withOffset:kCommentsVerticalInset];
+        
+        [self.treeView autoSetDimension:ALDimensionHeight toSize:(10*50)];
+        [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
+        [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
+        [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
     
         self.didSetupConstraints = YES;
     }
@@ -198,53 +144,82 @@ CGFloat const kCommentsHorizontalInset = 8;
 }
 
 
-- (void)repliesButtonDidTap:(id)sender {
-    
-    NSLog(@"Replies did tap!");
-    
-    //1. Fade out Replies Button
-//    [UIView animateWithDuration:0.25
-//                     animations:^{
-//                         self.repliesButton.alpha = 0;
-//                     } completion:^(BOOL finished) {
-//                         /
-//                     }];
-    
-    //2.
-}
-//
-//- (void)layoutSubviews {
-//    [super layoutSubviews];
-//    NSLog(@"CARD VIEW: %@", NSStringFromCGRect(self.cardView.frame));
-//    NSLog(@"%@",NSStringFromCGRect(self.tableView.frame));
-//}
 
+#pragma mark - TreeView Data Source
 
-#pragma mark - Table View Data Soruce
-
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+- (NSInteger)treeView:(RATreeView *)treeView numberOfChildrenOfItem:(HNCommentThread *)item {
+    if (item == nil) {
+        return [self.replies count];
+    }
+    return [item.replies count];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (UITableViewCell *)treeView:(RATreeView *)treeView cellForItem:(HNCommentThread *)item {
+    HNRepliesCell *cell = [treeView dequeueReusableCellWithIdentifier:@"Cell"];
+    cell configureWithViewModel:<#(HNRepliesCellViewModel *)#>
+    return cell; 
+}
+- (id)treeView:(RATreeView *)treeView child:(NSInteger)index ofItem:(HNCommentThread *)item {
     
-    return 10;
+    if (item == nil) {
+        return [self.replies objectAtIndex:index];
+    }
+    
+    return item.replies[index];
 }
 
-// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.contentView.backgroundColor = [UIColor redColor];
-//    [cell setNeedsUpdateConstraints];
-//    [cell updateConstraintsIfNeeded];
+/*
+ 
+ - (UITableViewCell *)treeView:(RATreeView *)treeView cellForItem:(id)item
+ {
+ RADataObject *dataObject = item;
+ 
+ NSInteger level = [self.treeView levelForCellForItem:item];
+ NSInteger numberOfChildren = [dataObject.children count];
+ NSString *detailText = [NSString localizedStringWithFormat:@"Number of children %@", [@(numberOfChildren) stringValue]];
+ BOOL expanded = [self.treeView isCellForItemExpanded:item];
+ 
+ RATableViewCell *cell = [self.treeView dequeueReusableCellWithIdentifier:NSStringFromClass([RATableViewCell class])];
+ [cell setupWithTitle:dataObject.name detailText:detailText level:level additionButtonHidden:!expanded];
+ cell.selectionStyle = UITableViewCellSelectionStyleNone;
+ 
+ __weak typeof(self) weakSelf = self;
+ cell.additionButtonTapAction = ^(id sender){
+ if (![weakSelf.treeView isCellForItemExpanded:dataObject] || weakSelf.treeView.isEditing) {
+ return;
+ }
+ RADataObject *newDataObject = [[RADataObject alloc] initWithName:@"Added value" children:@[]];
+ [dataObject addChild:newDataObject];
+ [weakSelf.treeView insertItemsAtIndexes:[NSIndexSet indexSetWithIndex:0] inParent:dataObject withAnimation:RATreeViewRowAnimationLeft];
+ [weakSelf.treeView reloadRowsForItems:@[dataObject] withRowAnimation:RATreeViewRowAnimationRight];
+ };
+ 
+ return cell;
+ }
+ 
+ - (NSInteger)treeView:(RATreeView *)treeView numberOfChildrenOfItem:(id)item
+ {
+ if (item == nil) {
+ return [self.data count];
+ }
+ 
+ RADataObject *data = item;
+ return [data.children count];
+ }
+ 
+ - (id)treeView:(RATreeView *)treeView child:(NSInteger)index ofItem:(id)item
+ {
+ RADataObject *data = item;
+ if (item == nil) {
+ return [self.data objectAtIndex:index];
+ }
+ 
+ return data.children[index];
+ }
+ 
+*/
 
-    
-    return cell;
-}
 
 
 @end

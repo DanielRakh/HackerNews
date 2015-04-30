@@ -24,7 +24,6 @@
 
 @end
 
-
 @implementation HNCommentsViewModel
 
 -(instancetype)initWithStory:(HNItemStory *)story {
@@ -45,10 +44,12 @@
 
 
 - (void)initalizeHeaderDataForStory:(HNItemStory *)story {
+    
     _score = [NSString stringWithFormat:@"%@ Points", story.score];
     _title = story.title;
     _commentsCount = [HNUtilities stringForCommentsCount:story.descendantsCount];
     _info = [NSString stringWithFormat: @"by %@ | %@", story.by, [HNUtilities timeAgoFromTimestamp:story.time]];
+    
 }
 
 
@@ -58,10 +59,10 @@
 }
 
 - (HNCommentsCellViewModel *)commentsCellViewModelForIndexPath:(NSIndexPath *)indexPath {
+    
     HNCommentsCellViewModel *viewModel = [[HNCommentsCellViewModel alloc]initWithComment:[self commentForIndexPath:indexPath]];
     return viewModel;
 }
-
 
 #pragma mark - Public Methods
 
@@ -69,9 +70,8 @@
     return self.rootComments.count;
 }
 
-
 - (HNItemComment *)commentForIndexPath:(NSIndexPath *)indexPath {
-    
+
     return self.rootComments[indexPath.row];
 }
 
