@@ -10,4 +10,12 @@
 
 @implementation HNItemComment
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        _replies = [NSMutableArray array];
+    }
+    return self;
+}
+
 @end

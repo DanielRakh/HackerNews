@@ -7,18 +7,18 @@
 //
 
 #import "HNCommentThread.h"
-#import "HNComment.h"
+#import "HNItemComment.h"
 
 @interface HNCommentThread ()
 
-@property (nonatomic, readwrite) HNComment *headComment;
+@property (nonatomic, readwrite) HNItemComment *headComment;
 @property (nonatomic, readwrite) NSArray *replies;
 
 @end
 
 @implementation HNCommentThread
 
-- (instancetype)initWithHeadComment:(HNComment *)headComment replies:(NSArray *)replies {
+- (instancetype)initWithHeadComment:(HNItemComment *)headComment replies:(NSArray *)replies {
     self = [super init];
     if (self) {
         _headComment = headComment;
@@ -28,7 +28,7 @@
     return self;
 }
 
-+ (HNCommentThread *)threadWithTopComment:(HNComment *)headComment replies:(NSArray *)replies {
++ (HNCommentThread *)threadWithTopComment:(HNItemComment *)headComment replies:(NSArray *)replies {
     
     return [[self alloc]initWithHeadComment:headComment replies:replies];
 }

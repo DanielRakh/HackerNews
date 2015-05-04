@@ -64,8 +64,9 @@ static NSString *FireBaseURLPath = @"https://hacker-news.firebaseio.com/v0";
     
     Firebase *commentsRef = [self.fireBaseRef childByAppendingPath:[NSString stringWithFormat:@"item/%@/kids", itemId]];
     
-    return [[[commentsRef rac_valueSignal] flattenMap:^RACStream *(FDataSnapshot *value) {
-        return [value.children.allObjects.rac_sequence.signal
+    return [[[commentsRef rac_valueSignal]
+             flattenMap:^RACStream *(FDataSnapshot *value) {
+                 return [value.children.allObjects.rac_sequence.signal
                               flattenMap:^RACStream *(FDataSnapshot *item) {
                                   
                                   return [[self.fireBaseRef childByAppendingPath:[NSString stringWithFormat:@"item/%@", item.value]] rac_valueSignal];

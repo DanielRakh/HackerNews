@@ -8,16 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@class HNComment;
+@class HNItemComment;
 
 @interface HNCommentThread : NSObject
 
-@property (nonatomic, readonly) HNComment *headComment;
+@property (nonatomic, readonly) HNItemComment *headComment;
 @property (nonatomic, readonly) NSArray *replies;
 
-+ (HNCommentThread *)threadWithTopComment:(HNComment *)topComment replies:(NSArray *)replies;
++ (HNCommentThread *)threadWithTopComment:(HNItemComment *)topComment replies:(NSArray *)replies;
 
-- (instancetype)initWithHeadComment:(HNComment *)headComment replies:(NSArray *)replies;
+- (instancetype)initWithHeadComment:(HNItemComment *)headComment replies:(NSArray *)replies;
 
 - (void)addReply:(HNCommentThread *)reply;
 

@@ -37,7 +37,6 @@ CGFloat const kCommentsHorizontalInset = 8;
 
 @property (nonatomic) RATreeView *treeView;
 
-@property (nonatomic) NSArray *replies;
 
 @end
 
@@ -67,6 +66,14 @@ CGFloat const kCommentsHorizontalInset = 8;
     NSLog(@"CONFIGURE VIEW MODEL");
     self.viewModel = viewModel;
     self.viewModel.active = YES;
+    
+    @weakify(self);
+    [RACObserve(self.viewModel, commentThreads) subscribeNext:^(id x) {
+        @strongify(self);
+        [self.treeView reloadData];
+    }];
+    
+    
 //    self.originationLabel.attributedText = viewModel.origination;
 //    self.commentTextView.attributedText = viewModel.text;
 //    [self.repliesButton setTitle:viewModel.repliesCount forState:UIControlStateNormal];
@@ -149,20 +156,22 @@ CGFloat const kCommentsHorizontalInset = 8;
 
 - (NSInteger)treeView:(RATreeView *)treeView numberOfChildrenOfItem:(HNCommentThread *)item {
     if (item == nil) {
-        return [self.replies count];
+        return [self.viewModel.commentThreads count];
     }
     return [item.replies count];
 }
 
 - (UITableViewCell *)treeView:(RATreeView *)treeView cellForItem:(HNCommentThread *)item {
     HNRepliesCell *cell = [treeView dequeueReusableCellWithIdentifier:@"Cell"];
-    cell configureWithViewModel:<#(HNRepliesCellViewModel *)#>
-    return cell; 
+    [cell configureWithViewModel:[self.viewModel repliesViewModelForRootComment:item.headComment]];
+     
+     return cell;
 }
+
 - (id)treeView:(RATreeView *)treeView child:(NSInteger)index ofItem:(HNCommentThread *)item {
     
     if (item == nil) {
-        return [self.replies objectAtIndex:index];
+        return [self.viewModel.commentThreads objectAtIndex:index];
     }
     
     return item.replies[index];

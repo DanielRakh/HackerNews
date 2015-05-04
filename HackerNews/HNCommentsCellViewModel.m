@@ -8,10 +8,13 @@
 
 #import "HNCommentsCellViewModel.h"
 #import "HNCommentThread.h"
+#import "HNRepliesCellViewModel.h"
 
 @interface HNCommentsCellViewModel ()
 
-@property (nonatomic) HNComment *comment;
+@property (nonatomic) HNItemComment *comment;
+@property (nonatomic, readwrite) NSArray *commentThreads;
+
 
 
 //@property (nonatomic, readwrite) RACSignal *updatedContentSignal;
@@ -24,26 +27,26 @@
 @implementation HNCommentsCellViewModel
 
 
-- (instancetype)initWithComment:(HNComment *)comment {
+- (instancetype)initWithComment:(HNItemComment *)comment {
     self = [super init];
     if (self) {
 
         _comment = comment;
         
-//        @weakify(self)
-//        [self.didBecomeActiveSignal subscribeNext:^(id x) {
-//            @strongify(self);
-//            [[_dataManager saveThreadForComment:_comment.id_] subscribeCompleted:^{
-////                NSLog(@"COMPLETED");
-//                _dataArray = [self threadForHeadComment:_comment];
-//            }];
-//    
-//            //
-//        }];
+        @weakify(self)
+        [self.didBecomeActiveSignal subscribeNext:^(id x) {
+            @strongify(self);
+//            RAC(self, commentThreads) = 
+        }];
         
     }
     
     return self;
+}
+
+- (HNRepliesCellViewModel *)repliesViewModelForRootComment:(HNItemComment *)rootComment {
+    HNRepliesCellViewModel *viewModel = [[HNRepliesCellViewModel alloc]initWithReply:rootComment];
+    return viewModel;
 }
 
 

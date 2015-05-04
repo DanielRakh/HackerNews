@@ -30,7 +30,7 @@
         _reply = reply;
         _origination = [HNUtilities originationLabelForAuthor:reply.by time:reply.time];
         _text = [HNUtilities proximaNovaStyledCommentStringForHTML:reply.text];
-        _repliesCount = [NSString stringWithFormat:@"%ld Replies", reply.replies.count];
+        _repliesCount = [NSString stringWithFormat:@"%ld Replies", reply.kids.count];
     }
     
     return self;

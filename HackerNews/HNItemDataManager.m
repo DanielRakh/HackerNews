@@ -10,6 +10,7 @@
 #import "HNNetworkService.h"
 #import "HNItemStory.h"
 #import "HNItemComment.h"
+#import "HNCommentThread.h"
 
 
 @implementation HNItemDataManager
@@ -33,7 +34,7 @@
 }
 
 
-// Return the Top Stories in an [HNItemStory]
+// Return the #<count> stories from front page.
 - (RACSignal *)topStories:(NSUInteger)count {
     
     return [[[HNNetworkService sharedManager]topStoryItemsWithCount:count] map:^id(NSDictionary *dict) {
@@ -55,9 +56,10 @@
 }
 
 
+// Return the Root Comments for a story
 - (RACSignal *)rootCommentsForStory:(HNItemStory *)story {
-    
-    RACSignal *tst = [[[HNNetworkService sharedManager]childrenForItem:story.idNum] map:^id(NSDictionary *dict) {
+
+    return [[[HNNetworkService sharedManager]childrenForItem:story.idNum] map:^id(NSDictionary *dict) {
         
         HNItemComment *comment = [HNItemComment new];
         comment.idNum = dict[@"id"];
@@ -70,11 +72,30 @@
         return comment;
         
     }];
-    
-    return tst;
 }
 
+//
+//- (RACSignal)commentThreadsForRootComment:(HNItemComment *)comment {
+//
+//    RACSignal *tst = [[[HNNetworkService sharedManager]childrenForItem:comment.idNum] toa
 
+//}
+
+
+
+//- (NSMutableArray *)threadForHeadComment:(HNComment *)comment {
+//
+//    NSMutableArray *replyArray = [NSMutableArray array];
+//
+//    for (HNComment *reply in comment.replies) {
+//
+//        HNCommentThread *thread = [HNCommentThread threadWithTopComment:reply
+//                                                               replies:reply.replies.count == 0 ? nil : [self threadForHeadComment:reply]];
+//        [replyArray addObject:thread];
+//    }
+//
+//    return replyArray;
+//}
 
 
 @end
