@@ -58,15 +58,13 @@
 //
 //    
     
-    
-    
-    
-    [[[[self comment:@9442381] flattenMap:^RACStream *(HNItemComment *rootComment) {
-        return [self populateRepliesForRootComment:rootComment];
-    }] logAll] subscribeNext:^(HNCommentThread *x) {
+    [[self threadForRootCommentID:@9442381] subscribeNext:^(HNCommentThread *x) {
         NSLog(@"%@",x);
-    } completed:^{
     }];
+    
+    
+    
+
 
 
     return YES;
@@ -87,9 +85,10 @@
                     }
                 }];
     }] then:^RACSignal *{
-        return [[self threadForComment:comment] flattenMap:^RACStream *(HNCommentThread *thread) {
-            return [self populateThreadForRootThread:thread];
-        }];
+//        return [[self threadForComment:comment] flattenMap:^RACStream *(HNCommentThread *thread) {
+//            return [self populateThreadForRootThread:thread];
+//        }];
+        return [RACSignal return:comment];
     }];
     
 }
@@ -114,10 +113,12 @@
     
 }
 
-- (RACSignal *)threadForRootComment:(HNItemComment *)comment {
-    return [comment.replies.rac_sequence.signal flattenMap:^RACStream *(HNItemComment *reply) {
-        return [[self threadForComment:reply] doNext:^(HNCommentThread *thread) {
-            
+- (RACSignal *)threadForRootCommentID:(NSNumber *)commentID {
+    return [[self comment:commentID] flattenMap:^RACStream *(HNItemComment *rootComment) {
+        return [[self populateRepliesForRootComment:rootComment] flattenMap:^RACStream *(HNItemComment *comment) {
+            return [[self threadForComment:comment] flattenMap:^RACStream *(HNCommentThread *thread) {
+                return [self populateThreadForRootThread:thread];
+            }];
         }];
     }];
 }
