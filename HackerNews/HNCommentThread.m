@@ -35,6 +35,9 @@
 
 - (void)addReply:(HNCommentThread *)reply {
 
+    if (self.replies == nil) {
+        self.replies = [NSArray array];
+    }
     NSMutableArray *mutableCopy = [self.replies mutableCopy];
     [mutableCopy addObject:reply];
     self.replies = [mutableCopy copy];

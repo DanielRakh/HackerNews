@@ -60,22 +60,20 @@
     
     
     
-//    __block HNItemComment *root;
     
-    __block NSMutableArray *threadArray;
     [[[[self comment:@9442381] flattenMap:^RACStream *(HNItemComment *rootComment) {
-        return [self threadForRootComment:rootComment];
-    }] logAll] subscribeNext:^(HNItemComment *x) {
+        return [self populateRepliesForRootComment:rootComment];
+    }] logAll] subscribeNext:^(HNCommentThread *x) {
         NSLog(@"%@",x);
     } completed:^{
-        NSLog(@"%@", threadArray);
     }];
 
 
     return YES;
 }
 
-- (RACSignal *)threadForRootComment:(HNItemComment *)comment {
+
+- (RACSignal *)populateRepliesForRootComment:(HNItemComment *)comment {
     
    return [[comment.kids.rac_sequence.signal flattenMap:^RACStream *(id value) {
         return [[[self comment:value]
@@ -83,16 +81,45 @@
                     [comment.replies addObject:child];
                 }] flattenMap:^RACStream *(HNItemComment *child) {
                     if (child.kids.count > 0) {
-                        return [self threadForRootComment:child];
+                        return [self populateRepliesForRootComment:child];
                     } else {
                         return [RACSignal empty];
                     }
                 }];
     }] then:^RACSignal *{
-        return [RACSignal return:comment];
+        return [[self threadForComment:comment] flattenMap:^RACStream *(HNCommentThread *thread) {
+            return [self populateThreadForRootThread:thread];
+        }];
     }];
     
-//    return [RACSignal return:@5];
+}
+
+
+- (RACSignal *)populateThreadForRootThread:(HNCommentThread *)thread {
+    
+    return [[thread.headComment.replies.rac_sequence.signal flattenMap:^RACStream *(HNItemComment *reply) {
+        return [[[self threadForComment:reply]
+                doNext:^(HNCommentThread *replyThread) {
+                    [thread addReply:replyThread];
+                }] flattenMap:^RACStream *(HNCommentThread *replyThread) {
+                    if (replyThread.headComment.replies.count > 0) {
+                        return [self populateThreadForRootThread:replyThread];
+                    } else {
+                        return [RACSignal empty];
+                    }
+                }];
+    }] then:^RACSignal *{
+        return [RACSignal return:thread];
+    }];
+    
+}
+
+- (RACSignal *)threadForRootComment:(HNItemComment *)comment {
+    return [comment.replies.rac_sequence.signal flattenMap:^RACStream *(HNItemComment *reply) {
+        return [[self threadForComment:reply] doNext:^(HNCommentThread *thread) {
+            
+        }];
+    }];
 }
 
 
@@ -105,6 +132,12 @@
         return comment;
     }];
     
+}
+
+
+- (RACSignal *)threadForComment:(HNItemComment *)comment {
+    HNCommentThread *thread = [HNCommentThread threadWithTopComment:comment replies:nil];
+    return [RACSignal return:thread];
 }
 
 
