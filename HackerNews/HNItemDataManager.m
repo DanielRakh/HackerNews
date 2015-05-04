@@ -34,7 +34,9 @@
 }
 
 
-// Return the #<count> stories from front page.
+#pragma mark -  Public
+#pragma mark -
+
 - (RACSignal *)topStories:(NSUInteger)count {
     
     return [[[HNNetworkService sharedManager]topStoryItemsWithCount:count] map:^id(NSDictionary *dict) {
@@ -55,7 +57,6 @@
     }];
 }
 
-
 // Return the Root Comments for a story
 - (RACSignal *)rootCommentsForStory:(HNItemStory *)story {
 
@@ -74,28 +75,73 @@
     }];
 }
 
-//
-//- (RACSignal)commentThreadsForRootComment:(HNItemComment *)comment {
-//
-//    RACSignal *tst = [[[HNNetworkService sharedManager]childrenForItem:comment.idNum] toa
+// Return an HNCommentThread with children threads fully populated
+- (RACSignal *)threadForRootCommentID:(NSNumber *)commentID {
+    return [[self commentForID:commentID] flattenMap:^RACStream *(HNItemComment *rootComment) {
+        return [[self populateRepliesForRootComment:rootComment] flattenMap:^RACStream *(HNItemComment *comment) {
+            return [[self threadForComment:comment] flattenMap:^RACStream *(HNCommentThread *thread) {
+                return [self populateThreadForRootThread:thread];
+            }];
+        }];
+    }];
+}
 
-//}
 
+#pragma mark - Helpers
+#pragma mark - 
 
+- (RACSignal *)populateRepliesForRootComment:(HNItemComment *)comment {
+    
+    return [[comment.kids.rac_sequence.signal flattenMap:^RACStream *(id value) {
+        return [[[self commentForID:value]
+                 doNext:^(HNItemComment *child) {
+                     [comment.replies addObject:child];
+                 }] flattenMap:^RACStream *(HNItemComment *child) {
+                     if (child.kids.count > 0) {
+                         return [self populateRepliesForRootComment:child];
+                     } else {
+                         return [RACSignal empty];
+                     }
+                 }];
+    }] then:^RACSignal *{
+        return [RACSignal return:comment];
+    }];
+    
+}
 
-//- (NSMutableArray *)threadForHeadComment:(HNComment *)comment {
-//
-//    NSMutableArray *replyArray = [NSMutableArray array];
-//
-//    for (HNComment *reply in comment.replies) {
-//
-//        HNCommentThread *thread = [HNCommentThread threadWithTopComment:reply
-//                                                               replies:reply.replies.count == 0 ? nil : [self threadForHeadComment:reply]];
-//        [replyArray addObject:thread];
-//    }
-//
-//    return replyArray;
-//}
+- (RACSignal *)populateThreadForRootThread:(HNCommentThread *)thread {
+    
+    return [[thread.headComment.replies.rac_sequence.signal flattenMap:^RACStream *(HNItemComment *reply) {
+        return [[[self threadForComment:reply]
+                 doNext:^(HNCommentThread *replyThread) {
+                     [thread addReply:replyThread];
+                 }] flattenMap:^RACStream *(HNCommentThread *replyThread) {
+                     if (replyThread.headComment.replies.count > 0) {
+                         return [self populateThreadForRootThread:replyThread];
+                     } else {
+                         return [RACSignal empty];
+                     }
+                 }];
+    }] then:^RACSignal *{
+        return [RACSignal return:thread];
+    }];
+}
+
+- (RACSignal *)commentForID:(NSNumber *)idNum {
+    
+    return [[[HNNetworkService sharedManager]valueForItem:idNum] map:^id(NSDictionary *dict) {
+        HNItemComment *comment = [HNItemComment new];
+        comment.idNum = dict[@"id"];
+        comment.kids = dict[@"kids"];
+        return comment;
+    }];
+    
+}
+
+- (RACSignal *)threadForComment:(HNItemComment *)comment {
+    HNCommentThread *thread = [HNCommentThread threadWithTopComment:comment replies:nil];
+    return [RACSignal return:thread];
+}
 
 
 @end
