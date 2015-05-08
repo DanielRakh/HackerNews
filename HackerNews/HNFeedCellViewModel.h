@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ReactiveViewModel.h"
 
 @class HNItemStory;
 @class HNCommentsViewModel;
 
-@interface HNFeedCellViewModel : NSObject
+@interface HNFeedCellViewModel : RVMViewModel
 
 @property (nonatomic, readonly) NSString *score;
 @property (nonatomic, readonly) NSAttributedString *title;

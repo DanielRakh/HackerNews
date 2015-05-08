@@ -16,11 +16,13 @@
 
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "HNDataManager.h"
+#import "HNItemDataManager.h"
 #import "HNNetworkService.h"
 #import "HNComment.h"
 #import "HNItemComment.h"
 #import "HNCommentThread.h"
+#import "HNDataManager.h"
+
 
 @interface AppDelegate ()
 
@@ -42,6 +44,11 @@
     [[UINavigationBar appearance] setTintColor:[UIColor HNOrange]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{ NSFontAttributeName : [UIFont proximaNovaWithWeight:TypeWeightSemibold size:18.0], NSForegroundColorAttributeName : [UIColor HNOrange]}];
 
+    
+//    [[[[HNItemDataManager sharedManager] threadForRootCommentID:@9442381] collect] subscribeNext:^(HNCommentThread *y) {
+//        NSLog(@"NEXT:%@",y);
+//    }];
+//    
     
     return YES;
 }

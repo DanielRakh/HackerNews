@@ -40,7 +40,7 @@
 
 - (void)requestTopPosts {
     
-    RAC(self, topStories)  = [[[HNItemDataManager sharedManager]topStories:30]collect];
+    RAC(self, topStories)  = [[[[HNItemDataManager sharedManager]topStories:30]collect] logAll];
 }
 
 - (HNFeedCellViewModel *)feedCellViewModelForIndexPath:(NSIndexPath *)indexPath {

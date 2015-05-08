@@ -37,6 +37,8 @@ CGFloat const kCommentsHorizontalInset = 8;
 
 @property (nonatomic) RATreeView *treeView;
 
+@property (nonatomic) NSLayoutConstraint *treeViewHeightConstraint;
+
 
 @end
 
@@ -68,17 +70,11 @@ CGFloat const kCommentsHorizontalInset = 8;
     self.viewModel.active = YES;
     
     @weakify(self);
-    [RACObserve(self.viewModel, commentThreads) subscribeNext:^(id x) {
+    [[RACObserve(self.viewModel, commentThreads) deliverOnMainThread] subscribeNext:^(id x) {
         @strongify(self);
         [self.treeView reloadData];
     }];
-    
-    
-//    self.originationLabel.attributedText = viewModel.origination;
-//    self.commentTextView.attributedText = viewModel.text;
-//    [self.repliesButton setTitle:viewModel.repliesCount forState:UIControlStateNormal];
-    
-    
+
     
 }
 
@@ -113,18 +109,18 @@ CGFloat const kCommentsHorizontalInset = 8;
     self.treeView = [[RATreeView alloc]initForAutoLayout];
     self.treeView.delegate = self;
     self.treeView.dataSource = self;
-    self.treeView.backgroundColor = [UIColor clearColor];
+    self.treeView.rowHeight = UITableViewAutomaticDimension;
+    self.treeView.treeFooterView = [[UIView alloc]initWithFrame:CGRectZero];
+    self.treeView.backgroundColor = [UIColor greenColor];
     self.treeView.separatorColor = RATreeViewCellSeparatorStyleNone;
     [self.treeView registerClass:[HNRepliesCell class] forCellReuseIdentifier:@"Cell"];
     
     [self.cardView addSubview:self.treeView];
-    
-
 }
 
 -(void)updateConstraints {
     
-    if (self.didSetupConstraints == NO) {
+//    if (self.didSetupConstraints == NO) {
     
         // Card View Constraints
         [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeTop];
@@ -133,21 +129,28 @@ CGFloat const kCommentsHorizontalInset = 8;
         [UIView autoSetPriority:750 forConstraints:^{
             [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
         }];
-        
-        
-        [self.treeView autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.cardView withOffset:kCommentsVerticalInset];
-        
-        [self.treeView autoSetDimension:ALDimensionHeight toSize:(10*50)];
+    
+    
+        self.treeViewHeightConstraint = [self.treeView autoSetDimension:ALDimensionHeight toSize:300];
+        [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kCommentsVerticalInset];
         [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
         [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
         [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
     
         self.didSetupConstraints = YES;
-    }
+//    }
 
     
     [super updateConstraints];
         
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    if (self.treeView.contentSize.height > self.treeView.bounds.size.height) {
+        self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
+        [super layoutSubviews];
+    }
 }
 
 
@@ -164,8 +167,11 @@ CGFloat const kCommentsHorizontalInset = 8;
 - (UITableViewCell *)treeView:(RATreeView *)treeView cellForItem:(HNCommentThread *)item {
     HNRepliesCell *cell = [treeView dequeueReusableCellWithIdentifier:@"Cell"];
     [cell configureWithViewModel:[self.viewModel repliesViewModelForRootComment:item.headComment]];
-     
-     return cell;
+
+    [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
+    
+    return cell;
 }
 
 - (id)treeView:(RATreeView *)treeView child:(NSInteger)index ofItem:(HNCommentThread *)item {
@@ -176,59 +182,5 @@ CGFloat const kCommentsHorizontalInset = 8;
     
     return item.replies[index];
 }
-
-
-/*
- 
- - (UITableViewCell *)treeView:(RATreeView *)treeView cellForItem:(id)item
- {
- RADataObject *dataObject = item;
- 
- NSInteger level = [self.treeView levelForCellForItem:item];
- NSInteger numberOfChildren = [dataObject.children count];
- NSString *detailText = [NSString localizedStringWithFormat:@"Number of children %@", [@(numberOfChildren) stringValue]];
- BOOL expanded = [self.treeView isCellForItemExpanded:item];
- 
- RATableViewCell *cell = [self.treeView dequeueReusableCellWithIdentifier:NSStringFromClass([RATableViewCell class])];
- [cell setupWithTitle:dataObject.name detailText:detailText level:level additionButtonHidden:!expanded];
- cell.selectionStyle = UITableViewCellSelectionStyleNone;
- 
- __weak typeof(self) weakSelf = self;
- cell.additionButtonTapAction = ^(id sender){
- if (![weakSelf.treeView isCellForItemExpanded:dataObject] || weakSelf.treeView.isEditing) {
- return;
- }
- RADataObject *newDataObject = [[RADataObject alloc] initWithName:@"Added value" children:@[]];
- [dataObject addChild:newDataObject];
- [weakSelf.treeView insertItemsAtIndexes:[NSIndexSet indexSetWithIndex:0] inParent:dataObject withAnimation:RATreeViewRowAnimationLeft];
- [weakSelf.treeView reloadRowsForItems:@[dataObject] withRowAnimation:RATreeViewRowAnimationRight];
- };
- 
- return cell;
- }
- 
- - (NSInteger)treeView:(RATreeView *)treeView numberOfChildrenOfItem:(id)item
- {
- if (item == nil) {
- return [self.data count];
- }
- 
- RADataObject *data = item;
- return [data.children count];
- }
- 
- - (id)treeView:(RATreeView *)treeView child:(NSInteger)index ofItem:(id)item
- {
- RADataObject *data = item;
- if (item == nil) {
- return [self.data objectAtIndex:index];
- }
- 
- return data.children[index];
- }
- 
-*/
-
-
 
 @end

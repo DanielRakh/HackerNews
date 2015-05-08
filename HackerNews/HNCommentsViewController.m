@@ -41,6 +41,11 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     self.viewModel.active = YES;
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.viewModel.active = NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor HNOffWhite];
@@ -102,28 +107,14 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 93;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView registerClass:[HNCommentsCell class] forCellReuseIdentifier:kCommentsCellIdentifier];
 }
 
 - (void)bindViewModel {
-//    @weakify(self);
-//    [self.viewModel.updatedContentSignal subscribeNext:^(id x) {
-//        @strongify(self);
-//        NSLog(@"RELOAD");
-//        [self.tableView reloadData];
-//    }];
-//    
-//    
-    
-    
-//    self.title = self.viewModel.commentsCount;
-//    self.titleLabel.text = self.viewModel.title;
-//    self.scoreLabel.text = self.viewModel.score;
-//    self.originationLabel.text = self.viewModel.info;
-    
-    
+
     @weakify(self);
-    [RACObserve(self.viewModel, rootComments) subscribeNext:^(id x) {
+    [[RACObserve(self.viewModel, rootComments) ignore:nil] subscribeNext:^(id x) {
         @strongify(self);
         [self.tableView reloadData];
     }];
@@ -132,8 +123,7 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     RAC(self.titleLabel, text) = RACObserve(self.viewModel, title);
     RAC(self.scoreLabel, text) = RACObserve(self.viewModel, score);
     RAC(self.originationLabel, text) = RACObserve(self.viewModel, info);
-
-
+    
 }
 
 - (IBAction)backButtonDidTap:(id)sender {
@@ -143,14 +133,14 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.viewModel numberOfItemsInSection:section];
+    return self.viewModel.rootComments.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSLog(@"CELL");
     HNCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
-//    [cell configureWithViewModel:[self.viewModel commentsCellViewModelForIndexPath:indexPath]];
+    [cell configureWithViewModel:[self.viewModel commentsCellViewModelForIndexPath:indexPath]];
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
     

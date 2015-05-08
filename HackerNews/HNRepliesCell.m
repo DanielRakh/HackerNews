@@ -11,6 +11,7 @@
 #import "UIColor+HNColorPalette.h"
 #import "UIFont+HNFont.h"
 #import "HNThinLineButton.h"
+#import "HNRepliesCellViewModel.h"
 
 
 
@@ -19,9 +20,9 @@ CGFloat const kRepliesHorizontalInset = 8;
 
 @interface HNRepliesCell ()
 
-@property (nonatomic) UILabel *originationLabel;
-@property (nonatomic) HNThinLineButton *repliesButton;
-@property (nonatomic) UITextView *commentTextView;
+//@property (nonatomic) UILabel *originationLabel;
+//@property (nonatomic) HNThinLineButton *repliesButton;
+//@property (nonatomic) UITextView *commentTextView;
 
 
 @end
@@ -50,14 +51,15 @@ CGFloat const kRepliesHorizontalInset = 8;
 
 
 - (void)configureWithViewModel:(HNRepliesCellViewModel *)viewModel {
-    
-    
+    self.originationLabel.attributedText = viewModel.origination;
+    self.commentTextView.attributedText = viewModel.text;
+    [self.repliesButton  setTitle:viewModel.repliesCount forState:UIControlStateNormal];
 }
 
 - (void)initalizeViews {
     
-    self.backgroundColor = [UIColor clearColor];
-    self.contentView.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = [UIColor blackColor];
+    self.contentView.backgroundColor = [UIColor blueColor];
     
     // Set up Origination Label
     self.originationLabel = [UILabel newAutoLayoutView];
@@ -70,6 +72,7 @@ CGFloat const kRepliesHorizontalInset = 8;
     
     
     self.commentTextView = [UITextView newAutoLayoutView];
+    self.commentTextView.backgroundColor = [UIColor clearColor];
     self.commentTextView.editable = NO;
     self.commentTextView.linkTextAttributes = @{NSForegroundColorAttributeName : [UIColor HNOrange]};
     self.commentTextView.scrollEnabled = NO;

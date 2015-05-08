@@ -14,7 +14,6 @@
 
 @interface HNRepliesCellViewModel : RVMViewModel
 
-
 @property (nonatomic, readonly) RACSignal *updatedContentSignal;
 
 @property (nonatomic, readonly) NSAttributedString *origination;

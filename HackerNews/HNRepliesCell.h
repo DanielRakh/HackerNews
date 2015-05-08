@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @class HNRepliesCellViewModel;
+@class HNThinLineButton;
 
 @interface HNRepliesCell : UITableViewCell
+
+@property (nonatomic) UILabel *originationLabel;
+@property (nonatomic) HNThinLineButton *repliesButton;
+@property (nonatomic) UITextView *commentTextView;
 
 - (void)configureWithViewModel:(HNRepliesCellViewModel *)viewModel;
 

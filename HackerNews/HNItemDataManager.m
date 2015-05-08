@@ -87,7 +87,7 @@
 }
 
 
-#pragma mark - Helpers
+#pragma mark -  Private Helpers
 #pragma mark - 
 
 - (RACSignal *)populateRepliesForRootComment:(HNItemComment *)comment {
@@ -133,6 +133,12 @@
         HNItemComment *comment = [HNItemComment new];
         comment.idNum = dict[@"id"];
         comment.kids = dict[@"kids"];
+        comment.deleted = dict[@"deleted"];
+        comment.by = dict[@"by"];
+        comment.parentIDNum = dict[@"parent"];
+        comment.text = dict[@"text"];
+        comment.time = dict[@"time"];
+        comment.type = dict[@"type"];
         return comment;
     }];
     

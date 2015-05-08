@@ -70,7 +70,7 @@ NSString *const kFeedCellIdentifier = @"FeedCell";
     }];
 }
 
-#pragma mark - UITableViewDataSource
+#pragma mark - UITableViewDataSourcehnc
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.viewModel numberOfItemsInSection:section];

@@ -9,18 +9,14 @@
 #import "HNCommentsCellViewModel.h"
 #import "HNCommentThread.h"
 #import "HNRepliesCellViewModel.h"
+#import "HNItemDataManager.h"
+#import "HNItemComment.h"
 
 @interface HNCommentsCellViewModel ()
 
 @property (nonatomic) HNItemComment *comment;
 @property (nonatomic, readwrite) NSArray *commentThreads;
-
-
-
 //@property (nonatomic, readwrite) RACSignal *updatedContentSignal;
-
-
-//@property (nonatomic) NSMutableArray *dataArray;
 
 @end
 
@@ -36,7 +32,7 @@
         @weakify(self)
         [self.didBecomeActiveSignal subscribeNext:^(id x) {
             @strongify(self);
-//            RAC(self, commentThreads) = 
+            RAC(self, commentThreads) = [[[HNItemDataManager sharedManager] threadForRootCommentID:_comment.idNum] collect];
         }];
         
     }
@@ -48,22 +44,6 @@
     HNRepliesCellViewModel *viewModel = [[HNRepliesCellViewModel alloc]initWithReply:rootComment];
     return viewModel;
 }
-
-
-//- (NSMutableArray *)threadForHeadComment:(HNComment *)comment {
-//    
-//    NSMutableArray *replyArray = [NSMutableArray array];
-//    
-//    for (HNComment *reply in comment.replies) {
-//        
-//        HNCommentThread *thread = [HNCommentThread threadWithTopComment:reply
-//                                                               replies:reply.replies.count == 0 ? nil : [self threadForHeadComment:reply]];
-//        [replyArray addObject:thread];
-//    }
-//    
-//    return replyArray;
-//}
-
 
 
 
