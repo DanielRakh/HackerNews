@@ -24,6 +24,9 @@ CGFloat const kRepliesHorizontalInset = 8;
 //@property (nonatomic) HNThinLineButton *repliesButton;
 //@property (nonatomic) UITextView *commentTextView;
 
+@property (nonatomic) BOOL didUpdateConstraints;
+@property (nonatomic) NSLayoutConstraint *textViewHeightConstraint;
+
 
 @end
 
@@ -35,6 +38,7 @@ CGFloat const kRepliesHorizontalInset = 8;
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self initalizeViews];
+        
     }
     return self;
 }
@@ -45,18 +49,33 @@ CGFloat const kRepliesHorizontalInset = 8;
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self initalizeViews];
+        
     }
     return self;
 }
-
 
 - (void)configureWithViewModel:(HNRepliesCellViewModel *)viewModel {
     self.originationLabel.attributedText = viewModel.origination;
     self.commentTextView.attributedText = viewModel.text;
     [self.repliesButton  setTitle:viewModel.repliesCount forState:UIControlStateNormal];
+    
+
+    
+    
+//    float textViewWidth  = self.commentTextView.frame.size.width;
+//    [self layoutIfNeeded];
+//    self.commentTextView.contentSize = [self.commentTextView sizeThatFits:CGSizeMake(textViewWidth, FLT_MAX)];
+//    [self.commentTextView sizeToFit];
+//    [self.commentTextView layoutIfNeeded];
+//    [self.commentTextView setNeedsUpdateConstraints];
+//    [self.commentTextView updateConstraintsIfNeeded];
+    
 }
 
 - (void)initalizeViews {
+    
+    
+    self.didUpdateConstraints = NO;
     
     self.backgroundColor = [UIColor blackColor];
     self.contentView.backgroundColor = [UIColor blueColor];
@@ -67,20 +86,22 @@ CGFloat const kRepliesHorizontalInset = 8;
     self.originationLabel.textColor = [UIColor lightGrayColor];
     self.originationLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     self.originationLabel.font = [UIFont proximaNovaWithWeight:TypeWeightSemibold size:12.0];
+    self.originationLabel.backgroundColor = [UIColor magentaColor];
     
     [self.contentView addSubview:self.originationLabel];
     
     
-    self.commentTextView = [UITextView newAutoLayoutView];
-    self.commentTextView.backgroundColor = [UIColor clearColor];
+    self.commentTextView = [[UITextView alloc]initWithFrame:CGRectZero];
+    self.commentTextView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.commentTextView.backgroundColor = [UIColor orangeColor];
     self.commentTextView.editable = NO;
     self.commentTextView.linkTextAttributes = @{NSForegroundColorAttributeName : [UIColor HNOrange]};
-    self.commentTextView.scrollEnabled = NO;
     self.commentTextView.selectable = YES;
     self.commentTextView.dataDetectorTypes = UIDataDetectorTypeLink;
     self.commentTextView.scrollEnabled = NO;
     self.commentTextView.textContainer.lineFragmentPadding = 0;
     self.commentTextView.textContainerInset = UIEdgeInsetsZero;
+//
     
     [self.contentView addSubview:self.commentTextView];
     
@@ -92,30 +113,85 @@ CGFloat const kRepliesHorizontalInset = 8;
     
 }
 
+//
+- (void)layoutSubviews {
+    
+    [super layoutSubviews];
+    
+//    self.textViewHeightConstraint.constant = [self textViewHeightForAttributedText:self.commentTextView.attributedText andWidth:self.contentView.bounds.size.width];
+//    [self setNeedsUpdateConstraints];
+//    [self updateConstraintsIfNeeded];
+//    [self.contentView setNeedsLayout];
+//    [self.contentView layoutIfNeeded];
+    
+//}
+
+
+//    [self layoutIfNeeded];
+//    [super layoutSubviews];
+////
+CGFloat textViewWidth = self.commentTextView.frame.size.width;
+CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(textViewWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+self.textViewHeightConstraint.constant = CGRectGetHeight(rect);
+[self setNeedsUpdateConstraints];
+[self updateConstraintsIfNeeded];
+}
+
 
 - (void)updateConstraints {
     
-    // Origination Label Constraints
-    [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kRepliesHorizontalInset];
-    [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kRepliesVerticalInset];
+//    if (self.didUpdateConstraints == NO) {
+        // Origination Label Constraints
+        [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kRepliesHorizontalInset];
+        [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kRepliesVerticalInset];
+        [UIView autoSetPriority:UILayoutPriorityRequired forConstraints:^{
+            [self.originationLabel autoSetContentCompressionResistancePriorityForAxis:ALAxisVertical];
+        }];
+        
+        [self.commentTextView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.originationLabel withOffset:kRepliesVerticalInset];
+        [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kRepliesHorizontalInset];
+        [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
+        [self.commentTextView autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop
+                                   ofView:self.repliesButton withOffset:-kRepliesVerticalInset relation:NSLayoutRelationEqual];
+        
+        
+        
+        
+        // Replies Button Constraints
+        [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
+        [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kRepliesHorizontalInset];
+        [self.repliesButton autoSetDimension:ALDimensionHeight toSize:30.0];
+
     
-    // Comment Text View Constraints
-    [self.commentTextView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.originationLabel withOffset:kRepliesVerticalInset];
-    [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kRepliesHorizontalInset];
-    [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
-    
-    // Replies Button Constraints
-    [self.repliesButton autoSetDimension:ALDimensionHeight toSize:30.0];
-    [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
-    [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kRepliesHorizontalInset];
-    [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kRepliesVerticalInset];
-    [self.repliesButton autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.commentTextView withOffset:kRepliesVerticalInset relation:NSLayoutRelationEqual];
     
     
+        
+        [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
+            if (self.textViewHeightConstraint) {
+                CGFloat height = [self textViewHeightForAttributedText:self.commentTextView.attributedText andWidth:self.contentView.bounds.size.width];
+                self.textViewHeightConstraint = [self.commentTextView autoSetDimension:ALDimensionHeight toSize:height];
+            }
+            [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kRepliesVerticalInset];
+
+        }];
+        
+        self.didUpdateConstraints = YES;
+//    }
     
-    [super updateConstraints];
+     [super updateConstraints];
+    
 }
 
 
 
+
+
+- (CGFloat)textViewHeightForAttributedText: (NSAttributedString*)text andWidth: (CGFloat)width {
+    UITextView *calculationView = [[UITextView alloc] init];
+    [calculationView setAttributedText:text];
+    CGSize size = [calculationView sizeThatFits:CGSizeMake(width, FLT_MAX)];
+    return size.height;
+}
+     
+     
 @end

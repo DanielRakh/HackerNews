@@ -58,9 +58,9 @@
 }
 
 // Return the Root Comments for a story
-- (RACSignal *)rootCommentsForStory:(HNItemStory *)story {
+- (RACSignal *)rootCommentForStory:(HNItemStory *)story {
 
-    return [[[HNNetworkService sharedManager]childrenForItem:story.idNum] map:^id(NSDictionary *dict) {
+    return [[[HNNetworkService sharedManager]childForItem:story.idNum] map:^id(NSDictionary *dict) {
         
         HNItemComment *comment = [HNItemComment new];
         comment.idNum = dict[@"id"];
@@ -77,13 +77,20 @@
 
 // Return an HNCommentThread with children threads fully populated
 - (RACSignal *)threadForRootCommentID:(NSNumber *)commentID {
-    return [[self commentForID:commentID] flattenMap:^RACStream *(HNItemComment *rootComment) {
-        return [[self populateRepliesForRootComment:rootComment] flattenMap:^RACStream *(HNItemComment *comment) {
-            return [[self threadForComment:comment] flattenMap:^RACStream *(HNCommentThread *thread) {
-                return [self populateThreadForRootThread:thread];
+    
+    return [[self commentForID:commentID]
+            flattenMap:^RACStream *(HNItemComment *rootComment) {
+                
+                return [[self populateRepliesForRootComment:rootComment]
+                        flattenMap:^RACStream *(HNItemComment *comment) {
+                            
+                            return [[self threadForComment:comment]
+                                    flattenMap:^RACStream *(HNCommentThread *thread) {
+                                        
+                                        return [self populateThreadForRootThread:thread];
+                                    }];
+                        }];
             }];
-        }];
-    }];
 }
 
 

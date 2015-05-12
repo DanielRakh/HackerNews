@@ -17,6 +17,12 @@
 @property (nonatomic) HNThinLineButton *repliesButton;
 @property (nonatomic) UITextView *commentTextView;
 
+
+
+@property (nonatomic) HNRepliesCellViewModel *viewModel;
+
+
+
 - (void)configureWithViewModel:(HNRepliesCellViewModel *)viewModel;
 
 @end

@@ -60,7 +60,7 @@ static NSString *FireBaseURLPath = @"https://hacker-news.firebaseio.com/v0";
     
 }
 
-- (RACSignal *)childrenForItem:(NSNumber *)itemId {
+- (RACSignal *)childForItem:(NSNumber *)itemId {
     
     Firebase *commentsRef = [self.fireBaseRef childByAppendingPath:[NSString stringWithFormat:@"item/%@/kids", itemId]];
     

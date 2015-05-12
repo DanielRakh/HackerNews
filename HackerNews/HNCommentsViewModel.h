@@ -13,8 +13,8 @@
 @interface HNCommentsViewModel : RVMViewModel
 
 
-// This an array of the head comments(which are actually just shells for a table view of replies)
-@property (nonatomic, readonly) NSArray *rootComments;
+// This an array of the head HNCommentThreads
+@property (nonatomic, readonly) NSArray *commentThreads;
 
 // These are binded to the Header on the Table
 @property (nonatomic, readonly) NSString *score;
@@ -23,8 +23,6 @@
 @property (nonatomic, readonly) NSString *info;
 
 - (instancetype)initWithStory:(HNItemStory *)story;
-
--(NSInteger)numberOfItemsInSection:(NSInteger)section;
 
 - (HNCommentsCellViewModel *)commentsCellViewModelForIndexPath:(NSIndexPath *)indexPath;
 

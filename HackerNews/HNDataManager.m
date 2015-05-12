@@ -119,7 +119,7 @@
 - (RACSignal *)commentsForItem:(HNItem *)item {
     
     //Pull comments data for item from network and collect into an array
-    RACSignal *tst = [[[[[[HNNetworkService sharedManager] childrenForItem:item.id_] collect]
+    RACSignal *tst = [[[[[[HNNetworkService sharedManager] childForItem:item.id_] collect]
               map:^id(NSArray *items) {
                   // Map the array from an Array of Dictionaries to an array of HNComments
                   return [[items.rac_sequence
@@ -156,7 +156,7 @@
 
 - (RACSignal *)testCommentsForItem:(NSNumber *)item {
     //Pull comments data for item from network and collect into an array
-    RACSignal *tst = [[[[[[HNNetworkService sharedManager] childrenForItem:item] collect]
+    RACSignal *tst = [[[[[[HNNetworkService sharedManager] childForItem:item] collect]
                         map:^id(NSArray *items) {
                             // Map the array from an Array of Dictionaries to an array of HNComments
                             return [[items.rac_sequence

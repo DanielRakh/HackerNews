@@ -19,7 +19,9 @@
 
 //View Model
 #import "HNCommentsCellViewModel.h"
+#import "HNRepliesCellViewModel.h"
 #import "HNCommentThread.h"
+#import "HNItemComment.h"
 
 
 
@@ -39,6 +41,11 @@ CGFloat const kCommentsHorizontalInset = 8;
 
 @property (nonatomic) NSLayoutConstraint *treeViewHeightConstraint;
 
+@property (nonatomic) NSArray *tstArray;
+
+@property (strong, nonatomic) NSMutableDictionary *offscreenCells;
+
+
 
 @end
 
@@ -50,6 +57,8 @@ CGFloat const kCommentsHorizontalInset = 8;
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self initalizeViews];
+        self.offscreenCells = [NSMutableDictionary dictionary];
+
     }
     return self;
 }
@@ -60,9 +69,13 @@ CGFloat const kCommentsHorizontalInset = 8;
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self initalizeViews];
+        self.offscreenCells = [NSMutableDictionary dictionary];
+
     }
     return self;
 }
+
+
 
 - (void)configureWithViewModel:(HNCommentsCellViewModel *)viewModel {
     NSLog(@"CONFIGURE VIEW MODEL");
@@ -70,16 +83,32 @@ CGFloat const kCommentsHorizontalInset = 8;
     self.viewModel.active = YES;
     
     @weakify(self);
-    [[RACObserve(self.viewModel, commentThreads) deliverOnMainThread] subscribeNext:^(id x) {
+    [[RACObserve(self.viewModel, commentThreadArray) deliverOnMainThread] subscribeNext:^(NSArray *x) {
         @strongify(self);
         [self.treeView reloadData];
+        [self.treeView layoutIfNeeded];
+
     }];
 
-    
 }
 
 
 - (void)initalizeViews {
+    
+    HNItemComment *headComment = [[HNItemComment alloc]init];
+    headComment.text = @"THIS IS THE HEAD COMMENT THIS IS THE HEAD COMMENT THIS IS THE HEAD COMMENT THIS IS THE HEAD COMMENT THIS IS THE HEAD COMMENT THIS IS THE HEAD COMMENT THIS IS THE HEAD COMMENT THIS IS THE HEAD COMMENT THIS IS THE HEAD COMMENT THIS IS THE HEAD COMMENT THIS IS THE HEAD COMMENT THIS IS THE HEAD COMMENT THIS IS THE HEAD COMMENT THIS IS THE HEAD COMMENT THIS IS THE HEAD COMMENT THIS IS THE HEAD COMMENT THIS IS THE HEAD COMMENTTHIS IS THE HEAD COMMENT THIS IS THE HEAD COMMENT THIS IS THE HEAD COMMENT THIS IS THE HEAD COMMENT THIS IS THE HEAD COMMENT THIS IS THE HEAD COMMENT";
+    
+    HNCommentThread *thread = [[HNCommentThread alloc]initWithHeadComment:headComment replies:nil];
+
+    for (int i  = 0; i < 5; i++) {
+        HNItemComment *comment = [[HNItemComment alloc] init];
+        HNCommentThread *thread = [[HNCommentThread alloc]initWithHeadComment:comment replies:nil];
+        [thread addReply:thread];
+    }
+
+    
+    
+    self.tstArray = @[thread];
         
     self.didSetupConstraints = NO;
     // We are creating a rounded corner view to serve as the background
@@ -106,81 +135,149 @@ CGFloat const kCommentsHorizontalInset = 8;
     [self.contentView addSubview:self.cardView];
 
     
-    self.treeView = [[RATreeView alloc]initForAutoLayout];
+    self.treeView = [[RATreeView alloc]initWithFrame:CGRectZero style:RATreeViewStylePlain];
+    self.treeView.translatesAutoresizingMaskIntoConstraints = NO;
+
     self.treeView.delegate = self;
     self.treeView.dataSource = self;
     self.treeView.rowHeight = UITableViewAutomaticDimension;
+    self.treeView.estimatedRowHeight = UITableViewAutomaticDimension;
+    self.treeView.scrollEnabled = NO;
     self.treeView.treeFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     self.treeView.backgroundColor = [UIColor greenColor];
-    self.treeView.separatorColor = RATreeViewCellSeparatorStyleNone;
+    self.treeView.separatorStyle = RATreeViewCellSeparatorStyleNone;
     [self.treeView registerClass:[HNRepliesCell class] forCellReuseIdentifier:@"Cell"];
     
     [self.cardView addSubview:self.treeView];
 }
 
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+//    [self invalidateIntrinsicContentSize];
+//    [self removeConstraints:self.constraints];
+//    [self.treeView removeConstraints:self.treeView.constraints];
+//    [self.cardView removeConstraints:self.cardView.constraints];
+//    [self.treeView invalidateIntrinsicContentSize];
+    self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
+//    [self.treeView layoutIfNeeded];
+//    [self layoutIfNeeded];
+//    [self.treeView setNeedsUpdateConstraints];
+    [self setNeedsUpdateConstraints];
+    [self updateConstraintsIfNeeded];
+//    [self layoutIfNeeded];
+}
+
 -(void)updateConstraints {
     
-//    if (self.didSetupConstraints == NO) {
-    
-        // Card View Constraints
+//    [UIView autoSetPriority:UILayoutPriorityRequired forConstraints:^{
         [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeTop];
         [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
         [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
-        [UIView autoSetPriority:750 forConstraints:^{
-            [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
-        }];
+
+//    }];
+
+
     
-    
-        self.treeViewHeightConstraint = [self.treeView autoSetDimension:ALDimensionHeight toSize:300];
         [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kCommentsVerticalInset];
         [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
         [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
         [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
     
-        self.didSetupConstraints = YES;
-//    }
+    
+    [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
+        if (!self.treeViewHeightConstraint) {
+            self.treeViewHeightConstraint = [self.treeView autoSetDimension:ALDimensionHeight toSize:self.treeView.contentSize.height];
+        }
+        [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
 
+    }];
+    
+    
     
     [super updateConstraints];
         
 }
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    if (self.treeView.contentSize.height > self.treeView.bounds.size.height) {
-        self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
-        [super layoutSubviews];
-    }
-}
-
 
 
 #pragma mark - TreeView Data Source
 
 - (NSInteger)treeView:(RATreeView *)treeView numberOfChildrenOfItem:(HNCommentThread *)item {
     if (item == nil) {
-        return [self.viewModel.commentThreads count];
+        return [self.viewModel.commentThreadArray count];
+
     }
+    
     return [item.replies count];
 }
 
 - (UITableViewCell *)treeView:(RATreeView *)treeView cellForItem:(HNCommentThread *)item {
+    
     HNRepliesCell *cell = [treeView dequeueReusableCellWithIdentifier:@"Cell"];
     [cell configureWithViewModel:[self.viewModel repliesViewModelForRootComment:item.headComment]];
-
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
-    
+
     return cell;
 }
 
 - (id)treeView:(RATreeView *)treeView child:(NSInteger)index ofItem:(HNCommentThread *)item {
     
     if (item == nil) {
-        return [self.viewModel.commentThreads objectAtIndex:index];
+        return [self.viewModel.commentThreadArray objectAtIndex:index];
     }
     
     return item.replies[index];
+    
 }
+
+
+- (UITableViewCellEditingStyle)treeView:(RATreeView *)treeView editingStyleForRowForItem:(id)item {
+    return UITableViewCellEditingStyleNone;
+}
+
+
+//- (CGFloat)treeView:(RATreeView *)treeView heightForRowForItem:(HNCommentThread *)item {
+//    
+//    NSString *reuseIdentifier = @"Cell";
+//    
+//    HNRepliesCell *cell = [self.offscreenCells objectForKey:reuseIdentifier];
+//    
+//    if (!cell) {
+//        cell = [[HNRepliesCell alloc] init];
+//        [self.offscreenCells setObject:cell forKey:reuseIdentifier];
+//    }
+//    
+//    [cell configureWithViewModel:[self.viewModel repliesViewModelForRootComment:item.headComment]];
+//    [cell setNeedsUpdateConstraints];
+//    [cell updateConstraintsIfNeeded];
+//    cell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(treeView.bounds), CGRectGetHeight(cell.bounds));
+//    [cell setNeedsLayout];
+//    [cell layoutIfNeeded];
+//    CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+//    
+//    return height;
+//    
+//
+//    
+//}
+
+- (void)treeView:(RATreeView *)treeView willDisplayCell:(HNRepliesCell *)cell forItem:(id)item {
+    NSLog(@"%@",cell);
+    
+//    CGFloat textViewWidth = cell.commentTextView.frame.size.width;
+//    CGRect rect = [cell.commentTextView.attributedText boundingRectWithSize:CGSizeMake(textViewWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+//    cell.textViewHeightConstraint.constant = CGRectGetHeight(rect);
+//    [cell layoutIfNeeded];
+//    [cell setNeedsUpdateConstraints];
+//    [cell updateConstraintsIfNeeded];
+
+//    [cell.commentTextView layoutIfNeeded];
+//    self.commentTextView.contentSize = [self.commentTextView sizeThatFits:CGSizeMake(textViewWidth, FLT_MAX)];
+//    [self.commentTextView sizeToFit];
+//    [self setNeedsUpdateConstraints];
+//    [self updateConstraintsIfNeeded];
+}
+
 
 @end

@@ -14,8 +14,8 @@
 
 @interface HNCommentsCellViewModel ()
 
-@property (nonatomic) HNItemComment *comment;
-@property (nonatomic, readwrite) NSArray *commentThreads;
+@property (nonatomic, readwrite) NSArray *commentThreadArray;
+//@property (nonatomic, readwrite) NSArray *commentThreads;
 //@property (nonatomic, readwrite) RACSignal *updatedContentSignal;
 
 @end
@@ -23,17 +23,17 @@
 @implementation HNCommentsCellViewModel
 
 
-- (instancetype)initWithComment:(HNItemComment *)comment {
+- (instancetype)initWithThread:(HNCommentThread *)commentThread {
     self = [super init];
     if (self) {
 
-        _comment = comment;
+        _commentThreadArray = @[commentThread];
         
-        @weakify(self)
-        [self.didBecomeActiveSignal subscribeNext:^(id x) {
-            @strongify(self);
-            RAC(self, commentThreads) = [[[HNItemDataManager sharedManager] threadForRootCommentID:_comment.idNum] collect];
-        }];
+//        @weakify(self);
+//        [self.didBecomeActiveSignal subscribeNext:^(id x) {
+//            @strongify(self);
+//            RAC(self, commentThreads) = [[[HNItemDataManager sharedManager] threadForRootCommentID:_comment.idNum] collect];
+//        }];
         
     }
     

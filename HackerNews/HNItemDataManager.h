@@ -18,7 +18,7 @@
 // Top stories for the front page
 - (RACSignal *)topStories:(NSUInteger)count;
 // Root comments for a specific story
-- (RACSignal *)rootCommentsForStory:(HNItemStory *)story;
+- (RACSignal *)rootCommentForStory:(HNItemStory *)story;
 // Reply thread for root comment.
 - (RACSignal *)threadForRootCommentID:(NSNumber *)commentID;
 

@@ -20,7 +20,7 @@
 
 @interface HNCommentsViewModel ()
 
-@property (nonatomic, readwrite) NSArray *rootComments;
+@property (nonatomic, readwrite) NSArray *commentThreads;
 
 @end
 
@@ -35,7 +35,9 @@
         @weakify(self)
         [self.didBecomeActiveSignal subscribeNext:^(id x) {
             @strongify(self);
-            [self requestTopCommentsForItem:story];
+            RAC(self, commentThreads) = [[[[HNItemDataManager sharedManager] rootCommentForStory:story] flattenMap:^RACStream *(HNItemComment *rootComment) {
+                return [[HNItemDataManager sharedManager] threadForRootCommentID:rootComment.idNum];
+            }] collect];
         }];
     }
     
@@ -53,26 +55,18 @@
 }
 
 
-- (void)requestTopCommentsForItem:(HNItemStory *)item {
-    
-    RAC(self, rootComments) = [[[HNItemDataManager sharedManager] rootCommentsForStory:item]collect];
-}
-
 - (HNCommentsCellViewModel *)commentsCellViewModelForIndexPath:(NSIndexPath *)indexPath {
     
-    HNCommentsCellViewModel *viewModel = [[HNCommentsCellViewModel alloc]initWithComment:[self commentForIndexPath:indexPath]];
+    HNCommentsCellViewModel *viewModel = [[HNCommentsCellViewModel alloc]initWithThread:[self threadForIndexPath:indexPath]];
     return viewModel;
 }
 
 #pragma mark - Public Methods
 
--(NSInteger)numberOfItemsInSection:(NSInteger)section {
-    return self.rootComments.count;
-}
 
-- (HNItemComment *)commentForIndexPath:(NSIndexPath *)indexPath {
+- (HNCommentThread *)threadForIndexPath:(NSIndexPath *)indexPath {
 
-    return self.rootComments[indexPath.row];
+    return self.commentThreads[indexPath.row];
 }
 
 

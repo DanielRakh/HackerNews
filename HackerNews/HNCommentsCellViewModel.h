@@ -10,18 +10,18 @@
 #import "ReactiveViewModel.h"
 #import "ReactiveCocoa/ReactiveCocoa.h"
 
-@class HNItemComment, HNRepliesCellViewModel;
+@class HNItemComment, HNCommentThread, HNRepliesCellViewModel;
 
 @interface HNCommentsCellViewModel : RVMViewModel
 
-@property (nonatomic, readonly) NSArray *commentThreads;
+@property (nonatomic, readonly) NSArray *commentThreadArray;
 
 
 
 //@property (nonatomic, readonly) RACSignal *updatedContentSignal;
 
 
-- (instancetype)initWithComment:(HNItemComment *)comment;
+- (instancetype)initWithThread:(HNCommentThread *)commentThread;
 
 
 - (HNRepliesCellViewModel *)repliesViewModelForRootComment:(HNItemComment *)rootComment;
