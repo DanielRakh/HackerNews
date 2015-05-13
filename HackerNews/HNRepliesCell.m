@@ -93,7 +93,7 @@ CGFloat const kRepliesHorizontalInset = 8;
     
     self.commentTextView = [[UITextView alloc]initWithFrame:CGRectZero];
     self.commentTextView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.commentTextView.backgroundColor = [UIColor orangeColor];
+    self.commentTextView.backgroundColor = [UIColor lightGrayColor];
     self.commentTextView.editable = NO;
     self.commentTextView.linkTextAttributes = @{NSForegroundColorAttributeName : [UIColor HNOrange]};
     self.commentTextView.selectable = YES;
@@ -163,13 +163,12 @@ self.textViewHeightConstraint.constant = CGRectGetHeight(rect);
         [self.repliesButton autoSetDimension:ALDimensionHeight toSize:30.0];
 
     
-    
-    
         
         [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
             if (self.textViewHeightConstraint) {
-                CGFloat height = [self textViewHeightForAttributedText:self.commentTextView.attributedText andWidth:self.contentView.bounds.size.width];
-                self.textViewHeightConstraint = [self.commentTextView autoSetDimension:ALDimensionHeight toSize:height];
+                CGFloat textViewWidth = self.commentTextView.frame.size.width;
+                CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(textViewWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+                self.textViewHeightConstraint = [self.commentTextView autoSetDimension:ALDimensionHeight toSize:CGRectGetHeight(rect)];
             }
             [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kRepliesVerticalInset];
 

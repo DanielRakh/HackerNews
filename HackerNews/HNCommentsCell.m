@@ -141,7 +141,7 @@ CGFloat const kCommentsHorizontalInset = 8;
     self.treeView.delegate = self;
     self.treeView.dataSource = self;
     self.treeView.rowHeight = UITableViewAutomaticDimension;
-    self.treeView.estimatedRowHeight = UITableViewAutomaticDimension;
+    self.treeView.estimatedRowHeight = 150;
     self.treeView.scrollEnabled = NO;
     self.treeView.treeFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     self.treeView.backgroundColor = [UIColor greenColor];
@@ -154,18 +154,11 @@ CGFloat const kCommentsHorizontalInset = 8;
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-//    [self invalidateIntrinsicContentSize];
-//    [self removeConstraints:self.constraints];
-//    [self.treeView removeConstraints:self.treeView.constraints];
-//    [self.cardView removeConstraints:self.cardView.constraints];
-//    [self.treeView invalidateIntrinsicContentSize];
+    
     self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
-//    [self.treeView layoutIfNeeded];
-//    [self layoutIfNeeded];
-//    [self.treeView setNeedsUpdateConstraints];
+
     [self setNeedsUpdateConstraints];
     [self updateConstraintsIfNeeded];
-//    [self layoutIfNeeded];
 }
 
 -(void)updateConstraints {

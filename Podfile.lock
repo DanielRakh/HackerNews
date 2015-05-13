@@ -18,6 +18,9 @@ PODS:
     - ReactiveCocoa
   - ReactiveViewModel (0.3):
     - ReactiveCocoa (~> 2.4)
+  - RZCellSizeManager (1.1.2):
+    - RZCellSizeManager/Core (= 1.1.2)
+  - RZCellSizeManager/Core (1.1.2)
 
 DEPENDENCIES:
   - DateTools
@@ -29,6 +32,7 @@ DEPENDENCIES:
   - ReactiveCocoa
   - ReactiveCoreData (>= 0.0)
   - ReactiveViewModel (>= 0.3)
+  - RZCellSizeManager
 
 SPEC CHECKSUMS:
   DateTools: b93a2c2017747329c6077c7d7e8a75106e23d0d7
@@ -40,5 +44,6 @@ SPEC CHECKSUMS:
   ReactiveCocoa: eb38dee0a0e698f73a9b25e5c1faea2bb4c79240
   ReactiveCoreData: 1ca5406c2d2fdab8a40ba939f59c41eda9f469a3
   ReactiveViewModel: 58918dcbcec2d3151195ab1ed9163c57a8163999
+  RZCellSizeManager: 04bd83953cb5a427ae3d9e430045a15ee4789699
 
 COCOAPODS: 0.36.0

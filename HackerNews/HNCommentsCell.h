@@ -13,6 +13,7 @@
 @interface HNCommentsCell : UITableViewCell
 
 
+@property (nonatomic) NSString *uniqueIDForCaching;
 
 - (void)configureWithViewModel:(HNCommentsCellViewModel *)viewModel;
 

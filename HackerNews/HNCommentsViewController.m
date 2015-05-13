@@ -8,6 +8,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "UIColor+HNColorPalette.h"
 #import "UIFont+HNFont.h"
+#import "RZCellSizeManager.h"
 
 
 
@@ -31,6 +32,9 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 @property (weak, nonatomic) IBOutlet UILabel *originationLabel;
 
 @property (strong, nonatomic) NSMutableDictionary *offscreenCells;
+@property (nonatomic) NSMutableDictionary *cellHeights;
+
+@property (nonatomic) RZCellSizeManager *cellSizeManager;
 
 
 @end
@@ -42,6 +46,7 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     self = [super initWithCoder:aDecoder];
     if (self) {
         _offscreenCells = [NSMutableDictionary dictionary];
+        _cellHeights = [NSMutableDictionary dictionary];
     }
     
     return self;
@@ -73,6 +78,23 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     
     // We need to "rejigger" the header view because Autolayout is fucking shit.
     [self rejiggerTableHeaderView];
+    
+    self.cellSizeManager = [[RZCellSizeManager alloc]init];
+    self.cellSizeManager.cellHeightPadding = 0;
+
+
+    
+    [self.cellSizeManager registerCellClassName:NSStringFromClass([HNCommentsCell class]) withNibNamed:nil forReuseIdentifier:kCommentsCellIdentifier withHeightBlock:^CGFloat(HNCommentsCell *cell, id object) {
+    
+        [cell configureWithViewModel:object];
+        [cell setNeedsUpdateConstraints];
+        [cell updateConstraintsIfNeeded];
+        cell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), CGRectGetHeight(cell.bounds));
+        [cell setNeedsLayout];
+        [cell layoutIfNeeded];
+        CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+        return height;
+    }];
 }
 
 
@@ -124,7 +146,8 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 - (void)initalizeTableView {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.estimatedRowHeight = UITableViewAutomaticDimension;
+
+//    self.tableView.estimatedRowHeight = 200;
 //    self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView registerClass:[HNCommentsCell class] forCellReuseIdentifier:kCommentsCellIdentifier];
 }
@@ -152,8 +175,8 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 //- (void)viewDidLayoutSubviews {
 //    [super viewDidLayoutSubviews];
 //    [self.view layoutIfNeeded];
-//    [self.view setNeedsUpdateConstraints];
-//    [self.view updateConstraintsIfNeeded];
+////    [self.view setNeedsUpdateConstraints];
+////    [self.view updateConstraintsIfNeeded];
 //}
 
 #pragma mark - UITableViewDataSource
@@ -165,7 +188,10 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     HNCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
-    [cell configureWithViewModel:[self.viewModel commentsCellViewModelForIndexPath:indexPath]];
+    id object = [self.viewModel commentsCellViewModelForIndexPath:indexPath];
+
+    [cell configureWithViewModel:object];
+    [self.cellSizeManager invalidateCellSizeAtIndexPath:indexPath];
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
     
@@ -173,27 +199,20 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 }
 
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *reuseIdentifier = @"Cell";
+    id object = [self.viewModel commentsCellViewModelForIndexPath:indexPath];
+
+    return [self.cellSizeManager cellHeightForObject:object indexPath:indexPath cellReuseIdentifier:kCommentsCellIdentifier];
+
     
-    HNCommentsCell *cell = [self.offscreenCells objectForKey:reuseIdentifier];
     
-    if (!cell) {
-        cell = [[HNCommentsCell alloc] init];
-        [self.offscreenCells setObject:cell forKey:reuseIdentifier];
-    }
-    
-    [cell configureWithViewModel:[self.viewModel commentsCellViewModelForIndexPath:indexPath]];
-    [cell setNeedsUpdateConstraints];
-    [cell updateConstraintsIfNeeded];
-    cell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(cell.bounds));
-    [cell setNeedsLayout];
-    [cell layoutIfNeeded];
-    CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-    
-    return height;
-    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    id object = [self.viewModel commentsCellViewModelForIndexPath:indexPath];
+    return [self.cellSizeManager cellHeightForObject:object indexPath:indexPath cellReuseIdentifier:kCommentsCellIdentifier];
     
 }
 
