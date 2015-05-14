@@ -56,6 +56,7 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.viewModel.active = YES;
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -66,6 +67,7 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+
     
 }
 
@@ -84,17 +86,23 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 
 
     
-    [self.cellSizeManager registerCellClassName:NSStringFromClass([HNCommentsCell class]) withNibNamed:nil forReuseIdentifier:kCommentsCellIdentifier withHeightBlock:^CGFloat(HNCommentsCell *cell, id object) {
+//    [self.cellSizeManager registerCellClassName:NSStringFromClass([HNCommentsCell class]) withNibNamed:nil forReuseIdentifier:kCommentsCellIdentifier withHeightBlock:^CGFloat(HNCommentsCell *cell, id object) {
     
-        [cell configureWithViewModel:object];
-        [cell setNeedsUpdateConstraints];
-        [cell updateConstraintsIfNeeded];
-        cell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), CGRectGetHeight(cell.bounds));
-        [cell setNeedsLayout];
-        [cell layoutIfNeeded];
-        CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-        return height;
-    }];
+//        [cell configureWithViewModel:object];
+//        [cell setNeedsUpdateConstraints];
+//        [cell updateConstraintsIfNeeded];
+//        cell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), CGRectGetHeight(cell.bounds));
+//        [cell setNeedsLayout];
+//        [cell layoutIfNeeded];
+//        CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+//        return height;
+//    }];
+    
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(repliesDidTap:) name:@"RepliesButtonTapped" object:nil];
+    
+    
 }
 
 
@@ -146,9 +154,10 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 - (void)initalizeTableView {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.allowsSelection = YES;
 
-//    self.tableView.estimatedRowHeight = 200;
-//    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 200;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView registerClass:[HNCommentsCell class] forCellReuseIdentifier:kCommentsCellIdentifier];
 }
 
@@ -156,10 +165,15 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 - (void)bindViewModel {
 
     @weakify(self);
-    [[[RACObserve(self.viewModel, commentThreads) ignore:nil] deliverOnMainThread]  subscribeNext:^(id x) {
+    [[[RACObserve(self.viewModel, commentThreads) deliverOnMainThread] ignore:nil] subscribeNext:^(id x) {
         @strongify(self);
+        [self.tableView layoutIfNeeded];
         [self.tableView reloadData];
+    } completed:^{
+    
+
     }];
+
     
     RAC(self, title) = RACObserve(self.viewModel, commentsCount);
     RAC(self.titleLabel, text) = RACObserve(self.viewModel, title);
@@ -172,14 +186,15 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-//- (void)viewDidLayoutSubviews {
-//    [super viewDidLayoutSubviews];
-//    [self.view layoutIfNeeded];
-////    [self.view setNeedsUpdateConstraints];
-////    [self.view updateConstraintsIfNeeded];
-//}
-
 #pragma mark - UITableViewDataSource
+
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self.tableView reloadData];
+    
+    NSLog(@"LAYOUT SUBVIEWS");
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.viewModel.commentThreads.count;
@@ -188,33 +203,22 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     HNCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
-    id object = [self.viewModel commentsCellViewModelForIndexPath:indexPath];
-
-    [cell configureWithViewModel:object];
-    [self.cellSizeManager invalidateCellSizeAtIndexPath:indexPath];
+    [cell configureWithViewModel:[self.viewModel commentsCellViewModelForIndexPath:indexPath]];
     [cell setNeedsUpdateConstraints];
-    [cell updateConstraintsIfNeeded];
-    
+ 
     return cell;
 }
 
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    id object = [self.viewModel commentsCellViewModelForIndexPath:indexPath];
 
-    return [self.cellSizeManager cellHeightForObject:object indexPath:indexPath cellReuseIdentifier:kCommentsCellIdentifier];
 
-    
-    
+
+
+- (void)repliesDidTap:(NSNotification *)notification {
+    NSLog(@"REPLIES");
+    [self.tableView reloadData];
+
 }
-
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id object = [self.viewModel commentsCellViewModelForIndexPath:indexPath];
-    return [self.cellSizeManager cellHeightForObject:object indexPath:indexPath cellReuseIdentifier:kCommentsCellIdentifier];
-    
-}
-
 
 @end

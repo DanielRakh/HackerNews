@@ -23,4 +23,8 @@
 - (RACSignal *)threadForRootCommentID:(NSNumber *)commentID;
 
 
+
+- (RACSignal *)testStory;
+
+
 @end

@@ -37,6 +37,28 @@
 #pragma mark -  Public
 #pragma mark -
 
+
+- (RACSignal *)testStory {
+    
+    return [[[HNNetworkService sharedManager]valueForItem:@9542034] map:^id(NSDictionary *dict) {
+        
+        HNItemStory *story = [HNItemStory new];
+        story.idNum = dict[@"id"];
+        story.deleted = dict[@"deleted"];
+        story.by = dict[@"by"];
+        story.time = dict[@"time"];
+        story.text = dict[@"text"];
+        story.dead = dict[@"dead"];
+        story.url = dict[@"url"];
+        story.score = dict[@"score"];
+        story.title = dict[@"title"];
+        story.descendantsCount = dict[@"descendants"];
+        story.type = dict[@"type"];
+        return story;
+    }];
+    
+}
+
 - (RACSignal *)topStories:(NSUInteger)count {
     
     return [[[HNNetworkService sharedManager]topStoryItemsWithCount:count] map:^id(NSDictionary *dict) {
