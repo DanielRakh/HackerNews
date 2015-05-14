@@ -8,7 +8,6 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "UIColor+HNColorPalette.h"
 #import "UIFont+HNFont.h"
-#import "RZCellSizeManager.h"
 
 
 
@@ -31,26 +30,9 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *originationLabel;
 
-@property (strong, nonatomic) NSMutableDictionary *offscreenCells;
-@property (nonatomic) NSMutableDictionary *cellHeights;
-
-@property (nonatomic) RZCellSizeManager *cellSizeManager;
-
-
 @end
 
 @implementation HNCommentsViewController
-
-
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        _offscreenCells = [NSMutableDictionary dictionary];
-        _cellHeights = [NSMutableDictionary dictionary];
-    }
-    
-    return self;
-}
 
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -80,25 +62,7 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     
     // We need to "rejigger" the header view because Autolayout is fucking shit.
     [self rejiggerTableHeaderView];
-    
-    self.cellSizeManager = [[RZCellSizeManager alloc]init];
-    self.cellSizeManager.cellHeightPadding = 0;
 
-
-    
-//    [self.cellSizeManager registerCellClassName:NSStringFromClass([HNCommentsCell class]) withNibNamed:nil forReuseIdentifier:kCommentsCellIdentifier withHeightBlock:^CGFloat(HNCommentsCell *cell, id object) {
-    
-//        [cell configureWithViewModel:object];
-//        [cell setNeedsUpdateConstraints];
-//        [cell updateConstraintsIfNeeded];
-//        cell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), CGRectGetHeight(cell.bounds));
-//        [cell setNeedsLayout];
-//        [cell layoutIfNeeded];
-//        CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-//        return height;
-//    }];
-    
-    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(repliesDidTap:) name:@"RepliesButtonTapped" object:nil];
     
@@ -205,19 +169,18 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     HNCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
     [cell configureWithViewModel:[self.viewModel commentsCellViewModelForIndexPath:indexPath]];
     [cell setNeedsUpdateConstraints];
+    cell.treeViewHeightConstraint.constant = cell.treeView.contentSize.height;
+    [cell setNeedsUpdateConstraints];
  
     return cell;
 }
 
-
-
-
-
-
-
 - (void)repliesDidTap:(NSNotification *)notification {
     NSLog(@"REPLIES");
-    [self.tableView reloadData];
+//    [self.tableView reloadData];
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+//    [self.tableView layoutIfNeeded];
 
 }
 

@@ -39,11 +39,9 @@ CGFloat const kCommentsHorizontalInset = 8;
 
 @property (nonatomic) RATreeView *treeView;
 
-@property (nonatomic) NSLayoutConstraint *treeViewHeightConstraint;
+//@property (nonatomic) NSLayoutConstraint *treeViewHeightConstraint;
 
-@property (nonatomic) NSArray *tstArray;
 
-@property (strong, nonatomic) NSMutableDictionary *offscreenCells;
 
 
 
@@ -57,8 +55,6 @@ CGFloat const kCommentsHorizontalInset = 8;
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self initalizeViews];
-        self.offscreenCells = [NSMutableDictionary dictionary];
-
     }
     return self;
 }
@@ -69,8 +65,6 @@ CGFloat const kCommentsHorizontalInset = 8;
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self initalizeViews];
-        self.offscreenCells = [NSMutableDictionary dictionary];
-
     }
     return self;
 }
@@ -81,6 +75,8 @@ CGFloat const kCommentsHorizontalInset = 8;
    
     self.viewModel = viewModel;
     self.viewModel.active = YES;
+    
+    NSLog(@"CONFIGURE WITH VIEW MODEL");
     
     @weakify(self);
     [[RACObserve(self.viewModel, commentThreadArray) deliverOnMainThread] subscribeNext:^(NSArray *x) {
@@ -129,7 +125,7 @@ CGFloat const kCommentsHorizontalInset = 8;
     self.treeView.dataSource = self;
     self.treeView.rowHeight = UITableViewAutomaticDimension;
     self.treeView.estimatedRowHeight = 200;
-    self.treeView.scrollEnabled = NO;
+    self.treeView.scrollEnabled = YES;
     self.treeView.treeFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     self.treeView.backgroundColor = [UIColor greenColor];
     self.treeView.separatorStyle = RATreeViewCellSeparatorStyleNone;
@@ -201,7 +197,7 @@ CGFloat const kCommentsHorizontalInset = 8;
     HNRepliesCell *cell = [treeView dequeueReusableCellWithIdentifier:@"Cell"];
     [cell configureWithViewModel:[self.viewModel repliesViewModelForRootComment:item.headComment]];
     [cell setNeedsUpdateConstraints];
-    
+
     [self setNeedsUpdateConstraints];
 
 
@@ -228,10 +224,18 @@ CGFloat const kCommentsHorizontalInset = 8;
 - (void)treeView:(RATreeView *)treeView didExpandRowForItem:(id)item {
     NSLog(@"EXPAND");
     
-
+    self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
+//    [self.treeView layoutIfNeeded];
+    [self setNeedsUpdateConstraints];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"RepliesButtonTapped" object:nil];
 
 }
 
 
+
+//- (void)prepareForReuse {
+//    [super prepareForReuse];
+//    self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
+//    
+//}
 @end
