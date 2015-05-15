@@ -12,6 +12,7 @@
 #import "UIFont+HNFont.h"
 #import "HNThinLineButton.h"
 #import "HNRepliesCellViewModel.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 
 
@@ -38,22 +39,13 @@ CGFloat const kRepliesHorizontalInset = 8;
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self initalizeViews];
-        
     }
+    
     return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)coder
-{
-    self = [super initWithCoder:coder];
-    if (self) {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-        [self initalizeViews];
-        
-    }
-    return self;
-}
 
+//
 - (void)configureWithViewModel:(HNRepliesCellViewModel *)viewModel {
     self.originationLabel.attributedText = viewModel.origination;
     self.commentTextView.attributedText = viewModel.text;
@@ -106,16 +98,18 @@ CGFloat const kRepliesHorizontalInset = 8;
     
     [super layoutSubviews];
     
-    CGFloat textViewWidth = self.commentTextView.frame.size.width;
+    CGFloat textViewWidth = self.contentView.frame.size.width;
     CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(textViewWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
     self.textViewHeightConstraint.constant = CGRectGetHeight(rect);
-    [self setNeedsUpdateConstraints];
+//    [self.commentTextView sizeToFit];
+//    [self setNeedsUpdateConstraints];
     [self updateConstraintsIfNeeded];
 }
 
 
 - (void)updateConstraints {
     
+    if (self.didUpdateConstraints == NO) {
         // Origination Label Constraints
         [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kRepliesHorizontalInset];
         [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kRepliesVerticalInset];
@@ -140,19 +134,47 @@ CGFloat const kRepliesHorizontalInset = 8;
     
         
         [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
-            if (self.textViewHeightConstraint) {
-                CGFloat textViewWidth = self.commentTextView.frame.size.width;
-                CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(textViewWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
-                self.textViewHeightConstraint = [self.commentTextView autoSetDimension:ALDimensionHeight toSize:CGRectGetHeight(rect)];
-            }
+
             [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kRepliesVerticalInset];
+//            [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
+//            [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
 
         }];
+        
+       
+        
+        self.didUpdateConstraints = YES;
+    
+    }
 
+    
+
+    
+    CGFloat textViewWidth = self.bounds.size.width;
+    CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(textViewWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    if (!self.textViewHeightConstraint) {
+        self.textViewHeightConstraint = [self.commentTextView autoSetDimension:ALDimensionHeight toSize:CGRectGetHeight(rect)];
+    } else {
+        self.textViewHeightConstraint.constant = CGRectGetHeight(rect);
+    }
+
+    
+    
     
      [super updateConstraints];
     
 }
 
+
+
+
+
+- (CGFloat)textViewHeightForAttributedText: (NSAttributedString*)text andWidth: (CGFloat)width {
+    UITextView *calculationView = [[UITextView alloc] init];
+    [calculationView setAttributedText:text];
+    CGSize size = [calculationView sizeThatFits:CGSizeMake(width, FLT_MAX)];
+    return size.height;
+}
+     
      
 @end

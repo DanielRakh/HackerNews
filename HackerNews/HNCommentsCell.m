@@ -1,3 +1,4 @@
+
 //
 //  HNCommentsCell.m
 //  HackerNews
@@ -34,12 +35,8 @@ CGFloat const kCommentsHorizontalInset = 8;
 @property (nonatomic, assign) BOOL didSetupConstraints;
 
 @property (nonatomic) UIView *cardView;
-
-@property (nonatomic) HNCommentsCellViewModel *viewModel;
-
 @property (nonatomic) RATreeView *treeView;
-
-//@property (nonatomic) NSLayoutConstraint *treeViewHeightConstraint;
+@property (nonatomic) NSLayoutConstraint *treeViewHeightConstraint;
 
 
 
@@ -53,40 +50,25 @@ CGFloat const kCommentsHorizontalInset = 8;
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-        [self initalizeViews];
+        [self setup];
     }
     return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)coder
-{
-    self = [super initWithCoder:coder];
-    if (self) {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-        [self initalizeViews];
-    }
-    return self;
+- (void)setup {
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    [self initalizeViews];
+    [self bindViewModel];
 }
 
-
-
-- (void)configureWithViewModel:(HNCommentsCellViewModel *)viewModel {
-   
-    self.viewModel = viewModel;
-    self.viewModel.active = YES;
-    
-    NSLog(@"CONFIGURE WITH VIEW MODEL");
-    
+- (void)bindViewModel {
     @weakify(self);
-    [[RACObserve(self.viewModel, commentThreadArray) deliverOnMainThread] subscribeNext:^(NSArray *x) {
+    [[[RACObserve(self, viewModel) deliverOnMainThread] ignore:nil] subscribeNext:^(NSArray *x) {
         @strongify(self);
         NSLog(@"%@",x);
         [self.treeView reloadData];
         [self.treeView layoutIfNeeded];
-
     }];
-
 }
 
 
@@ -125,7 +107,7 @@ CGFloat const kCommentsHorizontalInset = 8;
     self.treeView.dataSource = self;
     self.treeView.rowHeight = UITableViewAutomaticDimension;
     self.treeView.estimatedRowHeight = 200;
-    self.treeView.scrollEnabled = YES;
+    self.treeView.scrollEnabled = NO;
     self.treeView.treeFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     self.treeView.backgroundColor = [UIColor greenColor];
     self.treeView.separatorStyle = RATreeViewCellSeparatorStyleNone;
@@ -138,7 +120,8 @@ CGFloat const kCommentsHorizontalInset = 8;
 - (void)layoutSubviews {
     
     [super layoutSubviews];
-    [self.treeView layoutIfNeeded];
+    self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
+    [self updateConstraintsIfNeeded];
 }
 
 -(void)updateConstraints {
@@ -153,13 +136,14 @@ CGFloat const kCommentsHorizontalInset = 8;
         [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kCommentsVerticalInset];
         [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
         [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
-        [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
         
         
         
         [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
             
             [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
+            [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
+
             
         }];
         
@@ -197,7 +181,6 @@ CGFloat const kCommentsHorizontalInset = 8;
     HNRepliesCell *cell = [treeView dequeueReusableCellWithIdentifier:@"Cell"];
     [cell configureWithViewModel:[self.viewModel repliesViewModelForRootComment:item.headComment]];
     [cell setNeedsUpdateConstraints];
-
     [self setNeedsUpdateConstraints];
 
 
@@ -235,7 +218,6 @@ CGFloat const kCommentsHorizontalInset = 8;
 
 //- (void)prepareForReuse {
 //    [super prepareForReuse];
-//    self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
 //    
 //}
 @end

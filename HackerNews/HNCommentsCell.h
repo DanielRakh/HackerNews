@@ -15,15 +15,8 @@
 
 @interface HNCommentsCell : UITableViewCell
 
-
-@property (nonatomic) NSString *uniqueIDForCaching;
-
+@property (nonatomic) HNCommentsCellViewModel *viewModel;
 @property (nonatomic, readonly) RATreeView *treeView;
 
-@property (nonatomic) NSLayoutConstraint *treeViewHeightConstraint;
-
-
-
-- (void)configureWithViewModel:(HNCommentsCellViewModel *)viewModel;
 
 @end

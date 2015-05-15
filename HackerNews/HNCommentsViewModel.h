@@ -13,7 +13,7 @@
 @interface HNCommentsViewModel : RVMViewModel
 
 
-// This an array of the head HNCommentThreads
+//Root HNCommentCellViewModels
 @property (nonatomic, readonly) NSArray *commentThreads;
 
 // These are binded to the Header on the Table
@@ -24,6 +24,6 @@
 
 - (instancetype)initWithStory:(HNItemStory *)story;
 
-- (HNCommentsCellViewModel *)commentsCellViewModelForIndexPath:(NSIndexPath *)indexPath;
+//- (HNCommentsCellViewModel *)commentsCellViewModelForIndexPath:(NSIndexPath *)indexPath;
 
 @end

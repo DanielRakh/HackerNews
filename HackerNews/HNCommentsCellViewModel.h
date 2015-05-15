@@ -15,10 +15,7 @@
 @interface HNCommentsCellViewModel : RVMViewModel
 
 @property (nonatomic, readonly) NSArray *commentThreadArray;
-
-
-
-//@property (nonatomic, readonly) RACSignal *updatedContentSignal;
+@property (nonatomic, readonly) HNRepliesCellViewModel *repliesCellViewModel;
 
 
 - (instancetype)initWithThread:(HNCommentThread *)commentThread;

@@ -35,11 +35,11 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 @implementation HNCommentsViewController
 
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.viewModel.active = YES;
-
-}
+//-(void)viewWillAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//    self.viewModel.active = YES;
+//
+//}
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -68,8 +68,6 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     
     
 }
-
-
 
 - (void)setupHeaderView {
     
@@ -131,8 +129,9 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     @weakify(self);
     [[[RACObserve(self.viewModel, commentThreads) deliverOnMainThread] ignore:nil] subscribeNext:^(id x) {
         @strongify(self);
-        [self.tableView layoutIfNeeded];
         [self.tableView reloadData];
+        [self.tableView layoutIfNeeded];
+
     } completed:^{
     
 
@@ -152,7 +151,7 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 
 #pragma mark - UITableViewDataSource
 
-
+//
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     [self.tableView reloadData];
@@ -167,11 +166,8 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     HNCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
-    [cell configureWithViewModel:[self.viewModel commentsCellViewModelForIndexPath:indexPath]];
-    [cell setNeedsUpdateConstraints];
-    cell.treeViewHeightConstraint.constant = cell.treeView.contentSize.height;
-    [cell setNeedsUpdateConstraints];
- 
+    cell.viewModel = self.viewModel.commentThreads[indexPath.row];
+    [cell setNeedsUpdateConstraints]; 
     return cell;
 }
 

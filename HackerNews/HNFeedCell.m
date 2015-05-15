@@ -192,6 +192,7 @@ CGFloat const kHorizontalInset = 8;
     UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     HNCommentsViewController *commentsController =[mainSB instantiateViewControllerWithIdentifier:@"CommentsController"];
     commentsController.viewModel = commentsViewModel;
+    commentsController.viewModel.active = YES;
     [self.navController pushViewController:commentsController animated:YES];
 }
 
