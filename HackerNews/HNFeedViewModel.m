@@ -41,8 +41,8 @@
 - (void)requestTopPosts {
     
 #warning comment out for testing
-    RAC(self, topStories) = [[[HNItemDataManager sharedManager] testStory] collect];
-//    RAC(self, topStories)  = [[[HNItemDataManager sharedManager]topStories:30]collect];
+//    RAC(self, topStories) = [[[HNItemDataManager sharedManager] testStory] collect];
+    RAC(self, topStories)  = [[[HNItemDataManager sharedManager]topStories:30]collect];
 }
 
 - (HNFeedCellViewModel *)feedCellViewModelForIndexPath:(NSIndexPath *)indexPath {

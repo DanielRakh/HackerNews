@@ -18,8 +18,9 @@
 @property (nonatomic) UITextView *commentTextView;
 
 
-
 @property (nonatomic) HNRepliesCellViewModel *viewModel;
+
+@property (nonatomic) BOOL expanded;
 
 
 

@@ -30,6 +30,15 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *originationLabel;
 
+@property (nonatomic, assign) BOOL cellExpanded;
+@property (nonatomic, assign) CGFloat expandedHeight;
+
+@property (nonatomic) id itemToExpand;
+
+
+@property (nonatomic) NSArray *expandedRows;
+
+
 @end
 
 @implementation HNCommentsViewController
@@ -47,11 +56,6 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 }
 
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-
-    
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,13 +64,31 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     [self initalizeTableView];
     [self bindViewModel];
     
+    
+    self.cellExpanded = NO;
     // We need to "rejigger" the header view because Autolayout is fucking shit.
     [self rejiggerTableHeaderView];
 
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(repliesDidTap:) name:@"RepliesButtonTapped" object:nil];
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(expandCell:) name:@"ExpandCell" object:nil];
     
+    
+}
+
+- (void)expandCell:(NSNotification *)notification {
+    
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+//    [self.tableView layoutIfNeeded];
+//    [self.tableView updateConstraintsIfNeeded];
+    
+}
+
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"WILL DiSPLAY");
 }
 
 - (void)setupHeaderView {
@@ -121,6 +143,7 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     self.tableView.estimatedRowHeight = 200;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView registerClass:[HNCommentsCell class] forCellReuseIdentifier:kCommentsCellIdentifier];
+
 }
 
 
@@ -133,7 +156,6 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
         [self.tableView layoutIfNeeded];
 
     } completed:^{
-    
 
     }];
 
@@ -143,6 +165,7 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     RAC(self.scoreLabel, text) = RACObserve(self.viewModel, score);
     RAC(self.originationLabel, text) = RACObserve(self.viewModel, info);
     
+
 }
 
 - (IBAction)backButtonDidTap:(id)sender {
@@ -154,6 +177,8 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 //
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
+    [self.tableView setNeedsLayout];
+    [self.tableView layoutIfNeeded];
     [self.tableView reloadData];
     
     NSLog(@"LAYOUT SUBVIEWS");
@@ -166,18 +191,44 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     HNCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
+    
+//    if (self.expandedRows) {
+//        
+//        if (indexPath.row == 0) {
+//            cell.expandChild = YES;
+//        }
+//    }
+    
+    
     cell.viewModel = self.viewModel.commentThreads[indexPath.row];
-    [cell setNeedsUpdateConstraints]; 
+    
+
+//    
+//    if (self.expandedRows) {
+//        for (id item in self.expandedRows) {
+//            if (![cell.treeView isCellForItemExpanded:item]) {
+//                [cell.treeView expandRowForItem:item];
+//            }
+//        }
+//    }
+    
+    
+    [cell setNeedsUpdateConstraints];
+    
     return cell;
 }
 
+
+
 - (void)repliesDidTap:(NSNotification *)notification {
     NSLog(@"REPLIES");
-//    [self.tableView reloadData];
+    
+    NSDictionary *dict = notification.userInfo;
+    self.expandedRows = dict[@"itemsToExpand"];
+    
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
-//    [self.tableView layoutIfNeeded];
+    
 
 }
-
 @end

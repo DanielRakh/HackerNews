@@ -16,7 +16,9 @@
 @interface HNCommentsCell : UITableViewCell
 
 @property (nonatomic) HNCommentsCellViewModel *viewModel;
-@property (nonatomic, readonly) RATreeView *treeView;
+@property (nonatomic) RATreeView *treeView;
+
+@property (nonatomic, assign) BOOL expandChild;
 
 
 @end

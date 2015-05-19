@@ -28,6 +28,13 @@ CGFloat const kRepliesHorizontalInset = 8;
 @property (nonatomic) BOOL didUpdateConstraints;
 @property (nonatomic) NSLayoutConstraint *textViewHeightConstraint;
 
+@property (nonatomic) NSMutableArray *repliesButtonConstraints;
+@property (nonatomic) NSLayoutConstraint *textViewToBottomConstraint;
+
+
+
+
+
 
 @end
 
@@ -37,15 +44,38 @@ CGFloat const kRepliesHorizontalInset = 8;
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-        [self initalizeViews];
+        [self setup];
     }
     
     return self;
 }
 
+- (void)setup {
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    [self initalizeViews];
+    
+    
+    @weakify(self);
+    
+    [[[RACObserve(self, expanded) ignore:nil] skip:1] subscribeNext:^(NSNumber *x) {
+        NSLog(@"%@",x);
+        
+        @strongify(self);
+        self.repliesButton.hidden = x.boolValue;
+        
+        if (x.boolValue == YES) {
+            [self.repliesButtonConstraints autoRemoveConstraints];
+            [self.contentView addConstraint:self.textViewToBottomConstraint];
+        } else {
+            [self.contentView removeConstraint:self.textViewToBottomConstraint];
+            [self.repliesButtonConstraints autoInstallConstraints];
+        }
+        
+    }];
+}
 
-//
 - (void)configureWithViewModel:(HNRepliesCellViewModel *)viewModel {
     self.originationLabel.attributedText = viewModel.origination;
     self.commentTextView.attributedText = viewModel.text;
@@ -54,8 +84,9 @@ CGFloat const kRepliesHorizontalInset = 8;
 
 - (void)initalizeViews {
     
-    
     self.didUpdateConstraints = NO;
+    
+    _repliesButtonConstraints = [NSMutableArray array];
     
     self.backgroundColor = [UIColor blackColor];
     self.contentView.backgroundColor = [UIColor darkGrayColor];
@@ -98,11 +129,11 @@ CGFloat const kRepliesHorizontalInset = 8;
     
     [super layoutSubviews];
     
-    CGFloat textViewWidth = self.contentView.frame.size.width;
+    CGFloat textViewWidth = self.contentView.frame.size.width - (kRepliesHorizontalInset * 2);
     CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(textViewWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
     self.textViewHeightConstraint.constant = CGRectGetHeight(rect);
-//    [self.commentTextView sizeToFit];
-//    [self setNeedsUpdateConstraints];
+    
+    
     [self updateConstraintsIfNeeded];
 }
 
@@ -120,37 +151,33 @@ CGFloat const kRepliesHorizontalInset = 8;
         [self.commentTextView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.originationLabel withOffset:kRepliesVerticalInset];
         [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kRepliesHorizontalInset];
         [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
-        [self.commentTextView autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop
+        
+       NSLayoutConstraint *textViewTop = [self.commentTextView autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop
                                    ofView:self.repliesButton withOffset:-kRepliesVerticalInset relation:NSLayoutRelationEqual];
         
         
-        
-        
         // Replies Button Constraints
-        [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
-        [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kRepliesHorizontalInset];
-        [self.repliesButton autoSetDimension:ALDimensionHeight toSize:30.0];
-
-    
+        NSLayoutConstraint * trailing = [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
+        NSLayoutConstraint *leading = [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kRepliesHorizontalInset];
         
+        NSLayoutConstraint *height = [self.repliesButton autoSetDimension:ALDimensionHeight toSize:30.0];
+        
+
         [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
-
-            [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kRepliesVerticalInset];
-//            [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
-//            [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
-
+            
+            NSLayoutConstraint *bottom = [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kRepliesVerticalInset];
+            [self.repliesButtonConstraints addObject:bottom];
         }];
+
         
-       
+        [self.repliesButtonConstraints addObjectsFromArray:@[trailing,leading,height, textViewTop]];
+        
         
         self.didUpdateConstraints = YES;
     
     }
 
-    
-
-    
-    CGFloat textViewWidth = self.bounds.size.width;
+    CGFloat textViewWidth = self.contentView.bounds.size.width - (kRepliesHorizontalInset * 2);
     CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(textViewWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
     if (!self.textViewHeightConstraint) {
         self.textViewHeightConstraint = [self.commentTextView autoSetDimension:ALDimensionHeight toSize:CGRectGetHeight(rect)];
@@ -158,23 +185,23 @@ CGFloat const kRepliesHorizontalInset = 8;
         self.textViewHeightConstraint.constant = CGRectGetHeight(rect);
     }
 
+    if (!self.textViewToBottomConstraint) {
+        self.textViewToBottomConstraint = [NSLayoutConstraint constraintWithItem:self.commentTextView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeBottom multiplier:1 constant:-10];
+    }
     
-    
-    
-     [super updateConstraints];
+
+    [super updateConstraints];
     
 }
 
 
+//- (CGFloat)textViewHeightForAttributedText: (NSAttributedString*)text andWidth: (CGFloat)width {
+//    UITextView *calculationView = [[UITextView alloc] init];
+//    [calculationView setAttributedText:text];
+//    CGSize size = [calculationView sizeThatFits:CGSizeMake(width, FLT_MAX)];
+//    return size.height;
+//}
+//
 
 
-
-- (CGFloat)textViewHeightForAttributedText: (NSAttributedString*)text andWidth: (CGFloat)width {
-    UITextView *calculationView = [[UITextView alloc] init];
-    [calculationView setAttributedText:text];
-    CGSize size = [calculationView sizeThatFits:CGSizeMake(width, FLT_MAX)];
-    return size.height;
-}
-     
-     
 @end

@@ -40,7 +40,7 @@
 
 - (RACSignal *)testStory {
     
-    return [[[HNNetworkService sharedManager]valueForItem:@9542034] map:^id(NSDictionary *dict) {
+    return [[[HNNetworkService sharedManager]valueForItem:@9561854] map:^id(NSDictionary *dict) {
         
         HNItemStory *story = [HNItemStory new];
         story.idNum = dict[@"id"];

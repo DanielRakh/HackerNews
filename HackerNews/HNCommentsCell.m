@@ -35,12 +35,12 @@ CGFloat const kCommentsHorizontalInset = 8;
 @property (nonatomic, assign) BOOL didSetupConstraints;
 
 @property (nonatomic) UIView *cardView;
-@property (nonatomic) RATreeView *treeView;
+//@property (nonatomic) RATreeView *treeView;
 @property (nonatomic) NSLayoutConstraint *treeViewHeightConstraint;
+@property (nonatomic) NSNumber *expandedHeight;
 
 
-
-
+@property (nonatomic) NSMutableArray *rowsToExpand;
 
 @end
 
@@ -59,6 +59,7 @@ CGFloat const kCommentsHorizontalInset = 8;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self initalizeViews];
     [self bindViewModel];
+    
 }
 
 - (void)bindViewModel {
@@ -66,14 +67,35 @@ CGFloat const kCommentsHorizontalInset = 8;
     [[[RACObserve(self, viewModel) deliverOnMainThread] ignore:nil] subscribeNext:^(NSArray *x) {
         @strongify(self);
         NSLog(@"%@",x);
-        [self.treeView reloadData];
-        [self.treeView layoutIfNeeded];
+        if (self.expandChild) {
+//            [self.treeView reloadData];
+            [self.treeView layoutIfNeeded];
+        } else {
+         
+            [self.treeView reloadData];
+            [self.treeView expandRowForItem:[self.viewModel.commentThreadArray firstObject]];
+            [self.treeView reloadRows];
+            [self.treeView layoutIfNeeded];
+        }
+
     }];
+    
+    
+//    if (!self.treeViewHeightConstraint) {
+//        self.treeViewHeightConstraint = [self.treeView autoSetDimension:ALDimensionHeight toSize:self.treeView.contentSize.height];
+//    }
+    
+//    RAC(self.treeViewHeightConstraint, constant) = [RACObserve(self.treeView, contentSize) map:^id(NSValue *value) {
+//        NSLog(@"%@",value);
+//        
+//        return @(value.CGSizeValue.height);
+//    }];
+    
+
 }
 
 
 - (void)initalizeViews {
-    
     
     self.didSetupConstraints = NO;
     // We are creating a rounded corner view to serve as the background
@@ -126,51 +148,41 @@ CGFloat const kCommentsHorizontalInset = 8;
 
 -(void)updateConstraints {
     
-
     if (self.didSetupConstraints == NO) {
         [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeTop];
         [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
         [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
-        
-        
+    
         [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kCommentsVerticalInset];
         [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
         [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
-        
-        
         
         [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
             
             [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
             [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
-
-            
         }];
-        
-        
+
         self.didSetupConstraints = YES;
     }
-    
 
     if (!self.treeViewHeightConstraint) {
         self.treeViewHeightConstraint = [self.treeView autoSetDimension:ALDimensionHeight toSize:self.treeView.contentSize.height];
-    } else {
-        self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
     }
     
-    
-    
-    [super updateConstraints];
-        
-}
+    else {
+        self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
+    }
 
+    [super updateConstraints];
+}
 
 #pragma mark - TreeView Data Source
 
 - (NSInteger)treeView:(RATreeView *)treeView numberOfChildrenOfItem:(HNCommentThread *)item {
+    
     if (item == nil) {
         return [self.viewModel.commentThreadArray count];
-
     }
     
     return [item.replies count];
@@ -182,20 +194,22 @@ CGFloat const kCommentsHorizontalInset = 8;
     [cell configureWithViewModel:[self.viewModel repliesViewModelForRootComment:item.headComment]];
     [cell setNeedsUpdateConstraints];
     [self setNeedsUpdateConstraints];
-
-
+    
     return cell;
 }
 
 - (id)treeView:(RATreeView *)treeView child:(NSInteger)index ofItem:(HNCommentThread *)item {
     
+    
     if (item == nil) {
         return [self.viewModel.commentThreadArray objectAtIndex:index];
     }
     
-    return item.replies[index];
+    NSLog(@"Index:%ld", index);
     
+    return item.replies[index];
 }
+
 
 
 - (UITableViewCellEditingStyle)treeView:(RATreeView *)treeView editingStyleForRowForItem:(id)item {
@@ -203,21 +217,37 @@ CGFloat const kCommentsHorizontalInset = 8;
 }
 
 
-
-- (void)treeView:(RATreeView *)treeView didExpandRowForItem:(id)item {
-    NSLog(@"EXPAND");
+- (void)treeView:(RATreeView *)treeView willExpandRowForItem:(HNCommentThread *)item {
     
-    self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
-//    [self.treeView layoutIfNeeded];
-    [self setNeedsUpdateConstraints];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"RepliesButtonTapped" object:nil];
+    if (!self.rowsToExpand) {
+        self.rowsToExpand = [NSMutableArray array];
+    }
+    
+    if (![self.rowsToExpand containsObject:item]) {
+        NSLog(@"ITEM!");
+        [self.rowsToExpand addObject:item];
+    }
+
+//    [self.treeView beginUpdates];
+//    [self.treeView endUpdates];
+    
+//    [[NSNotificationCenter defaultCenter]postNotificationName:@"ExpandCell" object:nil];
+    
+    NSLog(@"%f",self.treeView.contentSize.height);
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"RepliesButtonTapped" object:self userInfo:@{@"itemsToExpand" : [self.rowsToExpand copy]}];
 
 }
 
+- (void)treeView:(RATreeView *)treeView didExpandRowForItem:(HNCommentThread *)item {
+    self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
+    [self updateConstraintsIfNeeded];
 
-
-//- (void)prepareForReuse {
-//    [super prepareForReuse];
-//    
-//}
+    
+    
+//    [self updateConstraintsIfNeeded];
+//
+//    [[NSNotificationCenter defaultCenter]postNotificationName:@"RepliesButtonTapped" object:self userInfo:@{@"itemsToExpand" : [self.rowsToExpand copy]}];
+    
+}
 @end
