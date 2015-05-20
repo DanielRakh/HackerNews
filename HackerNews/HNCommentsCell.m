@@ -210,9 +210,10 @@ CGFloat const kCommentsHorizontalInset = 8;
 //        NSLog(@"%@",self.indexPathsForRowsToExpand);
 //    }
 //    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"IndexPathsToExpand" object:self userInfo:@{@"IndexPaths" : idxPath }];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"IndexPathsToExpand" object:self userInfo:@{@"IndexPath" : idxPath }];
 
     
+
 }
 
 - (void)keepCellExpanded {

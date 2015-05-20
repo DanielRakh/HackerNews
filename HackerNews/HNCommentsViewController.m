@@ -29,7 +29,7 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *originationLabel;
 
-@property (nonatomic) NSMutableArray *indexPathsToExpand;
+@property (nonatomic) NSMutableDictionary *indexPathsToExpand;
 
 
 
@@ -66,7 +66,7 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     [self rejiggerTableHeaderView];
     
     
-    self.indexPathsToExpand = [NSMutableArray array];
+    self.indexPathsToExpand = [NSMutableDictionary dictionary];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(collectIndexPathsToExpand:) name:@"IndexPathsToExpand" object:nil];
     
@@ -77,11 +77,14 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 - (void)collectIndexPathsToExpand:(NSNotification *)notification {
     
     NSDictionary *dict = notification.userInfo;
-    NSIndexPath *idxPath = dict[@"IndexPaths"];
+    NSIndexPath *idxPath = dict[@"IndexPath"];
     
-    if (![self.indexPathsToExpand containsObject:idxPath]) {
-        [self.indexPathsToExpand addObject:idxPath];
+    
+    if ([self.indexPathsToExpand objectForKey:@(idxPath.row)] == nil) {
+        self.indexPathsToExpand[@(idxPath.row)] = idxPath;
     }
+    
+    NSLog(@"%@",self.indexPathsToExpand);
 }
 
 
@@ -195,10 +198,16 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     cell.viewModel = self.viewModel.commentThreads[indexPath.row];
     
     
-    for (NSIndexPath *idxPath in self.indexPathsToExpand) {
-        if (indexPath.row == idxPath.row) {
-            [cell keepCellExpanded];
-        }
+//    for (NSIndexPath *idxPath in self.indexPathsToExpand) {
+//        if (indexPath.row == idxPath.row) {
+//            [cell keepCellExpanded];
+//        }
+//    }
+//    
+    
+    if (self.indexPathsToExpand[@(indexPath.row)] != nil) {
+        
+        [cell keepCellExpanded];
     }
     
 
