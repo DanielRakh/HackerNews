@@ -188,18 +188,13 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     
     
     if (indexPath.row == 0 && self.cellExpanded) {
-//        cell.expandChild = YES;
-        [cell.treeView beginUpdates];
-        [cell.treeView expandRowForItem:[[cell.viewModel commentThreadArray] firstObject] withRowAnimation:RATreeViewRowAnimationNone];
-        
-        NSLog(@"%@",cell.viewModel.commentThreadArray);
-        [cell layoutIfNeeded];
-        [cell updateConstraintsIfNeeded];
-        [cell.treeView endUpdates];
-        [cell layoutIfNeeded];
+        [cell keepCellExpanded];
     }
-
-
+    
+    
+//    if (cell.treeView row) {
+//        <#statements#>
+//    }
 
     [cell setNeedsUpdateConstraints];
     

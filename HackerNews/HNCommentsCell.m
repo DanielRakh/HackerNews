@@ -226,4 +226,15 @@ CGFloat const kCommentsHorizontalInset = 8;
 }
 
 
+- (void)keepCellExpanded {
+    
+    [self.treeView beginUpdates];
+    [self.treeView expandRowForItem:[[self.viewModel commentThreadArray] firstObject] withRowAnimation:RATreeViewRowAnimationNone];
+    [self layoutIfNeeded];
+    [self updateConstraintsIfNeeded];
+    [self.treeView endUpdates];
+    [self layoutIfNeeded];
+}
+
+
 @end
