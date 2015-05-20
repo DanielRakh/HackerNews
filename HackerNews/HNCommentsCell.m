@@ -24,6 +24,8 @@
 #import "HNCommentThread.h"
 #import "HNItemComment.h"
 
+#import "UIView+FindUITableView.h"
+
 
 
 CGFloat const kCommentsVerticalInset = 10;
@@ -64,34 +66,19 @@ CGFloat const kCommentsHorizontalInset = 8;
 
 - (void)bindViewModel {
     @weakify(self);
-    [[[RACObserve(self, viewModel) deliverOnMainThread] ignore:nil] subscribeNext:^(NSArray *x) {
+    [[[RACObserve(self, viewModel) deliverOnMainThread] ignore:nil] subscribeNext:^(HNCommentsCellViewModel *x) {
         @strongify(self);
         NSLog(@"%@",x);
         if (self.expandChild) {
-//            [self.treeView reloadData];
-            [self.treeView layoutIfNeeded];
-        } else {
-         
             [self.treeView reloadData];
-            [self.treeView expandRowForItem:[self.viewModel.commentThreadArray firstObject]];
-            [self.treeView reloadRows];
-            [self.treeView layoutIfNeeded];
+//            [self.treeView expandRowForItem:[[x commentThreadArray] firstObject] withRowAnimation:RATreeViewRowAnimationNone];
+        } else {
+            [self.treeView reloadData];
         }
+        
+        [self.treeView layoutIfNeeded];
 
     }];
-    
-    
-//    if (!self.treeViewHeightConstraint) {
-//        self.treeViewHeightConstraint = [self.treeView autoSetDimension:ALDimensionHeight toSize:self.treeView.contentSize.height];
-//    }
-    
-//    RAC(self.treeViewHeightConstraint, constant) = [RACObserve(self.treeView, contentSize) map:^id(NSValue *value) {
-//        NSLog(@"%@",value);
-//        
-//        return @(value.CGSizeValue.height);
-//    }];
-    
-
 }
 
 
@@ -205,8 +192,6 @@ CGFloat const kCommentsHorizontalInset = 8;
         return [self.viewModel.commentThreadArray objectAtIndex:index];
     }
     
-    NSLog(@"Index:%ld", index);
-    
     return item.replies[index];
 }
 
@@ -219,35 +204,16 @@ CGFloat const kCommentsHorizontalInset = 8;
 
 - (void)treeView:(RATreeView *)treeView willExpandRowForItem:(HNCommentThread *)item {
     
-    if (!self.rowsToExpand) {
-        self.rowsToExpand = [NSMutableArray array];
-    }
-    
-    if (![self.rowsToExpand containsObject:item]) {
-        NSLog(@"ITEM!");
-        [self.rowsToExpand addObject:item];
-    }
 
-//    [self.treeView beginUpdates];
-//    [self.treeView endUpdates];
-    
-//    [[NSNotificationCenter defaultCenter]postNotificationName:@"ExpandCell" object:nil];
-    
-    NSLog(@"%f",self.treeView.contentSize.height);
-    
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"RepliesButtonTapped" object:self userInfo:@{@"itemsToExpand" : [self.rowsToExpand copy]}];
+
 
 }
 
 - (void)treeView:(RATreeView *)treeView didExpandRowForItem:(HNCommentThread *)item {
-    self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
-    [self updateConstraintsIfNeeded];
-
+    [self.parentTableView beginUpdates];
+    [self.parentTableView endUpdates];
     
-    
-//    [self updateConstraintsIfNeeded];
-//
-//    [[NSNotificationCenter defaultCenter]postNotificationName:@"RepliesButtonTapped" object:self userInfo:@{@"itemsToExpand" : [self.rowsToExpand copy]}];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"ExpandCell" object:nil];
     
 }
 @end

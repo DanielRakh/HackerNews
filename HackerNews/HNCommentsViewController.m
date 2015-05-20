@@ -18,6 +18,7 @@
 
 //View Model
 #import "HNCommentsViewModel.h"
+#import "HNCommentsCellViewModel.h"
 
 NSString *const kCommentsCellIdentifier = @"CommentsCell";
 
@@ -69,8 +70,7 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     // We need to "rejigger" the header view because Autolayout is fucking shit.
     [self rejiggerTableHeaderView];
 
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(repliesDidTap:) name:@"RepliesButtonTapped" object:nil];
+
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(expandCell:) name:@"ExpandCell" object:nil];
     
@@ -78,11 +78,8 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 }
 
 - (void)expandCell:(NSNotification *)notification {
-    
-    [self.tableView beginUpdates];
-    [self.tableView endUpdates];
-//    [self.tableView layoutIfNeeded];
-//    [self.tableView updateConstraintsIfNeeded];
+    self.cellExpanded = YES;
+    [self.tableView layoutIfNeeded];
     
 }
 
@@ -192,27 +189,18 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     
     HNCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
     
-//    if (self.expandedRows) {
-//        
-//        if (indexPath.row == 0) {
-//            cell.expandChild = YES;
-//        }
-//    }
-    
-    
+  
     cell.viewModel = self.viewModel.commentThreads[indexPath.row];
-    
+    if (indexPath.row == 0 && self.cellExpanded) {
+        cell.expandChild = YES;
+        
+        [cell.treeView expandRowForItem:[[cell.viewModel commentThreadArray] firstObject] withRowAnimation:RATreeViewRowAnimationNone];
+        [cell layoutIfNeeded];
+        [cell updateConstraintsIfNeeded];
+    }
 
-//    
-//    if (self.expandedRows) {
-//        for (id item in self.expandedRows) {
-//            if (![cell.treeView isCellForItemExpanded:item]) {
-//                [cell.treeView expandRowForItem:item];
-//            }
-//        }
-//    }
-    
-    
+
+
     [cell setNeedsUpdateConstraints];
     
     return cell;
@@ -223,8 +211,8 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 - (void)repliesDidTap:(NSNotification *)notification {
     NSLog(@"REPLIES");
     
-    NSDictionary *dict = notification.userInfo;
-    self.expandedRows = dict[@"itemsToExpand"];
+//    NSDictionary *dict = notification.userInfo;
+//    self.expandedRows = dict[@"itemsToExpand"];
     
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
