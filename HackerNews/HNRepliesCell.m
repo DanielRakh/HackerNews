@@ -157,7 +157,6 @@ CGFloat const kRepliesHorizontalInset = 8;
         
         
         // Replies Button Constraints
-        NSLayoutConstraint * trailing = [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
         NSLayoutConstraint *leading = [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kRepliesHorizontalInset];
         
         NSLayoutConstraint *height = [self.repliesButton autoSetDimension:ALDimensionHeight toSize:30.0];
@@ -166,11 +165,17 @@ CGFloat const kRepliesHorizontalInset = 8;
         [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
             
             NSLayoutConstraint *bottom = [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kRepliesVerticalInset];
+            NSLayoutConstraint *trailing = [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
+
             [self.repliesButtonConstraints addObject:bottom];
+            [self.repliesButtonConstraints addObject:trailing];
+
+            
+            
         }];
 
         
-        [self.repliesButtonConstraints addObjectsFromArray:@[trailing,leading,height, textViewTop]];
+        [self.repliesButtonConstraints addObjectsFromArray:@[leading,height, textViewTop]];
         
         
         self.didUpdateConstraints = YES;

@@ -69,16 +69,28 @@ CGFloat const kCommentsHorizontalInset = 8;
     [[[RACObserve(self, viewModel) deliverOnMainThread] ignore:nil] subscribeNext:^(HNCommentsCellViewModel *x) {
         @strongify(self);
         NSLog(@"%@",x);
-        if (self.expandChild) {
-            [self.treeView reloadData];
-//            [self.treeView expandRowForItem:[[x commentThreadArray] firstObject] withRowAnimation:RATreeViewRowAnimationNone];
-        } else {
-            [self.treeView reloadData];
-        }
-        
+        [self.treeView reloadData];
         [self.treeView layoutIfNeeded];
-
     }];
+    
+    
+    
+    //
+    //    [[[[RACObserve(self, viewModel) deliverOnMainThread] ignore:nil] doNext:^(id x) {
+    //        @strongify(self);
+    //        [self.treeView reloadData];
+    //        [self.treeView layoutIfNeeded];
+    //    }] subscribeNext:^(HNCommentsCellViewModel *viewModel) {
+    //
+    //        if (self.expandChild) {
+    //            @strongify(self);
+    //            [self.treeView expandRowForItem:viewModel.commentThreadArray.firstObject withRowAnimation:RATreeViewRowAnimationNone];
+    //            [self layoutIfNeeded];
+    //            [self updateConstraintsIfNeeded];
+    //        }
+    //    }];
+    //     
+
 }
 
 
@@ -201,12 +213,8 @@ CGFloat const kCommentsHorizontalInset = 8;
     return UITableViewCellEditingStyleNone;
 }
 
-
 - (void)treeView:(RATreeView *)treeView willExpandRowForItem:(HNCommentThread *)item {
     
-
-
-
 }
 
 - (void)treeView:(RATreeView *)treeView didExpandRowForItem:(HNCommentThread *)item {
@@ -216,4 +224,6 @@ CGFloat const kCommentsHorizontalInset = 8;
     [[NSNotificationCenter defaultCenter]postNotificationName:@"ExpandCell" object:nil];
     
 }
+
+
 @end

@@ -64,13 +64,14 @@ NSString *const kFeedCellIdentifier = @"FeedCell";
 - (void)bindViewModel {
     
     @weakify(self);
-    [RACObserve(self.viewModel, topStories) subscribeNext:^(id x) {
+    [[RACObserve(self.viewModel, topStories) skip:1] subscribeNext:^(id x) {
         @strongify(self);
+        NSLog(@"RELOAD");
         [self.tableView reloadData];
     }];
 }
 
-#pragma mark - UITableViewDataSourcehnc
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.viewModel numberOfItemsInSection:section];

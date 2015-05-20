@@ -9,8 +9,6 @@
 #import "UIColor+HNColorPalette.h"
 #import "UIFont+HNFont.h"
 
-
-
 //View
 #import "HNCommentsViewController.h"
 #import "HNTableView.h"
@@ -83,10 +81,6 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     
 }
 
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"WILL DiSPLAY");
-}
 
 - (void)setupHeaderView {
     
@@ -191,12 +185,18 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     
   
     cell.viewModel = self.viewModel.commentThreads[indexPath.row];
+    
+    
     if (indexPath.row == 0 && self.cellExpanded) {
-        cell.expandChild = YES;
-        
+//        cell.expandChild = YES;
+        [cell.treeView beginUpdates];
         [cell.treeView expandRowForItem:[[cell.viewModel commentThreadArray] firstObject] withRowAnimation:RATreeViewRowAnimationNone];
+        
+        NSLog(@"%@",cell.viewModel.commentThreadArray);
         [cell layoutIfNeeded];
         [cell updateConstraintsIfNeeded];
+        [cell.treeView endUpdates];
+        [cell layoutIfNeeded];
     }
 
 
