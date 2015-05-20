@@ -42,7 +42,7 @@ CGFloat const kCommentsHorizontalInset = 8;
 @property (nonatomic) NSNumber *expandedHeight;
 
 
-@property (nonatomic) NSMutableArray *rowsToExpand;
+@property (nonatomic) NSMutableArray *indexPathsForRowsToExpand;
 
 @end
 
@@ -61,7 +61,7 @@ CGFloat const kCommentsHorizontalInset = 8;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self initalizeViews];
     [self bindViewModel];
-    
+    self.indexPathsForRowsToExpand = [NSMutableArray array];
 }
 
 - (void)bindViewModel {
@@ -72,24 +72,6 @@ CGFloat const kCommentsHorizontalInset = 8;
         [self.treeView reloadData];
         [self.treeView layoutIfNeeded];
     }];
-    
-    
-    
-    //
-    //    [[[[RACObserve(self, viewModel) deliverOnMainThread] ignore:nil] doNext:^(id x) {
-    //        @strongify(self);
-    //        [self.treeView reloadData];
-    //        [self.treeView layoutIfNeeded];
-    //    }] subscribeNext:^(HNCommentsCellViewModel *viewModel) {
-    //
-    //        if (self.expandChild) {
-    //            @strongify(self);
-    //            [self.treeView expandRowForItem:viewModel.commentThreadArray.firstObject withRowAnimation:RATreeViewRowAnimationNone];
-    //            [self layoutIfNeeded];
-    //            [self updateConstraintsIfNeeded];
-    //        }
-    //    }];
-    //     
 
 }
 
@@ -218,13 +200,20 @@ CGFloat const kCommentsHorizontalInset = 8;
 }
 
 - (void)treeView:(RATreeView *)treeView didExpandRowForItem:(HNCommentThread *)item {
+    
     [self.parentTableView beginUpdates];
     [self.parentTableView endUpdates];
     
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"ExpandCell" object:nil];
+    NSIndexPath *idxPath = [self.parentTableView indexPathForCell:self];
+//    if (![self.indexPathsForRowsToExpand containsObject:idxPath]) {
+//        [self.indexPathsForRowsToExpand addObject:idxPath];
+//        NSLog(@"%@",self.indexPathsForRowsToExpand);
+//    }
+//    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"IndexPathsToExpand" object:self userInfo:@{@"IndexPaths" : idxPath }];
+
     
 }
-
 
 - (void)keepCellExpanded {
     
@@ -233,7 +222,14 @@ CGFloat const kCommentsHorizontalInset = 8;
     [self layoutIfNeeded];
     [self updateConstraintsIfNeeded];
     [self.treeView endUpdates];
+    
     [self layoutIfNeeded];
+}
+
+
+-(void)prepareForReuse {
+    [super prepareForReuse];
+//    [self.indexPathsForRowsToExpand removeAllObjects];
 }
 
 

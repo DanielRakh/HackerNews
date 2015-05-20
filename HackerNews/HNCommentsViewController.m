@@ -29,13 +29,11 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *originationLabel;
 
-@property (nonatomic, assign) BOOL cellExpanded;
-@property (nonatomic, assign) CGFloat expandedHeight;
-
-@property (nonatomic) id itemToExpand;
+@property (nonatomic) NSMutableArray *indexPathsToExpand;
 
 
-@property (nonatomic) NSArray *expandedRows;
+
+
 
 
 @end
@@ -64,21 +62,26 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     [self bindViewModel];
     
     
-    self.cellExpanded = NO;
     // We need to "rejigger" the header view because Autolayout is fucking shit.
     [self rejiggerTableHeaderView];
-
-
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(expandCell:) name:@"ExpandCell" object:nil];
     
+    self.indexPathsToExpand = [NSMutableArray array];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(collectIndexPathsToExpand:) name:@"IndexPathsToExpand" object:nil];
     
 }
 
-- (void)expandCell:(NSNotification *)notification {
-    self.cellExpanded = YES;
-    [self.tableView layoutIfNeeded];
+
+
+- (void)collectIndexPathsToExpand:(NSNotification *)notification {
     
+    NSDictionary *dict = notification.userInfo;
+    NSIndexPath *idxPath = dict[@"IndexPaths"];
+    
+    if (![self.indexPathsToExpand containsObject:idxPath]) {
+        [self.indexPathsToExpand addObject:idxPath];
+    }
 }
 
 
@@ -183,19 +186,26 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     
     HNCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
     
+//    if ([cell.treeView isCellForItemExpanded:cell.viewModel.commentThreadArray.firstObject]) {
+//        NSLog(@"EXPANDED");
+//        [cell keepCellExpanded];
+//    }
+//    
   
     cell.viewModel = self.viewModel.commentThreads[indexPath.row];
     
     
-    if (indexPath.row == 0 && self.cellExpanded) {
-        [cell keepCellExpanded];
+    for (NSIndexPath *idxPath in self.indexPathsToExpand) {
+        if (indexPath.row == idxPath.row) {
+            [cell keepCellExpanded];
+        }
     }
     
-    
-//    if (cell.treeView row) {
-//        <#statements#>
-//    }
 
+    
+ 
+
+    
     [cell setNeedsUpdateConstraints];
     
     return cell;
