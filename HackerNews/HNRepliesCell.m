@@ -65,13 +65,13 @@ CGFloat const kRepliesHorizontalInset = 8;
         @strongify(self);
         self.repliesButton.hidden = x.boolValue;
         
-        if (x.boolValue == YES) {
-            [self.repliesButtonConstraints autoRemoveConstraints];
-            [self.contentView addConstraint:self.textViewToBottomConstraint];
-        } else {
-            [self.contentView removeConstraint:self.textViewToBottomConstraint];
-            [self.repliesButtonConstraints autoInstallConstraints];
-        }
+//        if (x.boolValue == YES) {
+//            [self.repliesButtonConstraints autoRemoveConstraints];
+//            [self.contentView addConstraint:self.textViewToBottomConstraint];
+//        } else {
+//            [self.contentView removeConstraint:self.textViewToBottomConstraint];
+//            [self.repliesButtonConstraints autoInstallConstraints];
+//        }
         
     }];
 }

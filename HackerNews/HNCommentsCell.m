@@ -197,6 +197,9 @@ CGFloat const kCommentsHorizontalInset = 8;
 
 - (void)treeView:(RATreeView *)treeView willExpandRowForItem:(HNCommentThread *)item {
     
+    HNRepliesCell *cell = (HNRepliesCell *)[treeView cellForItem:item];
+    cell.expanded = YES;
+    
 }
 
 - (void)treeView:(RATreeView *)treeView didExpandRowForItem:(HNCommentThread *)item {
@@ -219,7 +222,8 @@ CGFloat const kCommentsHorizontalInset = 8;
 - (void)keepCellExpanded {
     
     [self.treeView beginUpdates];
-    [self.treeView expandRowForItem:[[self.viewModel commentThreadArray] firstObject] withRowAnimation:RATreeViewRowAnimationNone];
+    [self.treeView expandRowForItem:[[self.viewModel commentThreadArray] firstObject] expandChildren:YES withRowAnimation:RATreeViewRowAnimationNone];
+//    [self.treeView expandRowForItem:[[self.viewModel commentThreadArray] firstObject] withRowAnimation:RATreeViewRowAnimationNone];
     [self layoutIfNeeded];
     [self updateConstraintsIfNeeded];
     [self.treeView endUpdates];
