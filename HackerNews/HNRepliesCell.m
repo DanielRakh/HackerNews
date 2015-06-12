@@ -13,6 +13,7 @@
 #import "HNThinLineButton.h"
 #import "HNRepliesCellViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "UIView+FindUITableView.h"
 
 
 
@@ -28,8 +29,11 @@ CGFloat const kRepliesHorizontalInset = 8;
 @property (nonatomic) BOOL didUpdateConstraints;
 @property (nonatomic) NSLayoutConstraint *textViewHeightConstraint;
 
-@property (nonatomic) NSMutableArray *repliesButtonConstraints;
-@property (nonatomic) NSLayoutConstraint *textViewToBottomConstraint;
+//@property (nonatomic) NSMutableArray *repliesButtonConstraints;
+//@property (nonatomic) NSLayoutConstraint *textViewToBottomConstraint;
+
+
+
 
 
 
@@ -89,7 +93,7 @@ CGFloat const kRepliesHorizontalInset = 8;
     _repliesButtonConstraints = [NSMutableArray array];
     
     self.backgroundColor = [UIColor blackColor];
-    self.contentView.backgroundColor = [UIColor darkGrayColor];
+    self.contentView.backgroundColor = [UIColor lightGrayColor];
     
     // Set up Origination Label
     self.originationLabel = [UILabel newAutoLayoutView];
@@ -120,6 +124,7 @@ CGFloat const kRepliesHorizontalInset = 8;
     //Set up Comments Button
     self.repliesButton = [HNThinLineButton newAutoLayoutView];
     self.repliesButton.titleLabel.font = [UIFont proximaNovaWithWeight:TypeWeightRegular size:12.0];
+    [self.repliesButton addTarget:self action:@selector(repliesButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.repliesButton];
     
 }
@@ -145,9 +150,10 @@ CGFloat const kRepliesHorizontalInset = 8;
         [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kRepliesHorizontalInset];
         [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kRepliesVerticalInset];
         [UIView autoSetPriority:UILayoutPriorityRequired forConstraints:^{
-            [self.originationLabel autoSetContentCompressionResistancePriorityForAxis:ALAxisVertical];
+//            [self.originationLabel autoSetContentCompressionResistancePriorityForAxis:ALAxisVertical];
+            [self.originationLabel autoSetContentHuggingPriorityForAxis:ALAxisVertical];
         }];
-        
+//
         [self.commentTextView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.originationLabel withOffset:kRepliesVerticalInset];
         [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kRepliesHorizontalInset];
         [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
@@ -169,21 +175,17 @@ CGFloat const kRepliesHorizontalInset = 8;
 
             [self.repliesButtonConstraints addObject:bottom];
             [self.repliesButtonConstraints addObject:trailing];
-
-            
             
         }];
-
         
         [self.repliesButtonConstraints addObjectsFromArray:@[leading,height, textViewTop]];
         
-        
         self.didUpdateConstraints = YES;
-    
     }
 
     CGFloat textViewWidth = self.contentView.bounds.size.width - (kRepliesHorizontalInset * 2);
     CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(textViewWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+   
     if (!self.textViewHeightConstraint) {
         self.textViewHeightConstraint = [self.commentTextView autoSetDimension:ALDimensionHeight toSize:CGRectGetHeight(rect)];
     } else {
@@ -192,6 +194,7 @@ CGFloat const kRepliesHorizontalInset = 8;
 
     if (!self.textViewToBottomConstraint) {
         self.textViewToBottomConstraint = [NSLayoutConstraint constraintWithItem:self.commentTextView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeBottom multiplier:1 constant:-10];
+        self.textViewToBottomConstraint.priority = UILayoutPriorityRequired;
     }
     
 
@@ -199,6 +202,48 @@ CGFloat const kRepliesHorizontalInset = 8;
     
 }
 
+
+#pragma mark-
+#pragma mark - Actiions
+
+
+
+- (void)repliesButtonDidTap:(id)sender {
+    
+    
+    if (self.repliesButtonDidTapAction) {
+        self.repliesButtonDidTapAction(sender);
+    }
+    
+    NSLog(@"DID TAP!");
+//    
+//    [self.repliesButtonConstraints autoRemoveConstraints];
+//    [self.contentView addConstraint:self.textViewToBottomConstraint];
+    
+    
+    NSLog(@"%@",self);
+    NSLog(@"Before: %@",NSStringFromCGSize(self.parentTreeView.contentSize));
+
+//    [self.parentTreeView beginUpdates];
+//    self.repliesButton.alpha = 0;
+//    [self.repliesButton removeFromSuperview];
+//    [self.repliesButtonConstraints autoRemoveConstraints];
+//    [self.contentView addConstraint:self.textViewToBottomConstraint];
+//    [self.parentTreeView updateConstraintsIfNeeded];
+//    [self.parentTreeView layoutIfNeeded];
+//    [self.parentTreeView endUpdates];
+//    
+//    self.treeConstraint.constant = self.frame.size.height;
+//    [self.parentTreeView updateConstraintsIfNeeded];
+//    [self.parentTreeView layoutIfNeeded];
+
+    
+    NSLog(@"After: %@",NSStringFromCGSize(self.parentTreeView.contentSize));
+    NSLog(@"%@",self);
+
+
+
+}
 
 //- (CGFloat)textViewHeightForAttributedText: (NSAttributedString*)text andWidth: (CGFloat)width {
 //    UITextView *calculationView = [[UITextView alloc] init];

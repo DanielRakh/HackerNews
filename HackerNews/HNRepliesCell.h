@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RATreeView.h"
+
 
 @class HNRepliesCellViewModel;
 @class HNThinLineButton;
@@ -24,6 +26,18 @@
 
 
 
+@property (nonatomic, weak) RATreeView *parentTreeView;
+@property (nonatomic, weak) NSLayoutConstraint *treeConstraint;
+
+
+
 - (void)configureWithViewModel:(HNRepliesCellViewModel *)viewModel;
+
+
+@property (nonatomic, copy) void (^repliesButtonDidTapAction)(id sender);
+
+@property (nonatomic) NSMutableArray *repliesButtonConstraints;
+@property (nonatomic) NSLayoutConstraint *textViewToBottomConstraint;
+
 
 @end

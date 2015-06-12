@@ -32,10 +32,6 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 @property (nonatomic) NSMutableDictionary *indexPathsToExpand;
 
 
-
-
-
-
 @end
 
 @implementation HNCommentsViewController

@@ -1,4 +1,3 @@
-
 //
 //  HNCommentsCell.m
 //  HackerNews
@@ -113,7 +112,7 @@ CGFloat const kCommentsHorizontalInset = 8;
     self.treeView.scrollEnabled = NO;
     self.treeView.treeFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     self.treeView.backgroundColor = [UIColor greenColor];
-    self.treeView.separatorStyle = RATreeViewCellSeparatorStyleNone;
+    self.treeView.separatorStyle = RATreeViewCellSeparatorStyleSingleLine;
     [self.treeView registerClass:[HNRepliesCell class] forCellReuseIdentifier:@"Cell"];
     
     [self.cardView addSubview:self.treeView];
@@ -172,6 +171,31 @@ CGFloat const kCommentsHorizontalInset = 8;
 - (UITableViewCell *)treeView:(RATreeView *)treeView cellForItem:(HNCommentThread *)item {
     
     HNRepliesCell *cell = [treeView dequeueReusableCellWithIdentifier:@"Cell"];
+    cell.parentTreeView = self.treeView;
+    cell.treeConstraint = self.treeViewHeightConstraint;
+    
+    __weak typeof (self) weakSelf = self;
+    __weak typeof (cell) weakCell = cell;
+    cell.repliesButtonDidTapAction = ^(id sender){
+        
+        if (![weakSelf.treeView isCellForItemExpanded:item]) {
+//        [weakSelf.parentTableView beginUpdates];
+            [weakSelf.treeView expandRowForItem:item expandChildren:YES withRowAnimation:RATreeViewRowAnimationAutomatic];
+            [weakSelf.treeView updateConstraintsIfNeeded];
+            [weakSelf.treeView layoutIfNeeded];
+//            [weakCell.repliesButton setTitle:@"Collapse" forState:UIControlStateNormal];
+
+//            [weakSelf.treeView beginUpdates];
+//            weakCell.repliesButton.alpha = 0;
+//            [weakCell.repliesButton removeFromSuperview];
+//            [weakCell.repliesButtonConstraints autoRemoveConstraints];
+//            [weakCell.contentView addConstraint:weakCell.textViewToBottomConstraint];
+//            [weakSelf.treeView endUpdates];
+//            [weakSelf.treeView updateConstraintsIfNeeded];
+//            [weakSelf.treeView layoutIfNeeded];
+//        [weakSelf.parentTableView endUpdates];
+    }
+    };
     [cell configureWithViewModel:[self.viewModel repliesViewModelForRootComment:item.headComment]];
     [cell setNeedsUpdateConstraints];
     [self setNeedsUpdateConstraints];
@@ -195,25 +219,25 @@ CGFloat const kCommentsHorizontalInset = 8;
     return UITableViewCellEditingStyleNone;
 }
 
-- (void)treeView:(RATreeView *)treeView willExpandRowForItem:(HNCommentThread *)item {
-    
-    HNRepliesCell *cell = (HNRepliesCell *)[treeView cellForItem:item];
-    cell.expanded = YES;
-    
-}
+//- (void)treeView:(RATreeView *)treeView willExpandRowForItem:(HNCommentThread *)item {
+//    
+//    HNRepliesCell *cell = (HNRepliesCell *)[treeView cellForItem:item];
+//    cell.expanded = YES;
+//    
+//}
 
 - (void)treeView:(RATreeView *)treeView didExpandRowForItem:(HNCommentThread *)item {
     
     [self.parentTableView beginUpdates];
     [self.parentTableView endUpdates];
     
-    NSIndexPath *idxPath = [self.parentTableView indexPathForCell:self];
+//    NSIndexPath *idxPath = [self.parentTableView indexPathForCell:self];
 //    if (![self.indexPathsForRowsToExpand containsObject:idxPath]) {
 //        [self.indexPathsForRowsToExpand addObject:idxPath];
 //        NSLog(@"%@",self.indexPathsForRowsToExpand);
 //    }
 //    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"IndexPathsToExpand" object:self userInfo:@{@"IndexPath" : idxPath }];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"IndexPathsToExpand" object:self userInfo:@{@"IndexPath" : idxPath }];
 
     
 

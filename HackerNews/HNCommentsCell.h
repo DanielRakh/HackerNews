@@ -17,6 +17,8 @@
 
 @property (nonatomic) HNCommentsCellViewModel *viewModel;
 @property (nonatomic) RATreeView *treeView;
+//@property (nonatomic) NSLayoutConstraint *treeViewHeightConstraint;
+
 
 @property (nonatomic, assign) BOOL expandChild;
 
