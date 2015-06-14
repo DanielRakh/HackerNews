@@ -24,15 +24,6 @@
     return sharedMyManager;
 }
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-
-    }
-    return self;
-}
-
 
 #pragma mark -  Public
 #pragma mark -
@@ -115,16 +106,16 @@
             }];
 }
 
-
 #pragma mark -  Private Helpers
 #pragma mark - 
 
 - (RACSignal *)populateRepliesForRootComment:(HNItemComment *)comment {
     
-    return [[comment.kids.rac_sequence.signal flattenMap:^RACStream *(id value) {
-        return [[[self commentForID:value]
+    return [[comment.kids.rac_sequence.signal flattenMap:^RACStream *(NSNumber *idNum) {
+        return [[[self commentForID:idNum]
                  doNext:^(HNItemComment *child) {
-                     [comment.replies addObject:child];
+                     [comment.kids replaceObjectAtIndex:[comment.kids indexOfObject:idNum] withObject:child];
+//                     [comment.replies addObject:child];
                  }] flattenMap:^RACStream *(HNItemComment *child) {
                      if (child.kids.count > 0) {
                          return [self populateRepliesForRootComment:child];
@@ -135,17 +126,17 @@
     }] then:^RACSignal *{
         return [RACSignal return:comment];
     }];
-    
 }
+
 
 - (RACSignal *)populateThreadForRootThread:(HNCommentThread *)thread {
     
-    return [[thread.headComment.replies.rac_sequence.signal flattenMap:^RACStream *(HNItemComment *reply) {
+    return [[thread.headComment.kids.rac_sequence.signal flattenMap:^RACStream *(HNItemComment *reply) {
         return [[[self threadForComment:reply]
                  doNext:^(HNCommentThread *replyThread) {
                      [thread addReply:replyThread];
                  }] flattenMap:^RACStream *(HNCommentThread *replyThread) {
-                     if (replyThread.headComment.replies.count > 0) {
+                     if (replyThread.headComment.kids.count > 0) {
                          return [self populateThreadForRootThread:replyThread];
                      } else {
                          return [RACSignal empty];

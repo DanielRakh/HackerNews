@@ -18,12 +18,11 @@
 
 @property (nonatomic, readonly) NSAttributedString *origination;
 @property (nonatomic, readonly) NSAttributedString *text;
-@property (nonatomic, readonly) NSString *repliesCount;
+@property (nonatomic, readonly) NSInteger repliesCount;
 
 
 
 - (instancetype)initWithReply:(HNItemComment *)reply;
-
 
 
 @end

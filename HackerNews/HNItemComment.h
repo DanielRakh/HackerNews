@@ -11,8 +11,8 @@
 @interface HNItemComment : HNItemAbstract
 
 @property (nonatomic) NSNumber *parentIDNum;
-@property (nonatomic) NSArray *kids;
-@property (nonatomic) NSMutableArray *replies; 
+@property (nonatomic) NSMutableArray *kids;
+
 
 
 @end
