@@ -182,25 +182,33 @@ CGFloat const kCommentsHorizontalInset = 8;
         
 
         if (![weakSelf.treeView isCellForItemExpanded:item]) {
+            
+            [weakSelf.parentTableView beginUpdates];
 
+            [weakSelf.treeView beginUpdates];
             [weakSelf.treeView expandRowForItem:item expandChildren:NO withRowAnimation:RATreeViewRowAnimationAutomatic];
             [weakSelf.treeView updateConstraintsIfNeeded];
             [weakSelf.treeView layoutIfNeeded];
             [weakCell.repliesButton setBackgroundColor:[UIColor HNOrange]];
             [weakCell.repliesButton setTitleColor:[UIColor HNWhite] forState:UIControlStateNormal];
             [weakCell.repliesButton setTitle:@"Collapse" forState:UIControlStateNormal];
+            [weakSelf.treeView endUpdates];
+            
+            [weakSelf.treeView layoutIfNeeded];
+            [weakSelf.parentTableView layoutIfNeeded];
+            [weakSelf.parentTableView endUpdates];
+
         }
     };
     
     
     if ([self.treeView levelForCellForItem:item] == 0) {
-        for (NSLayoutConstraint *constraint in cell.threadLineConstraints) {
-                        constraint.constant = 0;
-        }
+        cell.widthThreadLineConstraint.constant = 0;
+        cell.commentTextViewToThreadline.constant = 0;
+    } else {
+        cell.leadingThreadLineConstraint.constant = [self.treeView levelForCellForItem:item] * 8;
     }
-    
-  
-    
+
     
     if (item.replies.count < 1) {
         //No replies
@@ -257,23 +265,23 @@ CGFloat const kCommentsHorizontalInset = 8;
 
 }
 
-- (void)keepCellExpanded {
-    
-    [self.treeView beginUpdates];
-    [self.treeView expandRowForItem:[[self.viewModel commentThreadArray] firstObject] expandChildren:YES withRowAnimation:RATreeViewRowAnimationNone];
-//    [self.treeView expandRowForItem:[[self.viewModel commentThreadArray] firstObject] withRowAnimation:RATreeViewRowAnimationNone];
-    [self layoutIfNeeded];
-    [self updateConstraintsIfNeeded];
-    [self.treeView endUpdates];
-    
-    [self layoutIfNeeded];
-}
+//- (void)keepCellExpanded {
+//    
+//    [self.treeView beginUpdates];
+//    [self.treeView expandRowForItem:[[self.viewModel commentThreadArray] firstObject] expandChildren:YES withRowAnimation:RATreeViewRowAnimationNone];
+////    [self.treeView expandRowForItem:[[self.viewModel commentThreadArray] firstObject] withRowAnimation:RATreeViewRowAnimationNone];
+//    [self layoutIfNeeded];
+//    [self updateConstraintsIfNeeded];
+//    [self.treeView endUpdates];
+//    
+//    [self layoutIfNeeded];
+//}
 
 
--(void)prepareForReuse {
-    [super prepareForReuse];
-//    [self.indexPathsForRowsToExpand removeAllObjects];
-}
-
+//-(void)prepareForReuse {
+//    [super prepareForReuse];
+////    [self.indexPathsForRowsToExpand removeAllObjects];
+//}
+//
 
 @end

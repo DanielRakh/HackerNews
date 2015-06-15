@@ -37,8 +37,13 @@
 @property (nonatomic, copy) void (^repliesButtonDidTapAction)(id sender);
 
 @property (nonatomic) NSMutableArray *repliesButtonConstraints;
-@property (nonatomic) NSMutableArray *threadLineConstraints;
+//@property (nonatomic) NSMutableArray *threadLineConstraints;
 //@property (nonatomic) NSLayoutConstraint *textViewToBottomConstraint;
+
+
+@property (nonatomic) NSLayoutConstraint *leadingThreadLineConstraint;
+@property (nonatomic) NSLayoutConstraint *widthThreadLineConstraint;
+@property (nonatomic) NSLayoutConstraint *commentTextViewToThreadline; 
 
 
 @end

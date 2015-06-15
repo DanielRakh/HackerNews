@@ -122,7 +122,7 @@ CGFloat const kRepliesHorizontalInset = 8;
     self.didUpdateConstraints = NO;
     
     _repliesButtonConstraints = [NSMutableArray array];
-    _threadLineConstraints = [NSMutableArray array];
+//    _threadLineConstraints = [NSMutableArray array];
     
     self.backgroundColor = [UIColor clearColor];
     self.contentView.backgroundColor = [UIColor clearColor];
@@ -189,9 +189,9 @@ CGFloat const kRepliesHorizontalInset = 8;
         }];
 //
         [self.commentTextView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.originationLabel withOffset:kRepliesVerticalInset];
-        NSLayoutConstraint *commentTextViewToThreadline = [self.commentTextView autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.threadLine withOffset:6.0];
+        self.commentTextViewToThreadline = [self.commentTextView autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.threadLine withOffset:6.0];
         
-        [self.threadLineConstraints addObject:commentTextViewToThreadline];
+//        [self.threadLineConstraints addObject:commentTextViewToThreadline];
         
         [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
         [self.commentTextView autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop
@@ -214,14 +214,14 @@ CGFloat const kRepliesHorizontalInset = 8;
         // Thread Line constraints
         
         [self.threadLine autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.originationLabel];
-        [self.threadLine autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.repliesButton];
+        [self.threadLine autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.commentTextView];
         
-        NSLayoutConstraint *leadingThreadLine = [self.threadLine autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kRepliesHorizontalInset];
+        self.leadingThreadLineConstraint = [self.threadLine autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kRepliesHorizontalInset];
        
-        NSLayoutConstraint *widthThreadLine = [self.threadLine autoSetDimension:ALDimensionWidth toSize:1.0 relation:NSLayoutRelationEqual];
+        self.widthThreadLineConstraint = [self.threadLine autoSetDimension:ALDimensionWidth toSize:1.0 relation:NSLayoutRelationEqual];
       
         
-        [self.threadLineConstraints addObjectsFromArray:@[leadingThreadLine,widthThreadLine]];
+//        [self.threadLineConstraints addObjectsFromArray:@[leadingThreadLine]];
         
         
         
