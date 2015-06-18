@@ -50,28 +50,55 @@
 //    }];
 //
     
-   [[[[[[[HNItemDataManager sharedManager]testStory] flattenMap:^RACStream *(id value) {
+   [[[[[[[[HNItemDataManager sharedManager]testStory] flattenMap:^RACStream *(id value) {
         return [[HNItemDataManager sharedManager] rootCommentForStory:value];
-    }] logNext] flattenMap:^RACStream *(HNItemComment *value) {
-        
-        return [RACSignal defer:^RACSignal *{
-            return [RACSignal if:[RACSignal return:@(value.kids != nil)]
-                    then:[[RACSignal return:[self repliesForRootComment:value]] concat]
-                    else:[RACSignal return:value]];
-
-        }];
-    }] map:^id(id value) {
-        DLogNSObject(value);
-//        DLogNSInteger([[value replies] count]);
-//        DLogNSObject([value idNum]);
-        return value;
-    }] subscribeNext:^(id x) {
-//        DLogNSObject([x idNum]);
+    }] collect] logNext] flattenMap:^RACStream *(NSArray *rootComments) {
+        return [[rootComments.rac_sequence flattenMap:^RACStream *(HNItemComment *value) {
+            
+//             return [RACSignal if:[RACSignal return:@(value.kids != nil)]
+//                                               then:[[RACSignal return:[self repliesForRootComment:value]] concat]
+//                                               else:[RACSignal return:value]];
+            
+            if (value.kids != nil) {
+                return [self repliesForRootComment:value].sequence;
+            } else {
+                return [RACSignal return:value].sequence;
+            }
+        }] signal];
+    }] logNext]
+    
+    subscribeNext:^(id x) {
+        DLogNSObject([x replies]);
     } error:^(NSError *error) {
         DLogNSObject(error);
     } completed:^{
         DLogFunctionLine();
     }];
+      
+      
+      
+      
+      
+//      flattenMap:^RACStream *(HNItemComment *value) {
+//        
+//        return [RACSignal defer:^RACSignal *{
+//            return [RACSignal if:[RACSignal return:@(value.kids != nil)]
+//                    then:[[RACSignal return:[self repliesForRootComment:value]] concat]
+//                    else:[RACSignal return:value]];
+//
+//        }];
+//    }] map:^id(id value) {
+//        DLogNSObject(value);
+////        DLogNSInteger([[value replies] count]);
+////        DLogNSObject([value idNum]);
+//        return value;
+//    }] subscribeNext:^(id x) {
+////        DLogNSObject([x idNum]);
+//    } error:^(NSError *error) {
+//        DLogNSObject(error);
+//    } completed:^{
+//        DLogFunctionLine();
+//    }];
 
     
 //    @weakify(self);
