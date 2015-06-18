@@ -191,8 +191,6 @@ CGFloat const kRepliesHorizontalInset = 8;
         [self.commentTextView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.originationLabel withOffset:kRepliesVerticalInset];
         self.commentTextViewToThreadline = [self.commentTextView autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.threadLine withOffset:6.0];
         
-//        [self.threadLineConstraints addObject:commentTextViewToThreadline];
-        
         [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
         [self.commentTextView autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop
                                    ofView:self.repliesButton withOffset:-kRepliesVerticalInset relation:NSLayoutRelationEqual];
@@ -217,11 +215,8 @@ CGFloat const kRepliesHorizontalInset = 8;
         [self.threadLine autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.commentTextView];
         
         self.leadingThreadLineConstraint = [self.threadLine autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kRepliesHorizontalInset];
-       
         self.widthThreadLineConstraint = [self.threadLine autoSetDimension:ALDimensionWidth toSize:1.0 relation:NSLayoutRelationEqual];
       
-        
-//        [self.threadLineConstraints addObjectsFromArray:@[leadingThreadLine]];
         
         
         
@@ -250,54 +245,13 @@ CGFloat const kRepliesHorizontalInset = 8;
 
 
 #pragma mark-
-#pragma mark - Actiions
-
-
+#pragma mark - Actions
 
 - (void)repliesButtonDidTap:(id)sender {
-    
     
     if (self.repliesButtonDidTapAction) {
         self.repliesButtonDidTapAction(sender);
     }
-    
-    NSLog(@"DID TAP!");
-//    
-//    [self.repliesButtonConstraints autoRemoveConstraints];
-//    [self.contentView addConstraint:self.textViewToBottomConstraint];
-    
-    
-    NSLog(@"%@",self);
-    NSLog(@"Before: %@",NSStringFromCGSize(self.parentTreeView.contentSize));
-
-//    [self.parentTreeView beginUpdates];
-//    self.repliesButton.alpha = 0;
-//    [self.repliesButton removeFromSuperview];
-//    [self.repliesButtonConstraints autoRemoveConstraints];
-//    [self.contentView addConstraint:self.textViewToBottomConstraint];
-//    [self.parentTreeView updateConstraintsIfNeeded];
-//    [self.parentTreeView layoutIfNeeded];
-//    [self.parentTreeView endUpdates];
-//    
-//    self.treeConstraint.constant = self.frame.size.height;
-//    [self.parentTreeView updateConstraintsIfNeeded];
-//    [self.parentTreeView layoutIfNeeded];
-
-    
-    NSLog(@"After: %@",NSStringFromCGSize(self.parentTreeView.contentSize));
-    NSLog(@"%@",self);
-
-
-
 }
-
-//- (CGFloat)textViewHeightForAttributedText: (NSAttributedString*)text andWidth: (CGFloat)width {
-//    UITextView *calculationView = [[UITextView alloc] init];
-//    [calculationView setAttributedText:text];
-//    CGSize size = [calculationView sizeThatFits:CGSizeMake(width, FLT_MAX)];
-//    return size.height;
-//}
-//
-
 
 @end

@@ -48,10 +48,77 @@
 //    [[[[HNItemDataManager sharedManager] threadForRootCommentID:@9442381] collect] subscribeNext:^(HNCommentThread *y) {
 //        NSLog(@"NEXT:%@",y);
 //    }];
-//    
+//
+    
+   [[[[[[[HNItemDataManager sharedManager]testStory] flattenMap:^RACStream *(id value) {
+        return [[HNItemDataManager sharedManager] rootCommentForStory:value];
+    }] logNext] flattenMap:^RACStream *(HNItemComment *value) {
+        
+        return [RACSignal defer:^RACSignal *{
+            return [RACSignal if:[RACSignal return:@(value.kids != nil)]
+                    then:[[RACSignal return:[self repliesForRootComment:value]] concat]
+                    else:[RACSignal return:value]];
+
+        }];
+    }] map:^id(id value) {
+        DLogNSObject(value);
+//        DLogNSInteger([[value replies] count]);
+//        DLogNSObject([value idNum]);
+        return value;
+    }] subscribeNext:^(id x) {
+//        DLogNSObject([x idNum]);
+    } error:^(NSError *error) {
+        DLogNSObject(error);
+    } completed:^{
+        DLogFunctionLine();
+    }];
+
+    
+//    @weakify(self);
+//    [[[testStory map:^id(HNItemComment *rootComment) {
+////        DLogNSObject(rootComment.idNum);
+//
+//        
+//        return [RACSignal if:[RACSignal return:@NO]
+//                
+//                then:[self repliesForRootComment:rootComment]
+//                
+//                else:[RACSignal return:rootComment]];
+//        
+//        
+////       [self repliesForRootComment:rootComment] 
+//    }] map:^id(HNItemComment *x) {
+//        DLogNSObject([x idNum]);
+//        return x;
+//    }] subscribeNext:^(HNItemComment *x) {
+////        DLogNSObject(x.idNum);
+//    }  error:^(NSError *error) {
+//        DLogNSObject(error);
+//    }  completed:^{
+//        DLogFunctionLine();
+//    }];
     
     return YES;
 }
+
+
+- (RACSignal *)repliesForRootComment:(HNItemComment *)rootComment {
+    
+    return [[[[[rootComment.kids.rac_sequence.eagerSequence
+                 map:^id(id value) {
+                    return [[HNItemDataManager sharedManager]commentForID:value];
+                }] signal] flatten]
+             doNext:^(HNItemComment *reply) {
+                 [rootComment.replies addObject:reply];
+              }]
+             then:^RACSignal *{
+                return [RACSignal return:rootComment];
+             }];
+//
+//    return [RACSignal return:rootComment];
+
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

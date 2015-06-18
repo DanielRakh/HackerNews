@@ -14,7 +14,7 @@
 
 
 //Root HNCommentCellViewModels
-@property (nonatomic, readonly) NSArray *commentThreads;
+@property (nonatomic, readonly) NSArray *commentCellViewModels;
 
 // These are binded to the Header on the Table
 @property (nonatomic, readonly) NSString *score;

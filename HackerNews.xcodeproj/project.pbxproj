@@ -36,6 +36,7 @@
 		8E87C43F1AE3421100CD004E /* HNUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C43E1AE3421100CD004E /* HNUtilities.m */; };
 		8E87C4421AE3424800CD004E /* NSString+RemoveTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C4411AE3424800CD004E /* NSString+RemoveTag.m */; };
 		8EA8736D1AD85A3C009C01F8 /* HNItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8736C1AD85A3C009C01F8 /* HNItem.m */; };
+		8ED20F441B2F78A700C6D37C /* DLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED20F431B2F78A700C6D37C /* DLog.m */; };
 		8ED3D3D11AF28DFD00E5E657 /* HNItemAbstract.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D3D01AF28DFD00E5E657 /* HNItemAbstract.m */; };
 		8ED3D3D51AF28F1700E5E657 /* HNItemStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D3D41AF28F1700E5E657 /* HNItemStory.m */; };
 		8ED3D3D81AF28F5600E5E657 /* HNItemComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D3D71AF28F5600E5E657 /* HNItemComment.m */; };
@@ -132,6 +133,9 @@
 		8E87C4411AE3424800CD004E /* NSString+RemoveTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RemoveTag.m"; sourceTree = "<group>"; };
 		8EA8736B1AD85A3C009C01F8 /* HNItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNItem.h; sourceTree = "<group>"; };
 		8EA8736C1AD85A3C009C01F8 /* HNItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNItem.m; sourceTree = "<group>"; };
+		8ED20F401B2F780200C6D37C /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		8ED20F421B2F78A700C6D37C /* DLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLog.h; sourceTree = "<group>"; };
+		8ED20F431B2F78A700C6D37C /* DLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLog.m; sourceTree = "<group>"; };
 		8ED3D3CF1AF28DFD00E5E657 /* HNItemAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNItemAbstract.h; sourceTree = "<group>"; };
 		8ED3D3D01AF28DFD00E5E657 /* HNItemAbstract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNItemAbstract.m; sourceTree = "<group>"; };
 		8ED3D3D31AF28F1700E5E657 /* HNItemStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNItemStory.h; sourceTree = "<group>"; };
@@ -253,6 +257,7 @@
 		8E23523D1ACC571F0009552D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8ED20F401B2F780200C6D37C /* PrefixHeader.pch */,
 				8E23523E1ACC571F0009552D /* Info.plist */,
 				8E23523F1ACC571F0009552D /* main.m */,
 			);
@@ -416,6 +421,7 @@
 		8E87C46E1AE466BE00CD004E /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				8ED20F411B2F78A700C6D37C /* DLog */,
 				8E87C4401AE3424800CD004E /* NSString+RemoveTag.h */,
 				8E87C4411AE3424800CD004E /* NSString+RemoveTag.m */,
 				8E87C43D1AE3421100CD004E /* HNUtilities.h */,
@@ -437,6 +443,15 @@
 				8E87C43A1AE31FFD00CD004E /* HNThinLineButton.m */,
 			);
 			name = Shared;
+			sourceTree = "<group>";
+		};
+		8ED20F411B2F78A700C6D37C /* DLog */ = {
+			isa = PBXGroup;
+			children = (
+				8ED20F421B2F78A700C6D37C /* DLog.h */,
+				8ED20F431B2F78A700C6D37C /* DLog.m */,
+			);
+			path = DLog;
 			sourceTree = "<group>";
 		};
 		8ED3D3D21AF28EC000E5E657 /* Regular Objects */ = {
@@ -672,6 +687,7 @@
 				8E049EFE1B0AAE3100A0FBD5 /* UIView+FindUITableView.m in Sources */,
 				8E87C43B1AE31FFD00CD004E /* HNTableView.m in Sources */,
 				8E395EE21AD1978A00EE0DB9 /* HNCommentsViewController.m in Sources */,
+				8ED20F441B2F78A700C6D37C /* DLog.m in Sources */,
 				8E87C43C1AE31FFD00CD004E /* HNThinLineButton.m in Sources */,
 				8ED923F61AEC3B2D00801543 /* HNCommentThread.m in Sources */,
 				8E23526F1ACC69200009552D /* HNFeedCell.m in Sources */,
@@ -752,6 +768,8 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/HackerNews/PrefixHeader.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -794,6 +812,8 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/HackerNews/PrefixHeader.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

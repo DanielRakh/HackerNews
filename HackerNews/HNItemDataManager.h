@@ -10,6 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @class HNItemStory;
+@class HNItemComment;
 
 @interface HNItemDataManager : NSObject
 
@@ -22,6 +23,10 @@
 // Reply thread for root comment.
 - (RACSignal *)threadForRootCommentID:(NSNumber *)commentID;
 
+
+
+- (RACSignal *)populateRepliesForComment:(HNItemComment *)comment;
+- (RACSignal *)commentForID:(NSNumber *)idNum;
 
 
 - (RACSignal *)testStory;

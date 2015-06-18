@@ -13,9 +13,14 @@
 - (id)init {
     self = [super init];
     if (self) {
-//        _replies = [NSMutableArray array];
+        _replies = [NSMutableArray array];
     }
     return self;
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@", self.idNum];
 }
 
 @end

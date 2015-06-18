@@ -13,6 +13,8 @@
 @property (nonatomic) NSNumber *parentIDNum;
 @property (nonatomic) NSMutableArray *kids;
 
+@property (nonatomic) NSMutableArray *replies; 
+
 
 
 @end

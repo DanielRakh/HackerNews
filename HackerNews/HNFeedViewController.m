@@ -66,7 +66,7 @@ NSString *const kFeedCellIdentifier = @"FeedCell";
     @weakify(self);
     [[RACObserve(self.viewModel, topStories) skip:1] subscribeNext:^(id x) {
         @strongify(self);
-        NSLog(@"RELOAD");
+//        NSLog(@"");
         [self.tableView reloadData];
     }];
 }

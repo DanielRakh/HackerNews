@@ -17,10 +17,11 @@
 #import "HNItemDataManager.h"
 #import "HNItemStory.h"
 #import "HNItemComment.h"
+#import "HNCommentThread.h"
 
 @interface HNCommentsViewModel ()
 
-@property (nonatomic, readwrite) NSArray *commentThreads;
+@property (nonatomic, readwrite) NSArray *commentCellViewModels;
 
 @end
 
@@ -35,13 +36,14 @@
         @weakify(self)
         [self.didBecomeActiveSignal subscribeNext:^(id x) {
             @strongify(self);
-            RAC(self, commentThreads) = [[[[[HNItemDataManager sharedManager] rootCommentForStory:story]
+            RAC(self, commentCellViewModels) = [[[[[HNItemDataManager sharedManager] rootCommentForStory:story]
                                           flattenMap:^RACStream *(HNItemComment *rootComment) {
                                               return [[HNItemDataManager sharedManager] threadForRootCommentID:rootComment.idNum];
                                           }] map:^id(HNCommentThread *thread) {
                                               return [[HNCommentsCellViewModel alloc]initWithThread:thread];
                                           }] collect];
         }];
+        
     }
     
     return self;
@@ -69,7 +71,7 @@
 
 - (HNCommentThread *)threadForIndexPath:(NSIndexPath *)indexPath {
 
-    return self.commentThreads[indexPath.row];
+    return self.commentCellViewModels[indexPath.row];
 }
 
 

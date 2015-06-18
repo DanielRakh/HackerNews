@@ -62,26 +62,26 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     [self rejiggerTableHeaderView];
     
     
-    self.indexPathsToExpand = [NSMutableDictionary dictionary];
+//    self.indexPathsToExpand = [NSMutableDictionary dictionary];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(collectIndexPathsToExpand:) name:@"IndexPathsToExpand" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(collectIndexPathsToExpand:) name:@"IndexPathsToExpand" object:nil];
     
 }
 
 
 
-- (void)collectIndexPathsToExpand:(NSNotification *)notification {
-    
-    NSDictionary *dict = notification.userInfo;
-    NSIndexPath *idxPath = dict[@"IndexPath"];
-    
-    
-    if ([self.indexPathsToExpand objectForKey:@(idxPath.row)] == nil) {
-        self.indexPathsToExpand[@(idxPath.row)] = idxPath;
-    }
-    
-    NSLog(@"%@",self.indexPathsToExpand);
-}
+//- (void)collectIndexPathsToExpand:(NSNotification *)notification {
+//    
+//    NSDictionary *dict = notification.userInfo;
+//    NSIndexPath *idxPath = dict[@"IndexPath"];
+//    
+//    
+//    if ([self.indexPathsToExpand objectForKey:@(idxPath.row)] == nil) {
+//        self.indexPathsToExpand[@(idxPath.row)] = idxPath;
+//    }
+//    
+////    NSLog(@"%@",self.indexPathsToExpand);
+//}
 
 
 - (void)setupHeaderView {
@@ -126,6 +126,8 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     header.frame = headerFrame;
     
     self.tableView.tableHeaderView = header;
+    
+    [self.tableView layoutIfNeeded];
 }
 
 - (void)initalizeTableView {
@@ -144,13 +146,11 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 - (void)bindViewModel {
 
     @weakify(self);
-    [[[RACObserve(self.viewModel, commentThreads) deliverOnMainThread] ignore:nil] subscribeNext:^(id x) {
+    
+    [[[RACObserve(self.viewModel, commentCellViewModels) deliverOnMainThread] ignore:nil] subscribeNext:^(id x) {
         @strongify(self);
         [self.tableView reloadData];
-        [self.tableView layoutIfNeeded];
-
-    } completed:^{
-
+        DLogFunctionLine();
     }];
 
     
@@ -162,56 +162,28 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self.tableView reloadData];
+    DLogFunctionLine();
+    
+}
+
+
+#pragma mark - IBActions
 - (IBAction)backButtonDidTap:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UITableViewDataSource
-
-//
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    [self.tableView setNeedsLayout];
-    [self.tableView layoutIfNeeded];
-    [self.tableView reloadData];
-    
-    NSLog(@"LAYOUT SUBVIEWS");
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.viewModel.commentThreads.count;
+    return self.viewModel.commentCellViewModels.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     HNCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
-    
-//    if ([cell.treeView isCellForItemExpanded:cell.viewModel.commentThreadArray.firstObject]) {
-//        NSLog(@"EXPANDED");
-//        [cell keepCellExpanded];
-//    }
-//    
-  
-    cell.viewModel = self.viewModel.commentThreads[indexPath.row];
-    
-    
-//    for (NSIndexPath *idxPath in self.indexPathsToExpand) {
-//        if (indexPath.row == idxPath.row) {
-//            [cell keepCellExpanded];
-//        }
-//    }
-//    
-    
-    if (self.indexPathsToExpand[@(indexPath.row)] != nil) {
-        
-        [cell keepCellExpanded];
-    }
-    
-
-    
- 
-
-    
+    cell.viewModel = self.viewModel.commentCellViewModels[indexPath.row];
     [cell setNeedsUpdateConstraints];
     
     return cell;
@@ -219,15 +191,17 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 
 
 
-- (void)repliesDidTap:(NSNotification *)notification {
-    NSLog(@"REPLIES");
-    
-//    NSDictionary *dict = notification.userInfo;
-//    self.expandedRows = dict[@"itemsToExpand"];
-    
-    [self.tableView beginUpdates];
-    [self.tableView endUpdates];
-    
+//- (void)repliesDidTap:(NSNotification *)notification {
+//    NSLog(@"REPLIES");
+//    
+////    NSDictionary *dict = notification.userInfo;
+////    self.expandedRows = dict[@"itemsToExpand"];
+//    
+//    [self.tableView beginUpdates];
+//    [self.tableView endUpdates];
+//
+//}
 
-}
+
+
 @end

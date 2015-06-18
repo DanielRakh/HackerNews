@@ -171,13 +171,14 @@ CGFloat const kCommentsHorizontalInset = 8;
 - (UITableViewCell *)treeView:(RATreeView *)treeView cellForItem:(HNCommentThread *)item {
     
     HNRepliesCell *cell = [treeView dequeueReusableCellWithIdentifier:@"Cell"];
+    
     [cell configureWithViewModel:[self.viewModel repliesViewModelForRootComment:item.headComment]];
     
     
-    cell.parentTreeView = self.treeView;
-    cell.treeConstraint = self.treeViewHeightConstraint;
     __weak typeof (self) weakSelf = self;
     __weak typeof (cell) weakCell = cell;
+    
+    
     cell.repliesButtonDidTapAction = ^(id sender){
         
 
