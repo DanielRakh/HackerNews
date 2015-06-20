@@ -45,17 +45,15 @@
     [[UINavigationBar appearance] setTintColor:[UIColor HNOrange]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{ NSFontAttributeName : [UIFont proximaNovaWithWeight:TypeWeightSemibold size:18.0], NSForegroundColorAttributeName : [UIColor HNOrange]}];
     
-    
-
-    [[[[HNItemDataManager sharedManager] testStory] flattenMap:^RACStream *(HNItemStory *story) {
-        return [[HNItemDataManager sharedManager] threadsForStory:story];
-    }] subscribeNext:^(id x) {
-        DLogNSObject(x);
-    } error:^(NSError *error) {
-        DLogNSObject(error);
-    } completed:^{
-        DLogFunctionLine();
-    }];
+//    [[[[HNItemDataManager sharedManager] testStory] flattenMap:^RACStream *(HNItemStory *story) {
+//        return [[HNItemDataManager sharedManager] threadsForStory:story];
+//    }] subscribeNext:^(id x) {
+//        DLogNSObject(x);
+//    } error:^(NSError *error) {
+//        DLogNSObject(error);
+//    } completed:^{
+//        DLogFunctionLine();
+//    }];
     
 
     return YES;

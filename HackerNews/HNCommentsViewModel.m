@@ -36,7 +36,15 @@
         @weakify(self)
         [self.didBecomeActiveSignal subscribeNext:^(id x) {
             @strongify(self);
-//            RAC(self, commentCellViewModels) = [[[[[HNItemDataManager sharedManager] rootCommentForStory:story]
+            RAC(self, commentCellViewModels) = [[[[HNItemDataManager sharedManager] threadsForStory:story] flattenMap:^RACStream *(RACSequence *threads) {
+                return [threads.signal map:^id(HNCommentThread *thread) {
+                    return [[HNCommentsCellViewModel alloc]initWithThread:thread];
+                }];
+            }] collect];
+            
+            
+//            
+//            [[[[[HNItemDataManager sharedManager] rootCommentForStory:story]
 //                                          flattenMap:^RACStream *(HNItemComment *rootComment) {
 //                                              return [[HNItemDataManager sharedManager] threadForRootCommentID:rootComment.idNum];
 //                                          }] map:^id(HNCommentThread *thread) {

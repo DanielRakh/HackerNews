@@ -39,6 +39,11 @@
             }]flattenMap:^RACStream *(NSArray *rootThreads) {
                 return [self populateRepliesForThreads:rootThreads.rac_sequence];
             }];
+            
+//            flattenMap:^RACStream *(RACSequence *threads) {
+//                return [RACSignal return:threads.array];
+//            }];
+    
 }
 
 
@@ -132,28 +137,6 @@
     return [RACSignal return:thread];
 }
 
-
-
-// Return an HNCommentThread with children threads fully populated
-//- (RACSignal *)threadForRootCommentID:(NSNumber *)commentID {
-//    
-//    return [[self commentForID:commentID]
-//            flattenMap:^RACStream *(HNItemComment *rootComment) {
-//                DLogNSObject(rootComment.idNum);
-//
-//                return [[self populateRepliesForRootComment:rootComment]
-//                        flattenMap:^RACStream *(HNItemComment *comment) {
-//                            DLogNSObject(comment.idNum);
-//
-//                            return [[self threadForComment:comment]
-//                                    flattenMap:^RACStream *(HNCommentThread *thread) {
-//                                        DLogNSObject(thread.headComment.idNum);
-//                                        return [self populateThreadForRootThread:thread];
-//                                    }];
-//                        }];
-//            }];
-//}
-
 #pragma mark -  Private Helpers
 #pragma mark - 
 
@@ -205,11 +188,6 @@
     }];
 }
 
-
-
-
-
-
 - (RACSignal *)repliesForRootComment:(HNItemComment *)rootComment {
     
     return [[[[[rootComment.kids.rac_sequence.eagerSequence
@@ -237,59 +215,6 @@
                 return [RACSignal return:rootThread];
             }];
 }
-
-
-
-
-//- (RACSignal *)populateRepliesForRootComment:(HNItemComment *)comment {
-//    
-//    if (comment.kids.count > 0) {
-//        return [[comment.kids.rac_sequence.signal flattenMap:^RACStream *(NSNumber *idNum) {
-//            return [[[self commentForID:idNum]
-//                     doNext:^(HNItemComment *child) {
-//                         [comment.kids replaceObjectAtIndex:[comment.kids indexOfObject:idNum] withObject:child];
-//                         //                     [comment.replies addObject:child];
-//                     }] flattenMap:^RACStream *(HNItemComment *child) {
-//                         if (child.kids.count > 0) {
-//                             return [self populateRepliesForRootComment:child];
-//                         } else {
-//                             return [RACSignal empty];
-//                         }
-//                     }];
-//        }] then:^RACSignal *{
-//            return [RACSignal return:comment];
-//        }];
-//    } else {
-//        return [RACSignal return:comment];
-//    }
-//
-//}
-//
-//
-//- (RACSignal *)populateThreadForRootThread:(HNCommentThread *)thread {
-//    
-//    if (thread.headComment.kids.count > 0) {
-//        return [[thread.headComment.kids.rac_sequence.signal flattenMap:^RACStream *(HNItemComment *reply) {
-//            return [[[self threadForComment:reply]
-//                     doNext:^(HNCommentThread *replyThread) {
-//                         [thread addReply:replyThread];
-//                     }] flattenMap:^RACStream *(HNCommentThread *replyThread) {
-//                         if (replyThread.headComment.kids.count > 0) {
-//                             return [self populateThreadForRootThread:replyThread];
-//                         } else {
-//                             return [RACSignal empty];
-//                         }
-//                     }];
-//        }] then:^RACSignal *{
-//            return [RACSignal return:thread];
-//        }];
-//    } else {
-//        return [RACSignal return:thread];
-//    }
-//
-//}
-
-
 
 
 @end
