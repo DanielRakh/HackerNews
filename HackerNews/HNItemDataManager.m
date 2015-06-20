@@ -127,7 +127,7 @@
 
 - (RACSignal *)rootCommentsForStory:(HNItemStory *)story {
     
-    return [[[[HNNetworkService sharedManager]childForItem:story.idNum]
+    return [[[[[HNNetworkService sharedManager]childForItem:story.idNum]
              map:^id(NSDictionary *dict) {
                  HNItemComment *comment = [HNItemComment new];
                  comment.idNum = dict[@"id"];
@@ -138,14 +138,17 @@
                  comment.text = dict[@"text"];
                  comment.time = dict[@"time"];
                  comment.type = dict[@"type"];
+                 comment.dead = dict[@"dead"];
                  return comment;
+             }] filter:^BOOL(HNItemComment *comment) {
+                 return comment.dead == nil;
              }]
             collect];
 }
 
 - (RACSignal *)commentForID:(NSNumber *)idNum {
     
-    return [[[HNNetworkService sharedManager]valueForItem:idNum] map:^id(NSDictionary *dict) {
+    return [[[[HNNetworkService sharedManager]valueForItem:idNum] map:^id(NSDictionary *dict) {
         HNItemComment *comment = [HNItemComment new];
         comment.idNum = dict[@"id"];
         comment.kids = dict[@"kids"];
@@ -155,7 +158,10 @@
         comment.text = dict[@"text"];
         comment.time = dict[@"time"];
         comment.type = dict[@"type"];
+        comment.dead = dict[@"dead"];
         return comment;
+    }] filter:^BOOL(HNItemComment *comment) {
+        return comment.dead == nil;
     }];
     
 }
