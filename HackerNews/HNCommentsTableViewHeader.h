@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HNCommentTableViewHeader : UITableViewHeaderFooterView
+@interface HNCommentsTableViewHeader : UITableViewHeaderFooterView
 
 
 @property (nonatomic) UIView *cardView;

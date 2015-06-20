@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Daniel Rakhamimov. All rights reserved.
 //
 
-#import "HNRepliesCell.h"
+#import "HNCommentsReplyWithRepliesCell.h"
 #import "PureLayout.h"
 #import "UIColor+HNColorPalette.h"
 #import "UIFont+HNFont.h"
@@ -28,7 +28,7 @@ NS_ENUM(NSUInteger, HNRepliesCellMode) {
 CGFloat const kRepliesVerticalInset = 10;
 CGFloat const kRepliesHorizontalInset = 8;
 
-@interface HNRepliesCell ()
+@interface HNCommentsReplyWithRepliesCell ()
 
 
 @property (nonatomic) BOOL didUpdateConstraints;
@@ -37,19 +37,10 @@ CGFloat const kRepliesHorizontalInset = 8;
 
 @property (nonatomic, assign) enum HNRepliesCellMode mode;
 
-
-
-
-
-
-
-
-
-
 @end
 
 
-@implementation HNRepliesCell
+@implementation HNCommentsReplyWithRepliesCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -112,6 +103,8 @@ CGFloat const kRepliesHorizontalInset = 8;
     if (viewModel.repliesCount > 0) {
         NSString *title = viewModel.repliesCount == 1 ? [NSString stringWithFormat:@"1 Reply"] : [NSString stringWithFormat:@"%ld Replies",viewModel.repliesCount];
         [self.repliesButton setTitle:title forState:UIControlStateNormal];
+    } else {
+        [self.repliesButton setTitle:nil forState:UIControlStateNormal];
     }
     
     

@@ -12,10 +12,10 @@
 #import "ReactiveCocoa/ReactiveCocoa.h"
 
 //View
-#import "HNCommentsCell.h"
+#import "HNCommentsContainerCell.h"
 #import "HNThinLineButton.h"
 #import "RATreeView.h"
-#import "HNRepliesCell.h"
+#import "HNCommentsReplyWithRepliesCell.h"
 
 //View Model
 #import "HNCommentsCellViewModel.h"
@@ -31,7 +31,7 @@ CGFloat const kCommentsVerticalInset = 10;
 CGFloat const kCommentsHorizontalInset = 8;
 
 
-@interface HNCommentsCell () <RATreeViewDataSource, RATreeViewDelegate>
+@interface HNCommentsContainerCell () <RATreeViewDataSource, RATreeViewDelegate>
 
 @property (nonatomic, assign) BOOL didSetupConstraints;
 
@@ -46,7 +46,7 @@ CGFloat const kCommentsHorizontalInset = 8;
 @end
 
 
-@implementation HNCommentsCell
+@implementation HNCommentsContainerCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -113,7 +113,7 @@ CGFloat const kCommentsHorizontalInset = 8;
     self.treeView.treeFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     self.treeView.backgroundColor = [UIColor clearColor];
     self.treeView.separatorStyle = RATreeViewCellSeparatorStyleNone;
-    [self.treeView registerClass:[HNRepliesCell class] forCellReuseIdentifier:@"Cell"];
+    [self.treeView registerClass:[HNCommentsReplyWithRepliesCell class] forCellReuseIdentifier:@"Cell"];
     
     [self.cardView addSubview:self.treeView];
 }
@@ -170,38 +170,13 @@ CGFloat const kCommentsHorizontalInset = 8;
 
 - (UITableViewCell *)treeView:(RATreeView *)treeView cellForItem:(HNCommentThread *)item {
     
-    HNRepliesCell *cell = [treeView dequeueReusableCellWithIdentifier:@"Cell"];
+    HNCommentsReplyWithRepliesCell *cell = [treeView dequeueReusableCellWithIdentifier:@"Cell"];
     
     [cell configureWithViewModel:[self.viewModel repliesViewModelForRootComment:item.headComment]];
     
     
     __weak typeof (self) weakSelf = self;
     __weak typeof (cell) weakCell = cell;
-    
-    
-    cell.repliesButtonDidTapAction = ^(id sender){
-        
-
-        if (![weakSelf.treeView isCellForItemExpanded:item]) {
-            
-            [weakSelf.parentTableView beginUpdates];
-
-            [weakSelf.treeView beginUpdates];
-            [weakSelf.treeView expandRowForItem:item expandChildren:NO withRowAnimation:RATreeViewRowAnimationAutomatic];
-            [weakSelf.treeView updateConstraintsIfNeeded];
-            [weakSelf.treeView layoutIfNeeded];
-            [weakCell.repliesButton setBackgroundColor:[UIColor HNOrange]];
-            [weakCell.repliesButton setTitleColor:[UIColor HNWhite] forState:UIControlStateNormal];
-            [weakCell.repliesButton setTitle:@"Collapse" forState:UIControlStateNormal];
-            [weakSelf.treeView endUpdates];
-            
-            [weakSelf.treeView layoutIfNeeded];
-            [weakSelf.parentTableView layoutIfNeeded];
-            [weakSelf.parentTableView endUpdates];
-
-        }
-    };
-    
     
     if ([self.treeView levelForCellForItem:item] == 0) {
         cell.widthThreadLineConstraint.constant = 0;
@@ -217,11 +192,36 @@ CGFloat const kCommentsHorizontalInset = 8;
             constraint.constant = 0;
         }
     }
+    
+    cell.repliesButtonDidTapAction = ^(id sender){
+        if (![weakSelf.treeView isCellForItemExpanded:item]) {
+            
+            [weakSelf.parentTableView beginUpdates];
+            
+            [weakSelf.treeView beginUpdates];
+            [weakSelf.treeView expandRowForItem:item expandChildren:NO withRowAnimation:RATreeViewRowAnimationAutomatic];
+            [weakSelf.treeView updateConstraintsIfNeeded];
+            [weakSelf.treeView layoutIfNeeded];
+            [weakCell.repliesButton setBackgroundColor:[UIColor HNOrange]];
+            [weakCell.repliesButton setTitleColor:[UIColor HNWhite] forState:UIControlStateNormal];
+            [weakCell.repliesButton setTitle:@"Collapse" forState:UIControlStateNormal];
+            [weakSelf.treeView endUpdates];
+            
+            [weakSelf.treeView layoutIfNeeded];
+            [weakSelf.parentTableView layoutIfNeeded];
+            [weakSelf.parentTableView endUpdates];
+            
+        }
+    };
+    
+//    [cell setNeedsUpdateConstraints];
+//    [cell updateConstraintsIfNeeded];
 
-    
-    
-    [cell setNeedsUpdateConstraints];
-    [self setNeedsUpdateConstraints];
+//    [cell.contentView layoutIfNeeded];
+//    [cell updateConstraintsIfNeeded];
+//    [cell layoutIfNeeded];
+//    [self setNeedsUpdateConstraints];
+//    [self layoutIfNeeded];
     
     return cell;
 }
@@ -242,47 +242,6 @@ CGFloat const kCommentsHorizontalInset = 8;
     return UITableViewCellEditingStyleNone;
 }
 
-//- (void)treeView:(RATreeView *)treeView willExpandRowForItem:(HNCommentThread *)item {
-//    
-//    HNRepliesCell *cell = (HNRepliesCell *)[treeView cellForItem:item];
-//    cell.expanded = YES;
-//    
-//}
 
-- (void)treeView:(RATreeView *)treeView didExpandRowForItem:(HNCommentThread *)item {
-    
-//    [self.parentTableView beginUpdates];
-//    [self.parentTableView endUpdates];
-    
-//    NSIndexPath *idxPath = [self.parentTableView indexPathForCell:self];
-//    if (![self.indexPathsForRowsToExpand containsObject:idxPath]) {
-//        [self.indexPathsForRowsToExpand addObject:idxPath];
-//        NSLog(@"%@",self.indexPathsForRowsToExpand);
-//    }
-//    
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"IndexPathsToExpand" object:self userInfo:@{@"IndexPath" : idxPath }];
-
-    
-
-}
-
-//- (void)keepCellExpanded {
-//    
-//    [self.treeView beginUpdates];
-//    [self.treeView expandRowForItem:[[self.viewModel commentThreadArray] firstObject] expandChildren:YES withRowAnimation:RATreeViewRowAnimationNone];
-////    [self.treeView expandRowForItem:[[self.viewModel commentThreadArray] firstObject] withRowAnimation:RATreeViewRowAnimationNone];
-//    [self layoutIfNeeded];
-//    [self updateConstraintsIfNeeded];
-//    [self.treeView endUpdates];
-//    
-//    [self layoutIfNeeded];
-//}
-
-
-//-(void)prepareForReuse {
-//    [super prepareForReuse];
-////    [self.indexPathsForRowsToExpand removeAllObjects];
-//}
-//
 
 @end

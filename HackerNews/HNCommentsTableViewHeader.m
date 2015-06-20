@@ -6,20 +6,20 @@
 //  Copyright (c) 2015 Daniel Rakhamimov. All rights reserved.
 //
 
-#import "HNCommentTableViewHeader.h"
+#import "HNCommentsTableViewHeader.h"
 #import "PureLayout.h"
 #import "UIColor+HNColorPalette.h"
 #import "UIFont+HNFont.h"
 
 
-@interface HNCommentTableViewHeader ()
+@interface HNCommentsTableViewHeader ()
 
 @property (nonatomic, assign) BOOL didSetupConstraints;
 
 
 @end
 
-@implementation HNCommentTableViewHeader
+@implementation HNCommentsTableViewHeader
 
 -(id)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithReuseIdentifier:reuseIdentifier];

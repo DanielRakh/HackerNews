@@ -43,5 +43,9 @@
     self.replies = [mutableCopy copy];
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@", self.headComment];
+}
 
 @end

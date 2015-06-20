@@ -13,7 +13,7 @@
 @class HNRepliesCellViewModel;
 @class HNThinLineButton;
 
-@interface HNRepliesCell : UITableViewCell
+@interface HNCommentsReplyWithRepliesCell : UITableViewCell
 
 @property (nonatomic) UILabel *originationLabel;
 @property (nonatomic) HNThinLineButton *repliesButton;

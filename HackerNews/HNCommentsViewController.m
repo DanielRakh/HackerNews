@@ -12,7 +12,7 @@
 //View
 #import "HNCommentsViewController.h"
 #import "HNTableView.h"
-#import "HNCommentsCell.h"
+#import "HNCommentsContainerCell.h"
 
 //View Model
 #import "HNCommentsViewModel.h"
@@ -138,7 +138,7 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 
     self.tableView.estimatedRowHeight = 200;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    [self.tableView registerClass:[HNCommentsCell class] forCellReuseIdentifier:kCommentsCellIdentifier];
+    [self.tableView registerClass:[HNCommentsContainerCell class] forCellReuseIdentifier:kCommentsCellIdentifier];
 
 }
 
@@ -182,9 +182,12 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    HNCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
+    HNCommentsContainerCell *cell = [tableView dequeueReusableCellWithIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
     cell.viewModel = self.viewModel.commentCellViewModels[indexPath.row];
-    [cell setNeedsUpdateConstraints];
+    DLogNSObject(cell.viewModel);
+    
+//    [cell setNeedsUpdateConstraints];
+//    [cell updateConstraintsIfNeeded];
     
     return cell;
 }

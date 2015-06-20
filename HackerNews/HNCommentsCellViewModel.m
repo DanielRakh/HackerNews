@@ -37,5 +37,9 @@
 }
 
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@", self.commentThreadArray.firstObject];
+}
 
 @end

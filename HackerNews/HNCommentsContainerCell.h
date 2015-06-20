@@ -13,7 +13,7 @@
 @class RATreeView;
 
 
-@interface HNCommentsCell : UITableViewCell
+@interface HNCommentsContainerCell : UITableViewCell
 
 @property (nonatomic) HNCommentsCellViewModel *viewModel;
 @property (nonatomic) RATreeView *treeView;
