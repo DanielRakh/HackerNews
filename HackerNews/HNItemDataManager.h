@@ -18,18 +18,11 @@
 
 // Top stories for the front page
 - (RACSignal *)topStories:(NSUInteger)count;
-// Root comments for a specific story
-//- (RACSignal *)rootCommentForStory:(HNItemStory *)story;
-// Reply thread for root comment.
-//- (RACSignal *)threadForRootCommentID:(NSNumber *)commentID;
 
+// Comment threads for a specific story
 - (RACSignal *)threadsForStory:(HNItemStory *)story;
 
-
-- (RACSignal *)populateRepliesForComment:(HNItemComment *)comment;
-- (RACSignal *)commentForID:(NSNumber *)idNum;
-
-
+#warning Comment out when not testing.
 - (RACSignal *)testStory;
 
 
