@@ -15,30 +15,11 @@
 
 @interface HNCommentsReplyWithRepliesCell : UITableViewCell
 
-@property (nonatomic) UILabel *originationLabel;
-@property (nonatomic) HNThinLineButton *repliesButton;
-@property (nonatomic) UITextView *commentTextView;
-
 
 @property (nonatomic) HNRepliesCellViewModel *viewModel;
-
-@property (nonatomic) BOOL expanded;
-
-
-
-@property (nonatomic, weak) NSLayoutConstraint *treeConstraint;
-
-
+@property (nonatomic) NSLayoutConstraint *textViewHeightConstraint;
+@property (nonatomic) HNThinLineButton *repliesButton;
 @property (nonatomic, copy) void (^repliesButtonDidTapAction)(id sender);
-
-@property (nonatomic) NSMutableArray *repliesButtonConstraints;
-
-
-@property (nonatomic) NSLayoutConstraint *leadingThreadLineConstraint;
-@property (nonatomic) NSLayoutConstraint *widthThreadLineConstraint;
-@property (nonatomic) NSLayoutConstraint *commentTextViewToThreadline;
-
-
 
 - (void)configureWithViewModel:(HNRepliesCellViewModel *)viewModel;
 

@@ -148,9 +148,8 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     @weakify(self);
     
     [[[RACObserve(self.viewModel, commentCellViewModels) deliverOnMainThread] ignore:nil] subscribeNext:^(id x) {
-        @strongify(self);
+        @strongify(self);   
         [self.tableView reloadData];
-        DLogFunctionLine();
     }];
 
     
@@ -162,12 +161,11 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 
 }
 
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    [self.tableView reloadData];
-    DLogFunctionLine();
-    
-}
+//- (void)viewDidLayoutSubviews {
+//    [super viewDidLayoutSubviews];
+//    [self.tableView reloadData];
+//    
+//}
 
 
 #pragma mark - IBActions
@@ -184,11 +182,8 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     
     HNCommentsContainerCell *cell = [tableView dequeueReusableCellWithIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
     cell.viewModel = self.viewModel.commentCellViewModels[indexPath.row];
-    DLogNSObject(cell.viewModel);
-    
-//    [cell setNeedsUpdateConstraints];
-//    [cell updateConstraintsIfNeeded];
-    
+    [cell setNeedsUpdateConstraints];
+
     return cell;
 }
 
