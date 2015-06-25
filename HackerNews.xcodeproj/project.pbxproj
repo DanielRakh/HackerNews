@@ -65,6 +65,7 @@
 		8ED804CA1AE6B26C00BE4AB0 /* ProximaNovaCond-SemiboldIt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8ED804B91AE6B26C00BE4AB0 /* ProximaNovaCond-SemiboldIt.otf */; };
 		8ED804D01AE6D35100BE4AB0 /* UIFont+HNFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED804CF1AE6D35100BE4AB0 /* UIFont+HNFont.m */; };
 		8ED804D31AE754AB00BE4AB0 /* HNCommentsTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED804D21AE754AB00BE4AB0 /* HNCommentsTableViewHeader.m */; };
+		8ED8DD7D1B3CB1C300614CC6 /* HNCommentsCollectionViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED8DD7C1B3CB1C300614CC6 /* HNCommentsCollectionViewHeader.m */; };
 		8ED923AB1AEB562300801543 /* HNCommentsReplyWithRepliesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED923AA1AEB562300801543 /* HNCommentsReplyWithRepliesCell.m */; };
 		8ED923F61AEC3B2D00801543 /* HNCommentThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED923F51AEC3B2D00801543 /* HNCommentThread.m */; };
 /* End PBXBuildFile section */
@@ -178,6 +179,8 @@
 		8ED804CF1AE6D35100BE4AB0 /* UIFont+HNFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+HNFont.m"; sourceTree = "<group>"; };
 		8ED804D11AE754AB00BE4AB0 /* HNCommentsTableViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsTableViewHeader.h; sourceTree = "<group>"; };
 		8ED804D21AE754AB00BE4AB0 /* HNCommentsTableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsTableViewHeader.m; sourceTree = "<group>"; };
+		8ED8DD7B1B3CB1C300614CC6 /* HNCommentsCollectionViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsCollectionViewHeader.h; sourceTree = "<group>"; };
+		8ED8DD7C1B3CB1C300614CC6 /* HNCommentsCollectionViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsCollectionViewHeader.m; sourceTree = "<group>"; };
 		8ED923A91AEB562300801543 /* HNCommentsReplyWithRepliesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsReplyWithRepliesCell.h; sourceTree = "<group>"; };
 		8ED923AA1AEB562300801543 /* HNCommentsReplyWithRepliesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsReplyWithRepliesCell.m; sourceTree = "<group>"; };
 		8ED923F41AEC3B2D00801543 /* HNCommentThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentThread.h; sourceTree = "<group>"; };
@@ -393,6 +396,8 @@
 				8E395EE11AD1978A00EE0DB9 /* HNCommentsViewController.m */,
 				8E395EEC1AD3386A00EE0DB9 /* HNCommentsContainerCell.h */,
 				8E395EED1AD3386A00EE0DB9 /* HNCommentsContainerCell.m */,
+				8ED8DD7B1B3CB1C300614CC6 /* HNCommentsCollectionViewHeader.h */,
+				8ED8DD7C1B3CB1C300614CC6 /* HNCommentsCollectionViewHeader.m */,
 				8ED804D11AE754AB00BE4AB0 /* HNCommentsTableViewHeader.h */,
 				8ED804D21AE754AB00BE4AB0 /* HNCommentsTableViewHeader.m */,
 				8ED20F4E1B35E90900C6D37C /* Cells */,
@@ -583,7 +588,7 @@
 		8E2352321ACC571F0009552D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Daniel Rakhamimov";
 				TargetAttributes = {
 					8E2352391ACC571F0009552D = {
@@ -721,6 +726,7 @@
 				8ED3D3D51AF28F1700E5E657 /* HNItemStory.m in Sources */,
 				8E395ED81AD0732F00EE0DB9 /* HNBrowserViewController.m in Sources */,
 				8E395F291AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld in Sources */,
+				8ED8DD7D1B3CB1C300614CC6 /* HNCommentsCollectionViewHeader.m in Sources */,
 				8E2352751ACC73BE0009552D /* UIColor+HNColorPalette.m in Sources */,
 				8E395F2C1AD475B000EE0DB9 /* HNCoreDataStack.m in Sources */,
 				8ED923AB1AEB562300801543 /* HNCommentsReplyWithRepliesCell.m in Sources */,
@@ -790,6 +796,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -862,6 +869,7 @@
 				INFOPLIST_FILE = HackerNews/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.DanielRakhamimov.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -875,6 +883,7 @@
 				INFOPLIST_FILE = HackerNews/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.DanielRakhamimov.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -894,6 +903,7 @@
 				INFOPLIST_FILE = HackerNewsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.DanielRakhamimov.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HackerNews.app/HackerNews";
 			};
@@ -910,6 +920,7 @@
 				INFOPLIST_FILE = HackerNewsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.DanielRakhamimov.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HackerNews.app/HackerNews";
 			};

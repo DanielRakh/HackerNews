@@ -12,20 +12,10 @@
 @class HNCommentsCellViewModel;
 @class RATreeView;
 
-
-@interface HNCommentsContainerCell : UITableViewCell
+@interface HNCommentsContainerCell : UICollectionViewCell
 
 @property (nonatomic) HNCommentsCellViewModel *viewModel;
 @property (nonatomic) RATreeView *treeView;
-
 @property (nonatomic) NSLayoutConstraint *treeViewHeightConstraint;
-
-
-@property (nonatomic, assign) BOOL expandChild;
-
-
-
-
-- (void)keepCellExpanded;
 
 @end

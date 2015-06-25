@@ -23,7 +23,6 @@
 #import "HNCommentThread.h"
 #import "HNItemComment.h"
 
-#import "UIView+FindUITableView.h"
 
 
 
@@ -36,50 +35,30 @@ CGFloat const kCommentsHorizontalInset = 8;
 @property (nonatomic, assign) BOOL didSetupConstraints;
 
 @property (nonatomic) UIView *cardView;
-//@property (nonatomic) RATreeView *treeView;
-//@property (nonatomic) NSLayoutConstraint *treeViewHeightConstraint;
-@property (nonatomic) NSNumber *expandedHeight;
-
-
-@property (nonatomic) NSMutableArray *indexPathsForRowsToExpand;
-
-
-
-@property (nonatomic, copy) void (^rejiggerParentTableView)(id sender);
-
 
 @end
 
 
 @implementation HNCommentsContainerCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+
+- (instancetype)init
+{
+    self = [super init];
     if (self) {
-        [self setup];
+        [self initalizeViews];
+        [self bindViewModel];
     }
     return self;
-}
-
-- (void)setup {
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-    [self initalizeViews];
-    [self bindViewModel];
-    self.indexPathsForRowsToExpand = [NSMutableArray array];
 }
 
 - (void)bindViewModel {
     @weakify(self);
     [[[RACObserve(self, viewModel) deliverOnMainThread] ignore:nil] subscribeNext:^(HNCommentsCellViewModel *x) {
         @strongify(self);
-//        NSLog(@"%@",x)
-//        [self setNeedsUpdateConstraints];
-//        [self setNeedsLayout];
         [self.treeView reloadData];
         [self layoutIfNeeded];
     }];
-    
-
 
 }
 
@@ -87,7 +66,6 @@ CGFloat const kCommentsHorizontalInset = 8;
 - (void)initalizeViews {
     
     self.didSetupConstraints = NO;
-    
     
     // We are creating a rounded corner view to serve as the background
     // of the cell so we need to make the real cell background clear.
@@ -146,30 +124,17 @@ CGFloat const kCommentsHorizontalInset = 8;
 //    } completed:^{
 //        DLogFunctionLine();
 //    }];
-    
-    __weak typeof (self) weakSelf = self;
-    self.rejiggerParentTableView = ^(id sender) {
-        
-        [weakSelf.parentTableView beginUpdates];
-        //    DLogNSSize(self.treeView.contentSize);
-        weakSelf.treeViewHeightConstraint.constant = weakSelf.treeView.contentSize.height;
-        [weakSelf.parentTableView endUpdates];
-        
-    };
 }
 
+
+//- (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
+//    
+//}
 
 
 - (void)layoutSubviews {
     
     [super layoutSubviews];
-    
-//    DLogNSObject(self.treeViewHeightConstraint);
-//    self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
-    
-//    DLogCGFloat(self.treeView.contentSize.height);
-//    DLogCGFloat(self.treeViewHeightConstraint.constant);
-    
     [self updateConstraintsIfNeeded];
 }
 
@@ -254,58 +219,25 @@ CGFloat const kCommentsHorizontalInset = 8;
 //            constraint.constant = 0;
 //        }
 //    }
-
-    
     cell.repliesButtonDidTapAction = ^(id sender){
         if (![weakSelf.treeView isCellForItemExpanded:item]) {
-            
-//            DLogNSSize(self.bounds.size);
-
-            [weakSelf.parentTableView beginUpdates];
             [weakSelf.treeView expandRowForItem:item];
             weakSelf.treeViewHeightConstraint.constant = weakSelf.treeView.contentSize.height;
             [weakCell layoutIfNeeded];
             [weakSelf layoutIfNeeded];
             
-//            [weakSelf.treeView layoutIfNeeded];
             [weakSelf.treeView.delegate treeView:treeView didExpandRowForItem:item];
-//            [weakSelf.parentTableView beginUpdates];
-//            [weakSelf.parentTableView endUpdates];
-//            [weakSelf.parentTableView layoutIfNeeded];
-            [weakSelf.parentTableView endUpdates];
-            
-            
-//            [weakCell.repliesButton setBackgroundColor:[UIColor HNOrange]];
-//            [weakCell.repliesButton setTitleColor:[UIColor HNWhite] forState:UIControlStateNormal];
-//            [weakCell.repliesButton setTitle:@"Collapse" forState:UIControlStateNormal];
-//            [weakSelf.parentTableView beginUpdates];
-//            [weakSelf.parentTableView endUpdates];
-            
-//            weakSelf.rejiggerParentTableView(treeView);
-            
-//            [weakSelf.parentTableView beginUpdates];
-//            weakSelf.treeViewHeightConstraint.constant = weakSelf.treeView.contentSize.height;
-//            [weakSelf.parentTableView endUpdates];
-            
-            
-            
-            
+
             DLog(@"In block weak :%f", weakSelf.treeView.contentSize.height);
             DLog(@"In block:%f", self.treeView.contentSize.height);
             DLogNSSize(self.bounds.size);
-//            DLogNSSize(self.cardView.bounds.size);
-//            DLogNSSize(self.bounds.size);
-            
         }
     };
-//
-    
     
     DLogNSSize(self.treeView.contentSize);
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
 
-    
     return cell;
 }
 
@@ -324,20 +256,19 @@ CGFloat const kCommentsHorizontalInset = 8;
 }
 
 - (void)treeView:(RATreeView *)treeView willExpandRowForItem:(id)item {
-    [self.parentTableView beginUpdates];
-    [self.parentTableView endUpdates];
+//    [self.parentTableView beginUpdates];
+//    [self.parentTableView endUpdates];
 }
 
 - (void)treeView:(RATreeView *)treeView didExpandRowForItem:(id)item {
 
-    [self.parentTableView beginUpdates];
-        self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
-
-    [self.parentTableView endUpdates];
+//    [self.parentTableView beginUpdates];
+//        self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
+//
+//    [self.parentTableView endUpdates];
 //    DLogNSSize(self.treeView.contentSize);
 //    [self.parentTableView endUpdates];
 }
-
 
 
 
