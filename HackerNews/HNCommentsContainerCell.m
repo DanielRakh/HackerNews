@@ -37,11 +37,16 @@ CGFloat const kCommentsHorizontalInset = 8;
 
 @property (nonatomic) UIView *cardView;
 //@property (nonatomic) RATreeView *treeView;
-@property (nonatomic) NSLayoutConstraint *treeViewHeightConstraint;
+//@property (nonatomic) NSLayoutConstraint *treeViewHeightConstraint;
 @property (nonatomic) NSNumber *expandedHeight;
 
 
 @property (nonatomic) NSMutableArray *indexPathsForRowsToExpand;
+
+
+
+@property (nonatomic, copy) void (^rejiggerParentTableView)(id sender);
+
 
 @end
 
@@ -74,14 +79,7 @@ CGFloat const kCommentsHorizontalInset = 8;
         [self layoutIfNeeded];
     }];
     
-    
-//    RAC(self.treeViewHeightConstraint, constant) =
-//    [[[RACObserve(self.treeView, contentSize) deliverOnMainThread] map:^id(NSValue *value) {
-//        DLogNSObject(value);
-//        return @(value.CGSizeValue.height);
-//    }] subscribeNext:^(id x) {
-//        DLogNSObject(x);
-//    }];
+
 
 }
 
@@ -98,7 +96,7 @@ CGFloat const kCommentsHorizontalInset = 8;
     
     // Set up Card View - rounded corner cell background
     self.cardView = [UIView newAutoLayoutView];
-    self.cardView.backgroundColor = [UIColor blueColor];
+    self.cardView.backgroundColor = [UIColor HNWhite];
     self.cardView.layer.cornerRadius = 2.0;
     self.cardView.layer.borderWidth = 0.5;
     self.cardView.layer.borderColor =  [UIColor colorWithRed:0.290 green:0.290 blue:0.290 alpha:0.2].CGColor;
@@ -131,21 +129,43 @@ CGFloat const kCommentsHorizontalInset = 8;
     [self.cardView addSubview:self.treeView];
     
     self.treeViewHeightConstraint = [self.treeView autoSetDimension:ALDimensionHeight toSize:self.treeView.contentSize.height];
-
+    
+    
+//    RAC(self, treeViewHeightConstraint.constant) =
+    
+    
+    
+    
+//    [[RACObserve(self.treeView, contentSize) map:^id(NSValue *value) {
+////        DLogNSObject(value);
+//        return @(value.CGSizeValue.height);
+//    }] subscribeNext:^(id x) {
+//        DLogNSObject(x);
+//    } error:^(NSError *error) {
+//        DLogNSObject(error);
+//    } completed:^{
+//        DLogFunctionLine();
+//    }];
+    
+    __weak typeof (self) weakSelf = self;
+    self.rejiggerParentTableView = ^(id sender) {
+        
+        [weakSelf.parentTableView beginUpdates];
+        //    DLogNSSize(self.treeView.contentSize);
+        weakSelf.treeViewHeightConstraint.constant = weakSelf.treeView.contentSize.height;
+        [weakSelf.parentTableView endUpdates];
+        
+    };
 }
+
 
 
 - (void)layoutSubviews {
     
     [super layoutSubviews];
-//    self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
     
-//    [[[RACObserve(self.treeView, contentSize) deliverOnMainThread] map:^id(NSValue *value) {
-//        DLogNSObject(value);
-//        return @(value.CGSizeValue.height);
-//    }] subscribeNext:^(id x) {
-//        DLogNSObject(x);
-//    }];
+//    DLogNSObject(self.treeViewHeightConstraint);
+//    self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
     
 //    DLogCGFloat(self.treeView.contentSize.height);
 //    DLogCGFloat(self.treeViewHeightConstraint.constant);
@@ -159,6 +179,7 @@ CGFloat const kCommentsHorizontalInset = 8;
         [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeTop];
         [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
         [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
+        [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
     
         [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kCommentsVerticalInset];
         [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
@@ -166,19 +187,23 @@ CGFloat const kCommentsHorizontalInset = 8;
         
         [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
             
-            [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
+//            [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
             [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
         }];
+        
 
         self.didSetupConstraints = YES;
     }
+    
+    self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
 
-    if (!self.treeViewHeightConstraint) {
-        self.treeViewHeightConstraint = [self.treeView autoSetDimension:ALDimensionHeight toSize:self.treeView.contentSize.height];
-    }
-    else {
-        self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
-    }
+
+//    if (!self.treeViewHeightConstraint) {
+//        self.treeViewHeightConstraint = [self.treeView autoSetDimension:ALDimensionHeight toSize:self.treeView.contentSize.height];
+//    }
+//    else {
+//        self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
+//    }
 
     [super updateConstraints];
 }
@@ -212,8 +237,8 @@ CGFloat const kCommentsHorizontalInset = 8;
     [cell configureWithViewModel:[self.viewModel repliesViewModelForRootComment:item.headComment]];
     
     
-//    __weak typeof (self) weakSelf = self;
-//    __weak typeof (cell) weakCell = cell;
+    __weak typeof (self) weakSelf = self;
+    __weak typeof (cell) weakCell = cell;
     
 //    if ([self.treeView levelForCellForItem:item] == 0) {
 //        cell.widthThreadLineConstraint.constant = 0;
@@ -229,29 +254,57 @@ CGFloat const kCommentsHorizontalInset = 8;
 //            constraint.constant = 0;
 //        }
 //    }
+
     
-//    cell.repliesButtonDidTapAction = ^(id sender){
-//        if (![weakSelf.treeView isCellForItemExpanded:item]) {
-//            
-//            [weakSelf.parentTableView beginUpdates];
-//            
-//            [weakSelf.treeView beginUpdates];
-//            [weakSelf.treeView expandRowForItem:item expandChildren:NO withRowAnimation:RATreeViewRowAnimationAutomatic];
-//            [weakSelf.treeView updateConstraintsIfNeeded];
+    cell.repliesButtonDidTapAction = ^(id sender){
+        if (![weakSelf.treeView isCellForItemExpanded:item]) {
+            
+//            DLogNSSize(self.bounds.size);
+
+            [weakSelf.parentTableView beginUpdates];
+            [weakSelf.treeView expandRowForItem:item];
+            weakSelf.treeViewHeightConstraint.constant = weakSelf.treeView.contentSize.height;
+            [weakCell layoutIfNeeded];
+            [weakSelf layoutIfNeeded];
+            
 //            [weakSelf.treeView layoutIfNeeded];
+            [weakSelf.treeView.delegate treeView:treeView didExpandRowForItem:item];
+//            [weakSelf.parentTableView beginUpdates];
+//            [weakSelf.parentTableView endUpdates];
+//            [weakSelf.parentTableView layoutIfNeeded];
+            [weakSelf.parentTableView endUpdates];
+            
+            
 //            [weakCell.repliesButton setBackgroundColor:[UIColor HNOrange]];
 //            [weakCell.repliesButton setTitleColor:[UIColor HNWhite] forState:UIControlStateNormal];
 //            [weakCell.repliesButton setTitle:@"Collapse" forState:UIControlStateNormal];
-//            [weakSelf.treeView endUpdates];
-//            
-//            [weakSelf.treeView layoutIfNeeded];
-//            [weakSelf.parentTableView layoutIfNeeded];
+//            [weakSelf.parentTableView beginUpdates];
 //            [weakSelf.parentTableView endUpdates];
-//            
-//        }
-//    };
+            
+//            weakSelf.rejiggerParentTableView(treeView);
+            
+//            [weakSelf.parentTableView beginUpdates];
+//            weakSelf.treeViewHeightConstraint.constant = weakSelf.treeView.contentSize.height;
+//            [weakSelf.parentTableView endUpdates];
+            
+            
+            
+            
+            DLog(@"In block weak :%f", weakSelf.treeView.contentSize.height);
+            DLog(@"In block:%f", self.treeView.contentSize.height);
+            DLogNSSize(self.bounds.size);
+//            DLogNSSize(self.cardView.bounds.size);
+//            DLogNSSize(self.bounds.size);
+            
+        }
+    };
 //
+    
+    
+    DLogNSSize(self.treeView.contentSize);
     [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
+
     
     return cell;
 }
@@ -259,6 +312,47 @@ CGFloat const kCommentsHorizontalInset = 8;
 - (UITableViewCellEditingStyle)treeView:(RATreeView *)treeView editingStyleForRowForItem:(id)item {
     return UITableViewCellEditingStyleNone;
 }
+
+
+#pragma mark - 
+#pragma mark - TreeView Delegate
+
+- (void)treeView:(RATreeView *)treeView didSelectRowForItem:(id)item {
+    
+    DLogNSObject(treeView);
+    
+}
+
+- (void)treeView:(RATreeView *)treeView willExpandRowForItem:(id)item {
+    [self.parentTableView beginUpdates];
+    [self.parentTableView endUpdates];
+}
+
+- (void)treeView:(RATreeView *)treeView didExpandRowForItem:(id)item {
+
+    [self.parentTableView beginUpdates];
+        self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
+
+    [self.parentTableView endUpdates];
+//    DLogNSSize(self.treeView.contentSize);
+//    [self.parentTableView endUpdates];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

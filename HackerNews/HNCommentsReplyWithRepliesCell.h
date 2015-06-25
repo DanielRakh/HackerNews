@@ -19,6 +19,7 @@
 @property (nonatomic) HNRepliesCellViewModel *viewModel;
 @property (nonatomic) NSLayoutConstraint *textViewHeightConstraint;
 @property (nonatomic) HNThinLineButton *repliesButton;
+
 @property (nonatomic, copy) void (^repliesButtonDidTapAction)(id sender);
 
 - (void)configureWithViewModel:(HNRepliesCellViewModel *)viewModel;

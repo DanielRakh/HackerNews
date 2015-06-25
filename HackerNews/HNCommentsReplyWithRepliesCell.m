@@ -60,7 +60,7 @@ CGFloat const kRepliesHorizontalInset = 8;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     self.backgroundColor = [UIColor clearColor];
-    self.contentView.backgroundColor = [UIColor redColor];
+    self.contentView.backgroundColor = [UIColor colorWithWhite:0.234 alpha:1.000];
     
     // Set up Origination Label
     self.originationLabel = [UILabel newAutoLayoutView];

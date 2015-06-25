@@ -182,7 +182,22 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     
     HNCommentsContainerCell *cell = [tableView dequeueReusableCellWithIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
     cell.viewModel = self.viewModel.commentCellViewModels[indexPath.row];
+    
+    
+//    @weakify(self);
+//    [[RACObserve(cell.treeViewHeightConstraint, constant) takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
+//        @strongify(self);
+//        [self.tableView beginUpdates];
+//        [self.tableView endUpdates];
+//    } error:^(NSError *error) {
+//        DLogNSObject(error);
+//    } completed:^{
+//        DLogFunctionLine();
+//    }];
+    
     [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
+    
 
     return cell;
 }

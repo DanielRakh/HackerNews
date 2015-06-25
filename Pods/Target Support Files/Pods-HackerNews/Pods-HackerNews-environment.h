@@ -9,8 +9,8 @@
 // DateTools
 #define COCOAPODS_POD_AVAILABLE_DateTools
 #define COCOAPODS_VERSION_MAJOR_DateTools 1
-#define COCOAPODS_VERSION_MINOR_DateTools 5
-#define COCOAPODS_VERSION_PATCH_DateTools 0
+#define COCOAPODS_VERSION_MINOR_DateTools 6
+#define COCOAPODS_VERSION_PATCH_DateTools 1
 
 // Firebase
 #define COCOAPODS_POD_AVAILABLE_Firebase
