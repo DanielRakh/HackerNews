@@ -31,6 +31,7 @@
 		8E395F291AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8E395F271AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld */; };
 		8E395F2C1AD475B000EE0DB9 /* HNCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395F2B1AD475B000EE0DB9 /* HNCoreDataStack.m */; };
 		8E52515F1AD5FA3300EE080D /* HNStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E52515E1AD5FA3300EE080D /* HNStory.m */; };
+		8E75303B1B3D1CBE004835CE /* HNAutosizingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E75303A1B3D1CBE004835CE /* HNAutosizingLabel.m */; };
 		8E87C43B1AE31FFD00CD004E /* HNTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C4381AE31FFD00CD004E /* HNTableView.m */; };
 		8E87C43C1AE31FFD00CD004E /* HNThinLineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C43A1AE31FFD00CD004E /* HNThinLineButton.m */; };
 		8E87C43F1AE3421100CD004E /* HNUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C43E1AE3421100CD004E /* HNUtilities.m */; };
@@ -127,6 +128,8 @@
 		8E395F2B1AD475B000EE0DB9 /* HNCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCoreDataStack.m; sourceTree = "<group>"; };
 		8E52515D1AD5FA3300EE080D /* HNStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNStory.h; sourceTree = "<group>"; };
 		8E52515E1AD5FA3300EE080D /* HNStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNStory.m; sourceTree = "<group>"; };
+		8E7530391B3D1CBE004835CE /* HNAutosizingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAutosizingLabel.h; sourceTree = "<group>"; };
+		8E75303A1B3D1CBE004835CE /* HNAutosizingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAutosizingLabel.m; sourceTree = "<group>"; };
 		8E87C4371AE31FFD00CD004E /* HNTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNTableView.h; sourceTree = "<group>"; };
 		8E87C4381AE31FFD00CD004E /* HNTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNTableView.m; sourceTree = "<group>"; };
 		8E87C4391AE31FFD00CD004E /* HNThinLineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNThinLineButton.h; sourceTree = "<group>"; };
@@ -450,6 +453,8 @@
 		8E87C46F1AE466CC00CD004E /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				8E7530391B3D1CBE004835CE /* HNAutosizingLabel.h */,
+				8E75303A1B3D1CBE004835CE /* HNAutosizingLabel.m */,
 				8E87C4371AE31FFD00CD004E /* HNTableView.h */,
 				8E87C4381AE31FFD00CD004E /* HNTableView.m */,
 				8E87C4391AE31FFD00CD004E /* HNThinLineButton.h */,
@@ -728,6 +733,7 @@
 				8E395F291AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld in Sources */,
 				8ED8DD7D1B3CB1C300614CC6 /* HNCommentsCollectionViewHeader.m in Sources */,
 				8E2352751ACC73BE0009552D /* UIColor+HNColorPalette.m in Sources */,
+				8E75303B1B3D1CBE004835CE /* HNAutosizingLabel.m in Sources */,
 				8E395F2C1AD475B000EE0DB9 /* HNCoreDataStack.m in Sources */,
 				8ED923AB1AEB562300801543 /* HNCommentsReplyWithRepliesCell.m in Sources */,
 				8ED3D3D11AF28DFD00E5E657 /* HNItemAbstract.m in Sources */,

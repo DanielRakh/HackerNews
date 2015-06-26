@@ -21,6 +21,16 @@
 }
 
 
+-(instancetype)init {
+    self = [super init];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
+
+
 - (void)setup {
     
     self.cardView.backgroundColor = [UIColor HNWhite];
@@ -37,10 +47,11 @@
     
     
     self.titleLabel.textColor = [UIColor darkTextColor];
+    self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.titleLabel.numberOfLines = 0;
     self.originationLabel.textColor = [UIColor HNLightGray];
     self.scoreLabel.textColor = [UIColor HNOrange];
     
 }
-
 
 @end

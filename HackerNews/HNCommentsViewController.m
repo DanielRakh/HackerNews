@@ -21,10 +21,13 @@
 
 NSString *const kCommentsCellIdentifier = @"CommentsCell";
 
-@interface HNCommentsViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface HNCommentsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic) NSString *headerTitleText;
+
+@property (nonatomic) CGFloat headerHeight;
 
 
 
@@ -55,6 +58,7 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 //    [self setupHeaderView];
     [self initalizeCollectionView];
     [self bindViewModel];
+//    [self rejiggerTableHeaderView];
     
     
     // We need to "rejigger" the header view because Autolayout is fucking shit.
@@ -105,11 +109,10 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 //}
 
 
-//- (void)rejiggerTableHeaderView
-//{
-//    self.tableView.tableHeaderView = nil;
-//    
-//    UIView *header = self.headerView;
+- (void)rejiggerTableHeaderView
+{
+    
+    UIView *header = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:nil];
 //    CGRect frame = header.frame;
 //    frame.size.width = self.tableView.frame.size.width;
 //    header.frame = frame;
@@ -127,20 +130,22 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 //    self.tableView.tableHeaderView = header;
 //    
 //    [self.tableView layoutIfNeeded];
-//}
+}
 
 - (void)initalizeCollectionView {
 
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.backgroundColor = [UIColor clearColor];
-    self.collectionView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0);
+//    self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     self.collectionView.allowsSelection = YES;
 
     [self.collectionView registerClass:[HNCommentsContainerCell class] forCellWithReuseIdentifier:kCommentsCellIdentifier];
     
     UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
-    flowLayout.estimatedItemSize = CGSizeMake(320, 200);
+    flowLayout.estimatedItemSize = CGSizeMake(self.view.bounds.size.width, 300);
+    
+
 }
 
 
@@ -161,11 +166,13 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
     
 }
 
-//- (void)viewDidLayoutSubviews {
-//    [super viewDidLayoutSubviews];
-//    [self.tableView reloadData];
-//    
-//}
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+
+
+    
+}
+
 
 #pragma mark - IBActions
 - (IBAction)backButtonDidTap:(id)sender {
@@ -175,7 +182,8 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.viewModel.commentCellViewModels.count;
+//    return self.viewModel.commentCellViewModels.count;
+    return 0;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
@@ -193,18 +201,69 @@ NSString *const kCommentsCellIdentifier = @"CommentsCell";
 - (UICollectionReusableView *)collectionView:(nonnull UICollectionView *)collectionView viewForSupplementaryElementOfKind:(nonnull NSString *)kind atIndexPath:(nonnull NSIndexPath *)indexPath {
     
     HNCommentsCollectionViewHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
-    
-    
-    RAC(header.titleLabel, text) = [RACObserve(self.viewModel, title) takeUntil:header.rac_prepareForReuseSignal];
-    
+
+    @weakify(self);
+    RAC(header.titleLabel, text) = [[RACObserve(self.viewModel, title) takeUntil:header.rac_prepareForReuseSignal] doNext:^(id x) {
+        @strongify(self);
+        self.headerTitleText = x;
+    }];
     RAC(header.scoreLabel, text) = [RACObserve(self.viewModel, score) takeUntil:header.rac_prepareForReuseSignal];
     RAC(header.originationLabel, text) = [RACObserve(self.viewModel, info) takeUntil:header.rac_prepareForReuseSignal];
     
+    
+    [header.cardView setNeedsUpdateConstraints];
+    [header.cardView updateConstraintsIfNeeded];
+    [header.cardView layoutIfNeeded];
     [header setNeedsUpdateConstraints];
     [header updateConstraintsIfNeeded];
+    [header layoutIfNeeded];
+//    [header.titleLabel setPreferredMaxLayoutWidth:header.cardView.bounds.size.width - 16];
+
     
     return header;
 }
+//
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+//    
+//    HNCommentsCollectionViewHeader *header = [[HNCommentsCollectionViewHeader alloc]init];
+//        CGRect frame = header.frame;
+//        frame.size.width = self.collectionView.frame.size.width;
+//        header.frame = frame;
+//    //
+//        [header setNeedsLayout];
+//        [header layoutIfNeeded];
+//    //
+//        CGFloat height = [header.cardView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+//    //
+////        CGRect headerFrame = header.frame;
+////        headerFrame.size.height = height;
+////    //
+////        header.frame = headerFrame;
+////    //
+////    //    self.tableView.tableHeaderView = header;
+////    //    
+////    //    [self.tableView layoutIfNeeded];
+//
+//    return CGSizeMake(collectionView.bounds.size.width, height);
+//    
+//    
+//}
+
+
+//func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//    // that -16 is because I have 8px for left and right spacing constraints for the label.
+//    let label:UILabel = UILabel(frame: CGRectMake(0, 0, collectionView.frame.width - 16, CGFloat.max))
+//    label.numberOfLines = 0
+//    label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+//    //here, be sure you set the font type and size that matches the one set in the storyboard label
+//    label.font = UIFont(name: "Helvetica", size: 17.0)
+//    label.text = questions[section]
+//    label.sizeToFit()
+//    
+//    // Set some extra pixels for height due to the margins of the header section.
+//    //This value should be the sum of the vertical spacing you set in the autolayout constraints for the label. + 16 worked for me as I have 8px for top and bottom constraints.
+//    return CGSize(width: collectionView.frame.width, height: label.frame.height + 16)
+//}
 
 //- (void)repliesDidTap:(NSNotification *)notification {
 //    NSLog(@"REPLIES");
