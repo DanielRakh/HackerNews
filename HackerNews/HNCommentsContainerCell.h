@@ -18,4 +18,6 @@
 @property (nonatomic) RATreeView *treeView;
 @property (nonatomic) NSLayoutConstraint *treeViewHeightConstraint;
 
+- (CGSize)preferredLayoutSizeFittingSize:(CGSize)targetSize;
+
 @end

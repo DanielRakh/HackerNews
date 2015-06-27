@@ -105,30 +105,9 @@ CGFloat const kCommentsHorizontalInset = 8;
     
     [self.cardView addSubview:self.treeView];
     
-    self.treeViewHeightConstraint = [self.treeView autoSetDimension:ALDimensionHeight toSize:self.treeView.contentSize.height];
     
-    
-//    RAC(self, treeViewHeightConstraint.constant) =
-    
-    
-    
-    
-//    [[RACObserve(self.treeView, contentSize) map:^id(NSValue *value) {
-////        DLogNSObject(value);
-//        return @(value.CGSizeValue.height);
-//    }] subscribeNext:^(id x) {
-//        DLogNSObject(x);
-//    } error:^(NSError *error) {
-//        DLogNSObject(error);
-//    } completed:^{
-//        DLogFunctionLine();
-//    }];
 }
 
-
-//- (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
-//    
-//}
 
 
 - (void)layoutSubviews {
@@ -159,15 +138,13 @@ CGFloat const kCommentsHorizontalInset = 8;
         self.didSetupConstraints = YES;
     }
     
-    self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
 
-
-//    if (!self.treeViewHeightConstraint) {
-//        self.treeViewHeightConstraint = [self.treeView autoSetDimension:ALDimensionHeight toSize:self.treeView.contentSize.height];
-//    }
-//    else {
-//        self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
-//    }
+    if (!self.treeViewHeightConstraint) {
+        self.treeViewHeightConstraint = [self.treeView autoSetDimension:ALDimensionHeight toSize:self.treeView.contentSize.height];
+    }
+    else {
+        self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
+    }
 
     [super updateConstraints];
 }
@@ -272,12 +249,31 @@ CGFloat const kCommentsHorizontalInset = 8;
 
 
 
+#pragma mark - 
+#pragma mark 
 
+- (CGSize)preferredLayoutSizeFittingSize:(CGSize)targetSize {
+    
+    CGRect originalFrame = self.frame;
+    
+    CGRect frame = self.frame;
+    frame.size = targetSize;
+    self.frame = frame;
 
+    [self setNeedsUpdateConstraints];
+    [self updateConstraintsIfNeeded];
 
-
-
-
+    
+    
+    CGSize computedSize = [self systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    
+    CGSize newSize = CGSizeMake(targetSize.width, computedSize.height);
+    
+    self.frame = originalFrame;
+    
+    return newSize;
+    
+}
 
 
 

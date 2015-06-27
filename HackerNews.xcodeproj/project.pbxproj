@@ -22,6 +22,7 @@
 		8E2352AD1ACD1C3C0009552D /* HNFeedCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352AC1ACD1C3C0009552D /* HNFeedCellViewModel.m */; };
 		8E2352B11ACDC34F0009552D /* HNNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352B01ACDC34F0009552D /* HNNetworkService.m */; };
 		8E2352B41ACE102C0009552D /* HNDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352B31ACE102C0009552D /* HNDataManager.m */; };
+		8E3956221B3DE1B60015213D /* HNCommentsHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3956211B3DE1B60015213D /* HNCommentsHeaderCell.m */; };
 		8E395ED81AD0732F00EE0DB9 /* HNBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395ED71AD0732F00EE0DB9 /* HNBrowserViewController.m */; };
 		8E395EDD1AD073F700EE0DB9 /* HNBrowserViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395EDC1AD073F700EE0DB9 /* HNBrowserViewModel.m */; };
 		8E395EE21AD1978A00EE0DB9 /* HNCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395EE11AD1978A00EE0DB9 /* HNCommentsViewController.m */; };
@@ -111,6 +112,8 @@
 		8E2352B01ACDC34F0009552D /* HNNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNNetworkService.m; sourceTree = "<group>"; };
 		8E2352B21ACE102C0009552D /* HNDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNDataManager.h; sourceTree = "<group>"; };
 		8E2352B31ACE102C0009552D /* HNDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNDataManager.m; sourceTree = "<group>"; };
+		8E3956201B3DE1B60015213D /* HNCommentsHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsHeaderCell.h; sourceTree = "<group>"; };
+		8E3956211B3DE1B60015213D /* HNCommentsHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsHeaderCell.m; sourceTree = "<group>"; };
 		8E395ED61AD0732F00EE0DB9 /* HNBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNBrowserViewController.h; sourceTree = "<group>"; };
 		8E395ED71AD0732F00EE0DB9 /* HNBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNBrowserViewController.m; sourceTree = "<group>"; };
 		8E395EDB1AD073F700EE0DB9 /* HNBrowserViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNBrowserViewModel.h; sourceTree = "<group>"; };
@@ -475,6 +478,8 @@
 		8ED20F4E1B35E90900C6D37C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				8E3956201B3DE1B60015213D /* HNCommentsHeaderCell.h */,
+				8E3956211B3DE1B60015213D /* HNCommentsHeaderCell.m */,
 				8ED20F4F1B35E93200C6D37C /* HNCommentsRootCell.h */,
 				8ED20F501B35E93200C6D37C /* HNCommentsRootCell.m */,
 				8ED20F4B1B35E90600C6D37C /* HNCommentsRootWithRepliesCell.h */,
@@ -702,6 +707,7 @@
 			files = (
 				8ED20F4D1B35E90600C6D37C /* HNCommentsRootWithRepliesCell.m in Sources */,
 				8ED20F4A1B35E8F100C6D37C /* HNCommentsReplyCell.m in Sources */,
+				8E3956221B3DE1B60015213D /* HNCommentsHeaderCell.m in Sources */,
 				8E2352461ACC571F0009552D /* HNFeedViewController.m in Sources */,
 				8ED20F511B35E93200C6D37C /* HNCommentsRootCell.m in Sources */,
 				8E23526C1ACC651F0009552D /* HNFeedViewModel.m in Sources */,

@@ -1,29 +1,23 @@
 //
-//  HNCommentsCollectionViewHeader.m
-//  HackerNews
+//  HNCommentsHeaderCell.m
+//  
 //
-//  Created by Daniel on 6/25/15.
-//  Copyright © 2015 Daniel Rakhamimov. All rights reserved.
+//  Created by Daniel on 6/26/15.
+//
 //
 
-#import "HNCommentsCollectionViewHeader.h"
-#import "UIColor+HNColorPalette.h"
-#import "UIFont+HNFont.h"
-#import "PureLayout.h"
+#import "HNCommentsHeaderCell.h"
 
-
-@interface HNCommentsCollectionViewHeader ()
-
-
+@interface HNCommentsHeaderCell ()
 
 @property (nonatomic, assign) BOOL didSetupConstraints;
 
-
 @end
 
-@implementation HNCommentsCollectionViewHeader
+@implementation HNCommentsHeaderCell
 
--(instancetype)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(NSRect)frame
+{
     self = [super initWithFrame:frame];
     if (self) {
         [self setup];
@@ -31,13 +25,6 @@
     return self;
 }
 
--(instancetype)init {
-    self = [super init];
-    if (self) {
-        [self setup];
-    }
-    return self;
-}
 
 - (void)updateConstraints {
     
@@ -80,7 +67,7 @@
     // We are creating a rounded corner view to serve as the background
     // of the cell so we need to make the real cell background clear.
     self.backgroundColor = [UIColor clearColor];
-
+    
     
     // Set up Card View - rounded corner cell background
     self.cardView = [UIView newAutoLayoutView];

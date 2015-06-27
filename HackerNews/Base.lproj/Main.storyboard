@@ -3,15 +3,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="ProximaNova-Regular.otf">
-            <string>ProximaNova-Regular</string>
-        </mutableArray>
-        <mutableArray key="ProximaNova-Semibold.otf">
-            <string>ProximaNova-Semibold</string>
-            <string>ProximaNova-Semibold</string>
-        </mutableArray>
-    </customFonts>
     <scenes>
         <!--Cached-->
         <scene sceneID="ufC-wZ-h7g">
@@ -165,143 +156,11 @@
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nIX-Qe-Fks">
                                     <size key="itemSize" width="399" height="92"/>
-                                    <size key="headerReferenceSize" width="400" height="104"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderView" id="OeE-AX-LfM" customClass="HNCommentsCollectionViewHeader">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="GXn-bq-1XZ" userLabel="Card View">
-                                            <rect key="frame" x="20" y="20" width="400" height="113"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="572 Points" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdV-Fi-RpU">
-                                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="14"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="by danielrak | 5 hrs ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usg-g7-GvX">
-                                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="12"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Algorithims Every Progammer Should Know" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUN-ja-iRL">
-                                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <animations/>
-                                            <color key="backgroundColor" red="0.98823529409999999" green="0.98823529409999999" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="jdV-Fi-RpU" secondAttribute="trailing" constant="8" id="54X-3D-VDX"/>
-                                                <constraint firstAttribute="trailing" secondItem="usg-g7-GvX" secondAttribute="trailing" constant="8" id="Ttu-wL-IWb"/>
-                                                <constraint firstAttribute="bottom" secondItem="usg-g7-GvX" secondAttribute="bottom" constant="10" id="YI3-JD-BsC"/>
-                                                <constraint firstItem="uUN-ja-iRL" firstAttribute="leading" secondItem="GXn-bq-1XZ" secondAttribute="leading" constant="8" id="cYc-sj-68x"/>
-                                                <constraint firstItem="usg-g7-GvX" firstAttribute="leading" secondItem="GXn-bq-1XZ" secondAttribute="leading" constant="8" id="ddn-DP-DJn"/>
-                                                <constraint firstItem="jdV-Fi-RpU" firstAttribute="leading" secondItem="GXn-bq-1XZ" secondAttribute="leading" constant="8" id="oTx-oI-38y"/>
-                                                <constraint firstAttribute="centerX" secondItem="uUN-ja-iRL" secondAttribute="centerX" id="pFh-Hj-Db0"/>
-                                                <constraint firstItem="jdV-Fi-RpU" firstAttribute="top" secondItem="GXn-bq-1XZ" secondAttribute="top" constant="10" id="qYD-OF-TSP"/>
-                                                <constraint firstAttribute="trailing" secondItem="uUN-ja-iRL" secondAttribute="trailing" constant="8" id="tA5-gn-X5C"/>
-                                                <constraint firstItem="usg-g7-GvX" firstAttribute="top" secondItem="uUN-ja-iRL" secondAttribute="bottom" constant="10" id="tLs-Mt-git"/>
-                                                <constraint firstItem="uUN-ja-iRL" firstAttribute="top" secondItem="jdV-Fi-RpU" secondAttribute="bottom" constant="10" id="thW-gg-aLf"/>
-                                                <constraint firstAttribute="centerY" secondItem="uUN-ja-iRL" secondAttribute="centerY" priority="999" id="ur6-UY-wdV"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="subviews">
-                                                    <exclude reference="jdV-Fi-RpU"/>
-                                                    <exclude reference="usg-g7-GvX"/>
-                                                    <exclude reference="uUN-ja-iRL"/>
-                                                </mask>
-                                                <mask key="constraints">
-                                                    <exclude reference="54X-3D-VDX"/>
-                                                    <exclude reference="oTx-oI-38y"/>
-                                                    <exclude reference="qYD-OF-TSP"/>
-                                                    <exclude reference="cYc-sj-68x"/>
-                                                    <exclude reference="pFh-Hj-Db0"/>
-                                                    <exclude reference="tA5-gn-X5C"/>
-                                                    <exclude reference="thW-gg-aLf"/>
-                                                    <exclude reference="ur6-UY-wdV"/>
-                                                    <exclude reference="Ttu-wL-IWb"/>
-                                                    <exclude reference="YI3-JD-BsC"/>
-                                                    <exclude reference="ddn-DP-DJn"/>
-                                                    <exclude reference="tLs-Mt-git"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="widthClass=compact">
-                                                <mask key="subviews">
-                                                    <include reference="jdV-Fi-RpU"/>
-                                                    <include reference="usg-g7-GvX"/>
-                                                    <include reference="uUN-ja-iRL"/>
-                                                </mask>
-                                                <mask key="constraints">
-                                                    <include reference="54X-3D-VDX"/>
-                                                    <include reference="oTx-oI-38y"/>
-                                                    <include reference="qYD-OF-TSP"/>
-                                                    <include reference="cYc-sj-68x"/>
-                                                    <include reference="pFh-Hj-Db0"/>
-                                                    <include reference="tA5-gn-X5C"/>
-                                                    <include reference="thW-gg-aLf"/>
-                                                    <include reference="ur6-UY-wdV"/>
-                                                    <include reference="Ttu-wL-IWb"/>
-                                                    <include reference="YI3-JD-BsC"/>
-                                                    <include reference="ddn-DP-DJn"/>
-                                                    <include reference="tLs-Mt-git"/>
-                                                </mask>
-                                            </variation>
-                                        </view>
-                                    </subviews>
-                                    <animations/>
-                                    <color key="backgroundColor" red="0.92156862750000001" green="0.33725490200000002" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="centerX" secondItem="GXn-bq-1XZ" secondAttribute="centerX" id="3Ne-MO-nZZ"/>
-                                        <constraint firstItem="GXn-bq-1XZ" firstAttribute="top" secondItem="OeE-AX-LfM" secondAttribute="top" constant="10" id="8c1-LF-2gV"/>
-                                        <constraint firstAttribute="trailing" secondItem="GXn-bq-1XZ" secondAttribute="trailing" constant="8" id="BFM-8O-815"/>
-                                        <constraint firstItem="GXn-bq-1XZ" firstAttribute="leading" secondItem="OeE-AX-LfM" secondAttribute="leading" constant="8" id="BXt-Xr-S3q"/>
-                                        <constraint firstAttribute="centerY" secondItem="GXn-bq-1XZ" secondAttribute="centerY" id="R6C-oZ-cnX"/>
-                                        <constraint firstAttribute="bottom" secondItem="GXn-bq-1XZ" secondAttribute="bottom" priority="999" constant="10" id="Snz-Qd-Wem"/>
-                                    </constraints>
-                                    <variation key="default">
-                                        <mask key="subviews">
-                                            <exclude reference="GXn-bq-1XZ"/>
-                                        </mask>
-                                        <mask key="constraints">
-                                            <exclude reference="3Ne-MO-nZZ"/>
-                                            <exclude reference="8c1-LF-2gV"/>
-                                            <exclude reference="BFM-8O-815"/>
-                                            <exclude reference="BXt-Xr-S3q"/>
-                                            <exclude reference="R6C-oZ-cnX"/>
-                                            <exclude reference="Snz-Qd-Wem"/>
-                                        </mask>
-                                    </variation>
-                                    <variation key="widthClass=compact">
-                                        <mask key="subviews">
-                                            <include reference="GXn-bq-1XZ"/>
-                                        </mask>
-                                        <mask key="constraints">
-                                            <include reference="3Ne-MO-nZZ"/>
-                                            <include reference="8c1-LF-2gV"/>
-                                            <include reference="BFM-8O-815"/>
-                                            <include reference="BXt-Xr-S3q"/>
-                                            <include reference="R6C-oZ-cnX"/>
-                                            <include reference="Snz-Qd-Wem"/>
-                                        </mask>
-                                    </variation>
-                                    <connections>
-                                        <outlet property="cardView" destination="GXn-bq-1XZ" id="5xi-In-jzF"/>
-                                        <outlet property="originationLabel" destination="usg-g7-GvX" id="x3C-Fk-D1V"/>
-                                        <outlet property="scoreLabel" destination="jdV-Fi-RpU" id="bui-M0-n04"/>
-                                        <outlet property="titleLabel" destination="uUN-ja-iRL" id="AoV-BY-LT4"/>
-                                    </connections>
-                                </collectionReusableView>
                             </collectionView>
                         </subviews>
                         <animations/>

@@ -1,14 +1,14 @@
 //
-//  HNCommentsCollectionViewHeader.h
-//  HackerNews
+//  HNCommentsHeaderCell.h
+//  
 //
-//  Created by Daniel on 6/25/15.
-//  Copyright © 2015 Daniel Rakhamimov. All rights reserved.
+//  Created by Daniel on 6/26/15.
+//
 //
 
 #import <UIKit/UIKit.h>
 
-@interface HNCommentsCollectionViewHeader : UICollectionReusableView
+@interface HNCommentsHeaderCell : UICollectionViewCell
 
 
 @property (nonatomic) UILabel *titleLabel;
@@ -16,5 +16,7 @@
 @property (nonatomic) UILabel *scoreLabel;
 @property (nonatomic) UILabel *originationLabel;
 
+
+- (CGSize)preferredLayoutSizeFittingSize:(CGSize)targetSize;
 
 @end
