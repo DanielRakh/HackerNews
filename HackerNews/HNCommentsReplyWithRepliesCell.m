@@ -38,9 +38,17 @@ CGFloat const kRepliesHorizontalInset = 8;
     if (self) {
         [self setup];
     }
-    
     return self;
 }
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
 
 - (void)setup {
     
@@ -104,6 +112,7 @@ CGFloat const kRepliesHorizontalInset = 8;
     CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(textViewWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
     self.textViewHeightConstraint.constant = CGRectGetHeight(rect) + 1;
     
+//    [self setNeedsUpdateConstraints];
     [self updateConstraintsIfNeeded];
     
 //    DLogNSObject(self.textViewHeightConstraint);
@@ -112,10 +121,21 @@ CGFloat const kRepliesHorizontalInset = 8;
 - (void)updateConstraints {
     
     if (self.didUpdateConstraints == NO) {
-        [self.originationLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:self.commentTextView];
+        
+        [self.threadLine autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.originationLabel];
+        [self.threadLine autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.commentTextView];
+        [self.threadLine autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kRepliesHorizontalInset];
+        [self.threadLine autoSetDimension:ALDimensionWidth toSize:1.0 relation:NSLayoutRelationEqual];
+        
+        
+        
+        [self.originationLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.threadLine withOffset:6.0];
         [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kRepliesVerticalInset];
+        [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
+        
+        
+        
         [UIView autoSetPriority:UILayoutPriorityRequired forConstraints:^{
-            //            [self.originationLabel autoSetContentCompressionResistancePriorityForAxis:ALAxisVertical];
             [self.originationLabel autoSetContentHuggingPriorityForAxis:ALAxisVertical];
         }];
         //
@@ -128,23 +148,18 @@ CGFloat const kRepliesHorizontalInset = 8;
 //
         
         // Replies Button Constraints
-        [self.repliesButton autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:self.commentTextView];
-        
+        [self.repliesButton autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.threadLine withOffset:6.0];
         [self.repliesButton autoSetDimension:ALDimensionHeight toSize:30.0];
+        [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
         
         
         [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
             [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kRepliesVerticalInset];
-            [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
         }];
         
         // Thread Line constraints
         
-        [self.threadLine autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.originationLabel];
-        [self.threadLine autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.commentTextView];
-        
-        [self.threadLine autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kRepliesHorizontalInset];
-        [self.threadLine autoSetDimension:ALDimensionWidth toSize:1.0 relation:NSLayoutRelationEqual];
+
         
 
         self.didUpdateConstraints = YES;

@@ -15,15 +15,15 @@
 #import "HNCommentsContainerCell.h"
 #import "HNThinLineButton.h"
 #import "RATreeView.h"
-#import "HNCommentsReplyWithRepliesCell.h"
+//#import "HNCommentsReplyWithRepliesCell.h"
+//#import "HNCommentsReplyTestCell.h"
+#import "TestCell.h"
 
 //View Model
 #import "HNCommentsCellViewModel.h"
 #import "HNRepliesCellViewModel.h"
 #import "HNCommentThread.h"
 #import "HNItemComment.h"
-
-
 
 
 CGFloat const kCommentsVerticalInset = 10;
@@ -35,6 +35,9 @@ CGFloat const kCommentsHorizontalInset = 8;
 @property (nonatomic, assign) BOOL didSetupConstraints;
 
 @property (nonatomic) UIView *cardView;
+
+
+//@property (nonatomic) HNCommentsReplyTestCell *testSizeCell;
 
 @end
 
@@ -56,7 +59,7 @@ CGFloat const kCommentsHorizontalInset = 8;
     [[[RACObserve(self, viewModel) deliverOnMainThread] ignore:nil] subscribeNext:^(HNCommentsCellViewModel *x) {
         @strongify(self);
         [self.treeView reloadData];
-        [self layoutIfNeeded];
+        [self.treeView layoutIfNeeded];
     }];
 
 }
@@ -90,7 +93,8 @@ CGFloat const kCommentsHorizontalInset = 8;
     [self.contentView addSubview:self.cardView];
 
     
-    self.treeView = [RATreeView newAutoLayoutView];
+    self.treeView = [[RATreeView alloc]initWithFrame:CGRectMake(0, 0, 50, 50) style:RATreeViewStylePlain];
+    self.treeView.translatesAutoresizingMaskIntoConstraints = NO;
     self.treeView.backgroundColor = [ UIColor orangeColor];
 
     self.treeView.delegate = self;
@@ -101,18 +105,26 @@ CGFloat const kCommentsHorizontalInset = 8;
     self.treeView.treeFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     self.treeView.backgroundColor = [UIColor clearColor];
     self.treeView.separatorStyle = RATreeViewCellSeparatorStyleNone;
-    [self.treeView registerClass:[HNCommentsReplyWithRepliesCell class] forCellReuseIdentifier:@"Cell"];
+    
+//    [self.treeView registerClass:[HNCommentsReplyWithRepliesCell class] forCellReuseIdentifier:@"Cell"];
+//    [self.treeView registerClass:[HNCommentsReplyTestCell class] forCellReuseIdentifier:@"Cell"];
+    [self.treeView registerNib:[UINib nibWithNibName:@"TestCell" bundle:nil] forCellReuseIdentifier:@"TestCell"];
+    
+//    self.testSizeCell = [[HNCommentsReplyTestCell alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
     
     [self.cardView addSubview:self.treeView];
-    
-    
 }
 
 
 
 - (void)layoutSubviews {
-    
     [super layoutSubviews];
+    
+    [self layoutIfNeeded];
+    DLogNSSize(self.treeView.contentSize);
+    self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
+    
+    
     [self updateConstraintsIfNeeded];
 }
 
@@ -122,23 +134,25 @@ CGFloat const kCommentsHorizontalInset = 8;
         [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeTop];
         [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
         [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
-        [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
-    
+//        [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
+        
         [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kCommentsVerticalInset];
         [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsHorizontalInset];
         [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsHorizontalInset];
+        [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
+        
+        
         
         [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
-            
-//            [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
-            [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
+
+            [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
+//            [self.treeView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsVerticalInset];
         }];
         
 
         self.didSetupConstraints = YES;
     }
     
-
     if (!self.treeViewHeightConstraint) {
         self.treeViewHeightConstraint = [self.treeView autoSetDimension:ALDimensionHeight toSize:self.treeView.contentSize.height];
     }
@@ -148,6 +162,8 @@ CGFloat const kCommentsHorizontalInset = 8;
 
     [super updateConstraints];
 }
+
+
 
 #pragma mark - TreeView Data Source
 
@@ -171,82 +187,63 @@ CGFloat const kCommentsHorizontalInset = 8;
     return item.replies[index];
 }
 
+//- (CGFloat)treeView:(RATreeView *)treeView heightForRowForItem:(HNCommentThread *)item {
+//    
+////    HNCommentsReplyTestCell *cell = [[HNCommentsReplyTestCell alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
+////    [cell configureWithViewModel:[self.viewModel repliesViewModelForRootComment:item.headComment]];
+////    [cell setNeedsUpdateConstraints];
+////    [cell updateConstraintsIfNeeded];
+////    
+////    CGFloat height = [cell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+////    
+////    DLogNSSize(cell.commentTextView.bounds.size);
+////    DLogfloat(height);
+////    return height;
+//    
+//    CGFloat targetHeight = 0;
+//    [self.testSizeCell configureWithViewModel:[self.viewModel repliesViewModelForRootComment:item.headComment]];
+//    [self.testSizeCell setNeedsLayout];
+//    [self.testSizeCell layoutIfNeeded];
+//    return [self.testSizeCell preferredLayoutSizeFittingHeight:targetHeight];
+//    
+//}
+
 - (UITableViewCell *)treeView:(RATreeView *)treeView cellForItem:(HNCommentThread *)item {
     
-    HNCommentsReplyWithRepliesCell *cell = [treeView dequeueReusableCellWithIdentifier:@"Cell"];
+    TestCell *cell = [treeView dequeueReusableCellWithIdentifier:@"TestCell"];
     
     [cell configureWithViewModel:[self.viewModel repliesViewModelForRootComment:item.headComment]];
     
-    
-    __weak typeof (self) weakSelf = self;
-    __weak typeof (cell) weakCell = cell;
-    
-//    if ([self.treeView levelForCellForItem:item] == 0) {
-//        cell.widthThreadLineConstraint.constant = 0;
-//        cell.commentTextViewToThreadline.constant = 0;
-//    } else {
-//        cell.leadingThreadLineConstraint.constant = [self.treeView levelForCellForItem:item] * 8;
-//    }
 
-    
-//    if (item.replies.count < 1) {
-//        //No replies
-//        for (NSLayoutConstraint *constraint in cell.repliesButtonConstraints) {
-//            constraint.constant = 0;
-//        }
-//    }
-    cell.repliesButtonDidTapAction = ^(id sender){
-        if (![weakSelf.treeView isCellForItemExpanded:item]) {
-            [weakSelf.treeView expandRowForItem:item];
-            weakSelf.treeViewHeightConstraint.constant = weakSelf.treeView.contentSize.height;
-            [weakCell layoutIfNeeded];
-            [weakSelf layoutIfNeeded];
-            
-            [weakSelf.treeView.delegate treeView:treeView didExpandRowForItem:item];
-
-            DLog(@"In block weak :%f", weakSelf.treeView.contentSize.height);
-            DLog(@"In block:%f", self.treeView.contentSize.height);
-            DLogNSSize(self.bounds.size);
-        }
-    };
-    
-    DLogNSSize(self.treeView.contentSize);
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
+    [cell layoutIfNeeded];
+    DLogNSSize(cell.commentTextView.bounds.size);
+    DLogNSSize(self.bounds.size);
+    DLogNSSize(self.treeView.contentSize);
 
     return cell;
 }
+
 
 - (UITableViewCellEditingStyle)treeView:(RATreeView *)treeView editingStyleForRowForItem:(id)item {
     return UITableViewCellEditingStyleNone;
 }
 
-
-#pragma mark - 
-#pragma mark - TreeView Delegate
-
-- (void)treeView:(RATreeView *)treeView didSelectRowForItem:(id)item {
-    
-    DLogNSObject(treeView);
-    
-}
-
-- (void)treeView:(RATreeView *)treeView willExpandRowForItem:(id)item {
-//    [self.parentTableView beginUpdates];
-//    [self.parentTableView endUpdates];
-}
-
-- (void)treeView:(RATreeView *)treeView didExpandRowForItem:(id)item {
-
-//    [self.parentTableView beginUpdates];
-//        self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
+//- (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
+//    [super preferredLayoutAttributesFittingAttributes:layoutAttributes];
+//    
+//    [self setNeedsUpdateConstraints];
+//    [self updateConstraintsIfNeeded];
+////    [self.contentView layoutIfNeeded];
+////    [self.treeView layoutIfNeeded];
+//    CGSize computedSize = [self systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
 //
-//    [self.parentTableView endUpdates];
-//    DLogNSSize(self.treeView.contentSize);
-//    [self.parentTableView endUpdates];
-}
-
-
+//    layoutAttributes.size = CGSizeMake(layoutAttributes.size.width, computedSize.height);
+//    
+//    DLogNSObject(layoutAttributes);
+//    return layoutAttributes;
+//}
 
 
 #pragma mark - 
@@ -263,8 +260,6 @@ CGFloat const kCommentsHorizontalInset = 8;
     [self setNeedsUpdateConstraints];
     [self updateConstraintsIfNeeded];
 
-    
-    
     CGSize computedSize = [self systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     
     CGSize newSize = CGSizeMake(targetSize.width, computedSize.height);
@@ -274,9 +269,6 @@ CGFloat const kCommentsHorizontalInset = 8;
     return newSize;
     
 }
-
-
-
 
 
 

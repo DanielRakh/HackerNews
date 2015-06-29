@@ -31,21 +31,15 @@
     return self;
 }
 
--(instancetype)init {
-    self = [super init];
-    if (self) {
-        [self setup];
-    }
-    return self;
-}
-
 - (void)updateConstraints {
     
     if (self.didSetupConstraints == NO) {
+        
         // Card View Constraints
         [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeTop];
         [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:8.0];
         [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:8.0];
+        
         [UIView autoSetPriority:750 forConstraints:^{
             [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10.0];
         }];
@@ -53,15 +47,17 @@
         // Score Label Constraints
         [self.scoreLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:10.0];
         [self.scoreLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:8.0];
+        [self.scoreLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:8.0];
         
         // Title Label Constraints
         [self.titleLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.scoreLabel withOffset:10.0 relation:NSLayoutRelationEqual];
         [self.titleLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:8.0];
         [self.titleLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:8.0];
+        [self.titleLabel autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.originationLabel withOffset:-10.0];
         
         // Origination Label Constraints
-        [self.originationLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:self.titleLabel];
-        [self.originationLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.titleLabel withOffset:10.0 relation:NSLayoutRelationEqual];
+        [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:8.0];
+        [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:8.0];
         [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10.0];
         
         
@@ -71,7 +67,6 @@
     
     [super updateConstraints];
 }
-
 
 - (void)setup {
     
@@ -126,6 +121,33 @@
     self.originationLabel.font = [UIFont proximaNovaWithWeight:TypeWeightRegular size:12.0];
     
     [self.cardView addSubview:self.originationLabel];
+    
+}
+
+- (CGSize)preferredLayoutSizeFittingSize:(CGSize)targetSize {
+    
+    CGRect originalFrame = self.frame;
+    CGFloat originalPreferredMaxLayoutWidth = self.titleLabel.preferredMaxLayoutWidth;
+    
+    CGRect frame = self.frame;
+    frame.size = targetSize;
+    self.frame = frame;
+    
+    [self setNeedsUpdateConstraints];
+    [self updateConstraintsIfNeeded];
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+    self.titleLabel.preferredMaxLayoutWidth = self.titleLabel.bounds.size.width;
+    
+    
+    CGSize computedSize = [self systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    
+    CGSize newSize = CGSizeMake(targetSize.width, computedSize.height);
+    
+    self.frame = originalFrame;
+    self.titleLabel.preferredMaxLayoutWidth = originalPreferredMaxLayoutWidth;
+    
+    return newSize;
     
 }
 

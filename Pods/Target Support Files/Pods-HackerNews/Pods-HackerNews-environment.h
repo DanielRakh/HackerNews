@@ -36,6 +36,18 @@
 #define COCOAPODS_VERSION_MINOR_RATreeView 0
 #define COCOAPODS_VERSION_PATCH_RATreeView 3
 
+// RZCellSizeManager
+#define COCOAPODS_POD_AVAILABLE_RZCellSizeManager
+#define COCOAPODS_VERSION_MAJOR_RZCellSizeManager 1
+#define COCOAPODS_VERSION_MINOR_RZCellSizeManager 1
+#define COCOAPODS_VERSION_PATCH_RZCellSizeManager 2
+
+// RZCellSizeManager/Core
+#define COCOAPODS_POD_AVAILABLE_RZCellSizeManager_Core
+#define COCOAPODS_VERSION_MAJOR_RZCellSizeManager_Core 1
+#define COCOAPODS_VERSION_MINOR_RZCellSizeManager_Core 1
+#define COCOAPODS_VERSION_PATCH_RZCellSizeManager_Core 2
+
 // Reachability
 #define COCOAPODS_POD_AVAILABLE_Reachability
 #define COCOAPODS_VERSION_MAJOR_Reachability 3

@@ -17,4 +17,8 @@
 @property (nonatomic) UILabel *originationLabel;
 
 
+- (CGSize)preferredLayoutSizeFittingSize:(CGSize)targetSize;
+
+
+
 @end

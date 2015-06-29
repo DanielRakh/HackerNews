@@ -139,8 +139,7 @@
     [self setNeedsLayout];
     [self layoutIfNeeded];
     self.titleLabel.preferredMaxLayoutWidth = self.titleLabel.bounds.size.width;
-    
-    
+
     
     CGSize computedSize = [self systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     

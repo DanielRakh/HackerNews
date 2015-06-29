@@ -32,12 +32,15 @@
 		8E395F291AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8E395F271AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld */; };
 		8E395F2C1AD475B000EE0DB9 /* HNCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395F2B1AD475B000EE0DB9 /* HNCoreDataStack.m */; };
 		8E52515F1AD5FA3300EE080D /* HNStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E52515E1AD5FA3300EE080D /* HNStory.m */; };
+		8E55D74D1B41D029006F0496 /* TestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E55D74C1B41D029006F0496 /* TestCell.xib */; };
+		8E55D7501B41D10E006F0496 /* TestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E55D74F1B41D10E006F0496 /* TestCell.m */; };
 		8E75303B1B3D1CBE004835CE /* HNAutosizingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E75303A1B3D1CBE004835CE /* HNAutosizingLabel.m */; };
 		8E87C43B1AE31FFD00CD004E /* HNTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C4381AE31FFD00CD004E /* HNTableView.m */; };
 		8E87C43C1AE31FFD00CD004E /* HNThinLineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C43A1AE31FFD00CD004E /* HNThinLineButton.m */; };
 		8E87C43F1AE3421100CD004E /* HNUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C43E1AE3421100CD004E /* HNUtilities.m */; };
 		8E87C4421AE3424800CD004E /* NSString+RemoveTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C4411AE3424800CD004E /* NSString+RemoveTag.m */; };
 		8EA8736D1AD85A3C009C01F8 /* HNItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8736C1AD85A3C009C01F8 /* HNItem.m */; };
+		8EA8B1721B40799F0043DE46 /* HNCommentsReplyTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8B1711B40799F0043DE46 /* HNCommentsReplyTestCell.m */; };
 		8ED20F441B2F78A700C6D37C /* DLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED20F431B2F78A700C6D37C /* DLog.m */; };
 		8ED20F4A1B35E8F100C6D37C /* HNCommentsReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED20F491B35E8F100C6D37C /* HNCommentsReplyCell.m */; };
 		8ED20F4D1B35E90600C6D37C /* HNCommentsRootWithRepliesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED20F4C1B35E90600C6D37C /* HNCommentsRootWithRepliesCell.m */; };
@@ -131,6 +134,9 @@
 		8E395F2B1AD475B000EE0DB9 /* HNCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCoreDataStack.m; sourceTree = "<group>"; };
 		8E52515D1AD5FA3300EE080D /* HNStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNStory.h; sourceTree = "<group>"; };
 		8E52515E1AD5FA3300EE080D /* HNStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNStory.m; sourceTree = "<group>"; };
+		8E55D74C1B41D029006F0496 /* TestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestCell.xib; sourceTree = "<group>"; };
+		8E55D74E1B41D10E006F0496 /* TestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCell.h; sourceTree = "<group>"; };
+		8E55D74F1B41D10E006F0496 /* TestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCell.m; sourceTree = "<group>"; };
 		8E7530391B3D1CBE004835CE /* HNAutosizingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAutosizingLabel.h; sourceTree = "<group>"; };
 		8E75303A1B3D1CBE004835CE /* HNAutosizingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAutosizingLabel.m; sourceTree = "<group>"; };
 		8E87C4371AE31FFD00CD004E /* HNTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNTableView.h; sourceTree = "<group>"; };
@@ -143,6 +149,8 @@
 		8E87C4411AE3424800CD004E /* NSString+RemoveTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RemoveTag.m"; sourceTree = "<group>"; };
 		8EA8736B1AD85A3C009C01F8 /* HNItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNItem.h; sourceTree = "<group>"; };
 		8EA8736C1AD85A3C009C01F8 /* HNItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNItem.m; sourceTree = "<group>"; };
+		8EA8B1701B40799F0043DE46 /* HNCommentsReplyTestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsReplyTestCell.h; sourceTree = "<group>"; };
+		8EA8B1711B40799F0043DE46 /* HNCommentsReplyTestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsReplyTestCell.m; sourceTree = "<group>"; };
 		8ED20F401B2F780200C6D37C /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		8ED20F421B2F78A700C6D37C /* DLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLog.h; sourceTree = "<group>"; };
 		8ED20F431B2F78A700C6D37C /* DLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLog.m; sourceTree = "<group>"; };
@@ -400,11 +408,11 @@
 			children = (
 				8E395EE01AD1978A00EE0DB9 /* HNCommentsViewController.h */,
 				8E395EE11AD1978A00EE0DB9 /* HNCommentsViewController.m */,
+				8ED804D11AE754AB00BE4AB0 /* HNCommentsTableViewHeader.h */,
 				8E395EEC1AD3386A00EE0DB9 /* HNCommentsContainerCell.h */,
 				8E395EED1AD3386A00EE0DB9 /* HNCommentsContainerCell.m */,
 				8ED8DD7B1B3CB1C300614CC6 /* HNCommentsCollectionViewHeader.h */,
 				8ED8DD7C1B3CB1C300614CC6 /* HNCommentsCollectionViewHeader.m */,
-				8ED804D11AE754AB00BE4AB0 /* HNCommentsTableViewHeader.h */,
 				8ED804D21AE754AB00BE4AB0 /* HNCommentsTableViewHeader.m */,
 				8ED20F4E1B35E90900C6D37C /* Cells */,
 			);
@@ -478,6 +486,8 @@
 		8ED20F4E1B35E90900C6D37C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				8EA8B1701B40799F0043DE46 /* HNCommentsReplyTestCell.h */,
+				8EA8B1711B40799F0043DE46 /* HNCommentsReplyTestCell.m */,
 				8E3956201B3DE1B60015213D /* HNCommentsHeaderCell.h */,
 				8E3956211B3DE1B60015213D /* HNCommentsHeaderCell.m */,
 				8ED20F4F1B35E93200C6D37C /* HNCommentsRootCell.h */,
@@ -488,6 +498,9 @@
 				8ED20F491B35E8F100C6D37C /* HNCommentsReplyCell.m */,
 				8ED923A91AEB562300801543 /* HNCommentsReplyWithRepliesCell.h */,
 				8ED923AA1AEB562300801543 /* HNCommentsReplyWithRepliesCell.m */,
+				8E55D74E1B41D10E006F0496 /* TestCell.h */,
+				8E55D74F1B41D10E006F0496 /* TestCell.m */,
+				8E55D74C1B41D029006F0496 /* TestCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -640,6 +653,7 @@
 				8ED804C71AE6B26C00BE4AB0 /* ProximaNovaCond-Regular.otf in Resources */,
 				8ED804C51AE6B26C00BE4AB0 /* ProximaNovaCond-Light.otf in Resources */,
 				8ED804BF1AE6B26C00BE4AB0 /* ProximaNova-LightItalic.otf in Resources */,
+				8E55D74D1B41D029006F0496 /* TestCell.xib in Resources */,
 				8ED804BC1AE6B26C00BE4AB0 /* ProximaNova-BoldIt.otf in Resources */,
 				8ED804CA1AE6B26C00BE4AB0 /* ProximaNovaCond-SemiboldIt.otf in Resources */,
 				8ED804C81AE6B26C00BE4AB0 /* ProximaNovaCond-RegularIt.otf in Resources */,
@@ -711,6 +725,7 @@
 				8E2352461ACC571F0009552D /* HNFeedViewController.m in Sources */,
 				8ED20F511B35E93200C6D37C /* HNCommentsRootCell.m in Sources */,
 				8E23526C1ACC651F0009552D /* HNFeedViewModel.m in Sources */,
+				8E55D7501B41D10E006F0496 /* TestCell.m in Sources */,
 				8E2352AD1ACD1C3C0009552D /* HNFeedCellViewModel.m in Sources */,
 				8E2352431ACC571F0009552D /* AppDelegate.m in Sources */,
 				8E2352B41ACE102C0009552D /* HNDataManager.m in Sources */,
@@ -725,6 +740,7 @@
 				8E2352B11ACDC34F0009552D /* HNNetworkService.m in Sources */,
 				8ED3D3DF1AF2CC7800E5E657 /* HNRepliesCellViewModel.m in Sources */,
 				8E87C4421AE3424800CD004E /* NSString+RemoveTag.m in Sources */,
+				8EA8B1721B40799F0043DE46 /* HNCommentsReplyTestCell.m in Sources */,
 				8ED435021AE999FB00A99D9F /* HNComment.m in Sources */,
 				8E049EFE1B0AAE3100A0FBD5 /* UIView+FindUITableView.m in Sources */,
 				8E87C43B1AE31FFD00CD004E /* HNTableView.m in Sources */,
