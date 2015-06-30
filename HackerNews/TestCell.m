@@ -30,7 +30,7 @@
 - (void)updateConstraints {
     
     self.textViewHeightConstraint.constant = [self textViewHeightForAttributedText:self.commentTextView.attributedText andWidth:self.contentView.bounds.size.width];
-    
+//
     
     
     [super updateConstraints];

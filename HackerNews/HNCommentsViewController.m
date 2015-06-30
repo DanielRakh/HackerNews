@@ -89,17 +89,18 @@ NSString *const kCommentsHeaderCellIdentifier = @"HeaderCell";
 
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    self.collectionView.backgroundColor = [UIColor clearColor];
+    self.collectionView.backgroundColor = [UIColor colorWithRed:0.972 green:0.198 blue:0.249 alpha:1.000];
     self.collectionView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0);
     self.collectionView.allowsSelection = YES;
-
+    
     [self.collectionView registerClass:[HNCommentsContainerCell class] forCellWithReuseIdentifier:kCommentsCellIdentifier];
     [self.collectionView registerClass:[HNCommentsCollectionViewHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
     
     UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    flowLayout.minimumLineSpacing = 10;
     flowLayout.estimatedItemSize = CGSizeMake(self.view.bounds.size.width, 200);
+//    flowLayout.minimumLineSpacing = 0.0;
+//    flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 
@@ -107,7 +108,7 @@ NSString *const kCommentsHeaderCellIdentifier = @"HeaderCell";
 
     @weakify(self);
     
-    [[[RACObserve(self.viewModel, commentCellViewModels) deliverOnMainThread] ignore:nil] subscribeNext:^(id x) {
+    [[[RACObserve(self.viewModel, commentCellViewModels) ignore:nil] deliverOnMainThread] subscribeNext:^(id x) {
         @strongify(self);
         [self.collectionView reloadData];
         
@@ -124,30 +125,28 @@ NSString *const kCommentsHeaderCellIdentifier = @"HeaderCell";
 }
 
 
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-//    [self.cellSizeManager invalidateCellSizeCache];
-    [self.collectionView.collectionViewLayout invalidateLayout];
-}
-
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-
     return self.viewModel.commentCellViewModels.count;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    
     HNCommentsContainerCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
     cell.viewModel = self.viewModel.commentCellViewModels[indexPath.row];
+//    [cell.treeView reloadData];
+//    [cell.treeView layoutIfNeeded];
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
     
+    
     return cell;
 }
+
+
+
 
 //- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 //    

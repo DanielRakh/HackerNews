@@ -21,6 +21,7 @@ PODS:
   - RZCellSizeManager (1.1.2):
     - RZCellSizeManager/Core (= 1.1.2)
   - RZCellSizeManager/Core (1.1.2)
+  - TLIndexPathTools (0.4.0)
 
 DEPENDENCIES:
   - DateTools
@@ -33,6 +34,7 @@ DEPENDENCIES:
   - ReactiveCoreData (>= 0.0)
   - ReactiveViewModel (>= 0.3)
   - RZCellSizeManager
+  - TLIndexPathTools
 
 SPEC CHECKSUMS:
   DateTools: 9bcc89e4f2f9004d8a7a2bd1b49269cf78968e65
@@ -45,5 +47,6 @@ SPEC CHECKSUMS:
   ReactiveCoreData: 1ca5406c2d2fdab8a40ba939f59c41eda9f469a3
   ReactiveViewModel: 58918dcbcec2d3151195ab1ed9163c57a8163999
   RZCellSizeManager: 04bd83953cb5a427ae3d9e430045a15ee4789699
+  TLIndexPathTools: 901fe3651c0d330b2d82c364232c425405a70e5c
 
 COCOAPODS: 0.37.2

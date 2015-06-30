@@ -13,7 +13,7 @@ pod 'Reachability', '>= 3.2'
 pod "Firebase-RACExtensions"
 pod 'RATreeView'
 pod 'RZCellSizeManager'
-
+pod 'TLIndexPathTools'
 
 end
 
