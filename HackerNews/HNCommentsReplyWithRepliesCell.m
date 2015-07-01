@@ -137,22 +137,23 @@ CGFloat const kRepliesHorizontalInset = 8;
         
         [UIView autoSetPriority:UILayoutPriorityRequired forConstraints:^{
             [self.originationLabel autoSetContentHuggingPriorityForAxis:ALAxisVertical];
+            [self.commentTextView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.originationLabel withOffset:kRepliesVerticalInset];
+            [self.commentTextView autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.threadLine withOffset:6.0];
+            
+            [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
+            [self.commentTextView autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop
+                                       ofView:self.repliesButton withOffset:-kRepliesVerticalInset relation:NSLayoutRelationEqual];
         }];
-        //
-        [self.commentTextView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.originationLabel withOffset:kRepliesVerticalInset];
-        [self.commentTextView autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.threadLine withOffset:6.0];
+       
         
-        [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
-        [self.commentTextView autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop
-                                   ofView:self.repliesButton withOffset:-kRepliesVerticalInset relation:NSLayoutRelationEqual];
+  
 //
         
         // Replies Button Constraints
         [self.repliesButton autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.threadLine withOffset:6.0];
         [self.repliesButton autoSetDimension:ALDimensionHeight toSize:30.0];
         [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
-        
-        
+    
         [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
             [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kRepliesVerticalInset];
         }];
@@ -169,10 +170,15 @@ CGFloat const kRepliesHorizontalInset = 8;
     CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(textViewWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
    
     if (!self.textViewHeightConstraint) {
-        self.textViewHeightConstraint = [self.commentTextView autoSetDimension:ALDimensionHeight toSize:CGRectGetHeight(rect) + 1];
+        [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
+            self.textViewHeightConstraint = [self.commentTextView autoSetDimension:ALDimensionHeight toSize:CGRectGetHeight(rect) + 1];
+
+        }];
+
     } else {
         self.textViewHeightConstraint.constant = CGRectGetHeight(rect) + 1;
     }
+    
     
     
     [super updateConstraints];

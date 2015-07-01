@@ -26,16 +26,16 @@
 NSString *const kCommentsCellIdentifier = @"CommentsCell";
 NSString *const kCommentsHeaderCellIdentifier = @"HeaderCell";
 
-@interface HNCommentsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface HNCommentsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) NSString *headerTitleText;
 
 @property (nonatomic) CGFloat headerHeight;
 
 //@property (nonatomic) HNCommentsHeaderCell *headerSizeCell;
-@property (nonatomic) HNCommentsCollectionViewHeader *headerSizeView;
+//@property (nonatomic) HNCommentsCollectionViewHeader *headerSizeView;
 @property (nonatomic) HNCommentsContainerCell *containerSizeCell;
 
 @property (nonatomic) RZCellSizeManager *cellSizeManager;
@@ -44,61 +44,44 @@ NSString *const kCommentsHeaderCellIdentifier = @"HeaderCell";
 
 @implementation HNCommentsViewController
 
-//-(void)viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//    self.viewModel.active = YES;
-//
-//}
-
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     self.viewModel.active = NO;
 }
 
-
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor HNOffWhite];
-    [self initalizeCollectionView];
+    [self initalizeTableView];
     [self bindViewModel];
     
-    self.headerSizeView = [[HNCommentsCollectionViewHeader alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
+//    self.headerSizeView = [[HNCommentsCollectionViewHeader alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
 //    self.containerSizeCell = [[HNCommentsContainerCell alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
     
     
-//    self.cellSizeManager = [RZCellSizeManager new];
-//    
-//    [self.cellSizeManager registerCellClassName:NSStringFromClass([HNCommentsContainerCell class]) withNibNamed:nil forReuseIdentifier:kCommentsCellIdentifier withSizeBlock:^CGSize(id cell, id object) {
-//        CGFloat requiredWidth = self.collectionView.bounds.size.width;
-//        CGSize targetSize = CGSizeMake(requiredWidth, 0);
-//        self.containerSizeCell.viewModel = object;
-//        [self.containerSizeCell setNeedsUpdateConstraints];
-//        [self.containerSizeCell updateConstraintsIfNeeded];
-////        [self.containerSizeCell setNeedsLayout];
-////        [self.containerSizeCell layoutIfNeeded];
-//        CGSize adequateSize = [self.containerSizeCell preferredLayoutSizeFittingSize:targetSize];
-//        return adequateSize;
-//    }];
+    self.cellSizeManager = [RZCellSizeManager new];
+    [self.cellSizeManager registerCellClassName:NSStringFromClass([HNCommentsContainerCell class]) withNibNamed:nil forReuseIdentifier:kCommentsCellIdentifier withHeightBlock:^CGFloat(HNCommentsContainerCell *cell, HNCommentsCellViewModel *viewModel) {
+        cell.viewModel = viewModel;
+        [cell setNeedsUpdateConstraints];
+        [cell updateConstraintsIfNeeded];
+        return [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    }];
 }
 
+- (void)initalizeTableView {
 
-- (void)initalizeCollectionView {
-
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
-    self.collectionView.backgroundColor = [UIColor colorWithRed:0.972 green:0.198 blue:0.249 alpha:1.000];
-    self.collectionView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0);
-    self.collectionView.allowsSelection = YES;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.backgroundColor = [UIColor colorWithRed:0.972 green:0.198 blue:0.249 alpha:1.000];
+    self.tableView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0);
+    self.tableView.allowsSelection = YES;
+    self.tableView.estimatedRowHeight = 300;
+//    self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     
-    [self.collectionView registerClass:[HNCommentsContainerCell class] forCellWithReuseIdentifier:kCommentsCellIdentifier];
-    [self.collectionView registerClass:[HNCommentsCollectionViewHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
+    [self.tableView registerClass:[HNCommentsContainerCell class] forCellReuseIdentifier:kCommentsCellIdentifier];
     
-    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
-    flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    flowLayout.estimatedItemSize = CGSizeMake(self.view.bounds.size.width, 200);
+//    [self.collectionView registerClass:[HNCommentsCollectionViewHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
 //    flowLayout.minimumLineSpacing = 0.0;
 //    flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
 }
@@ -110,10 +93,8 @@ NSString *const kCommentsHeaderCellIdentifier = @"HeaderCell";
     
     [[[RACObserve(self.viewModel, commentCellViewModels) ignore:nil] deliverOnMainThread] subscribeNext:^(id x) {
         @strongify(self);
-        [self.collectionView reloadData];
-        
+        [self.tableView reloadData];
     }];
-    
     
     self.title = self.viewModel.commentsCount;    
 }
@@ -125,43 +106,34 @@ NSString *const kCommentsHeaderCellIdentifier = @"HeaderCell";
 }
 
 
-#pragma mark - UICollectionViewDataSource
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    if (self.viewModel.commentCellViewModels.count > 0) {
+//        return 2;
+//    }
+//    return 0;
+    
     return self.viewModel.commentCellViewModels.count;
 }
 
-// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    HNCommentsContainerCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    HNCommentsContainerCell *cell = [tableView dequeueReusableCellWithIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
     cell.viewModel = self.viewModel.commentCellViewModels[indexPath.row];
-//    [cell.treeView reloadData];
-//    [cell.treeView layoutIfNeeded];
-    [cell setNeedsUpdateConstraints];
-    [cell updateConstraintsIfNeeded];
-    
-    
     return cell;
 }
 
 
-
-
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    CGSize cellSize = [self.cellSizeManager cellSizeForObject:self.viewModel.commentCellViewModels[indexPath.item] indexPath:indexPath cellReuseIdentifier:kCommentsCellIdentifier];
-//    
-//    DLogNSSize(cellSize);
-//    
-//    return cellSize;
-//}
-
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return [self.cellSizeManager cellHeightForObject:self.viewModel.commentCellViewModels[indexPath.row] indexPath:indexPath cellReuseIdentifier:kCommentsCellIdentifier];
+    
+}
 
 #pragma mark -
-#pragma mark - Collection View Header
-
+#pragma mark - Table View Header
+/*
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     
     HNCommentsCollectionViewHeader *cell = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
@@ -185,5 +157,7 @@ NSString *const kCommentsHeaderCellIdentifier = @"HeaderCell";
     CGSize adequateSize = [self.headerSizeView preferredLayoutSizeFittingSize:targetSize];
     return adequateSize;
 }
+
+*/
 
 @end

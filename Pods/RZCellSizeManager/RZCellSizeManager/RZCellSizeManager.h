@@ -237,4 +237,9 @@ typedef CGSize  (^RZCellSizeManagerSizeBlock)(id cell, id object);
  */
 - (CGSize)cellSizeForObject:(id)object indexPath:(NSIndexPath *)indexPath cellReuseIdentifier:(NSString *)reuseIdentifier;
 
+
+- (CGFloat)cellHeightForObject:(id)object treeItem:(id)treeItem cellReuseIdentifier:(NSString *)reuseIdentifier;
+
+
+
 @end

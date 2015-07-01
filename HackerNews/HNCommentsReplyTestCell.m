@@ -127,18 +127,18 @@
 
 - (CGFloat)preferredLayoutSizeFittingHeight:(CGFloat)height {
     
-    CGRect originalFrame = self.frame;
-    
-    CGRect frame = self.frame;
-    frame.size.height = height;
-    self.frame = frame;
+//    CGRect originalFrame = self.frame;
+//    
+//    CGRect frame = self.frame;
+//    frame.size.height = height;
+//    self.frame = frame;
     
     [self setNeedsUpdateConstraints];
     [self updateConstraintsIfNeeded];
     
     CGFloat computedHeight = [self systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
     
-    self.frame = originalFrame;
+//    self.frame = originalFrame;
     
     return computedHeight;
     

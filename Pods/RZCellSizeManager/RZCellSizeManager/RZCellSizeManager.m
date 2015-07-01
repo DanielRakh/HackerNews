@@ -367,6 +367,26 @@
     return [height floatValue];
 }
 
+- (CGFloat)cellHeightForObject:(id)object treeItem:(id)treeItem cellReuseIdentifier:(NSString *)reuseIdentifier {
+    
+    NSParameterAssert(treeItem);
+    
+    NSNumber * height = [self.cellSizeCache objectForKey:treeItem];
+    if (height == nil)
+    {
+        RZCellSizeManagerCellConfiguration* configuration = [self configurationForObject:object reuseIdentifier:reuseIdentifier];
+        
+        height = [self cellHeightForObject:object configuration:configuration];
+        
+        if (height)
+        {
+            [self.cellSizeCache setObject:height forKey:treeItem];
+        }
+    }
+    return [height floatValue];
+    
+}
+
 - (CGSize)cellSizeForObject:(id)object indexPath:(NSIndexPath *)indexPath
 {
     return [self cellSizeForObject:object indexPath:indexPath cellReuseIdentifier:nil];
