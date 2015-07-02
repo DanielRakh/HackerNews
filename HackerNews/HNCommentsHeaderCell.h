@@ -8,14 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HNCommentsHeaderCell : UICollectionViewCell
+@interface HNCommentsHeaderCell : UITableViewCell
 
-
-@property (nonatomic) UILabel *titleLabel;
 @property (nonatomic) UIView *cardView;
+@property (nonatomic) UILabel *titleLabel;
 @property (nonatomic) UILabel *scoreLabel;
 @property (nonatomic) UILabel *originationLabel;
-
 
 - (CGSize)preferredLayoutSizeFittingSize:(CGSize)targetSize;
 

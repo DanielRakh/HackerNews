@@ -141,7 +141,7 @@
         <!--Comments View Controller-->
         <scene sceneID="uHT-o0-Frn">
             <objects>
-                <viewController storyboardIdentifier="CommentsController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9dg-tN-ZBA" customClass="HNCommentsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CommentsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9dg-tN-ZBA" customClass="HNCommentsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PM9-6r-sgy"/>
                         <viewControllerLayoutGuide type="bottom" id="hci-fK-1wR"/>

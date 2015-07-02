@@ -29,6 +29,13 @@
     return self;
 }
 
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
 
 - (void)updateConstraints {
     
@@ -141,7 +148,7 @@
     self.titleLabel.preferredMaxLayoutWidth = self.titleLabel.bounds.size.width;
 
     
-    CGSize computedSize = [self systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    CGSize computedSize = [self.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     
     CGSize newSize = CGSizeMake(targetSize.width, computedSize.height);
     

@@ -10,11 +10,11 @@
 
 @interface HNCommentsTableViewHeader : UITableViewHeaderFooterView
 
-
 @property (nonatomic) UIView *cardView;
 @property (nonatomic) UILabel *titleLabel;
 @property (nonatomic) UILabel *scoreLabel;
 @property (nonatomic) UILabel *originationLabel;
 
+- (CGSize)preferredLayoutSizeFittingSize:(CGSize)targetSize;
 
 @end
