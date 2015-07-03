@@ -86,8 +86,9 @@ CGFloat const kRepliesHorizontalInset = 8;
     self.commentTextView.selectable = YES;
     self.commentTextView.dataDetectorTypes = UIDataDetectorTypeLink;
     self.commentTextView.scrollEnabled = NO;
-    self.commentTextView.textContainer.lineFragmentPadding = 0;
-    self.commentTextView.textContainerInset = UIEdgeInsetsMake(0, 1, 0, 0);
+    self.commentTextView.textContainer.lineBreakMode = NSLineBreakByWordWrapping;
+    self.commentTextView.textContainer.lineFragmentPadding = 5;
+    self.commentTextView.textContainerInset = UIEdgeInsetsMake(0, -5, 0, 10);
     [self.contentView addSubview:self.commentTextView];
     
     //Set up Comments Button
@@ -105,81 +106,62 @@ CGFloat const kRepliesHorizontalInset = 8;
 }
 
 - (void)layoutSubviews {
-    
     [super layoutSubviews];
     
-    CGFloat textViewWidth = self.contentView.frame.size.width - (kRepliesHorizontalInset * 2);
-    CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(textViewWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
-    self.textViewHeightConstraint.constant = CGRectGetHeight(rect) + 1;
-    
-//    [self setNeedsUpdateConstraints];
+    [self setNeedsUpdateConstraints];
     [self updateConstraintsIfNeeded];
-    
-//    DLogNSObject(self.textViewHeightConstraint);
 }
 
 - (void)updateConstraints {
     
     if (self.didUpdateConstraints == NO) {
         
-        [self.threadLine autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.originationLabel];
-        [self.threadLine autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.commentTextView];
+        [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
+            [self.threadLine autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.originationLabel];
+            [self.threadLine autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.commentTextView];
+        }];
         [self.threadLine autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kRepliesHorizontalInset];
         [self.threadLine autoSetDimension:ALDimensionWidth toSize:1.0 relation:NSLayoutRelationEqual];
-        
         
         
         [self.originationLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.threadLine withOffset:6.0];
         [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kRepliesVerticalInset];
         [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
-        
-        
-        
         [UIView autoSetPriority:UILayoutPriorityRequired forConstraints:^{
             [self.originationLabel autoSetContentHuggingPriorityForAxis:ALAxisVertical];
-            [self.commentTextView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.originationLabel withOffset:kRepliesVerticalInset];
-            [self.commentTextView autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.threadLine withOffset:6.0];
-            
-            [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
-            [self.commentTextView autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop
-                                       ofView:self.repliesButton withOffset:-kRepliesVerticalInset relation:NSLayoutRelationEqual];
         }];
-       
-        
-  
-//
-        
-        // Replies Button Constraints
-        [self.repliesButton autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.threadLine withOffset:6.0];
-        [self.repliesButton autoSetDimension:ALDimensionHeight toSize:30.0];
-        [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
-    
         [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
-            [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kRepliesVerticalInset];
+            [self.originationLabel autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.commentTextView withOffset:-10 relation:NSLayoutRelationEqual];
         }];
         
+        
+        [self.commentTextView autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.threadLine withOffset:6.0];
+        [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
+        [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
+            [self.commentTextView autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.repliesButton withOffset:-10 relation:NSLayoutRelationEqual];
+        }];
+        
+
+        [self.repliesButton autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.threadLine withOffset:6.0];
+        [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kRepliesHorizontalInset];
+        [self.repliesButton autoSetDimension:ALDimensionHeight toSize:30.0];
+        [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10.0];
+
+
         // Thread Line constraints
-        
-
-        
-
         self.didUpdateConstraints = YES;
     }
 
-    CGFloat textViewWidth = self.contentView.bounds.size.width - (kRepliesHorizontalInset * 2);
+    CGFloat textViewWidth = self.bounds.size.width;
     CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(textViewWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
-   
+    
     if (!self.textViewHeightConstraint) {
-        [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
-            self.textViewHeightConstraint = [self.commentTextView autoSetDimension:ALDimensionHeight toSize:CGRectGetHeight(rect) + 1];
-
+        [UIView autoSetPriority:749 forConstraints:^{
+        self.textViewHeightConstraint = [self.commentTextView autoSetDimension:ALDimensionHeight toSize:CGRectGetHeight(rect) + 1];
         }];
-
     } else {
         self.textViewHeightConstraint.constant = CGRectGetHeight(rect) + 1;
     }
-    
-    
     
     [super updateConstraints];
 }
@@ -187,7 +169,6 @@ CGFloat const kRepliesHorizontalInset = 8;
 #pragma mark-
 #pragma mark - Actions
 - (void)repliesButtonDidTap:(id)sender {
-    
     if (self.repliesButtonDidTapAction) {
         self.repliesButtonDidTapAction(sender);
     }

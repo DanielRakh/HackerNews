@@ -45,7 +45,6 @@
                                                  }] collect];
             
             
-//            
 //            [[[[[HNItemDataManager sharedManager] rootCommentForStory:story]
 //                                          flattenMap:^RACStream *(HNItemComment *rootComment) {
 //                                              return [[HNItemDataManager sharedManager] threadForRootCommentID:rootComment.idNum];
