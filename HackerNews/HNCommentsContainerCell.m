@@ -215,7 +215,11 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
     
     HNCommentsReplyWithRepliesCell *cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsReplyWithRepliesCell];
     
+
+    
     [cell configureWithViewModel:[self.viewModel repliesViewModelForRootComment:item.headComment]];
+    
+
 
 //    [cell setNeedsUpdateConstraints];
 //    [cell updateConstraintsIfNeeded];
