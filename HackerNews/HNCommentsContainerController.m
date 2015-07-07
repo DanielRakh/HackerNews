@@ -42,16 +42,11 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor HNOffWhite];
     self.scrollView.backgroundColor = [UIColor HNOffWhite];
-    self.scrollView.contentInset = UIEdgeInsetsMake(74, 0, 0, 0);
     self.contentView.backgroundColor = [UIColor clearColor];
-    self.heightConstraints = [NSMutableArray array];
     
-//    UIView *cardView = [UIView newAutoLayoutView];
-//    cardView.backgroundColor = [UIColor blueColor];
-//    [self.contentView addSubview:cardView];
-//    
-//            [self positionCardView:cardView];
-
+    self.scrollView.contentInset = UIEdgeInsetsMake(74, 0, 0, 0);
+    
+    self.heightConstraints = [NSMutableArray array];
     
     [self bindViewModel];
     // Do any additional setup after loading the view.
@@ -72,19 +67,12 @@
     self.title = self.viewModel.commentsCount;
 }
 
-
-- (void)didTap:(id)sender {
-    
-    NSLayoutConstraint *constraint = [self.heightConstraints objectAtIndex:0];
-    constraint.constant += 500;
-}
-
 - (void)positionCardViews:(NSArray *)cardViews {
 
     [cardViews enumerateObjectsUsingBlock:^(UIView *cardView, NSUInteger idx, BOOL *stop) {
+        
         [self.contentView addSubview:cardView];
         cardView.tag = idx + 1;
-        DLogNSInteger(cardView.tag);
         
         NSLayoutConstraint *heightConstraint = [cardView autoSetDimension:ALDimensionHeight toSize:200.0];
         [self.heightConstraints addObject:heightConstraint];
@@ -93,39 +81,17 @@
         [cardView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:10.0];
         
         if (idx == 0) {
-//            [cardView autoPinToTopLayoutGuideOfViewController:self withInset:10.0];
-            [cardView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0];
-//            [cardView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.topLayoutGuide];
+            [cardView autoPinEdgeToSuperviewEdge:ALEdgeTop];
         } else {
             UIView *previousView = [self.contentView viewWithTag:(idx + 1) - 1];
             [cardView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:previousView withOffset: 10.0];
-
         }
-
+        
         if (idx == cardViews.count - 1) {
             [cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10.0];
         }
         
-     
-        
-        
-
-    
     }];
-
-
-    
-//    [self.view layoutIfNeeded];
-    
-//    [cardView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(50, 10, 100, 10)];
-//    [self.view setNeedsUpdateConstraints];
-//    [self.view updateConstraintsIfNeeded];
-//    [self.view layoutIfNeeded];
-    
-    //The plan is to stack them on the grid. What do we know we know that the first needs a top constraint of 64 and the bottom needs a bottom constraint of 10.0;
-    // In that case what we need to do is identify the views by position.
-    // An array gives us an index where we could stack the views in that container.
-    // We then iterate through the array and add them in one by one then we coould position based off of that.
 }
 
 

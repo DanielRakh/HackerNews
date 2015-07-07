@@ -144,7 +144,6 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-
     
     [self setNeedsUpdateConstraints];
     [self updateConstraintsIfNeeded];
