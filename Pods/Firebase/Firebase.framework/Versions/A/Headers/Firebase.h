@@ -228,27 +228,16 @@ that will automatically be populated by the Firebase Server.
 
 /** @name Attaching observers to read data */
 
-/*! observeEventType:withBlock: is used to listen for data changes at a particular location.
- 
-This is the primary way to read data from Firebase. Your block will be triggered
-for the initial data and again whenever the data changes.
- 
-Use removeObserverWithHandle: to stop receiving updates.
- 
-Supported events types for all realtime observers are specified in FEventType as:
-
-    typedef NS_ENUM(NSInteger, FEventType) {
-      FEventTypeChildAdded,    // 0, fired when a new child node is added to a location
-      FEventTypeChildRemoved,  // 1, fired when a child node is removed from a location
-      FEventTypeChildChanged,  // 2, fired when a child node at a location changes
-      FEventTypeChildMoved,    // 3, fired when a child node moves relative to the other child nodes at a location
-      FEventTypeValue          // 4, fired when any data changes at a location and, recursively, any children
-    };
-
-@param eventType The type of event to listen for.
-@param block The block that should be called with initial data and updates as a FDataSnapshot.
-@return A handle used to unregister this block later using removeObserverWithHandle:
-*/
+/**
+ * observeEventType:withBlock: is used to listen for data changes at a particular location.
+ * This is the primary way to read data from Firebase. Your block will be triggered
+ * for the initial data and again whenever the data changes.
+ *
+ * Use removeObserverWithHandle: to stop receiving updates.
+ * @param eventType The type of event to listen for.
+ * @param block The block that should be called with initial data and updates.  It is passed the data as an FDataSnapshot.
+ * @return A handle used to unregister this block later using removeObserverWithHandle:
+ */
 - (FirebaseHandle) observeEventType:(FEventType)eventType withBlock:(void (^)(FDataSnapshot* snapshot))block;
 
 
@@ -261,8 +250,8 @@ Supported events types for all realtime observers are specified in FEventType as
  * Use removeObserverWithHandle: to stop receiving updates.
  *
  * @param eventType The type of event to listen for.
- * @param block The block that should be called with initial data and updates as a FDataSnapshot, as well as the
- * previous child's key.
+ * @param block The block that should be called with initial data and updates.  It is passed the data as an FDataSnapshot
+ * and the previous child's key.
  * @return A handle used to unregister this block later using removeObserverWithHandle:
  */
 - (FirebaseHandle) observeEventType:(FEventType)eventType andPreviousSiblingKeyWithBlock:(void (^)(FDataSnapshot* snapshot, NSString* prevKey))block;
@@ -278,7 +267,7 @@ Supported events types for all realtime observers are specified in FEventType as
  * Use removeObserverWithHandle: to stop receiving updates.
  *
  * @param eventType The type of event to listen for.
- * @param block The block that should be called with initial data and updates as a FDataSnapshot.
+ * @param block The block that should be called with initial data and updates.  It is passed the data as an FDataSnapshot.
  * @param cancelBlock The block that should be called if this client no longer has permission to receive these events
  * @return A handle used to unregister this block later using removeObserverWithHandle:
  */
@@ -296,7 +285,8 @@ Supported events types for all realtime observers are specified in FEventType as
  * Use removeObserverWithHandle: to stop receiving updates.
  *
  * @param eventType The type of event to listen for.
- * @param block The block that should be called with initial data and updates as a FDataSnapshot, as well as the previous child's key.
+ * @param block The block that should be called with initial data and updates.  It is passed the data as an FDataSnapshot
+ * and the previous child's key.
  * @param cancelBlock The block that should be called if this client no longer has permission to receive these events
  * @return A handle used to unregister this block later using removeObserverWithHandle:
  */
@@ -307,7 +297,7 @@ Supported events types for all realtime observers are specified in FEventType as
  * This is equivalent to observeEventType:withBlock:, except the block is immediately canceled after the initial data is returned.
  *
  * @param eventType The type of event to listen for.
- * @param block The block that should be called with initial data and updates as a FDataSnapshot.
+ * @param block The block that should be called.  It is passed the data as an FDataSnapshot.
  */
 - (void) observeSingleEventOfType:(FEventType)eventType withBlock:(void (^)(FDataSnapshot* snapshot))block;
 
@@ -317,7 +307,7 @@ Supported events types for all realtime observers are specified in FEventType as
  * FEventTypeChildChanged events, your block will be passed the key of the previous node by priority order.
  *
  * @param eventType The type of event to listen for.
- * @param block The block that should be called with initial data and updates as a FDataSnapshot, as well as the previous child's key.
+ * @param block The block that should be called.  It is passed the data as an FDataSnapshot and the previous child's key.
  */
 - (void) observeSingleEventOfType:(FEventType)eventType andPreviousSiblingKeyWithBlock:(void (^)(FDataSnapshot* snapshot, NSString* prevKey))block;
 
@@ -328,7 +318,7 @@ Supported events types for all realtime observers are specified in FEventType as
  * The cancelBlock will be called if you do not have permission to read data at this location.
  *
  * @param eventType The type of event to listen for.
- * @param block The block that should be called with initial data and updates as a FDataSnapshot.
+ * @param block The block that should be called.  It is passed the data as an FDataSnapshot.
  * @param cancelBlock The block that will be called if you don't have permission to access this data
  */
 - (void) observeSingleEventOfType:(FEventType)eventType withBlock:(void (^)(FDataSnapshot* snapshot))block withCancelBlock:(void (^)(NSError* error))cancelBlock;
@@ -341,7 +331,7 @@ Supported events types for all realtime observers are specified in FEventType as
  * The cancelBlock will be called if you do not have permission to read data at this location.
  *
  * @param eventType The type of event to listen for.
- * @param block The block that should be called with initial data and updates as a FDataSnapshot, as well as the previous child's key.
+ * @param block The block that should be called.  It is passed the data as an FDataSnapshot and the previous child's key.
  * @param cancelBlock The block that will be called if you don't have permission to access this data
  */
 - (void) observeSingleEventOfType:(FEventType)eventType andPreviousSiblingKeyWithBlock:(void (^)(FDataSnapshot* snapshot, NSString* prevKey))block withCancelBlock:(void (^)(NSError* error))cancelBlock;
@@ -573,11 +563,11 @@ Supported events types for all realtime observers are specified in FEventType as
 /**
  * queryEqualToValue:childKey: is used to generate a reference to a limited view of the data at this location.
  * The FQuery instance returned by queryEqualToValue:childKey will respond to events at nodes with a value
- * equal to the supplied argument with a name equal to childKey. There will be at most one node that matches because
+ * equal to the supplied argument with a key equal to childKey. There will be at most one node that matches because
  * child keys are unique.
  *
  * @param value The value that the data returned by this FQuery will have
- * @param childKey The name of nodes with the right value
+ * @param childKey The key of nodes with the right value
  * @return An FQuery instance, limited to data with the supplied value and the key.
  */
 - (FQuery *) queryEqualToValue:(id)value childKey:(NSString *)childKey;

@@ -11,11 +11,15 @@
 
 @class HNCommentsCellViewModel;
 @class RATreeView;
+@class HNCommentsViewController;
+@class RZCellSizeManager;
 
 @interface HNCommentsContainerCell : UITableViewCell
 
 @property (nonatomic) HNCommentsCellViewModel *viewModel;
 @property (nonatomic) RATreeView *treeView;
-@property (nonatomic) NSLayoutConstraint *treeViewHeightConstraint;
+@property (nonatomic, weak) HNCommentsViewController *parentVC;
+@property (nonatomic) RZCellSizeManager *cellSizeManager;
+
 
 @end

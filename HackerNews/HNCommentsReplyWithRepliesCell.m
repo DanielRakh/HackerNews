@@ -164,15 +164,11 @@ CGFloat const kRepliesHorizontalInset = 8;
         }];
         
 
-
         // Thread Line constraints
         self.didUpdateConstraints = YES;
     }
     
-    DLogfloat([UIScreen mainScreen].bounds.size.width);
-
-    
-#warning We need to fuck around with these values for different cell types. 
+#warning We need to fuck around with these values for different cell types.
     CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - 16 - 22;
 
     CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(wrappingWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];

@@ -30,7 +30,7 @@ NSString *const kCommentsHeaderIdentifier = @"HeaderCell";
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) HNCommentsHeaderCell *tableViewHeaderPrototypeCell;
-@property (nonatomic) RZCellSizeManager *cellSizeManager;
+//@property (nonatomic) RZCellSizeManager *cellSizeManager;
 
 @end
 
@@ -55,7 +55,9 @@ NSString *const kCommentsHeaderIdentifier = @"HeaderCell";
         cell.viewModel = viewModel;
         [cell setNeedsUpdateConstraints];
         [cell updateConstraintsIfNeeded];
-        return [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+        CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+//        DLogfloat(height);
+        return height;
     }];
 }
 
@@ -84,6 +86,10 @@ NSString *const kCommentsHeaderIdentifier = @"HeaderCell";
     self.title = self.viewModel.commentsCount;    
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+}
+
 #pragma mark - <Table View Datasource>
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -97,7 +103,16 @@ NSString *const kCommentsHeaderIdentifier = @"HeaderCell";
         return 1;
     }
     
-    return self.viewModel.commentCellViewModels.count;
+//    return self.viewModel.commentCellViewModels.count;
+    
+    if (self.viewModel.commentCellViewModels.count == 0) {
+        return 0;
+    } else {
+        return 3;
+    }
+//    return 3;
+    
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -115,6 +130,11 @@ NSString *const kCommentsHeaderIdentifier = @"HeaderCell";
     
     HNCommentsContainerCell *cell = [tableView dequeueReusableCellWithIdentifier:kCommentsCellIdentifier forIndexPath:indexPath];
     cell.viewModel = self.viewModel.commentCellViewModels[indexPath.row];
+    [cell.treeView expandRowForItem:cell.viewModel.commentThreadArray[0]];
+    [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
+    cell.parentVC = self;
+
     return cell;
 }
 
@@ -135,9 +155,14 @@ NSString *const kCommentsHeaderIdentifier = @"HeaderCell";
         CGSize adequateSize = [self.tableViewHeaderPrototypeCell preferredLayoutSizeFittingSize:targetSize];
         return adequateSize.height;
     }
+//    
+//    CGFloat height = [self.cellSizeManager cellHeightForObject:self.viewModel.commentCellViewModels[indexPath.row] indexPath:indexPath cellReuseIdentifier:kCommentsCellIdentifier];
+//    
+////    DLog(@"Container:%f",height);
+//    
+//    return height;
     
-    return [self.cellSizeManager cellHeightForObject:self.viewModel.commentCellViewModels[indexPath.row] indexPath:indexPath cellReuseIdentifier:kCommentsCellIdentifier];
-    
+    return 300;
 }
 
 #pragma mark - IBActions

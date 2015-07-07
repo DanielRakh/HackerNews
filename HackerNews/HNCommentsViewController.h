@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @class HNCommentsViewModel;
+@class RZCellSizeManager;
 
 @interface HNCommentsViewController : UIViewController
 
 @property (nonatomic) HNCommentsViewModel *viewModel;
+@property (nonatomic) RZCellSizeManager *cellSizeManager;
+
 
 @end
