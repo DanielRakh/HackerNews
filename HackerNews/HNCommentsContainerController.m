@@ -6,14 +6,21 @@
 //
 //
 
-#import "HNCommentsContainerController.h"
-#import "HNCommentsViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "UIColor+HNColorPalette.h"
 #import "PureLayout.h"
+
+// View
+#import "HNCommentsContainerController.h"
+#import "HNCommentsCardView.h"
+
+//View Model
+#import "HNCommentsViewModel.h"
 
 
 @interface HNCommentsContainerController ()
 
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, weak) IBOutlet UIView *contentView;
 @property (nonatomic) NSMutableArray *heightConstraints;
 
@@ -33,7 +40,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = [UIColor HNOffWhite];
+    self.scrollView.backgroundColor = [UIColor HNOffWhite];
+    self.scrollView.contentInset = UIEdgeInsetsMake(74, 0, 0, 0);
+    self.contentView.backgroundColor = [UIColor clearColor];
     self.heightConstraints = [NSMutableArray array];
     
 //    UIView *cardView = [UIView newAutoLayoutView];
@@ -50,12 +60,11 @@
 - (void)bindViewModel {
     @weakify(self);
     [[[[[RACObserve(self.viewModel, commentCellViewModels) ignore:nil] deliverOnMainThread] flattenMap:^RACStream *(NSArray *value) {
-        return [[[value.rac_sequence map:^id(HNCommentsViewModel *viewModel) {
-            @strongify(self);
-            UIView *cardView = [self createCardViewForModel:viewModel];
-            return cardView;
+        return [[[value.rac_sequence map:^id(HNCommentsCellViewModel *viewModel) {
+            return [[HNCommentsCardView alloc]initWithViewModel:viewModel];
         }] signal] collect];
     }] deliverOnMainThread] subscribeNext:^(NSArray *x) {
+        @strongify(self);
         [self positionCardViews:x];
     }];
 
@@ -68,41 +77,6 @@
     
     NSLayoutConstraint *constraint = [self.heightConstraints objectAtIndex:0];
     constraint.constant += 500;
-}
-
-
-- (UIView * )createCardViewForModel:(HNCommentsViewModel *)viewModel {
-    
-    
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
-    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [btn setTitle:@"Expand" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(didTap:) forControlEvents:UIControlEventTouchUpInside];
-
-
-    
-    UIView *cardView = [UIView newAutoLayoutView];
-    cardView.backgroundColor = [UIColor blueColor];
-    
-    
-    
-    
-    
-    [cardView addSubview:btn];
-    [btn autoCenterInSuperview];
-    
-    
-    
-    
-    
-    
-    
-    
-    return cardView;
-//    [self.contentView addSubview:cardView];
-//    [self positionCardView:cardView];
-
-//    return [RACSignal return:cardView];
 }
 
 - (void)positionCardViews:(NSArray *)cardViews {
@@ -119,17 +93,17 @@
         [cardView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:10.0];
         
         if (idx == 0) {
-            [cardView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:50.0];
+//            [cardView autoPinToTopLayoutGuideOfViewController:self withInset:10.0];
+            [cardView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0];
+//            [cardView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.topLayoutGuide];
         } else {
             UIView *previousView = [self.contentView viewWithTag:(idx + 1) - 1];
-//            [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
-                [cardView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:previousView withOffset: 10.0];
+            [cardView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:previousView withOffset: 10.0];
 
-//            }];
         }
 
         if (idx == cardViews.count - 1) {
-            [cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:50.0];
+            [cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10.0];
         }
         
      
