@@ -136,7 +136,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WaL-XA-ib3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3195" y="-269"/>
+            <point key="canvasLocation" x="3769.5" y="-358.5"/>
         </scene>
         <!--Comments View Controller-->
         <scene sceneID="uHT-o0-Frn">
@@ -197,6 +197,104 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kIS-n2-HiL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2122.5" y="-318"/>
+        </scene>
+        <!--Comments Container Controller-->
+        <scene sceneID="R2C-WZ-dEg">
+            <objects>
+                <viewController storyboardIdentifier="CommentsContainerController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="z8I-i0-n4f" customClass="HNCommentsContainerController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pYp-hW-Pso"/>
+                        <viewControllerLayoutGuide type="bottom" id="kvs-2T-xHb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QFo-p0-N8V">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jSH-wQ-dBJ">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="800" translatesAutoresizingMaskIntoConstraints="NO" id="Wo2-J2-l6H" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.98823529409999999" green="0.29803921570000003" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="Wo2-J2-l6H" secondAttribute="centerX" id="a7V-0z-lJH"/>
+                                    <constraint firstItem="Wo2-J2-l6H" firstAttribute="top" secondItem="jSH-wQ-dBJ" secondAttribute="top" id="d4r-my-ChU"/>
+                                    <constraint firstItem="Wo2-J2-l6H" firstAttribute="leading" secondItem="jSH-wQ-dBJ" secondAttribute="leading" id="jsZ-Of-crc"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wo2-J2-l6H" secondAttribute="trailing" id="oGu-pe-6v7"/>
+                                    <constraint firstAttribute="bottom" secondItem="Wo2-J2-l6H" secondAttribute="bottom" id="qup-VQ-Cc1"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="Wo2-J2-l6H"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="a7V-0z-lJH"/>
+                                        <exclude reference="d4r-my-ChU"/>
+                                        <exclude reference="jsZ-Of-crc"/>
+                                        <exclude reference="oGu-pe-6v7"/>
+                                        <exclude reference="qup-VQ-Cc1"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="Wo2-J2-l6H"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="a7V-0z-lJH"/>
+                                        <include reference="d4r-my-ChU"/>
+                                        <include reference="jsZ-Of-crc"/>
+                                        <include reference="oGu-pe-6v7"/>
+                                        <include reference="qup-VQ-Cc1"/>
+                                    </mask>
+                                </variation>
+                            </scrollView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" red="0.4315206707" green="0.8116003275" blue="0.1046745107" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="jSH-wQ-dBJ" firstAttribute="leading" secondItem="QFo-p0-N8V" secondAttribute="leading" id="30y-83-QT8"/>
+                            <constraint firstAttribute="trailing" secondItem="jSH-wQ-dBJ" secondAttribute="trailing" id="FUo-eJ-Mrf"/>
+                            <constraint firstItem="jSH-wQ-dBJ" firstAttribute="top" secondItem="QFo-p0-N8V" secondAttribute="top" id="TOX-Ua-75t"/>
+                            <constraint firstItem="kvs-2T-xHb" firstAttribute="top" secondItem="jSH-wQ-dBJ" secondAttribute="bottom" id="jEy-sm-Qpy"/>
+                            <constraint firstAttribute="width" secondItem="Wo2-J2-l6H" secondAttribute="width" id="tZg-kd-wTE"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="jSH-wQ-dBJ"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="tZg-kd-wTE"/>
+                                <exclude reference="30y-83-QT8"/>
+                                <exclude reference="FUo-eJ-Mrf"/>
+                                <exclude reference="TOX-Ua-75t"/>
+                                <exclude reference="jEy-sm-Qpy"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="jSH-wQ-dBJ"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="tZg-kd-wTE"/>
+                                <include reference="30y-83-QT8"/>
+                                <include reference="FUo-eJ-Mrf"/>
+                                <include reference="TOX-Ua-75t"/>
+                                <include reference="jEy-sm-Qpy"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="contentView" destination="Wo2-J2-l6H" id="aTs-Qv-FLb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gkv-S9-Dqo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2902.5" y="-318"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QXH-IO-ipJ">

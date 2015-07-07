@@ -13,7 +13,8 @@
 //View
 #import "HNFeedCell.h"
 #import "HNThinLineButton.h"
-#import "HNCommentsViewController.h"
+//#import "HNCommentsViewController.h"
+#import "HNCommentsContainerController.h"
 
 //View Model
 #import "HNFeedCellViewModel.h"
@@ -118,8 +119,6 @@ CGFloat const kHorizontalInset = 8;
     
     [self.cardView addSubview:self.titleLabel];
     
-    
-    
     // Set up Info Label
     self.originationLabel = [UILabel newAutoLayoutView];
     self.originationLabel.lineBreakMode = NSLineBreakByTruncatingTail;
@@ -190,7 +189,7 @@ CGFloat const kHorizontalInset = 8;
     
     HNCommentsViewModel *commentsViewModel = [self.viewModel commentsViewModel];
     UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    HNCommentsViewController *commentsController =[mainSB instantiateViewControllerWithIdentifier:@"CommentsController"];
+    HNCommentsContainerController *commentsController =[mainSB instantiateViewControllerWithIdentifier:@"CommentsContainerController"];
     commentsController.viewModel = commentsViewModel;
     commentsController.viewModel.active = YES;
     [self.navController pushViewController:commentsController animated:YES];

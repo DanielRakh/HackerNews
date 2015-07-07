@@ -72,6 +72,7 @@
 		8ED804D31AE754AB00BE4AB0 /* HNCommentsTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED804D21AE754AB00BE4AB0 /* HNCommentsTableViewHeader.m */; };
 		8ED923AB1AEB562300801543 /* HNCommentsReplyWithRepliesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED923AA1AEB562300801543 /* HNCommentsReplyWithRepliesCell.m */; };
 		8ED923F61AEC3B2D00801543 /* HNCommentThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED923F51AEC3B2D00801543 /* HNCommentThread.m */; };
+		8EF052A01B4C35010043CF08 /* HNCommentsContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF0529F1B4C35010043CF08 /* HNCommentsContainerController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,6 +197,8 @@
 		8ED923AA1AEB562300801543 /* HNCommentsReplyWithRepliesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsReplyWithRepliesCell.m; sourceTree = "<group>"; };
 		8ED923F41AEC3B2D00801543 /* HNCommentThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentThread.h; sourceTree = "<group>"; };
 		8ED923F51AEC3B2D00801543 /* HNCommentThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentThread.m; sourceTree = "<group>"; };
+		8EF0529E1B4C35010043CF08 /* HNCommentsContainerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsContainerController.h; sourceTree = "<group>"; };
+		8EF0529F1B4C35010043CF08 /* HNCommentsContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsContainerController.m; sourceTree = "<group>"; };
 		E6E214A4479710CF3CF8F84E /* Pods-HackerNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HackerNews/Pods-HackerNews.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -403,6 +406,8 @@
 		8E395EE31AD1A73300EE0DB9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8EF0529E1B4C35010043CF08 /* HNCommentsContainerController.h */,
+				8EF0529F1B4C35010043CF08 /* HNCommentsContainerController.m */,
 				8E395EE01AD1978A00EE0DB9 /* HNCommentsViewController.h */,
 				8E395EE11AD1978A00EE0DB9 /* HNCommentsViewController.m */,
 				8ED804D11AE754AB00BE4AB0 /* HNCommentsTableViewHeader.h */,
@@ -730,6 +735,7 @@
 				8ED3D3DC1AF2915800E5E657 /* HNItemDataManager.m in Sources */,
 				8EA8736D1AD85A3C009C01F8 /* HNItem.m in Sources */,
 				8ED3D3D81AF28F5600E5E657 /* HNItemComment.m in Sources */,
+				8EF052A01B4C35010043CF08 /* HNCommentsContainerController.m in Sources */,
 				8ED804D31AE754AB00BE4AB0 /* HNCommentsTableViewHeader.m in Sources */,
 				8E395EEE1AD3386A00EE0DB9 /* HNCommentsContainerCell.m in Sources */,
 				8E2352B11ACDC34F0009552D /* HNNetworkService.m in Sources */,
