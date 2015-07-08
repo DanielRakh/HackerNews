@@ -75,8 +75,8 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
     self.treeView.backgroundColor = [UIColor orangeColor];
     self.treeView.delegate = self;
     self.treeView.dataSource = self;
-    self.treeView.estimatedRowHeight = 280;
-    self.treeView.scrollEnabled = YES;
+//    self.treeView.estimatedRowHeight = 280;
+    self.treeView.scrollEnabled = NO;
     self.treeView.treeFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     self.treeView.backgroundColor = [UIColor clearColor];
     self.treeView.separatorStyle = RATreeViewCellSeparatorStyleNone;
@@ -85,6 +85,15 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
     
     
     [self addSubview:self.treeView];
+    
+    
+    [RACObserve(self, treeView.contentSize) subscribeNext:^(id x) {
+        DLogNSObject(x);
+    } error:^(NSError *error) {
+        DLogNSObject(error);
+    } completed:^{
+        DLogFunctionLine();
+    }];
     
     
     
@@ -125,14 +134,13 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
     if (self.didSetupConstraints == NO) {
         
         [self.treeView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
-        
-        [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
-             self.treeViewHeightConstraint = [self.treeView autoSetDimension:ALDimensionHeight toSize:self.treeView.contentSize.height];
-        }];
-       
-
         self.didSetupConstraints = YES;
     }
+    
+    [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
+        DLog(@"UPDATE CONSTRAINTS:%f", self.treeView.contentSize.height);
+        self.treeViewHeightConstraint = [self.treeView autoSetDimension:ALDimensionHeight toSize:self.treeView.contentSize.height];
+    }];
     
     [super updateConstraints];
 }
@@ -162,38 +170,26 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
     
     HNCommentsReplyWithRepliesCell *cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsReplyWithRepliesCell];
     
-
+    
     [cell configureWithViewModel:[self.viewModel repliesViewModelForRootComment:item.headComment]];
     
     cell.repliesButtonDidTapAction = ^(id sender){
         DLog(@"TAPPED!");
         
-        
+        [CATransaction begin];
         [treeView expandRowForItem:item withRowAnimation:RATreeViewRowAnimationAutomatic];
-        
-        
-//        self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
         
         DLog(@"Before:%f", treeView.contentSize.height);
         
+        [CATransaction commit];
         
-        [self.treeView beginUpdates];
-        [self.treeView endUpdates];
-
-                [self setNeedsUpdateConstraints];
-                [self updateConstraintsIfNeeded];
-    
         
-
+        [self setNeedsUpdateConstraints];
+        [self updateConstraintsIfNeeded];
+        [self layoutIfNeeded];
+        
+        
         DLog(@"After:%f", treeView.contentSize.height);
-
-                [self.cellSizeManager invalidateCellSizeCache];
-        //
-        //        [self.parentTableView beginUpdates];
-        //        [self.parentTableView endUpdates];
-        //
-        //        [self updateConstraintsIfNeeded];
-        //        [self setNeedsLayout];
     };
     
     return cell;

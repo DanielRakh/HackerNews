@@ -79,7 +79,7 @@
         [self.contentView addSubview:cardView];
         cardView.tag = idx + 1;
         
-        NSLayoutConstraint *heightConstraint = [cardView autoSetDimension:ALDimensionHeight toSize:400.0];
+    
         
 //        RAC(heightConstraint, constant) = [RACObserve(cardView, treeViewHeightConstraint.constant) ignore:nil];
         
@@ -92,7 +92,6 @@
 //        }];
         
     
-        [self.heightConstraints addObject:heightConstraint];
         
         [cardView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:10.0];
         [cardView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:10.0];
@@ -107,6 +106,17 @@
         if (idx == cardViews.count - 1) {
             [cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10.0];
         }
+        
+        
+        
+        [cardView setNeedsUpdateConstraints];
+        [cardView updateConstraintsIfNeeded];
+        [cardView.treeView layoutIfNeeded];
+        
+        NSLayoutConstraint *heightConstraint = [cardView autoSetDimension:ALDimensionHeight toSize:cardView.treeView.contentSize.height];
+        
+        [self.heightConstraints addObject:heightConstraint];
+
         
     }];
 }
