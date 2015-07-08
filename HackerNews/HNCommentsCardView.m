@@ -158,10 +158,11 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
         
         [treeView expandRowForItem:item withRowAnimation:RATreeViewRowAnimationAutomatic];
         
-        [self.cellSizeManager invalidateCellSizeCache];
-        
+//        [self.cellSizeManager invalidateCellSizeCache];
+        [self.treeView layoutIfNeeded];
         [self setNeedsUpdateConstraints];
         [self updateConstraintsIfNeeded];
+        [self.treeView layoutIfNeeded];
         [self layoutIfNeeded];
         [self setNeedsUpdateConstraints];
         [self updateConstraintsIfNeeded];
@@ -182,6 +183,7 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
 -  (void)treeView:(RATreeView *)treeView didSelectRowForItem:(id)item {
     
     DLogNSSize(self.treeView.contentSize);
+
 //    self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
     [self setNeedsUpdateConstraints];
     [self updateConstraintsIfNeeded];

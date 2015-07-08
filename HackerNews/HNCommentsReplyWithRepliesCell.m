@@ -82,7 +82,7 @@ CGFloat const kRepliesHorizontalInset = 8;
     [self.contentView addSubview:self.originationLabel];
     
     self.commentTextView = [UITextView newAutoLayoutView];
-    self.commentTextView.backgroundColor = [UIColor clearColor];
+    self.commentTextView.backgroundColor = [UIColor grayColor];
     self.commentTextView.clipsToBounds = NO;
     self.commentTextView.editable = NO;
     self.commentTextView.linkTextAttributes = @{NSForegroundColorAttributeName : [UIColor HNOrange]};
@@ -163,13 +163,12 @@ CGFloat const kRepliesHorizontalInset = 8;
 
         }];
         
-
         // Thread Line constraints
         self.didUpdateConstraints = YES;
     }
     
 #warning We need to fuck around with these values for different cell types.
-    CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - 16 - 22;
+    CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - 20 - 24;
 
     CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(wrappingWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
 
