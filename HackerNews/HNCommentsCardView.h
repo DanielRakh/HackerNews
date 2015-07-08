@@ -14,7 +14,6 @@
 @interface HNCommentsCardView : UIView
 
 @property (nonatomic) RATreeView *treeView;
-@property (nonatomic) NSLayoutConstraint *treeViewHeightConstraint; 
 
 
 - (instancetype)initWithViewModel:(HNCommentsCellViewModel *)viewModel;

@@ -70,7 +70,7 @@ CGFloat const kRepliesHorizontalInset = 8;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     self.backgroundColor = [UIColor clearColor];
-    self.contentView.backgroundColor = [UIColor colorWithWhite:0.234 alpha:1.000];
+    self.contentView.backgroundColor = [UIColor clearColor];
     
     // Set up Origination Label
     self.originationLabel = [UILabel newAutoLayoutView];
@@ -78,11 +78,11 @@ CGFloat const kRepliesHorizontalInset = 8;
     self.originationLabel.textColor = [UIColor lightGrayColor];
     self.originationLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.originationLabel.font = [UIFont proximaNovaWithWeight:TypeWeightSemibold size:12.0];
-    self.originationLabel.backgroundColor = [UIColor cyanColor];
+    self.originationLabel.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:self.originationLabel];
     
     self.commentTextView = [UITextView newAutoLayoutView];
-    self.commentTextView.backgroundColor = [UIColor lightGrayColor];
+    self.commentTextView.backgroundColor = [UIColor clearColor];
     self.commentTextView.clipsToBounds = NO;
     self.commentTextView.editable = NO;
     self.commentTextView.linkTextAttributes = @{NSForegroundColorAttributeName : [UIColor HNOrange]};
