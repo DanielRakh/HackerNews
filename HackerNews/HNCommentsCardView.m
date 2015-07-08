@@ -14,7 +14,6 @@
 
 // View
 #import "HNCommentsCardView.h"
-#import "RATreeView.h"
 #import "HNCommentsReplyWithRepliesCell.h"
 
 //View Model
@@ -28,7 +27,6 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
 
 @interface HNCommentsCardView () <RATreeViewDataSource, RATreeViewDelegate>
 
-@property (nonatomic) RATreeView *treeView;
 @property (nonatomic) BOOL didSetupConstraints;
 @property (nonatomic) HNCommentsCellViewModel *viewModel;
 @property (nonatomic) RZCellSizeManager *cellSizeManager;
@@ -127,6 +125,11 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
     if (self.didSetupConstraints == NO) {
         
         [self.treeView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+        
+        [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
+             self.treeViewHeightConstraint = [self.treeView autoSetDimension:ALDimensionHeight toSize:self.treeView.contentSize.height];
+        }];
+       
 
         self.didSetupConstraints = YES;
     }
@@ -159,9 +162,7 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
     
     HNCommentsReplyWithRepliesCell *cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsReplyWithRepliesCell];
     
-    
-    DLogNSObject(item);
-    
+
     [cell configureWithViewModel:[self.viewModel repliesViewModelForRootComment:item.headComment]];
     
     cell.repliesButtonDidTapAction = ^(id sender){
@@ -169,10 +170,24 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
         
         
         [treeView expandRowForItem:item withRowAnimation:RATreeViewRowAnimationAutomatic];
-        //        [self setNeedsUpdateConstraints];
-        //        [self updateConstraintsIfNeeded];
         
-        //        [self.cellSizeManager invalidateCellSizeCache];
+        
+//        self.treeViewHeightConstraint.constant = self.treeView.contentSize.height;
+        
+        DLog(@"Before:%f", treeView.contentSize.height);
+        
+        
+        [self.treeView beginUpdates];
+        [self.treeView endUpdates];
+
+                [self setNeedsUpdateConstraints];
+                [self updateConstraintsIfNeeded];
+    
+        
+
+        DLog(@"After:%f", treeView.contentSize.height);
+
+                [self.cellSizeManager invalidateCellSizeCache];
         //
         //        [self.parentTableView beginUpdates];
         //        [self.parentTableView endUpdates];
@@ -214,14 +229,5 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
     //    [self.parentTableView endUpdates];
 }
 
-
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end

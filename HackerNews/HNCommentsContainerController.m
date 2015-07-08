@@ -35,7 +35,6 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    DLogFunctionLine();
 }
 
 - (void)viewDidLoad {
@@ -53,12 +52,18 @@
 }
 
 - (void)bindViewModel {
+    
     @weakify(self);
-    [[[[[RACObserve(self.viewModel, commentCellViewModels) ignore:nil] deliverOnMainThread] flattenMap:^RACStream *(NSArray *value) {
-        return [[[value.rac_sequence map:^id(HNCommentsCellViewModel *viewModel) {
-            return [[HNCommentsCardView alloc]initWithViewModel:viewModel];
-        }] signal] collect];
-    }] deliverOnMainThread] subscribeNext:^(NSArray *x) {
+    [[[[RACObserve(self.viewModel, commentCellViewModels) ignore:nil]
+       flattenMap:^RACStream *(NSArray *value) {
+    
+           return [[[value.rac_sequence.signal deliverOnMainThread]
+                    map:^id(HNCommentsCellViewModel *viewModel) {
+                        return [[HNCommentsCardView alloc]initWithViewModel:viewModel];
+                    }] collect];
+           
+    }]deliverOnMainThread]
+     subscribeNext:^(NSArray *x) {
         @strongify(self);
         [self positionCardViews:x];
     }];
@@ -69,12 +74,24 @@
 
 - (void)positionCardViews:(NSArray *)cardViews {
 
-    [cardViews enumerateObjectsUsingBlock:^(UIView *cardView, NSUInteger idx, BOOL *stop) {
+    [cardViews enumerateObjectsUsingBlock:^(HNCommentsCardView *cardView, NSUInteger idx, BOOL *stop) {
         
         [self.contentView addSubview:cardView];
         cardView.tag = idx + 1;
         
-        NSLayoutConstraint *heightConstraint = [cardView autoSetDimension:ALDimensionHeight toSize:200.0];
+        NSLayoutConstraint *heightConstraint = [cardView autoSetDimension:ALDimensionHeight toSize:400.0];
+        
+//        RAC(heightConstraint, constant) = [RACObserve(cardView, treeViewHeightConstraint.constant) ignore:nil];
+        
+//        [RACObserve(cardView, treeViewHeightConstraint.constant) subscribeNext:^(id x) {
+//            DLogNSObject(x);
+//        } error:^(NSError *error) {
+//            DLogNSObject(error);
+//        } completed:^{
+//            DLogFunctionLine();
+//        }];
+        
+    
         [self.heightConstraints addObject:heightConstraint];
         
         [cardView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:10.0];
