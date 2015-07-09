@@ -7,6 +7,7 @@
 //
 
 #import "HNTableView.h"
+#import "HNConstants.h"
 
 @implementation HNTableView
 
@@ -29,7 +30,7 @@
 - (void)initalizeTableView {
     self.backgroundColor = [UIColor clearColor];
     self.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.contentInset = UIEdgeInsetsMake(10, 0, 0, 0);
+    self.contentInset = UIEdgeInsetsMake(kCardViewVerticalInset, 0, 0, 0);
     self.rowHeight = UITableViewAutomaticDimension;
 }
 //

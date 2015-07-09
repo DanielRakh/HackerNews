@@ -13,7 +13,8 @@
 
 //View
 #import "HNCommentsThreadCardView.h"
-#import "HNCommentsReplyWithRepliesCell.h"
+//#import "HNCommentsReplyWithRepliesCell.h"
+#import "HNCommentsCommentWithRepliesCell.h"
 
 //View Model
 #import "HNCommentsCellViewModel.h"
@@ -95,14 +96,14 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
     self.treeView.treeFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     self.treeView.separatorStyle = RATreeViewCellSeparatorStyleNone;
     
-    [self.treeView registerClass:[HNCommentsReplyWithRepliesCell class] forCellReuseIdentifier:kHNCommentsReplyWithRepliesCell];
+    [self.treeView registerClass:[HNCommentsCommentWithRepliesCell class] forCellReuseIdentifier:kHNCommentsReplyWithRepliesCell];
     
     [self addSubview:self.treeView];
     
     
     // We cache the cell heights for better performance. 
     self.cellSizeManager = [RZCellSizeManager new];
-    [self.cellSizeManager registerCellClassName:NSStringFromClass([HNCommentsReplyWithRepliesCell class]) withNibNamed:nil forReuseIdentifier:kHNCommentsReplyWithRepliesCell withHeightBlock:^CGFloat(HNCommentsReplyWithRepliesCell *cell, HNRepliesCellViewModel *viewModel) {
+    [self.cellSizeManager registerCellClassName:NSStringFromClass([HNCommentsCommentWithRepliesCell class]) withNibNamed:nil forReuseIdentifier:kHNCommentsReplyWithRepliesCell withHeightBlock:^CGFloat(HNCommentsCommentWithRepliesCell *cell, HNRepliesCellViewModel *viewModel) {
         [cell configureWithViewModel:viewModel];
         [cell setNeedsUpdateConstraints];
         [cell updateConstraintsIfNeeded];
@@ -136,7 +137,7 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
 
 - (UITableViewCell *)treeView:(RATreeView *)treeView cellForItem:(HNCommentThread *)item {
     
-    HNCommentsReplyWithRepliesCell *cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsReplyWithRepliesCell];
+    HNCommentsCommentWithRepliesCell *cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsReplyWithRepliesCell];
     
     
     [cell configureWithViewModel:[self.viewModel repliesViewModelForRootComment:item.headComment]];

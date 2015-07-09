@@ -9,6 +9,7 @@
 #import "PureLayout.h"
 #import "UIColor+HNColorPalette.h"
 #import "UIFont+HNFont.h"
+#import "HNConstants.h"
 
 //View
 #import "HNFeedCell.h"
@@ -21,8 +22,6 @@
 #import "HNCommentsViewModel.h"
 
 
-CGFloat const kVerticalInset = 10;
-CGFloat const kHorizontalInset = 8;
 
 @interface HNFeedCell ()
 
@@ -144,26 +143,26 @@ CGFloat const kHorizontalInset = 8;
        
         // Card View Constraints
         [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeTop];
-        [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kHorizontalInset];
-        [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalInset];
+        [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCardViewHorizontalInset];
+        [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCardViewHorizontalInset];
         [UIView autoSetPriority:750 forConstraints:^{
-            [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kVerticalInset];
+            [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCardViewVerticalInset];
         }];
 
 
-        [self.scoreLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kVerticalInset];
-        [self.scoreLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kHorizontalInset];
+        [self.scoreLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kCardViewVerticalInset];
+        [self.scoreLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCardViewHorizontalInset];
         
         // Title Label Constraints
-        [self.titleLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.scoreLabel withOffset:kVerticalInset relation:NSLayoutRelationEqual];
-        [self.titleLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kHorizontalInset];
-        [self.titleLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalInset];
+        [self.titleLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.scoreLabel withOffset:kCardViewVerticalInset relation:NSLayoutRelationEqual];
+        [self.titleLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCardViewHorizontalInset];
+        [self.titleLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCardViewHorizontalInset];
         
         // Comments Button Constraints
         [self.commentsButton autoSetDimensionsToSize:CGSizeMake(100, 30)];
-        [self.commentsButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalInset];
-         [self.commentsButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kVerticalInset];
-        [self.commentsButton autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.titleLabel withOffset:kVerticalInset relation:NSLayoutRelationEqual];
+        [self.commentsButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCardViewHorizontalInset];
+         [self.commentsButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCardViewVerticalInset];
+        [self.commentsButton autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.titleLabel withOffset:kCardViewVerticalInset relation:NSLayoutRelationEqual];
         
         
         // Info Label Constraints

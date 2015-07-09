@@ -7,17 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HNCommentsCell.h"
+#import "HNCommentsCommentCell.h"
 
 
-@class HNRepliesCellViewModel;
 
-@interface HNCommentsReplyWithRepliesCell : HNCommentsCell
+@interface HNCommentsReplyWithRepliesCell : HNCommentsCommentCell
 
-@property (nonatomic) HNRepliesCellViewModel *viewModel;
 @property (nonatomic, copy) void (^repliesButtonDidTapAction)(id sender);
 
-- (void)configureWithViewModel:(HNRepliesCellViewModel *)viewModel;
 
 
 

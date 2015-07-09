@@ -6,22 +6,19 @@
 //
 //
 
-#import "HNCommentsCell.h"
-#import <ReactiveCocoa/ReactiveCocoa.h>
-#import "PureLayout.h"
-
-//Categories
-#import "UIColor+HNColorPalette.h"
-#import "UIFont+HNFont.h"
-#import "UIView+FindUITableView.h"
+#import "HNCommentsCommentCell.h"
 
 
-@interface HNCommentsCell ()
+//View Model
+#import "HNRepliesCellViewModel.h"
+
+
+@interface HNCommentsCommentCell ()
 
 
 @end
 
-@implementation HNCommentsCell
+@implementation HNCommentsCommentCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -76,7 +73,12 @@
     
     [self.contentView addSubview:self.commentTextView];
     
-    
+}
+
+- (void)configureWithViewModel:(HNRepliesCellViewModel *)viewModel {
+    self.originationLabel.attributedText = viewModel.origination;
+    self.commentTextView.attributedText = viewModel.text;
+
 }
 
 
