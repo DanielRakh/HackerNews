@@ -12,7 +12,7 @@
 
 // View
 #import "HNCommentsContainerController.h"
-#import "HNCommentsCardView.h"
+#import "HNCommentsThreadCardView.h"
 
 //View Model
 #import "HNCommentsViewModel.h"
@@ -59,7 +59,7 @@
     
            return [[[value.rac_sequence.signal deliverOnMainThread]
                     map:^id(HNCommentsCellViewModel *viewModel) {
-                        return [[HNCommentsCardView alloc]initWithViewModel:viewModel];
+                        return [[HNCommentsThreadCardView alloc]initWithViewModel:viewModel];
                     }] collect];
            
     }]deliverOnMainThread]
@@ -74,7 +74,7 @@
 
 - (void)positionCardViews:(NSArray *)cardViews {
 
-    [cardViews enumerateObjectsUsingBlock:^(HNCommentsCardView *cardView, NSUInteger idx, BOOL *stop) {
+    [cardViews enumerateObjectsUsingBlock:^(HNCommentsThreadCardView *cardView, NSUInteger idx, BOOL *stop) {
         
         [self.contentView addSubview:cardView];
         cardView.tag = idx + 1;
