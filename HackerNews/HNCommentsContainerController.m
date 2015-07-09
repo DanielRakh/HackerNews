@@ -13,6 +13,7 @@
 // View
 #import "HNCommentsContainerController.h"
 #import "HNCommentsThreadCardView.h"
+#import "HNCommentsHeaderCardView.h"
 
 //View Model
 #import "HNCommentsViewModel.h"
@@ -23,6 +24,10 @@
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, weak) IBOutlet UIView *contentView;
 @property (nonatomic) NSMutableArray *heightConstraints;
+@property (nonatomic) HNCommentsHeaderCardView *headerView;
+@property (nonatomic) NSArray *cardViews;
+
+@property (nonatomic) BOOL didSetupConstraints;
 
 @end
 
@@ -39,19 +44,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.didSetupConstraints = NO;
     self.view.backgroundColor = [UIColor HNOffWhite];
     self.scrollView.backgroundColor = [UIColor HNOffWhite];
     self.contentView.backgroundColor = [UIColor clearColor];
     
     self.scrollView.contentInset = UIEdgeInsetsMake(74, 0, 0, 0);
     
-    self.heightConstraints = [NSMutableArray array];
+    self.headerView = [HNCommentsHeaderCardView newAutoLayoutView];
+    [self.contentView addSubview:self.headerView];
     
     [self bindViewModel];
     // Do any additional setup after loading the view.
 }
 
 - (void)bindViewModel {
+    
+    
+    self.title = self.viewModel.commentsCount;
+
     
     @weakify(self);
     [[[[RACObserve(self.viewModel, commentCellViewModels) ignore:nil]
@@ -65,11 +77,34 @@
     }]deliverOnMainThread]
      subscribeNext:^(NSArray *x) {
         @strongify(self);
-        [self positionCardViews:x];
+         
+         self.cardViews = [NSArray arrayWithArray:x];
+         [self.view setNeedsUpdateConstraints];
+         [self.view updateConstraintsIfNeeded];
+         [self positionCardViews:x];
     }];
 
+    RAC(self.headerView.titleLabel, text) = RACObserve(self.viewModel, title);
+    RAC(self.headerView.scoreLabel, text) = RACObserve(self.viewModel, score);
+    RAC(self.headerView.originationLabel, text) = RACObserve(self.viewModel, info);
+}
+
+-(void)updateViewConstraints {
     
-    self.title = self.viewModel.commentsCount;
+    if (self.didSetupConstraints == NO) {
+        
+        [self.headerView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0, 10, 0, 10) excludingEdge:ALEdgeBottom];
+
+//        
+//        [self.headerView autoSetDimension:ALDimensionHeight toSize:headerHeight];
+        
+//        [self positionCardViews:self.cardViews];
+        
+        self.didSetupConstraints = YES;
+    }
+    
+    [super updateViewConstraints];
+    
 }
 
 - (void)positionCardViews:(NSArray *)cardViews {
@@ -83,7 +118,7 @@
         [cardView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:10.0];
         
         if (idx == 0) {
-            [cardView autoPinEdgeToSuperviewEdge:ALEdgeTop];
+            [cardView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.headerView withOffset:10.0];
         } else {
             UIView *previousView = [self.contentView viewWithTag:(idx + 1) - 1];
             [cardView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:previousView withOffset: 10.0];

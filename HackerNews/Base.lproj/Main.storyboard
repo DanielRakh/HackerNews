@@ -207,6 +207,7 @@
                         <viewControllerLayoutGuide type="bottom" id="kvs-2T-xHb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QFo-p0-N8V">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jSH-wQ-dBJ">
@@ -267,11 +268,11 @@
                                 <exclude reference="jSH-wQ-dBJ"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="tZg-kd-wTE"/>
+                                <exclude reference="jEy-sm-Qpy"/>
                                 <exclude reference="30y-83-QT8"/>
                                 <exclude reference="FUo-eJ-Mrf"/>
                                 <exclude reference="TOX-Ua-75t"/>
-                                <exclude reference="jEy-sm-Qpy"/>
+                                <exclude reference="tZg-kd-wTE"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -279,11 +280,11 @@
                                 <include reference="jSH-wQ-dBJ"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="tZg-kd-wTE"/>
+                                <include reference="jEy-sm-Qpy"/>
                                 <include reference="30y-83-QT8"/>
                                 <include reference="FUo-eJ-Mrf"/>
                                 <include reference="TOX-Ua-75t"/>
-                                <include reference="jEy-sm-Qpy"/>
+                                <include reference="tZg-kd-wTE"/>
                             </mask>
                         </variation>
                     </view>

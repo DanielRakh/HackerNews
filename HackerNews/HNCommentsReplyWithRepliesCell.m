@@ -7,14 +7,19 @@
 //
 
 #import "HNCommentsReplyWithRepliesCell.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PureLayout.h"
+
+//Categories
 #import "UIColor+HNColorPalette.h"
 #import "UIFont+HNFont.h"
-#import "HNThinLineButton.h"
-#import "HNRepliesCellViewModel.h"
-#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "UIView+FindUITableView.h"
 
+//View Model
+#import "HNRepliesCellViewModel.h"
+
+// View
+#import "HNThinLineButton.h"
 
 CGFloat const kRepliesVerticalInset = 10;
 CGFloat const kRepliesHorizontalInset = 8;
@@ -82,7 +87,7 @@ CGFloat const kRepliesHorizontalInset = 8;
     [self.contentView addSubview:self.originationLabel];
     
     self.commentTextView = [UITextView newAutoLayoutView];
-    self.commentTextView.backgroundColor = [UIColor grayColor];
+    self.commentTextView.backgroundColor = [UIColor clearColor];
     self.commentTextView.clipsToBounds = NO;
     self.commentTextView.editable = NO;
     self.commentTextView.linkTextAttributes = @{NSForegroundColorAttributeName : [UIColor HNOrange]};
