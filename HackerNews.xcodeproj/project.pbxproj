@@ -37,6 +37,7 @@
 		8E75303B1B3D1CBE004835CE /* HNAutosizingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E75303A1B3D1CBE004835CE /* HNAutosizingLabel.m */; };
 		8E7963621B4E343900B27CD2 /* HNCommentsHeaderCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E79635F1B4E343900B27CD2 /* HNCommentsHeaderCardView.m */; };
 		8E7963631B4E343900B27CD2 /* HNCommentsThreadCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7963611B4E343900B27CD2 /* HNCommentsThreadCardView.m */; };
+		8E7963661B4EEAD200B27CD2 /* HNCommentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7963651B4EEAD200B27CD2 /* HNCommentsCell.m */; };
 		8E87C43B1AE31FFD00CD004E /* HNTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C4381AE31FFD00CD004E /* HNTableView.m */; };
 		8E87C43C1AE31FFD00CD004E /* HNThinLineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C43A1AE31FFD00CD004E /* HNThinLineButton.m */; };
 		8E87C43F1AE3421100CD004E /* HNUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C43E1AE3421100CD004E /* HNUtilities.m */; };
@@ -146,6 +147,8 @@
 		8E79635F1B4E343900B27CD2 /* HNCommentsHeaderCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsHeaderCardView.m; sourceTree = "<group>"; };
 		8E7963601B4E343900B27CD2 /* HNCommentsThreadCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsThreadCardView.h; sourceTree = "<group>"; };
 		8E7963611B4E343900B27CD2 /* HNCommentsThreadCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsThreadCardView.m; sourceTree = "<group>"; };
+		8E7963641B4EEAD200B27CD2 /* HNCommentsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsCell.h; sourceTree = "<group>"; };
+		8E7963651B4EEAD200B27CD2 /* HNCommentsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsCell.m; sourceTree = "<group>"; };
 		8E87C4371AE31FFD00CD004E /* HNTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNTableView.h; sourceTree = "<group>"; };
 		8E87C4381AE31FFD00CD004E /* HNTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNTableView.m; sourceTree = "<group>"; };
 		8E87C4391AE31FFD00CD004E /* HNThinLineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNThinLineButton.h; sourceTree = "<group>"; };
@@ -501,6 +504,8 @@
 		8ED20F4E1B35E90900C6D37C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				8E7963641B4EEAD200B27CD2 /* HNCommentsCell.h */,
+				8E7963651B4EEAD200B27CD2 /* HNCommentsCell.m */,
 				8EA8B1701B40799F0043DE46 /* HNCommentsReplyTestCell.h */,
 				8EA8B1711B40799F0043DE46 /* HNCommentsReplyTestCell.m */,
 				8E3956201B3DE1B60015213D /* HNCommentsHeaderCell.h */,
@@ -752,6 +757,7 @@
 				8ED3D3D81AF28F5600E5E657 /* HNItemComment.m in Sources */,
 				8EF052A01B4C35010043CF08 /* HNCommentsContainerController.m in Sources */,
 				8ED804D31AE754AB00BE4AB0 /* HNCommentsTableViewHeader.m in Sources */,
+				8E7963661B4EEAD200B27CD2 /* HNCommentsCell.m in Sources */,
 				8E395EEE1AD3386A00EE0DB9 /* HNCommentsContainerCell.m in Sources */,
 				8E2352B11ACDC34F0009552D /* HNNetworkService.m in Sources */,
 				8ED3D3DF1AF2CC7800E5E657 /* HNRepliesCellViewModel.m in Sources */,

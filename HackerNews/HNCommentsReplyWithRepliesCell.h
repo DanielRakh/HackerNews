@@ -7,19 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RATreeView.h"
+#import "HNCommentsCell.h"
 
 
 @class HNRepliesCellViewModel;
-@class HNThinLineButton;
 
-@interface HNCommentsReplyWithRepliesCell : UITableViewCell
-
+@interface HNCommentsReplyWithRepliesCell : HNCommentsCell
 
 @property (nonatomic) HNRepliesCellViewModel *viewModel;
-@property (nonatomic) NSLayoutConstraint *textViewHeightConstraint;
-@property (nonatomic) HNThinLineButton *repliesButton;
-
 @property (nonatomic, copy) void (^repliesButtonDidTapAction)(id sender);
 
 - (void)configureWithViewModel:(HNRepliesCellViewModel *)viewModel;

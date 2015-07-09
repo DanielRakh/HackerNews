@@ -21,16 +21,15 @@
 // View
 #import "HNThinLineButton.h"
 
-CGFloat const kRepliesVerticalInset = 10;
-CGFloat const kRepliesHorizontalInset = 8;
+
 
 @interface HNCommentsReplyWithRepliesCell ()
 
-@property (nonatomic) BOOL didUpdateConstraints;
 
 @property (nonatomic) UIView *threadLine;
-@property (nonatomic) UILabel *originationLabel;
-@property (nonatomic) UITextView *commentTextView;
+
+@property (nonatomic) NSLayoutConstraint *textViewHeightConstraint;
+@property (nonatomic) HNThinLineButton *repliesButton;
 
 
 @end
@@ -41,7 +40,7 @@ CGFloat const kRepliesHorizontalInset = 8;
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self setup];
+        [self initalizeViews];
     }
     return self;
 }
@@ -49,63 +48,19 @@ CGFloat const kRepliesHorizontalInset = 8;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [self setup];
+        [self initalizeViews];
     }
     return self;
-}
-
-
-- (void)setup {
-    
-    [self initalizeViews];
 }
 
 - (void)configureWithViewModel:(HNRepliesCellViewModel *)viewModel {
     self.originationLabel.attributedText = viewModel.origination;
     self.commentTextView.attributedText = viewModel.text;
     [self.repliesButton setTitle:viewModel.repliesCount == 1 ? [NSString stringWithFormat:@"1 Reply"] : [NSString stringWithFormat:@"%ld Replies",(long)viewModel.repliesCount] forState:UIControlStateNormal];
-    
-
 }
 
 - (void)initalizeViews {
-    
-    self.didUpdateConstraints = NO;
-    
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    self.backgroundColor = [UIColor clearColor];
-    self.contentView.backgroundColor = [UIColor clearColor];
-    
-    // Set up Origination Label
-    self.originationLabel = [UILabel newAutoLayoutView];
-    self.originationLabel.numberOfLines = 1;
-    self.originationLabel.textColor = [UIColor lightGrayColor];
-    self.originationLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    self.originationLabel.font = [UIFont proximaNovaWithWeight:TypeWeightSemibold size:12.0];
-    self.originationLabel.backgroundColor = [UIColor clearColor];
-    [self.contentView addSubview:self.originationLabel];
-    
-    self.commentTextView = [UITextView newAutoLayoutView];
-    self.commentTextView.backgroundColor = [UIColor clearColor];
-    self.commentTextView.clipsToBounds = NO;
-    self.commentTextView.editable = NO;
-    self.commentTextView.linkTextAttributes = @{NSForegroundColorAttributeName : [UIColor HNOrange]};
-    self.commentTextView.selectable = YES;
-    self.commentTextView.dataDetectorTypes = UIDataDetectorTypeLink;
-    self.commentTextView.scrollEnabled = NO;
-    self.commentTextView.textContainer.lineBreakMode = NSLineBreakByWordWrapping;
-    self.commentTextView.textContainer.lineFragmentPadding = 0;
-    self.commentTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    self.commentTextView.text = nil;
-    self.commentTextView.font = nil;
-    self.commentTextView.textColor = nil;
-    self.commentTextView.textAlignment = NSTextAlignmentLeft;
-    
-    
-    [self.contentView addSubview:self.commentTextView];
-    
- 
+
     //Set up Comments Button
     self.repliesButton = [HNThinLineButton newAutoLayoutView];
     self.repliesButton.titleLabel.font = [UIFont proximaNovaWithWeight:TypeWeightRegular size:12.0];

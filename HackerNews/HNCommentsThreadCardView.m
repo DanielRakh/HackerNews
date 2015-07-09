@@ -97,10 +97,10 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
     
     [self.treeView registerClass:[HNCommentsReplyWithRepliesCell class] forCellReuseIdentifier:kHNCommentsReplyWithRepliesCell];
     
-    
     [self addSubview:self.treeView];
     
     
+    // We cache the cell heights for better performance. 
     self.cellSizeManager = [RZCellSizeManager new];
     [self.cellSizeManager registerCellClassName:NSStringFromClass([HNCommentsReplyWithRepliesCell class]) withNibNamed:nil forReuseIdentifier:kHNCommentsReplyWithRepliesCell withHeightBlock:^CGFloat(HNCommentsReplyWithRepliesCell *cell, HNRepliesCellViewModel *viewModel) {
         [cell configureWithViewModel:viewModel];
@@ -109,6 +109,8 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
         return [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
     }];
 }
+
+
 
 
 #pragma mark - TreeView Data Source
