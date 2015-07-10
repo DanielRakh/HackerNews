@@ -97,6 +97,9 @@
         [UIView autoSetPriority:998 forConstraints:^{
             [self.commentTextView autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.repliesButton withOffset:-kCommentsCommentVerticalInset relation:NSLayoutRelationEqual];
         }];
+        [UIView autoSetPriority:749 forConstraints:^{
+            self.textViewHeightConstraint = [self.commentTextView autoSetDimension:ALDimensionHeight toSize:ceilf([self heightForWrappedTextView:self.commentTextView])];
+        }];
         
 
         [self.repliesButton autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.threadLine withOffset:kCommentsCommentsHorizontalThreadLineToTextInset];
@@ -112,27 +115,21 @@
         self.didUpdateConstraints = YES;
     }
     
-//    CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - 18 - 24;
+    self.textViewHeightConstraint.constant = ceilf([self heightForWrappedTextView:self.commentTextView]);
+    self.didUpdateTextView = YES;
+        
+    [super updateConstraints];
+}
+
+
+- (CGFloat)heightForWrappedTextView:(UITextView *)textView {
     
     CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - (2 * kCardViewHorizontalInset) - (2 * kCommentsCommentHorizontalInset) - kCommentsCommentsHorizontalThreadLineToTextInset - self.threadLine.bounds.size.width;
 
-    
     CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(wrappingWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
+    
+    return CGRectGetHeight(rect);
 
-    
-    if (!self.textViewHeightConstraint) {
-        [UIView autoSetPriority:749 forConstraints:^{
-        self.textViewHeightConstraint = [self.commentTextView autoSetDimension:ALDimensionHeight toSize:ceilf(CGRectGetHeight(rect))];
-        }];
-        
-        self.didUpdateTextView = YES;
-        
-    } else {
-        self.textViewHeightConstraint.constant = ceilf(CGRectGetHeight(rect));
-        self.didUpdateTextView = YES;
-    }
-    
-    [super updateConstraints];
 }
 
 @end

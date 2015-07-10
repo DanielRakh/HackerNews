@@ -80,6 +80,10 @@
         [UIView autoSetPriority:998 forConstraints:^{
             [self.commentTextView autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.repliesButton withOffset:-kCommentsCommentVerticalInset relation:NSLayoutRelationEqual];
         }];
+        
+        [UIView autoSetPriority:749 forConstraints:^{
+            self.textViewHeightConstraint = [self.commentTextView autoSetDimension:ALDimensionHeight toSize:ceilf([self heightForWrappedTextView:self.commentTextView])];
+        }];
 
         [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsCommentHorizontalInset];
         [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsCommentHorizontalInset];
@@ -95,26 +99,21 @@
     }
     
     if (self.didUpdateTextView == NO) {
-        CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - (2 * kCardViewHorizontalInset) - (2 * kCommentsCommentHorizontalInset);
-        
-        CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(wrappingWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
-        
-        
-        if (!self.textViewHeightConstraint) {
-            [UIView autoSetPriority:749 forConstraints:^{
-                self.textViewHeightConstraint = [self.commentTextView autoSetDimension:ALDimensionHeight toSize:ceilf(CGRectGetHeight(rect))];
-                
-            }];
-        } else {
-            self.textViewHeightConstraint.constant = ceilf(CGRectGetHeight(rect));
-            
-        }
-    
+        self.textViewHeightConstraint.constant = ceilf([self heightForWrappedTextView:self.commentTextView]);
     }
-    
+
     [super updateConstraints];
 }
 
+
+- (CGFloat)heightForWrappedTextView:(UITextView *)textView {
+
+    CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - (2 * kCardViewHorizontalInset) - (2 * kCommentsCommentHorizontalInset);
+    
+    CGRect rect = [textView.attributedText boundingRectWithSize:CGSizeMake(wrappingWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
+    
+    return CGRectGetHeight(rect);
+}
 
 #pragma mark-
 #pragma mark - Actions

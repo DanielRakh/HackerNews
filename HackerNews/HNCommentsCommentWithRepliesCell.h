@@ -21,5 +21,8 @@
 @property (nonatomic, copy) void (^repliesButtonDidTapAction)(id sender);
 
 
+- (CGFloat)heightForWrappedTextView:(UITextView *)textView;
+
+
 
 @end
