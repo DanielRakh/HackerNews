@@ -42,7 +42,6 @@
 		8ED20F441B2F78A700C6D37C /* DLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED20F431B2F78A700C6D37C /* DLog.m */; };
 		8ED20F4A1B35E8F100C6D37C /* HNCommentsReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED20F491B35E8F100C6D37C /* HNCommentsReplyCell.m */; };
 		8ED20F4D1B35E90600C6D37C /* HNCommentsCommentWithRepliesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED20F4C1B35E90600C6D37C /* HNCommentsCommentWithRepliesCell.m */; };
-		8ED20F511B35E93200C6D37C /* HNCommentsRootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED20F501B35E93200C6D37C /* HNCommentsRootCell.m */; };
 		8ED3D3D11AF28DFD00E5E657 /* HNItemAbstract.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D3D01AF28DFD00E5E657 /* HNItemAbstract.m */; };
 		8ED3D3D51AF28F1700E5E657 /* HNItemStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D3D41AF28F1700E5E657 /* HNItemStory.m */; };
 		8ED3D3D81AF28F5600E5E657 /* HNItemComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D3D71AF28F5600E5E657 /* HNItemComment.m */; };
@@ -153,8 +152,6 @@
 		8ED20F491B35E8F100C6D37C /* HNCommentsReplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsReplyCell.m; sourceTree = "<group>"; };
 		8ED20F4B1B35E90600C6D37C /* HNCommentsCommentWithRepliesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsCommentWithRepliesCell.h; sourceTree = "<group>"; };
 		8ED20F4C1B35E90600C6D37C /* HNCommentsCommentWithRepliesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsCommentWithRepliesCell.m; sourceTree = "<group>"; };
-		8ED20F4F1B35E93200C6D37C /* HNCommentsRootCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsRootCell.h; sourceTree = "<group>"; };
-		8ED20F501B35E93200C6D37C /* HNCommentsRootCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsRootCell.m; sourceTree = "<group>"; };
 		8ED3D3CF1AF28DFD00E5E657 /* HNItemAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNItemAbstract.h; sourceTree = "<group>"; };
 		8ED3D3D01AF28DFD00E5E657 /* HNItemAbstract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNItemAbstract.m; sourceTree = "<group>"; };
 		8ED3D3D31AF28F1700E5E657 /* HNItemStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNItemStory.h; sourceTree = "<group>"; };
@@ -487,8 +484,6 @@
 				8E7963651B4EEAD200B27CD2 /* HNCommentsCommentCell.m */,
 				8ED923A91AEB562300801543 /* HNCommentsCommentReplyWithRepliesCell.h */,
 				8ED923AA1AEB562300801543 /* HNCommentsCommentReplyWithRepliesCell.m */,
-				8ED20F4F1B35E93200C6D37C /* HNCommentsRootCell.h */,
-				8ED20F501B35E93200C6D37C /* HNCommentsRootCell.m */,
 				8ED20F4B1B35E90600C6D37C /* HNCommentsCommentWithRepliesCell.h */,
 				8ED20F4C1B35E90600C6D37C /* HNCommentsCommentWithRepliesCell.m */,
 				8ED20F481B35E8F100C6D37C /* HNCommentsReplyCell.h */,
@@ -713,7 +708,6 @@
 				8ED20F4D1B35E90600C6D37C /* HNCommentsCommentWithRepliesCell.m in Sources */,
 				8ED20F4A1B35E8F100C6D37C /* HNCommentsReplyCell.m in Sources */,
 				8E2352461ACC571F0009552D /* HNFeedViewController.m in Sources */,
-				8ED20F511B35E93200C6D37C /* HNCommentsRootCell.m in Sources */,
 				8E23526C1ACC651F0009552D /* HNFeedViewModel.m in Sources */,
 				8E2352AD1ACD1C3C0009552D /* HNFeedCellViewModel.m in Sources */,
 				8E2352431ACC571F0009552D /* AppDelegate.m in Sources */,
