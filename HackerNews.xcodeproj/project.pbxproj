@@ -44,7 +44,6 @@
 		8E87C43F1AE3421100CD004E /* HNUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C43E1AE3421100CD004E /* HNUtilities.m */; };
 		8E87C4421AE3424800CD004E /* NSString+RemoveTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C4411AE3424800CD004E /* NSString+RemoveTag.m */; };
 		8EA8736D1AD85A3C009C01F8 /* HNItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8736C1AD85A3C009C01F8 /* HNItem.m */; };
-		8EA8B1721B40799F0043DE46 /* HNCommentsReplyTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8B1711B40799F0043DE46 /* HNCommentsReplyTestCell.m */; };
 		8ED20F441B2F78A700C6D37C /* DLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED20F431B2F78A700C6D37C /* DLog.m */; };
 		8ED20F4A1B35E8F100C6D37C /* HNCommentsReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED20F491B35E8F100C6D37C /* HNCommentsReplyCell.m */; };
 		8ED20F4D1B35E90600C6D37C /* HNCommentsCommentWithRepliesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED20F4C1B35E90600C6D37C /* HNCommentsCommentWithRepliesCell.m */; };
@@ -162,8 +161,6 @@
 		8E87C4411AE3424800CD004E /* NSString+RemoveTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RemoveTag.m"; sourceTree = "<group>"; };
 		8EA8736B1AD85A3C009C01F8 /* HNItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNItem.h; sourceTree = "<group>"; };
 		8EA8736C1AD85A3C009C01F8 /* HNItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNItem.m; sourceTree = "<group>"; };
-		8EA8B1701B40799F0043DE46 /* HNCommentsReplyTestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsReplyTestCell.h; sourceTree = "<group>"; };
-		8EA8B1711B40799F0043DE46 /* HNCommentsReplyTestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsReplyTestCell.m; sourceTree = "<group>"; };
 		8ED20F401B2F780200C6D37C /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		8ED20F421B2F78A700C6D37C /* DLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLog.h; sourceTree = "<group>"; };
 		8ED20F431B2F78A700C6D37C /* DLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLog.m; sourceTree = "<group>"; };
@@ -511,8 +508,6 @@
 			children = (
 				8E7963641B4EEAD200B27CD2 /* HNCommentsCommentCell.h */,
 				8E7963651B4EEAD200B27CD2 /* HNCommentsCommentCell.m */,
-				8EA8B1701B40799F0043DE46 /* HNCommentsReplyTestCell.h */,
-				8EA8B1711B40799F0043DE46 /* HNCommentsReplyTestCell.m */,
 				8E3956201B3DE1B60015213D /* HNCommentsHeaderCell.h */,
 				8E3956211B3DE1B60015213D /* HNCommentsHeaderCell.m */,
 				8ED20F4F1B35E93200C6D37C /* HNCommentsRootCell.h */,
@@ -768,7 +763,6 @@
 				8ED3D3DF1AF2CC7800E5E657 /* HNRepliesCellViewModel.m in Sources */,
 				8E87C4421AE3424800CD004E /* NSString+RemoveTag.m in Sources */,
 				8E7963621B4E343900B27CD2 /* HNCommentsHeaderCardView.m in Sources */,
-				8EA8B1721B40799F0043DE46 /* HNCommentsReplyTestCell.m in Sources */,
 				8ED435021AE999FB00A99D9F /* HNComment.m in Sources */,
 				8EF052A31B4C8C6A0043CF08 /* HNCommentsCardView.m in Sources */,
 				8E79636B1B4F1B1800B27CD2 /* HNConstants.m in Sources */,
