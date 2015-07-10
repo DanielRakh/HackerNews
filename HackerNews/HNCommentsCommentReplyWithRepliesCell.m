@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Daniel Rakhamimov. All rights reserved.
 //
 
-#import "HNCommentsReplyWithRepliesCell.h"
+#import "HNCommentsCommentReplyWithRepliesCell.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PureLayout.h"
 #import "HNConstants.h"
@@ -24,13 +24,13 @@
 
 
 
-@interface HNCommentsReplyWithRepliesCell ()
+@interface HNCommentsCommentReplyWithRepliesCell ()
 
 @property (nonatomic) UIView *threadLine;
 
 @end
 
-@implementation HNCommentsReplyWithRepliesCell
+@implementation HNCommentsCommentReplyWithRepliesCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

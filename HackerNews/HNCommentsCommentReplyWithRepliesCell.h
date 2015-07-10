@@ -11,7 +11,7 @@
 
 
 
-@interface HNCommentsReplyWithRepliesCell : HNCommentsCommentWithRepliesCell
+@interface HNCommentsCommentReplyWithRepliesCell : HNCommentsCommentWithRepliesCell
 
 
 

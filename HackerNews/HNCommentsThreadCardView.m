@@ -13,7 +13,7 @@
 
 //View
 #import "HNCommentsThreadCardView.h"
-#import "HNCommentsReplyWithRepliesCell.h"
+#import "HNCommentsCommentReplyWithRepliesCell.h"
 #import "HNCommentsCommentWithRepliesCell.h"
 
 //View Model
@@ -98,7 +98,7 @@ static NSString* const kHNCommentsCommentWithRepliesCell = @"HNCommentsCommentWi
     self.treeView.separatorStyle = RATreeViewCellSeparatorStyleNone;
     
     [self.treeView registerClass:[HNCommentsCommentWithRepliesCell class] forCellReuseIdentifier:kHNCommentsCommentWithRepliesCell];
-    [self.treeView registerClass:[HNCommentsReplyWithRepliesCell class] forCellReuseIdentifier:kHNCommentsReplyWithRepliesCell];
+    [self.treeView registerClass:[HNCommentsCommentReplyWithRepliesCell class] forCellReuseIdentifier:kHNCommentsReplyWithRepliesCell];
     
     [self addSubview:self.treeView];
     
@@ -113,7 +113,7 @@ static NSString* const kHNCommentsCommentWithRepliesCell = @"HNCommentsCommentWi
         return [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
     }];
     
-    [self.cellSizeManager registerCellClassName:NSStringFromClass([HNCommentsReplyWithRepliesCell class]) withNibNamed:nil forReuseIdentifier:kHNCommentsReplyWithRepliesCell withHeightBlock:^CGFloat(HNCommentsReplyWithRepliesCell *cell, HNRepliesCellViewModel *viewModel) {
+    [self.cellSizeManager registerCellClassName:NSStringFromClass([HNCommentsCommentReplyWithRepliesCell class]) withNibNamed:nil forReuseIdentifier:kHNCommentsReplyWithRepliesCell withHeightBlock:^CGFloat(HNCommentsCommentReplyWithRepliesCell *cell, HNRepliesCellViewModel *viewModel) {
         [cell configureWithViewModel:viewModel];
         [cell setNeedsUpdateConstraints];
         [cell updateConstraintsIfNeeded];
