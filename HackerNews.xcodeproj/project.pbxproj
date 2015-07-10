@@ -29,8 +29,6 @@
 		8E395F291AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8E395F271AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld */; };
 		8E395F2C1AD475B000EE0DB9 /* HNCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395F2B1AD475B000EE0DB9 /* HNCoreDataStack.m */; };
 		8E52515F1AD5FA3300EE080D /* HNStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E52515E1AD5FA3300EE080D /* HNStory.m */; };
-		8E55D74D1B41D029006F0496 /* TestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E55D74C1B41D029006F0496 /* TestCell.xib */; };
-		8E55D7501B41D10E006F0496 /* TestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E55D74F1B41D10E006F0496 /* TestCell.m */; };
 		8E75303B1B3D1CBE004835CE /* HNAutosizingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E75303A1B3D1CBE004835CE /* HNAutosizingLabel.m */; };
 		8E7963621B4E343900B27CD2 /* HNCommentsHeaderCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E79635F1B4E343900B27CD2 /* HNCommentsHeaderCardView.m */; };
 		8E7963631B4E343900B27CD2 /* HNCommentsThreadCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7963611B4E343900B27CD2 /* HNCommentsThreadCardView.m */; };
@@ -128,9 +126,6 @@
 		8E395F2B1AD475B000EE0DB9 /* HNCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCoreDataStack.m; sourceTree = "<group>"; };
 		8E52515D1AD5FA3300EE080D /* HNStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNStory.h; sourceTree = "<group>"; };
 		8E52515E1AD5FA3300EE080D /* HNStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNStory.m; sourceTree = "<group>"; };
-		8E55D74C1B41D029006F0496 /* TestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestCell.xib; sourceTree = "<group>"; };
-		8E55D74E1B41D10E006F0496 /* TestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCell.h; sourceTree = "<group>"; };
-		8E55D74F1B41D10E006F0496 /* TestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCell.m; sourceTree = "<group>"; };
 		8E7530391B3D1CBE004835CE /* HNAutosizingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAutosizingLabel.h; sourceTree = "<group>"; };
 		8E75303A1B3D1CBE004835CE /* HNAutosizingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAutosizingLabel.m; sourceTree = "<group>"; };
 		8E79635E1B4E343900B27CD2 /* HNCommentsHeaderCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsHeaderCardView.h; sourceTree = "<group>"; };
@@ -498,9 +493,6 @@
 				8ED20F4C1B35E90600C6D37C /* HNCommentsCommentWithRepliesCell.m */,
 				8ED20F481B35E8F100C6D37C /* HNCommentsReplyCell.h */,
 				8ED20F491B35E8F100C6D37C /* HNCommentsReplyCell.m */,
-				8E55D74E1B41D10E006F0496 /* TestCell.h */,
-				8E55D74F1B41D10E006F0496 /* TestCell.m */,
-				8E55D74C1B41D029006F0496 /* TestCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -653,7 +645,6 @@
 				8ED804C71AE6B26C00BE4AB0 /* ProximaNovaCond-Regular.otf in Resources */,
 				8ED804C51AE6B26C00BE4AB0 /* ProximaNovaCond-Light.otf in Resources */,
 				8ED804BF1AE6B26C00BE4AB0 /* ProximaNova-LightItalic.otf in Resources */,
-				8E55D74D1B41D029006F0496 /* TestCell.xib in Resources */,
 				8ED804BC1AE6B26C00BE4AB0 /* ProximaNova-BoldIt.otf in Resources */,
 				8ED804CA1AE6B26C00BE4AB0 /* ProximaNovaCond-SemiboldIt.otf in Resources */,
 				8ED804C81AE6B26C00BE4AB0 /* ProximaNovaCond-RegularIt.otf in Resources */,
@@ -724,7 +715,6 @@
 				8E2352461ACC571F0009552D /* HNFeedViewController.m in Sources */,
 				8ED20F511B35E93200C6D37C /* HNCommentsRootCell.m in Sources */,
 				8E23526C1ACC651F0009552D /* HNFeedViewModel.m in Sources */,
-				8E55D7501B41D10E006F0496 /* TestCell.m in Sources */,
 				8E2352AD1ACD1C3C0009552D /* HNFeedCellViewModel.m in Sources */,
 				8E2352431ACC571F0009552D /* AppDelegate.m in Sources */,
 				8E2352B41ACE102C0009552D /* HNDataManager.m in Sources */,
