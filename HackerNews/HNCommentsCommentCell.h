@@ -28,5 +28,10 @@
 
 - (void)configureWithViewModel:(HNRepliesCellViewModel *)viewModel;
 
+- (void)initalizeViews;
+
+
+
+
 
 @end

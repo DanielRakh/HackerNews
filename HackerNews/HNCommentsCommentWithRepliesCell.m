@@ -21,7 +21,8 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self initalizeViews];
+        [self setupRepliesButton];
+        self.didUpdateTextView = NO;
     }
     return self;
 }
@@ -29,7 +30,8 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [self initalizeViews];
+        [self setupRepliesButton];
+        self.didUpdateTextView = NO;
     }
     return self;
 }
@@ -47,8 +49,9 @@
     [self updateConstraintsIfNeeded];
 }
 
-- (void)initalizeViews {
+- (void)setupRepliesButton {
     
+//    [super initalizeViews];
     //Set up Comments Button
     self.repliesButton = [HNThinLineButton newAutoLayoutView];
     self.repliesButton.titleLabel.font = [UIFont proximaNovaWithWeight:TypeWeightRegular size:12.0];
@@ -91,19 +94,22 @@
         self.didUpdateConstraints = YES;
     }
     
-    CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - (2 * kCardViewHorizontalInset) - (2 * kCommentsCommentHorizontalInset);
-    
-    CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(wrappingWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
-    
-    
-    if (!self.textViewHeightConstraint) {
-        [UIView autoSetPriority:749 forConstraints:^{
-            self.textViewHeightConstraint = [self.commentTextView autoSetDimension:ALDimensionHeight toSize:ceilf(CGRectGetHeight(rect))];
-            
-        }];
-    } else {
-        self.textViewHeightConstraint.constant = ceilf(CGRectGetHeight(rect));
+    if (self.didUpdateTextView == NO) {
+        CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - (2 * kCardViewHorizontalInset) - (2 * kCommentsCommentHorizontalInset);
         
+        CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(wrappingWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
+        
+        
+        if (!self.textViewHeightConstraint) {
+            [UIView autoSetPriority:749 forConstraints:^{
+                self.textViewHeightConstraint = [self.commentTextView autoSetDimension:ALDimensionHeight toSize:ceilf(CGRectGetHeight(rect))];
+                
+            }];
+        } else {
+            self.textViewHeightConstraint.constant = ceilf(CGRectGetHeight(rect));
+            
+        }
+    
     }
     
     [super updateConstraints];

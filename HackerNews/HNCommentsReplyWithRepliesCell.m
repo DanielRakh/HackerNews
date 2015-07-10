@@ -26,12 +26,7 @@
 
 @interface HNCommentsReplyWithRepliesCell ()
 
-
 @property (nonatomic) UIView *threadLine;
-
-@property (nonatomic) NSLayoutConstraint *textViewHeightConstraint;
-@property (nonatomic) HNThinLineButton *repliesButton;
-
 
 @end
 
@@ -41,7 +36,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self initalizeViews];
+        [self setupThreadView];
     }
     return self;
 }
@@ -49,25 +44,14 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [self initalizeViews];
+        [self setupThreadView];
     }
     return self;
 }
 
-- (void)configureWithViewModel:(HNRepliesCellViewModel *)viewModel {
-    [super configureWithViewModel:viewModel];
-    
-    [self.repliesButton setTitle:viewModel.repliesCount == 1 ? [NSString stringWithFormat:@"1 Reply"] : [NSString stringWithFormat:@"%ld Replies",(long)viewModel.repliesCount] forState:UIControlStateNormal];
-}
+- (void)setupThreadView {
 
-- (void)initalizeViews {
-
-    //Set up Comments Button
-    self.repliesButton = [HNThinLineButton newAutoLayoutView];
-    self.repliesButton.titleLabel.font = [UIFont proximaNovaWithWeight:TypeWeightRegular size:12.0];
-    [self.repliesButton addTarget:self action:@selector(repliesButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
-    self.repliesButton.backgroundColor = [UIColor clearColor];
-    [self.contentView addSubview:self.repliesButton];
+//    [super initalizeViews];
     
     //Set up thread line
     self.threadLine = [UIView newAutoLayoutView];
@@ -78,7 +62,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
+
     [self setNeedsUpdateConstraints];
     [self updateConstraintsIfNeeded];
 }
@@ -95,7 +79,7 @@
         [self.threadLine autoSetDimension:ALDimensionWidth toSize:1.0 relation:NSLayoutRelationEqual];
         
         
-        [self.originationLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.threadLine withOffset:6.0];
+        [self.originationLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.threadLine withOffset:kCommentsCommentsHorizontalThreadLineToTextInset];
         [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kCommentsCommentVerticalInset];
 
         
@@ -104,23 +88,23 @@
             [self.originationLabel autoSetContentCompressionResistancePriorityForAxis:ALAxisVertical];
         }];
         [UIView autoSetPriority:UILayoutPriorityRequired forConstraints:^{
-            [self.originationLabel autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.commentTextView withOffset:-10 relation:NSLayoutRelationEqual];
+            [self.originationLabel autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.commentTextView withOffset:-kCommentsCommentVerticalInset relation:NSLayoutRelationEqual];
         }];
         
         
-        [self.commentTextView autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.threadLine withOffset:6.0];
+        [self.commentTextView autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.threadLine withOffset:kCommentsCommentsHorizontalThreadLineToTextInset];
         [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsCommentHorizontalInset];
         [UIView autoSetPriority:998 forConstraints:^{
-            [self.commentTextView autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.repliesButton withOffset:-10 relation:NSLayoutRelationEqual];
+            [self.commentTextView autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.repliesButton withOffset:-kCommentsCommentVerticalInset relation:NSLayoutRelationEqual];
         }];
         
 
-        [self.repliesButton autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.threadLine withOffset:6.0];
+        [self.repliesButton autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.threadLine withOffset:kCommentsCommentsHorizontalThreadLineToTextInset];
         [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsCommentHorizontalInset];
         [self.repliesButton autoSetDimension:ALDimensionHeight toSize:30.0];
       
         [UIView autoSetPriority:997 forConstraints:^{
-            [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10.0];
+            [self.repliesButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsCommentVerticalInset];
 
         }];
         
@@ -128,31 +112,27 @@
         self.didUpdateConstraints = YES;
     }
     
-    CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - 20 - 24;
+//    CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - 18 - 24;
+    
+    CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - (2 * kCardViewHorizontalInset) - (2 * kCommentsCommentHorizontalInset) - kCommentsCommentsHorizontalThreadLineToTextInset - self.threadLine.bounds.size.width;
 
+    
     CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(wrappingWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
 
     
     if (!self.textViewHeightConstraint) {
         [UIView autoSetPriority:749 forConstraints:^{
         self.textViewHeightConstraint = [self.commentTextView autoSetDimension:ALDimensionHeight toSize:ceilf(CGRectGetHeight(rect))];
-
         }];
+        
+        self.didUpdateTextView = YES;
+        
     } else {
         self.textViewHeightConstraint.constant = ceilf(CGRectGetHeight(rect));
-
+        self.didUpdateTextView = YES;
     }
     
     [super updateConstraints];
 }
-
-#pragma mark-
-#pragma mark - Actions
-- (void)repliesButtonDidTap:(id)sender {
-    if (self.repliesButtonDidTapAction) {
-        self.repliesButtonDidTapAction(sender);
-    }
-}
-
 
 @end

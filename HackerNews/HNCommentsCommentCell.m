@@ -15,7 +15,6 @@
 
 @interface HNCommentsCommentCell ()
 
-
 @end
 
 @implementation HNCommentsCommentCell
@@ -23,7 +22,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self setup];
+        [self initalizeViews];
     }
     return self;
 }
@@ -31,12 +30,12 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [self setup];
+        [self initalizeViews];
     }
     return self;
 }
 
-- (void)setup {
+- (void)initalizeViews {
     
     self.didUpdateConstraints = NO;
     

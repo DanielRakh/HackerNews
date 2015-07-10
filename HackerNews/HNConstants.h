@@ -14,4 +14,4 @@ extern CGFloat const kCardViewVerticalInset;
 
 extern CGFloat const kCommentsCommentVerticalInset;
 extern CGFloat const kCommentsCommentHorizontalInset;
-
+extern CGFloat const kCommentsCommentsHorizontalThreadLineToTextInset;
