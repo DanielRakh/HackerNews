@@ -123,7 +123,7 @@
 
 - (CGFloat)heightForWrappedTextView:(UITextView *)textView {
     
-    CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - (2 * kCardViewHorizontalInset) - (2 * kCommentsCommentHorizontalInset) - kCommentsCommentsHorizontalThreadLineToTextInset - self.threadLine.bounds.size.width;
+    CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - (2 * kCardViewHorizontalInset) - (2 * kCommentsCommentHorizontalInset) - kCommentsCommentsHorizontalThreadLineToTextInset - 1;
 
     CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(wrappingWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
     
