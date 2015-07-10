@@ -138,66 +138,6 @@
             </objects>
             <point key="canvasLocation" x="3769.5" y="-358.5"/>
         </scene>
-        <!--Comments View Controller-->
-        <scene sceneID="uHT-o0-Frn">
-            <objects>
-                <viewController storyboardIdentifier="CommentsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9dg-tN-ZBA" customClass="HNCommentsViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="PM9-6r-sgy"/>
-                        <viewControllerLayoutGuide type="bottom" id="hci-fK-1wR"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="fbZ-wV-1WD">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ZbD-dH-jfk">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ZbD-dH-jfk" secondAttribute="trailing" id="3gb-og-Zxg"/>
-                            <constraint firstItem="ZbD-dH-jfk" firstAttribute="leading" secondItem="fbZ-wV-1WD" secondAttribute="leading" id="4iD-qk-uVB"/>
-                            <constraint firstItem="ZbD-dH-jfk" firstAttribute="top" secondItem="fbZ-wV-1WD" secondAttribute="top" id="Eg2-ys-guT"/>
-                            <constraint firstItem="hci-fK-1wR" firstAttribute="top" secondItem="ZbD-dH-jfk" secondAttribute="bottom" id="diB-Wq-idV"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="ZbD-dH-jfk"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="diB-Wq-idV"/>
-                                <exclude reference="3gb-og-Zxg"/>
-                                <exclude reference="4iD-qk-uVB"/>
-                                <exclude reference="Eg2-ys-guT"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="ZbD-dH-jfk"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="diB-Wq-idV"/>
-                                <include reference="3gb-og-Zxg"/>
-                                <include reference="4iD-qk-uVB"/>
-                                <include reference="Eg2-ys-guT"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <toolbarItems/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="tableView" destination="ZbD-dH-jfk" id="ljC-Th-fSf"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kIS-n2-HiL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2122.5" y="-318"/>
-        </scene>
         <!--Comments Container Controller-->
         <scene sceneID="R2C-WZ-dEg">
             <objects>

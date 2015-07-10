@@ -21,4 +21,4 @@
 
 - (void)addReply:(HNCommentThread *)reply;
 
-@end  
+@end
