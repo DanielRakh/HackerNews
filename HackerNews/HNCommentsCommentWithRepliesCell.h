@@ -14,8 +14,8 @@
 @interface HNCommentsCommentWithRepliesCell : HNCommentsCommentCell
 
 @property (nonatomic) HNThinLineButton *repliesButton;
-@property (nonatomic) NSLayoutConstraint *textViewHeightConstraint;
-@property (nonatomic, assign) BOOL didUpdateTextView;
+//@property (nonatomic) NSLayoutConstraint *textViewHeightConstraint;
+//@property (nonatomic, assign) BOOL didUpdateTextView;
 
 
 @property (nonatomic, copy) void (^repliesButtonDidTapAction)(id sender);

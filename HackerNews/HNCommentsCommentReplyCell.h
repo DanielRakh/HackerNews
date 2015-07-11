@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HNCommentsCommentCell.h"
 
-@interface HNCommentsReplyCell : UITableViewCell
+@interface HNCommentsCommentReplyCell : HNCommentsCommentCell
 
 @end

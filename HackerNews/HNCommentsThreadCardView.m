@@ -13,15 +13,20 @@
 
 //View
 #import "HNCommentsThreadCardView.h"
-#import "HNCommentsCommentReplyWithRepliesCell.h"
+
+#import "HNCommentsCommentCell.h"
 #import "HNCommentsCommentWithRepliesCell.h"
+#import "HNCommentsCommentReplyCell.h"
+#import "HNCommentsCommentReplyWithRepliesCell.h"
 
 //View Model
 #import "HNCommentsCellViewModel.h"
 #import "HNCommentThread.h"
 
-static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRepliesCell";
+static NSString* const kHNCommentsCommentCell = @"HNCommentsCommentCell";
 static NSString* const kHNCommentsCommentWithRepliesCell = @"HNCommentsCommentWithRepliesCell";
+static NSString* const kHNCommentsCommentReplyCell = @"HNCommentsCommentReplyCell";
+static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRepliesCell";
 
 
 @interface HNCommentsThreadCardView () <RATreeViewDataSource, RATreeViewDelegate>
@@ -99,6 +104,8 @@ static NSString* const kHNCommentsCommentWithRepliesCell = @"HNCommentsCommentWi
     
     [self.treeView registerClass:[HNCommentsCommentWithRepliesCell class] forCellReuseIdentifier:kHNCommentsCommentWithRepliesCell];
     [self.treeView registerClass:[HNCommentsCommentReplyWithRepliesCell class] forCellReuseIdentifier:kHNCommentsReplyWithRepliesCell];
+    [self.treeView registerClass:[HNCommentsCommentCell class] forCellReuseIdentifier:kHNCommentsCommentCell];
+    [self.treeView registerClass:[HNCommentsCommentReplyCell class] forCellReuseIdentifier:kHNCommentsCommentReplyCell];
     
     [self addSubview:self.treeView];
     
@@ -120,10 +127,21 @@ static NSString* const kHNCommentsCommentWithRepliesCell = @"HNCommentsCommentWi
         return [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
     }];
     
+    [self.cellSizeManager registerCellClassName:NSStringFromClass([HNCommentsCommentCell class]) withNibNamed:nil forReuseIdentifier:kHNCommentsCommentCell withHeightBlock:^CGFloat(HNCommentsCommentCell *cell, HNRepliesCellViewModel *viewModel) {
+        [cell configureWithViewModel:viewModel];
+        [cell setNeedsUpdateConstraints];
+        [cell updateConstraintsIfNeeded];
+        return [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    }];
+    
+    [self.cellSizeManager registerCellClassName:NSStringFromClass([HNCommentsCommentReplyCell class]) withNibNamed:nil forReuseIdentifier:kHNCommentsCommentReplyCell withHeightBlock:^CGFloat(HNCommentsCommentReplyCell *cell, HNRepliesCellViewModel *viewModel) {
+        [cell configureWithViewModel:viewModel];
+        [cell setNeedsUpdateConstraints];
+        [cell updateConstraintsIfNeeded];
+        return [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    }];
+    
 }
-
-
-
 
 #pragma mark - TreeView Data Source
 
@@ -150,29 +168,43 @@ static NSString* const kHNCommentsCommentWithRepliesCell = @"HNCommentsCommentWi
     
     HNCommentsCommentWithRepliesCell *cell;
     if ([treeView parentForItem:item] == nil) {
-        cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsCommentWithRepliesCell];
+        
+        if (item.replies.count > 0) {
+            cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsCommentWithRepliesCell];
+        } else {
+            cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsCommentCell];
+        }
     } else {
-        cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsReplyWithRepliesCell];
+        
+        if (item.replies.count > 0) {
+            cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsReplyWithRepliesCell];
+        } else {
+            cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsCommentReplyCell];
+        }
+        
     }
     
     [cell configureWithViewModel:[self.viewModel repliesViewModelForRootComment:item.headComment]];
     
     
-    cell.repliesButtonDidTapAction = ^(id sender){
-        DLog(@"TAPPED!");
-        
-        [treeView expandRowForItem:item withRowAnimation:RATreeViewRowAnimationAutomatic];
-        
-        //        [self.cellSizeManager invalidateCellSizeCache];
-        [self.treeView layoutIfNeeded];
-        [self setNeedsUpdateConstraints];
-        [self updateConstraintsIfNeeded];
-        [self.treeView layoutIfNeeded];
-        [self layoutIfNeeded];
-        [self setNeedsUpdateConstraints];
-        [self updateConstraintsIfNeeded];
-        
-    };
+    if ([cell isKindOfClass:[HNCommentsCommentWithRepliesCell class]] || [cell isKindOfClass:[HNCommentsCommentReplyWithRepliesCell class]]) {
+        cell.repliesButtonDidTapAction = ^(id sender){
+            DLog(@"TAPPED!");
+            
+            [treeView expandRowForItem:item withRowAnimation:RATreeViewRowAnimationAutomatic];
+            
+            //        [self.cellSizeManager invalidateCellSizeCache];
+            [self.treeView layoutIfNeeded];
+            [self setNeedsUpdateConstraints];
+            [self updateConstraintsIfNeeded];
+            [self.treeView layoutIfNeeded];
+            [self layoutIfNeeded];
+            [self setNeedsUpdateConstraints];
+            [self updateConstraintsIfNeeded];
+            
+        };
+    }
+
     
     return cell;
 }
@@ -181,9 +213,19 @@ static NSString* const kHNCommentsCommentWithRepliesCell = @"HNCommentsCommentWi
     
     CGFloat height;
     if ([treeView parentForItem:item] == nil) {
-        height = [self.cellSizeManager cellHeightForObject:[self.viewModel repliesViewModelForRootComment:item.headComment] treeItem:item cellReuseIdentifier:kHNCommentsCommentWithRepliesCell];
+        if (item.replies.count > 0) {
+            height = [self.cellSizeManager cellHeightForObject:[self.viewModel repliesViewModelForRootComment:item.headComment] treeItem:item cellReuseIdentifier:kHNCommentsCommentWithRepliesCell];
+        } else {
+            height = [self.cellSizeManager cellHeightForObject:[self.viewModel repliesViewModelForRootComment:item.headComment] treeItem:item cellReuseIdentifier:kHNCommentsCommentCell];
+        }
+       
     } else {
-        height = [self.cellSizeManager cellHeightForObject:[self.viewModel repliesViewModelForRootComment:item.headComment] treeItem:item cellReuseIdentifier:kHNCommentsReplyWithRepliesCell];
+        if (item.replies.count > 0) {
+            height = [self.cellSizeManager cellHeightForObject:[self.viewModel repliesViewModelForRootComment:item.headComment] treeItem:item cellReuseIdentifier:kHNCommentsReplyWithRepliesCell];
+        } else {
+            height = [self.cellSizeManager cellHeightForObject:[self.viewModel repliesViewModelForRootComment:item.headComment] treeItem:item cellReuseIdentifier:kHNCommentsCommentReplyCell];
+        }
+
     }
   
     

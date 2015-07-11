@@ -23,6 +23,9 @@
 
 @property (nonatomic) UILabel *originationLabel;
 @property (nonatomic) UITextView *commentTextView;
+@property (nonatomic, assign) BOOL didUpdateTextView;
+@property (nonatomic) NSLayoutConstraint *textViewHeightConstraint;
+
 
 @property (nonatomic, assign) BOOL didUpdateConstraints;
 
