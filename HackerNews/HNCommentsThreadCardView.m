@@ -169,6 +169,7 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
     HNCommentsCommentWithRepliesCell *cell;
     if ([treeView parentForItem:item] == nil) {
         
+        
         if (item.replies.count > 0) {
             cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsCommentWithRepliesCell];
         } else {
