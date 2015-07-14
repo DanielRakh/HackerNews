@@ -28,7 +28,7 @@
 @property (nonatomic, weak) IBOutlet UIView *contentView;
 @property (nonatomic) NSMutableArray *heightConstraints;
 @property (nonatomic) HNCommentsHeaderCardView *headerView;
-@property (nonatomic) NSArray *cardViews;
+//@property (nonatomic) NSArray *cardViews;
 
 @property (nonatomic) BOOL didSetupConstraints;
 
@@ -81,7 +81,9 @@
      subscribeNext:^(NSArray *x) {
         @strongify(self);
          
-         self.cardViews = [NSArray arrayWithArray:x];
+//         self.cardViews = @[x.firstObject];
+         
+//         [NSArray arrayWithArray:@[x.firstObject]];
          [self.view setNeedsUpdateConstraints];
          [self.view updateConstraintsIfNeeded];
          [self positionCardViews:x];

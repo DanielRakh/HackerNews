@@ -50,7 +50,7 @@
     self.originationLabel.numberOfLines = 1;
     self.originationLabel.textColor = [UIColor lightGrayColor];
     self.originationLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    self.originationLabel.font = [UIFont proximaNovaWithWeight:TypeWeightSemibold size:12.0];
+    self.originationLabel.font = [UIFont avenirNextWithWeight:ANTypeWeightDemibold size:12.0];
     self.originationLabel.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:self.originationLabel];
     
@@ -65,9 +65,6 @@
     self.commentTextView.textContainer.lineBreakMode = NSLineBreakByWordWrapping;
     self.commentTextView.textContainer.lineFragmentPadding = 0;
     self.commentTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    self.commentTextView.text = nil;
-    self.commentTextView.font = nil;
-    self.commentTextView.textColor = nil;
     self.commentTextView.textAlignment = NSTextAlignmentLeft;
     
     
@@ -115,7 +112,7 @@
             self.textViewHeightConstraint = [self.commentTextView autoSetDimension:ALDimensionHeight toSize:ceilf([self heightForWrappedTextView:self.commentTextView])];
         }];
         
-        // Thread Line constraints
+        
         self.didUpdateConstraints = YES;
     }
     

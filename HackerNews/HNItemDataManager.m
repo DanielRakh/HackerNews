@@ -63,7 +63,10 @@
 #warning comment out when not testing
 - (RACSignal *)testStory {
     
-    return [[[HNNetworkService sharedManager]valueForItem:@9720772] map:^id(NSDictionary *dict) {
+    NSNumber *twoReplies = @9885801;
+    NSNumber *madReplies = @9720772;
+    
+    return [[[HNNetworkService sharedManager]valueForItem:madReplies] map:^id(NSDictionary *dict) {
         
         HNItemStory *story = [HNItemStory new];
         story.idNum = dict[@"id"];

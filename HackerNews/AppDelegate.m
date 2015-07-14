@@ -44,7 +44,7 @@
     feedController.viewModel = [HNFeedViewModel new];
     
     [[UINavigationBar appearance] setTintColor:[UIColor HNOrange]];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{ NSFontAttributeName : [UIFont proximaNovaWithWeight:TypeWeightSemibold size:18.0], NSForegroundColorAttributeName : [UIColor HNOrange]}];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{ NSFontAttributeName : [UIFont avenirNextWithWeight:ANTypeWeightDemibold size:18.0], NSForegroundColorAttributeName : [UIColor HNOrange]}];
     
 //    [[[[HNItemDataManager sharedManager] testStory] flattenMap:^RACStream *(HNItemStory *story) {
 //        return [[HNItemDataManager sharedManager] threadsForStory:story];

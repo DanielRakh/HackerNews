@@ -54,7 +54,7 @@
 //    [super initalizeViews];
     //Set up Comments Button
     self.repliesButton = [HNThinLineButton newAutoLayoutView];
-    self.repliesButton.titleLabel.font = [UIFont proximaNovaWithWeight:TypeWeightRegular size:12.0];
+    self.repliesButton.titleLabel.font = [UIFont avenirNextWithWeight:ANTypeWeightRegular size:12.0];
     [self.repliesButton addTarget:self action:@selector(repliesButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
     self.repliesButton.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:self.repliesButton];

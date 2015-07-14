@@ -187,7 +187,7 @@
         urlString = [[NSAttributedString alloc]initWithString:
                      [NSString stringWithFormat:@" (%@)", url.pathComponents[1]] attributes:@{
                                                                                               NSForegroundColorAttributeName : [UIColor HNLightGray],
-                                                                                              NSFontAttributeName : [UIFont proximaNovaWithWeight:TypeWeightSemibold size:12.0],
+                                                                                              NSFontAttributeName : [UIFont avenirNextWithWeight:ANTypeWeightDemibold size:12.0],
                                                                                               NSBaselineOffsetAttributeName : @1.8}];
     }
     
@@ -224,12 +224,12 @@
 + (NSAttributedString *)proximaNovaStyledCommentStringForHTML:(NSString *)uglyHTML {
     
     NSMutableParagraphStyle *pStyle = [NSMutableParagraphStyle new];
-    pStyle.lineSpacing = 5.0;
+    pStyle.lineSpacing = 0;
     
     NSAttributedString *convertedHTML = [self convertHTMLToAttributedString:uglyHTML];
     NSMutableAttributedString *prettyString = [[NSMutableAttributedString alloc]initWithAttributedString:convertedHTML];
     [prettyString addAttributes: @{
-                                   NSFontAttributeName : [UIFont proximaNovaWithWeight:TypeWeightRegular size:14.0],
+                                   NSFontAttributeName : [UIFont avenirNextWithWeight:ANTypeWeightRegular size:14.0],
                                    NSForegroundColorAttributeName : [UIColor darkTextColor], NSParagraphStyleAttributeName : pStyle
                                    } range:NSMakeRange(0, convertedHTML.length)];
     

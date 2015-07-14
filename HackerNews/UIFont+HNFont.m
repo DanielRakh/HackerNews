@@ -10,18 +10,18 @@
 
 @implementation UIFont (HNFont)
 
-+ (UIFont *)proximaNovaWithWeight:(TypeWeight)weight size:(CGFloat)size {
++ (UIFont *)proximaNovaWithWeight:(PNTypeWeight)weight size:(CGFloat)size {
     
     NSString *fontName;
     
     switch (weight) {
-        case TypeWeightRegular:
+        case PNTypeWeightRegular:
             fontName = @"ProximaNova-Regular";
             break;
-        case TypeWeightBold:
+        case PNTypeWeightBold:
             fontName = @"ProximaNova-Bold";
             break;
-        case TypeWeightSemibold:
+        case PNTypeWeightSemibold:
             fontName = @"ProximaNova-Semibold";
             break;
         default:
@@ -30,6 +30,35 @@
     }
     
     return [UIFont fontWithName:fontName size:size];
+}
+
++ (UIFont *)avenirNextWithWeight:(ANTypeWeight)weight size:(CGFloat)size {
+    
+    NSString *fontName;
+    
+    switch (weight) {
+        case ANTypeWeightUltralight:
+            fontName = @"AvenirNext-UltraLight";
+            break;
+        case ANTypeWeightRegular:
+            fontName = @"AvenirNext-Regular";
+            break;
+        case ANTypeWeightMedium:
+            fontName = @"AvenirNext-Medium";
+            break;
+        case ANTypeWeightDemibold:
+            fontName = @"AvenirNext-DemiBold";
+            break;
+        case ANTypeWeightBold:
+            fontName = @"AvenirNext-Bold";
+            break;
+        default:
+            NSLog(@"There was an error setting Proxima Nova");
+            break;
+    }
+    
+    return [UIFont fontWithName:fontName size:size];
+    
     
 }
 

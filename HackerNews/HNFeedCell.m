@@ -102,7 +102,7 @@
     self.scoreLabel.numberOfLines = 1;
     self.scoreLabel.text = NSTextAlignmentLeft;
     self.scoreLabel.textColor = [UIColor HNOrange];
-    self.scoreLabel.font = [UIFont proximaNovaWithWeight:TypeWeightSemibold size:14.0];
+    self.scoreLabel.font = [UIFont avenirNextWithWeight:ANTypeWeightDemibold size:14.0];
     
     [self.cardView addSubview:self.scoreLabel];
 
@@ -114,7 +114,7 @@
     self.titleLabel.numberOfLines = 0;
     self.titleLabel.textAlignment = NSTextAlignmentLeft;
     self.titleLabel.textColor = [UIColor darkTextColor];
-    self.titleLabel.font = [UIFont proximaNovaWithWeight:TypeWeightSemibold size:18.0];
+    self.titleLabel.font = [UIFont avenirNextWithWeight:ANTypeWeightDemibold size:18.0];
     
     [self.cardView addSubview:self.titleLabel];
     
@@ -124,14 +124,14 @@
     self.originationLabel.numberOfLines = 1;
     self.originationLabel.text = NSTextAlignmentLeft;
     self.originationLabel.textColor = [UIColor lightGrayColor];
-    self.originationLabel.font = [UIFont proximaNovaWithWeight:TypeWeightRegular size:12.0];
+    self.originationLabel.font = [UIFont avenirNextWithWeight:ANTypeWeightRegular size:12.0];
     
     [self.cardView addSubview:self.originationLabel];
     
     
     // Set up Comments Button
     self.commentsButton = [HNThinLineButton newAutoLayoutView];
-    self.commentsButton.titleLabel.font = [UIFont proximaNovaWithWeight:TypeWeightRegular size:12.0];
+    self.commentsButton.titleLabel.font = [UIFont avenirNextWithWeight:ANTypeWeightRegular size:12.0];
     [self.cardView addSubview:self.commentsButton];
 
 }

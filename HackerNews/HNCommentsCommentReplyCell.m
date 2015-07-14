@@ -37,6 +37,9 @@
 
 - (void)setupThreadView {
     
+    //Testing
+
+    self.commentTextView.backgroundColor = [UIColor lightGrayColor];
     self.threadLine = [UIView newAutoLayoutView];
     self.threadLine.backgroundColor = [UIColor orangeColor];
 //    self.contentView.backgroundColor = [UIColor grayColor];
@@ -51,7 +54,17 @@
 
 - (void)configureWithViewModel:(HNRepliesCellViewModel *)viewModel {
     [super configureWithViewModel:viewModel];
+    self.originationLabel.text = [NSString stringWithFormat:@"%ld",self.treeLevel];
 }
+
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    [self setNeedsUpdateConstraints];
+    [self updateConstraintsIfNeeded];
+}
+
 
 
 - (void)updateConstraints {
@@ -63,6 +76,8 @@
             [self.threadLine autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.originationLabel];
             [self.threadLine autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.commentTextView];
         }];
+        
+        DLog(@"%ld",self.treeLevel);
         [self.threadLine autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsCommentHorizontalInset * self.treeLevel];
         [self.threadLine autoSetDimension:ALDimensionWidth toSize:2.0 relation:NSLayoutRelationEqual];
         
@@ -79,7 +94,6 @@
             [self.originationLabel autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.commentTextView withOffset:-kCommentsCommentVerticalInset relation:NSLayoutRelationEqual];
         }];
         
-        
         [self.commentTextView autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.threadLine withOffset:kCommentsCommentsHorizontalThreadLineToTextInset];
         [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsCommentHorizontalInset];
         [UIView autoSetPriority:998 forConstraints:^{
@@ -92,7 +106,8 @@
         
         
         
-        self.didUpdateConstraints = YES; 
+        self.didUpdateConstraints = YES;
+        self.didUpdateTextView = YES;
     }
     
     
@@ -105,7 +120,12 @@
 
 - (CGFloat)heightForWrappedTextView:(UITextView *)textView {
     
-    CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - (2 * kCardViewHorizontalInset) - (2 * kCommentsCommentHorizontalInset) - kCommentsCommentsHorizontalThreadLineToTextInset - 1;
+    
+     
+//    NSInteger tst = (1 + self.treeLevel) * kCommentsCommentHorizontalInset;
+//    DLog(@"%ld",tst);
+    
+    CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - (2 * kCardViewHorizontalInset) - ((1 + self.treeLevel) * kCommentsCommentHorizontalInset) - kCommentsCommentsHorizontalThreadLineToTextInset - 2;
     
     CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(wrappingWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
     

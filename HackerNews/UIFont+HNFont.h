@@ -8,14 +8,26 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSUInteger, TypeWeight) {
-    TypeWeightRegular,
-    TypeWeightSemibold,
-    TypeWeightBold
+typedef NS_ENUM(NSUInteger, PNTypeWeight) {
+    PNTypeWeightRegular,
+    PNTypeWeightSemibold,
+    PNTypeWeightBold
 };
+
+typedef NS_ENUM(NSUInteger, ANTypeWeight) {
+    ANTypeWeightUltralight,
+    ANTypeWeightRegular,
+    ANTypeWeightMedium,
+    ANTypeWeightDemibold,
+    ANTypeWeightBold,
+    
+};
+
+
 
 @interface UIFont (HNFont)
 
-+ (UIFont *)proximaNovaWithWeight:(TypeWeight)weight size:(CGFloat)size;
++ (UIFont *)proximaNovaWithWeight:(PNTypeWeight)weight size:(CGFloat)size;
++ (UIFont *)avenirNextWithWeight:(ANTypeWeight)weight size:(CGFloat)size;
 
 @end
