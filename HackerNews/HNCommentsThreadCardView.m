@@ -103,7 +103,7 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
     self.treeView.separatorStyle = RATreeViewCellSeparatorStyleNone;
     
     [self.treeView registerClass:[HNCommentsCommentWithRepliesCell class] forCellReuseIdentifier:kHNCommentsCommentWithRepliesCell];
-    [self.treeView registerClass:[HNCommentsCommentReplyWithRepliesCell class] forCellReuseIdentifier:kHNCommentsReplyWithRepliesCell];
+//    [self.treeView registerClass:[HNCommentsCommentReplyWithRepliesCell class] forCellReuseIdentifier:kHNCommentsReplyWithRepliesCell];
     [self.treeView registerClass:[HNCommentsCommentCell class] forCellReuseIdentifier:kHNCommentsCommentCell];
     [self.treeView registerClass:[HNCommentsCommentReplyCell class] forCellReuseIdentifier:kHNCommentsCommentReplyCell];
     
@@ -120,12 +120,12 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
         return [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
     }];
     
-    [self.cellSizeManager registerCellClassName:NSStringFromClass([HNCommentsCommentReplyWithRepliesCell class]) withNibNamed:nil forReuseIdentifier:kHNCommentsReplyWithRepliesCell withHeightBlock:^CGFloat(HNCommentsCommentReplyWithRepliesCell *cell, HNRepliesCellViewModel *viewModel) {
-        [cell configureWithViewModel:viewModel];
-        [cell setNeedsUpdateConstraints];
-        [cell updateConstraintsIfNeeded];
-        return [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-    }];
+//    [self.cellSizeManager registerCellClassName:NSStringFromClass([HNCommentsCommentReplyWithRepliesCell class]) withNibNamed:nil forReuseIdentifier:kHNCommentsReplyWithRepliesCell withHeightBlock:^CGFloat(HNCommentsCommentReplyWithRepliesCell *cell, HNRepliesCellViewModel *viewModel) {
+//        [cell configureWithViewModel:viewModel];
+//        [cell setNeedsUpdateConstraints];
+//        [cell updateConstraintsIfNeeded];
+//        return [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+//    }];
     
     [self.cellSizeManager registerCellClassName:NSStringFromClass([HNCommentsCommentCell class]) withNibNamed:nil forReuseIdentifier:kHNCommentsCommentCell withHeightBlock:^CGFloat(HNCommentsCommentCell *cell, HNRepliesCellViewModel *viewModel) {
         [cell configureWithViewModel:viewModel];
@@ -136,6 +136,7 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
     
     [self.cellSizeManager registerCellClassName:NSStringFromClass([HNCommentsCommentReplyCell class]) withNibNamed:nil forReuseIdentifier:kHNCommentsCommentReplyCell withHeightBlock:^CGFloat(HNCommentsCommentReplyCell *cell, HNRepliesCellViewModel *viewModel) {
         [cell configureWithViewModel:viewModel];
+        cell.treeLevel = [self.treeView levelForCell:cell];
         [cell setNeedsUpdateConstraints];
         [cell updateConstraintsIfNeeded];
         return [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
@@ -176,12 +177,18 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
             cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsCommentCell];
         }
     } else {
+        cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsCommentReplyCell];
         
-        if (item.replies.count > 0) {
-            cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsReplyWithRepliesCell];
-        } else {
-            cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsCommentReplyCell];
-        }
+        
+        [(HNCommentsCommentReplyCell *)cell setTreeLevel:[treeView levelForCellForItem:item]];
+        
+        
+        
+//        if (item.replies.count > 0) {
+//            cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsReplyWithRepliesCell];
+//        } else {
+//            cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsCommentReplyCell];
+//        }
         
     }
     
@@ -192,7 +199,7 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
         cell.repliesButtonDidTapAction = ^(id sender){
             DLog(@"TAPPED!");
             
-            [treeView expandRowForItem:item withRowAnimation:RATreeViewRowAnimationAutomatic];
+            [treeView expandRowForItem:item expandChildren:YES withRowAnimation:RATreeViewRowAnimationAutomatic];
             
             //        [self.cellSizeManager invalidateCellSizeCache];
             [self.treeView layoutIfNeeded];
@@ -205,7 +212,6 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
             
         };
     }
-
     
     return cell;
 }
@@ -221,11 +227,11 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
         }
        
     } else {
-        if (item.replies.count > 0) {
-            height = [self.cellSizeManager cellHeightForObject:[self.viewModel repliesViewModelForRootComment:item.headComment] treeItem:item cellReuseIdentifier:kHNCommentsReplyWithRepliesCell];
-        } else {
+//        if (item.replies.count > 0) {
+//            height = [self.cellSizeManager cellHeightForObject:[self.viewModel repliesViewModelForRootComment:item.headComment] treeItem:item cellReuseIdentifier:kHNCommentsReplyWithRepliesCell];
+//        } else {
             height = [self.cellSizeManager cellHeightForObject:[self.viewModel repliesViewModelForRootComment:item.headComment] treeItem:item cellReuseIdentifier:kHNCommentsCommentReplyCell];
-        }
+//        }
 
     }
   

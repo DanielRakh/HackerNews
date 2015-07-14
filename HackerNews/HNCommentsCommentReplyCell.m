@@ -12,6 +12,7 @@
 @interface HNCommentsCommentReplyCell ()
 
 @property (nonatomic) UIView *threadLine;
+//@property (nonatomic) NSInteger level;
 
 @end
 
@@ -38,7 +39,18 @@
     
     self.threadLine = [UIView newAutoLayoutView];
     self.threadLine.backgroundColor = [UIColor orangeColor];
+//    self.contentView.backgroundColor = [UIColor grayColor];
     [self.contentView addSubview:self.threadLine];
+    
+    
+    // I need to check level of cell and add the number of threadlines according to level
+    // So level 2 would be two threadlines. One on the same indentation as the parent and one 8 pts apart with a lighter shade.
+    
+    
+}
+
+- (void)configureWithViewModel:(HNRepliesCellViewModel *)viewModel {
+    [super configureWithViewModel:viewModel];
 }
 
 
@@ -51,8 +63,8 @@
             [self.threadLine autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.originationLabel];
             [self.threadLine autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.commentTextView];
         }];
-        [self.threadLine autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsCommentHorizontalInset];
-        [self.threadLine autoSetDimension:ALDimensionWidth toSize:1.0 relation:NSLayoutRelationEqual];
+        [self.threadLine autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsCommentHorizontalInset * self.treeLevel];
+        [self.threadLine autoSetDimension:ALDimensionWidth toSize:2.0 relation:NSLayoutRelationEqual];
         
         
         [self.originationLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.threadLine withOffset:kCommentsCommentsHorizontalThreadLineToTextInset];

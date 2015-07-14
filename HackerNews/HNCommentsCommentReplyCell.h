@@ -11,4 +11,8 @@
 
 @interface HNCommentsCommentReplyCell : HNCommentsCommentCell
 
+//@property (nonatomic) NSLayoutConstraint *leadingThreadlineConstraint;
+@property (nonatomic) NSInteger treeLevel;
+
+
 @end
