@@ -20,6 +20,7 @@
 @property (nonatomic, readonly) NSAttributedString *text;
 @property (nonatomic, readonly) NSInteger repliesCount;
 
+@property (nonatomic) NSInteger treeLevel; 
 
 
 - (instancetype)initWithReply:(HNItemComment *)reply;
