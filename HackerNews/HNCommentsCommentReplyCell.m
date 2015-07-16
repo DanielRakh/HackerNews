@@ -47,6 +47,10 @@
 
 - (void)setupThreadLinesForLevel:(NSInteger)level {
     
+    if (self.threadLines.count > 0) {
+        [self.threadLines removeAllObjects];
+    }
+    
     for (int i = 0; i < level; i++) {
         UIView *threadLine = [UIView newAutoLayoutView];
         threadLine.backgroundColor = [UIColor colorWithRed:0.988 green:0.400 blue:0.129 alpha:1.0 / (i + 1)];
@@ -82,22 +86,9 @@
     self.originationLabel.text = [NSString stringWithFormat:@"%ld",viewModel.treeLevel];
 //    self.originationLabel.attributedText = viewModel.origination;
     self.hasReplies = viewModel.repliesCount > 0;
-    if (self.threadLines.count > 0) {
-        [self.threadLines removeAllObjects];
-    }
     [self setupThreadLinesForLevel:viewModel.treeLevel];
 
 }
-
-
-//- (void)layoutSubviews {
-//    [super layoutSubviews];
-//    
-//    [self setNeedsUpdateConstraints];
-//    [self updateConstraintsIfNeeded];
-//}
-//
-
 
 - (void)updateConstraints {
     
@@ -154,8 +145,7 @@
         }];
         
         
-        
-        
+    
         
         [self.originationLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.lastThreadLine withOffset:kCommentsCommentsHorizontalThreadLineToTextInset];
         [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kCommentsCommentVerticalInset];
@@ -198,7 +188,7 @@
 
 - (CGFloat)heightForWrappedTextView:(UITextView *)textView {
     
-    CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - (2 * kCardViewHorizontalInset) - ((2 + self.viewModel.treeLevel) * kCommentsCommentHorizontalInset) - kCommentsCommentsHorizontalThreadLineToTextInset - 2;
+    CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - (2 * kCardViewHorizontalInset) - ((1 + self.threadLines.count) * kCommentsCommentHorizontalInset) - kCommentsCommentsHorizontalThreadLineToTextInset - 2;
     
     CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(wrappingWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
     
