@@ -16,6 +16,7 @@
 //@property (nonatomic) NSInteger level;
 @property (nonatomic) NSMutableArray *threadLines;
 @property (nonatomic) UIView *lastThreadLine;
+@property (nonatomic) HNRepliesCellViewModel *viewModel;
 //@property (nonatomic, assign) BOOL shouldSetupConstraints;
 
 
@@ -48,7 +49,7 @@
     
     for (int i = 0; i < level; i++) {
         UIView *threadLine = [UIView newAutoLayoutView];
-        threadLine.backgroundColor = [UIColor colorWithRed:0.988 green:0.400 blue:0.129 alpha:1.0 / level];
+        threadLine.backgroundColor = [UIColor colorWithRed:0.988 green:0.400 blue:0.129 alpha:1.0 / (i + 1)];
         [self.threadLines addObject:threadLine];
         [self.contentView addSubview:threadLine];
         
@@ -64,7 +65,7 @@
     
     //Testing
 
-    self.commentTextView.backgroundColor = [UIColor darkGrayColor];
+    self.commentTextView.backgroundColor = [UIColor lightGrayColor];
 //    self.threadLine = [UIView newAutoLayoutView];
 
 //    self.contentView.backgroundColor = [UIColor blueColor];
@@ -77,50 +78,58 @@
 
 - (void)configureWithViewModel:(HNRepliesCellViewModel *)viewModel {
     [super configureWithViewModel:viewModel];
+    self.viewModel = viewModel;
     self.originationLabel.text = [NSString stringWithFormat:@"%ld",viewModel.treeLevel];
+//    self.originationLabel.attributedText = viewModel.origination;
     self.hasReplies = viewModel.repliesCount > 0;
+    if (self.threadLines.count > 0) {
+        [self.threadLines removeAllObjects];
+    }
     [self setupThreadLinesForLevel:viewModel.treeLevel];
 
 }
 
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    [self setNeedsUpdateConstraints];
-    [self updateConstraintsIfNeeded];
-}
-
+//- (void)layoutSubviews {
+//    [super layoutSubviews];
+//    
+//    [self setNeedsUpdateConstraints];
+//    [self updateConstraintsIfNeeded];
+//}
+//
 
 
 - (void)updateConstraints {
     
     if (self.didUpdateConstraints == NO) {
         
-        
-        
-        [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
+        [self.threadLines enumerateObjectsUsingBlock:^(UIView *threadline, NSUInteger idx, BOOL *stop) {
             
-            //Pin every threadline except the last one the top.
-            
-            [self.threadLines enumerateObjectsUsingBlock:^(UIView *threadline, NSUInteger idx, BOOL *stop) {
-                if (idx == self.threadLines.count - 1) {
-                    // Last threadlone
+            if (idx == self.threadLines.count - 1) {
+                // Last threadlone
+//                [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
+                    //Pin every threadline except the last one the top.
                     [threadline autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.originationLabel];
-                } else {
+//                }];
+            } else {
+//                [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
                     [threadline autoPinEdgeToSuperviewEdge:ALEdgeTop];
-                    
-                }
+//                }];
                 
-                if (self.hasReplies == YES) {
+            }
+            
+            
+            if (self.hasReplies == YES) {
+//                [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
                     [threadline autoPinEdgeToSuperviewEdge:ALEdgeBottom];
-                } else {
+//                }];
+                
+            } else {
+//                [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
                     [threadline autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.commentTextView];
-                }
-            }];
+//                }];
+            }
         }];
-        
-        
         
         
         [self.threadLines enumerateObjectsUsingBlock:^(UIView *threadLine, NSUInteger idx, BOOL *stop) {
@@ -128,15 +137,20 @@
             // Pin view at idx to view at idx - 1 if idx == 1;
             //
             
-            threadLine.tag = idx + 1;
+            
+            
+            threadLine.tag = idx + 10;
+            
+            [threadLine autoSetDimension:ALDimensionWidth toSize:2.0];
+
             
             if (idx == 0) {
                 [threadLine autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsCommentHorizontalInset];
             } else {
-                [threadLine autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:[self.contentView viewWithTag:idx] withOffset:kCommentsCommentHorizontalInset];
+                [threadLine autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:[self.contentView viewWithTag:idx + 9] withOffset:kCommentsCommentHorizontalInset];
+
             }
             
-            [threadLine autoSetDimension:ALDimensionWidth toSize:2.0];
         }];
         
         
@@ -184,7 +198,7 @@
 
 - (CGFloat)heightForWrappedTextView:(UITextView *)textView {
     
-    CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - (2 * kCardViewHorizontalInset) - ((1 + self.treeLevel) * kCommentsCommentHorizontalInset) - kCommentsCommentsHorizontalThreadLineToTextInset - 2;
+    CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - (2 * kCardViewHorizontalInset) - ((2 + self.viewModel.treeLevel) * kCommentsCommentHorizontalInset) - kCommentsCommentsHorizontalThreadLineToTextInset - 2;
     
     CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(wrappingWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
     
@@ -192,10 +206,14 @@
     
 }
 
-- (void)prepareForReuse {
-    [super prepareForReuse];
-    [self.threadLines removeAllObjects];
-}
+//- (void)prepareForReuse {
+//    [super prepareForReuse];
+//    
+//    [self.threadLines removeAllObjects];
+//    self.commentTextView.text = nil;
+//    self.originationLabel.text = nil;
+//    
+//}
 
 
 @end

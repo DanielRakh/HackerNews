@@ -20,5 +20,4 @@
 - (instancetype)initWithViewModel:(HNCommentsCellViewModel *)viewModel;
 
 
-
 @end
