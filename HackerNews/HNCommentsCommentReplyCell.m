@@ -29,7 +29,6 @@
     if (self) {
         [self setupThreadView];
         _threadLines = [NSMutableArray array];
-//        _shouldSetupConstraints = NO;
     }
     return self;
 }
@@ -39,7 +38,6 @@
     if (self) {
         [self setupThreadView];
         _threadLines = [NSMutableArray array];
-//        _shouldSetupConstraints = NO;
     }
     return self;
 }
@@ -62,7 +60,6 @@
             self.lastThreadLine = threadLine;
         }
     }
-//    self.shouldSetupConstraints = YES;
 }
 
 - (void)setupThreadView {
@@ -70,21 +67,16 @@
     //Testing
 
     self.commentTextView.backgroundColor = [UIColor lightGrayColor];
-//    self.threadLine = [UIView newAutoLayoutView];
+    self.contentView.backgroundColor = [UIColor blueColor];
 
-//    self.contentView.backgroundColor = [UIColor blueColor];
-//    [self.contentView addSubview:self.threadLine];
-    
-    
-    // I need to check level of cell and add the number of threadlines according to level
-    // So level 2 would be two threadlines. One on the same indentation as the parent and one 8 pts apart with a lighter shade.
+
 }
 
 - (void)configureWithViewModel:(HNRepliesCellViewModel *)viewModel {
     [super configureWithViewModel:viewModel];
     self.viewModel = viewModel;
-    self.originationLabel.text = [NSString stringWithFormat:@"%ld",viewModel.treeLevel];
-//    self.originationLabel.attributedText = viewModel.origination;
+//    self.originationLabel.text = [NSString stringWithFormat:@"%ld",viewModel.treeLevel];
+    self.originationLabel.attributedText = viewModel.origination;
     self.hasReplies = viewModel.repliesCount > 0;
     [self setupThreadLinesForLevel:viewModel.treeLevel];
 
@@ -100,7 +92,7 @@
                 // Last threadlone
 //                [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
                     //Pin every threadline except the last one the top.
-                    [threadline autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.originationLabel];
+                [threadline autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.originationLabel withOffset:3.0];
 //                }];
             } else {
 //                [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
@@ -117,7 +109,7 @@
                 
             } else {
 //                [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
-                    [threadline autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.commentTextView];
+                    [threadline autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.commentTextView withOffset:-2.0];
 //                }];
             }
         }];

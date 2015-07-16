@@ -113,6 +113,7 @@ static NSString* const kHNCommentsReplyWithRepliesCell = @"HNCommentsReplyWithRe
     
     // We cache the cell heights for better performance. 
     self.cellSizeManager = [RZCellSizeManager new];
+    self.cellSizeManager.cellHeightPadding = 1;
     
     [self.cellSizeManager registerCellClassName:NSStringFromClass([HNCommentsCommentWithRepliesCell class]) withNibNamed:nil forReuseIdentifier:kHNCommentsCommentWithRepliesCell withConfigurationBlock:^(HNCommentsCommentWithRepliesCell *cell, HNRepliesCellViewModel *viewModel) {
         [cell configureWithViewModel:viewModel];
