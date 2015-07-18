@@ -10,8 +10,8 @@
 
 
 CGFloat const kCardViewHorizontalInset = 8.0;
-CGFloat const kCardViewVerticalInset = 10.0;
+CGFloat const kCardViewVerticalInset = 8;
 
-CGFloat const kCommentsCommentVerticalInset = 10;
+CGFloat const kCommentsCommentVerticalInset = 8;
 CGFloat const kCommentsCommentHorizontalInset = 8;
 CGFloat const kCommentsCommentsHorizontalThreadLineToTextInset = 8;

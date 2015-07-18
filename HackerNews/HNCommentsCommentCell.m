@@ -92,6 +92,7 @@
     
     if (self.didUpdateConstraints == NO) {
         
+        
         [self.originationLabel autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(kCommentsCommentVerticalInset, kCommentsCommentHorizontalInset, 0, kCommentsCommentHorizontalInset) excludingEdge:ALEdgeBottom];
         
         [UIView autoSetPriority:996 forConstraints:^{

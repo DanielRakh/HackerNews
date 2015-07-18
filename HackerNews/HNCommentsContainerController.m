@@ -92,6 +92,11 @@
     RAC(self.headerView.titleLabel, text) = RACObserve(self.viewModel, title);
     RAC(self.headerView.scoreLabel, text) = RACObserve(self.viewModel, score);
     RAC(self.headerView.originationLabel, text) = RACObserve(self.viewModel, info);
+    
+    
+    
+    
+
 }
 
 -(void)updateViewConstraints {

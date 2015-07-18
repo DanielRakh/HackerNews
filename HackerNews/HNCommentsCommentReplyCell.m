@@ -50,10 +50,11 @@
     }
     
     for (int i = 0; i < level; i++) {
-        UIView *threadLine = [UIView newAutoLayoutView];
+        UIView *threadLine = [[UIView alloc]initForAutoLayout];
         threadLine.backgroundColor = [UIColor colorWithRed:0.988 green:0.400 blue:0.129 alpha:1.0 / (i + 1)];
         [self.threadLines addObject:threadLine];
         [self.contentView addSubview:threadLine];
+//        self.lastThreadLine = threadLine;
         
         if (i == level - 1) {
             //This is the last threadline
@@ -65,11 +66,18 @@
 - (void)setupThreadView {
     
     //Testing
-
+    self.originationLabel.backgroundColor = [UIColor blackColor];
     self.commentTextView.backgroundColor = [UIColor lightGrayColor];
     self.contentView.backgroundColor = [UIColor blueColor];
 
 
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    [self setNeedsUpdateConstraints];
+    [self updateConstraintsIfNeeded];
 }
 
 - (void)configureWithViewModel:(HNRepliesCellViewModel *)viewModel {
@@ -78,6 +86,8 @@
 //    self.originationLabel.text = [NSString stringWithFormat:@"%ld",viewModel.treeLevel];
     self.originationLabel.attributedText = viewModel.origination;
     self.hasReplies = viewModel.repliesCount > 0;
+    
+    
     [self setupThreadLinesForLevel:viewModel.treeLevel];
 
 }
@@ -88,11 +98,14 @@
         
         [self.threadLines enumerateObjectsUsingBlock:^(UIView *threadline, NSUInteger idx, BOOL *stop) {
             
-            if (idx == self.threadLines.count - 1) {
+            [threadline autoSetDimension:ALDimensionWidth toSize:2.0];
+
+            
+            if ([threadline isEqual:self.lastThreadLine]) {
                 // Last threadlone
 //                [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
                     //Pin every threadline except the last one the top.
-                [threadline autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.originationLabel withOffset:3.0];
+                [threadline autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.originationLabel withOffset:2.0];
 //                }];
             } else {
 //                [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
@@ -101,6 +114,8 @@
                 
             }
             
+
+
             
             if (self.hasReplies == YES) {
 //                [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
@@ -109,8 +124,10 @@
                 
             } else {
 //                [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
-                    [threadline autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.commentTextView withOffset:-2.0];
+//                    [threadline autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.commentTextView withOffset:-2.0];
 //                }];
+                
+                [threadline autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:2.0];
             }
         }];
         
@@ -124,36 +141,46 @@
             
             threadLine.tag = idx + 10;
             
-            [threadLine autoSetDimension:ALDimensionWidth toSize:2.0];
-
             
             if (idx == 0) {
                 [threadLine autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsCommentHorizontalInset];
             } else {
-                [threadLine autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:[self.contentView viewWithTag:idx + 9] withOffset:kCommentsCommentHorizontalInset];
+                
+                [UIView autoSetPriority:UILayoutPriorityRequired forConstraints:^{
+                         [threadLine autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:[self.contentView viewWithTag:idx + 9] withOffset:kCommentsCommentHorizontalInset];
+                }];
+   
 
             }
             
         }];
         
         
-    
-        
         [self.originationLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.lastThreadLine withOffset:kCommentsCommentsHorizontalThreadLineToTextInset];
+        
+//        [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:10.0];
         [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kCommentsCommentVerticalInset];
         
         
         [UIView autoSetPriority:996 forConstraints:^{
             [self.originationLabel autoSetContentHuggingPriorityForAxis:ALAxisVertical];
             [self.originationLabel autoSetContentCompressionResistancePriorityForAxis:ALAxisVertical];
+//            [self.originationLabel autoSetContentHuggingPriorityForAxis:ALAxisHorizontal];
+//            [self.originationLabel autoSetContentCompressionResistancePriorityForAxis:ALAxisHorizontal];
         }];
         
-        [UIView autoSetPriority:UILayoutPriorityRequired forConstraints:^{
-            [self.originationLabel autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.commentTextView withOffset:-kCommentsCommentVerticalInset relation:NSLayoutRelationEqual];
-        }];
         
-        [self.commentTextView autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.lastThreadLine withOffset:kCommentsCommentsHorizontalThreadLineToTextInset];
+        
+        
+        [self.originationLabel autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.commentTextView withOffset:-kCommentsCommentVerticalInset relation:NSLayoutRelationEqual];
+        
+    
+        
+
+        [self.commentTextView autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:self.originationLabel withOffset:0];
+
         [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsCommentHorizontalInset];
+        
         [UIView autoSetPriority:998 forConstraints:^{
             [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsCommentVerticalInset];
         }];
@@ -179,8 +206,8 @@
 
 
 - (CGFloat)heightForWrappedTextView:(UITextView *)textView {
-    
-    CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - (2 * kCardViewHorizontalInset) - ((1 + self.threadLines.count) * kCommentsCommentHorizontalInset) - kCommentsCommentsHorizontalThreadLineToTextInset - 2;
+        
+    CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - (2 * kCardViewHorizontalInset) - ((1 + self.threadLines.count) * kCommentsCommentHorizontalInset) - kCommentsCommentsHorizontalThreadLineToTextInset - (2 * self.threadLines.count) - 1;
     
     CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(wrappingWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
     
@@ -190,12 +217,8 @@
 
 //- (void)prepareForReuse {
 //    [super prepareForReuse];
-//    
-//    [self.threadLines removeAllObjects];
-//    self.commentTextView.text = nil;
-//    self.originationLabel.text = nil;
-//    
+//
+//    [self.lastThreadLine removeFromSuperview];
+//    self.lastThreadLine = nil;
 //}
-
-
 @end
