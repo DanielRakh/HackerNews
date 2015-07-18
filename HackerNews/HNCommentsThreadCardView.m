@@ -175,96 +175,94 @@ static NSString* const kHNCommentsCommentReplyCell = @"HNCommentsCommentReplyCel
 
 - (UITableViewCell *)treeView:(RATreeView *)treeView cellForItem:(HNCommentThread *)item {
     
-    HNCommentsCommentWithRepliesCell *cell;
+    
+    HNRepliesCellViewModel *repliesViewModel = [self.viewModel repliesViewModelForRootComment:item.headComment];
+    repliesViewModel.treeLevel = [treeView levelForCellForItem:item];
+    
+    
+    DLogNSInteger(repliesViewModel.treeLevel);
+   
     if ([treeView parentForItem:item] == nil) {
         
-        
         if (item.replies.count > 0) {
-            cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsCommentWithRepliesCell];
+            HNCommentsCommentWithRepliesCell *cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsCommentWithRepliesCell];
+            [cell configureWithViewModel:repliesViewModel];
+            [cell setNeedsUpdateConstraints];
+            [cell updateConstraintsIfNeeded];
+            
+            
+            if ([cell isKindOfClass:[HNCommentsCommentWithRepliesCell class]]) {
+                
+                cell.repliesButtonDidTapAction = ^(id sender){
+                    [treeView reloadRows];
+
+                    [treeView expandRowForItem:item expandChildren:YES withRowAnimation:RATreeViewRowAnimationNone];
+                    
+    
+                    [treeView reloadRows];
+          
+                    
+                    [self.treeView layoutIfNeeded];
+                    [self setNeedsLayout];
+                    [treeView reloadRows];
+
+                    [self layoutIfNeeded];
+
+                    
+                    
+                    [self setNeedsUpdateConstraints];
+                    [self updateConstraintsIfNeeded];
+                    DLogNSSize(self.treeView.bounds.size);
+                    DLogNSSize(self.treeView.contentSize);
+                    
+                };
+            }
+            
+            return cell;
+
         } else {
-            cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsCommentCell];
+            HNCommentsCommentCell *cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsCommentCell];
+            [cell configureWithViewModel:repliesViewModel];
+            [cell setNeedsUpdateConstraints];
+            [cell updateConstraintsIfNeeded];
+            
+            
+            return cell;
         }
-        
-        [cell configureWithViewModel:[self.viewModel repliesViewModelForRootComment:item.headComment]];
         
     } else {
          
-        cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsCommentReplyCell];
-
-        HNRepliesCellViewModel *repliesViewModel = [self.viewModel repliesViewModelForRootComment:item.headComment];
-        
-        repliesViewModel.treeLevel = [treeView levelForCellForItem:item];
-//        repliesViewModel.treeLevel = 4;
-        
+        HNCommentsCommentReplyCell *cell = [treeView dequeueReusableCellWithIdentifier:kHNCommentsCommentReplyCell];
+        cell.treeLevel = [treeView levelForCellForItem:item];
         [cell configureWithViewModel:repliesViewModel];
-    }
-    
-    if ([cell isKindOfClass:[HNCommentsCommentWithRepliesCell class]] || [cell isKindOfClass:[HNCommentsCommentReplyWithRepliesCell class]]) {
+        [cell setNeedsUpdateConstraints];
+        [cell updateConstraintsIfNeeded];
+        [cell layoutIfNeeded];
         
-        cell.repliesButtonDidTapAction = ^(id sender){
-            
-            [treeView beginUpdates];
-            [treeView endUpdates];
-//            [self.treeView reloadRows];
-            
-            
-            // Reactive Cocoa setup for resizing the table view
-            
-   
-            
-            
-            
-
-         
-//            [treeView beginUpdates];
-            [treeView expandRowForItem:item expandChildren:YES withRowAnimation:RATreeViewRowAnimationNone];
-//            [treeView endUpdates];
-    
-
-            
-
-            [self.treeView layoutIfNeeded];
-            [self setNeedsUpdateConstraints];
-            [self updateConstraintsIfNeeded];
-            [self.treeView layoutIfNeeded];
-            [self layoutIfNeeded];
-            [self setNeedsUpdateConstraints];
-            [self updateConstraintsIfNeeded];
-            
-            
-            DLogNSSize(self.treeView.bounds.size);
-            DLogNSSize(self.treeView.contentSize);
-            
-  
-
         
-
-
-
-
-        };
+        return cell;
+        
+        
+        
     }
-    
-    [cell setNeedsUpdateConstraints];
-    [cell updateConstraintsIfNeeded];
-    
-    return cell;
 }
 
 - (CGFloat)treeView:(RATreeView *)treeView heightForRowForItem:(HNCommentThread *)item {
     
     CGFloat height;
+    HNRepliesCellViewModel *repliesViewModel = [self.viewModel repliesViewModelForRootComment:item.headComment];
+    repliesViewModel.treeLevel = [treeView levelForCellForItem:item];
+//    repliesViewModel.treeLevel = 1;
 
     if ([treeView parentForItem:item] == nil) {
         if (item.replies.count > 0) {
-            height = [self.cellSizeManager cellHeightForObject:[self.viewModel repliesViewModelForRootComment:item.headComment] treeItem:item cellReuseIdentifier:kHNCommentsCommentWithRepliesCell];
+            height = [self.cellSizeManager cellHeightForObject:repliesViewModel treeItem:item cellReuseIdentifier:kHNCommentsCommentWithRepliesCell];
         } else {
-            height = [self.cellSizeManager cellHeightForObject:[self.viewModel repliesViewModelForRootComment:item.headComment] treeItem:item cellReuseIdentifier:kHNCommentsCommentCell];
+            height = [self.cellSizeManager cellHeightForObject:repliesViewModel treeItem:item cellReuseIdentifier:kHNCommentsCommentCell];
         }
        
     } else {
-        HNRepliesCellViewModel *repliesViewModel = [self.viewModel repliesViewModelForRootComment:item.headComment];
-        repliesViewModel.treeLevel = [treeView levelForCellForItem:item];
+
         
         height = [self.cellSizeManager cellHeightForObject:repliesViewModel treeItem:item cellReuseIdentifier:kHNCommentsCommentReplyCell];
     }

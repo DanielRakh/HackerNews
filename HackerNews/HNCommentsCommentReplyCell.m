@@ -109,9 +109,8 @@
 //                }];
             } else {
 //                [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
-                    [threadline autoPinEdgeToSuperviewEdge:ALEdgeTop];
+                [threadline autoPinEdgeToSuperviewEdge:ALEdgeTop];
 //                }];
-                
             }
             
 
@@ -157,8 +156,8 @@
         
         
         [self.originationLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.lastThreadLine withOffset:kCommentsCommentsHorizontalThreadLineToTextInset];
-        
-//        [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:10.0];
+//
+//        [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:10.0 * self.treeLevel];
         [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kCommentsCommentVerticalInset];
         
         
@@ -207,7 +206,7 @@
 
 - (CGFloat)heightForWrappedTextView:(UITextView *)textView {
         
-    CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - (2 * kCardViewHorizontalInset) - ((1 + self.threadLines.count) * kCommentsCommentHorizontalInset) - kCommentsCommentsHorizontalThreadLineToTextInset - (2 * self.threadLines.count) - 1;
+    CGFloat wrappingWidth = [UIScreen mainScreen].bounds.size.width - (2 * kCardViewHorizontalInset) - ((1 + self.threadLines.count) * kCommentsCommentHorizontalInset) - kCommentsCommentsHorizontalThreadLineToTextInset - (2 * self.threadLines.count);
     
     CGRect rect = [self.commentTextView.attributedText boundingRectWithSize:CGSizeMake(wrappingWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
     
@@ -215,10 +214,9 @@
     
 }
 
-//- (void)prepareForReuse {
-//    [super prepareForReuse];
-//
-//    [self.lastThreadLine removeFromSuperview];
-//    self.lastThreadLine = nil;
-//}
+- (void)prepareForReuse {
+    [super prepareForReuse];
+
+    self.treeLevel = 0;
+}
 @end
