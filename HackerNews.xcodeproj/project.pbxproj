@@ -254,7 +254,6 @@
 			isa = PBXGroup;
 			children = (
 				8E2352681ACC5C480009552D /* Model */,
-				8ED804A71AE6B22E00BE4AB0 /* Assets */,
 				8E2352411ACC571F0009552D /* AppDelegate.h */,
 				8E2352421ACC571F0009552D /* AppDelegate.m */,
 				8E87C46F1AE466CC00CD004E /* Shared */,
@@ -275,6 +274,7 @@
 		8E23523D1ACC571F0009552D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8ED804A71AE6B22E00BE4AB0 /* Assets */,
 				8ED20F401B2F780200C6D37C /* PrefixHeader.pch */,
 				8E23523E1ACC571F0009552D /* Info.plist */,
 				8E23523F1ACC571F0009552D /* main.m */,
