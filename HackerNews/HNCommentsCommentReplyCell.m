@@ -48,7 +48,7 @@
     if (self.threadLines.count > 0) {
         [self.threadLines removeAllObjects];
     }
-    
+        
     for (int i = 0; i < level; i++) {
         UIView *threadLine = [[UIView alloc]initForAutoLayout];
         threadLine.backgroundColor = [UIColor colorWithRed:0.988 green:0.400 blue:0.129 alpha:1.0 / (i + 1)];
@@ -112,8 +112,6 @@
                 [threadline autoPinEdgeToSuperviewEdge:ALEdgeTop];
 //                }];
             }
-            
-
 
             
             if (self.hasReplies == YES) {
@@ -219,4 +217,5 @@
 
     self.treeLevel = 0;
 }
+
 @end
