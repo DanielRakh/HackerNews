@@ -1,10 +1,10 @@
 PODS:
-  - DateTools (1.6.1)
-  - Firebase (2.3.2)
+  - DateTools (1.7.0)
+  - Firebase (2.3.3)
   - Firebase-RACExtensions (0.2.0):
     - Firebase (~> 2.0)
     - ReactiveCocoa (~> 2.3)
-  - PureLayout (2.0.6)
+  - PureLayout (3.0.1)
   - RATreeView (1.0.3)
   - Reachability (3.2)
   - ReactiveCocoa (2.5):
@@ -21,7 +21,7 @@ PODS:
   - RZCellSizeManager (1.1.2):
     - RZCellSizeManager/Core (= 1.1.2)
   - RZCellSizeManager/Core (1.1.2)
-  - TLIndexPathTools (0.4.0)
+  - TLIndexPathTools (0.4.1)
 
 DEPENDENCIES:
   - DateTools
@@ -37,16 +37,16 @@ DEPENDENCIES:
   - TLIndexPathTools
 
 SPEC CHECKSUMS:
-  DateTools: 9bcc89e4f2f9004d8a7a2bd1b49269cf78968e65
-  Firebase: 02fbeacfe19970856c872321788194524f21ffed
+  DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
+  Firebase: 2db60272f68ce40c7d47e5ae6eddc16977c65d4c
   Firebase-RACExtensions: 6ae340c67e7ec7e845e6603f8223770586278fe6
-  PureLayout: f25f0bb904d5ccfe6e31da3cb869185259f02e0d
+  PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   RATreeView: abb5e11bb2f955c7f58b1295d2b0eab1de7c2920
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   ReactiveCoreData: 1ca5406c2d2fdab8a40ba939f59c41eda9f469a3
   ReactiveViewModel: 58918dcbcec2d3151195ab1ed9163c57a8163999
   RZCellSizeManager: 04bd83953cb5a427ae3d9e430045a15ee4789699
-  TLIndexPathTools: 901fe3651c0d330b2d82c364232c425405a70e5c
+  TLIndexPathTools: 569dfaa167ed1a409f6ffed9e50393d1ba3cf9f2
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.38.2
