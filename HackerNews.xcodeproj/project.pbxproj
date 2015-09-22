@@ -30,9 +30,6 @@
 		8E395F2C1AD475B000EE0DB9 /* HNCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395F2B1AD475B000EE0DB9 /* HNCoreDataStack.m */; };
 		8E52515F1AD5FA3300EE080D /* HNStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E52515E1AD5FA3300EE080D /* HNStory.m */; };
 		8E75303B1B3D1CBE004835CE /* HNAutosizingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E75303A1B3D1CBE004835CE /* HNAutosizingLabel.m */; };
-		8E7963621B4E343900B27CD2 /* HNCommentsHeaderCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E79635F1B4E343900B27CD2 /* HNCommentsHeaderCardView.m */; };
-		8E7963631B4E343900B27CD2 /* HNCommentsThreadCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7963611B4E343900B27CD2 /* HNCommentsThreadCardView.m */; };
-		8E7963661B4EEAD200B27CD2 /* HNCommentsCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7963651B4EEAD200B27CD2 /* HNCommentsCommentCell.m */; };
 		8E79636B1B4F1B1800B27CD2 /* HNConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E79636A1B4F1B1800B27CD2 /* HNConstants.m */; };
 		8E87C43B1AE31FFD00CD004E /* HNTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C4381AE31FFD00CD004E /* HNTableView.m */; };
 		8E87C43C1AE31FFD00CD004E /* HNThinLineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C43A1AE31FFD00CD004E /* HNThinLineButton.m */; };
@@ -40,8 +37,6 @@
 		8E87C4421AE3424800CD004E /* NSString+RemoveTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C4411AE3424800CD004E /* NSString+RemoveTag.m */; };
 		8EA8736D1AD85A3C009C01F8 /* HNItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8736C1AD85A3C009C01F8 /* HNItem.m */; };
 		8ED20F441B2F78A700C6D37C /* DLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED20F431B2F78A700C6D37C /* DLog.m */; };
-		8ED20F4A1B35E8F100C6D37C /* HNCommentsCommentReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED20F491B35E8F100C6D37C /* HNCommentsCommentReplyCell.m */; };
-		8ED20F4D1B35E90600C6D37C /* HNCommentsCommentWithRepliesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED20F4C1B35E90600C6D37C /* HNCommentsCommentWithRepliesCell.m */; };
 		8ED3D3D11AF28DFD00E5E657 /* HNItemAbstract.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D3D01AF28DFD00E5E657 /* HNItemAbstract.m */; };
 		8ED3D3D51AF28F1700E5E657 /* HNItemStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D3D41AF28F1700E5E657 /* HNItemStory.m */; };
 		8ED3D3D81AF28F5600E5E657 /* HNItemComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D3D71AF28F5600E5E657 /* HNItemComment.m */; };
@@ -66,10 +61,7 @@
 		8ED804C91AE6B26C00BE4AB0 /* ProximaNovaCond-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8ED804B81AE6B26C00BE4AB0 /* ProximaNovaCond-Semibold.otf */; };
 		8ED804CA1AE6B26C00BE4AB0 /* ProximaNovaCond-SemiboldIt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8ED804B91AE6B26C00BE4AB0 /* ProximaNovaCond-SemiboldIt.otf */; };
 		8ED804D01AE6D35100BE4AB0 /* UIFont+HNFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED804CF1AE6D35100BE4AB0 /* UIFont+HNFont.m */; };
-		8ED923AB1AEB562300801543 /* HNCommentsCommentReplyWithRepliesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED923AA1AEB562300801543 /* HNCommentsCommentReplyWithRepliesCell.m */; };
 		8ED923F61AEC3B2D00801543 /* HNCommentThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED923F51AEC3B2D00801543 /* HNCommentThread.m */; };
-		8EF052A01B4C35010043CF08 /* HNCommentsContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF0529F1B4C35010043CF08 /* HNCommentsContainerController.m */; };
-		8EF052A31B4C8C6A0043CF08 /* HNCommentsCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF052A21B4C8C6A0043CF08 /* HNCommentsCardView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -705,8 +697,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8ED20F4D1B35E90600C6D37C /* HNCommentsCommentWithRepliesCell.m in Sources */,
-				8ED20F4A1B35E8F100C6D37C /* HNCommentsCommentReplyCell.m in Sources */,
 				8E2352461ACC571F0009552D /* HNFeedViewController.m in Sources */,
 				8E23526C1ACC651F0009552D /* HNFeedViewModel.m in Sources */,
 				8E2352AD1ACD1C3C0009552D /* HNFeedCellViewModel.m in Sources */,
@@ -718,14 +708,10 @@
 				8ED3D3DC1AF2915800E5E657 /* HNItemDataManager.m in Sources */,
 				8EA8736D1AD85A3C009C01F8 /* HNItem.m in Sources */,
 				8ED3D3D81AF28F5600E5E657 /* HNItemComment.m in Sources */,
-				8EF052A01B4C35010043CF08 /* HNCommentsContainerController.m in Sources */,
-				8E7963661B4EEAD200B27CD2 /* HNCommentsCommentCell.m in Sources */,
 				8E2352B11ACDC34F0009552D /* HNNetworkService.m in Sources */,
 				8ED3D3DF1AF2CC7800E5E657 /* HNRepliesCellViewModel.m in Sources */,
 				8E87C4421AE3424800CD004E /* NSString+RemoveTag.m in Sources */,
-				8E7963621B4E343900B27CD2 /* HNCommentsHeaderCardView.m in Sources */,
 				8ED435021AE999FB00A99D9F /* HNComment.m in Sources */,
-				8EF052A31B4C8C6A0043CF08 /* HNCommentsCardView.m in Sources */,
 				8E79636B1B4F1B1800B27CD2 /* HNConstants.m in Sources */,
 				8E049EFE1B0AAE3100A0FBD5 /* UIView+FindUITableView.m in Sources */,
 				8E87C43B1AE31FFD00CD004E /* HNTableView.m in Sources */,
@@ -736,12 +722,10 @@
 				8E395EDD1AD073F700EE0DB9 /* HNBrowserViewModel.m in Sources */,
 				8ED3D3D51AF28F1700E5E657 /* HNItemStory.m in Sources */,
 				8E395ED81AD0732F00EE0DB9 /* HNBrowserViewController.m in Sources */,
-				8E7963631B4E343900B27CD2 /* HNCommentsThreadCardView.m in Sources */,
 				8E395F291AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld in Sources */,
 				8E2352751ACC73BE0009552D /* UIColor+HNColorPalette.m in Sources */,
 				8E75303B1B3D1CBE004835CE /* HNAutosizingLabel.m in Sources */,
 				8E395F2C1AD475B000EE0DB9 /* HNCoreDataStack.m in Sources */,
-				8ED923AB1AEB562300801543 /* HNCommentsCommentReplyWithRepliesCell.m in Sources */,
 				8ED3D3D11AF28DFD00E5E657 /* HNItemAbstract.m in Sources */,
 				8ED804D01AE6D35100BE4AB0 /* UIFont+HNFont.m in Sources */,
 				8E87C43F1AE3421100CD004E /* HNUtilities.m in Sources */,
@@ -879,7 +863,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = HackerNews/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.DanielRakhamimov.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -893,7 +877,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = HackerNews/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.DanielRakhamimov.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

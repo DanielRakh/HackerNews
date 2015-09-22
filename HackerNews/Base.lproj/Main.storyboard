@@ -1,62 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="15A204h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yqG-qj-OmD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A279b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yqG-qj-OmD">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
         <!--Cached-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="HNFeedViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="118" sectionHeaderHeight="22" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Izx-jd-EcJ" customClass="HNTableView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Izx-jd-EcJ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="-64" id="SHS-jJ-FBa"/>
-                            <constraint firstItem="Izx-jd-EcJ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="XFd-pr-BMc"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Izx-jd-EcJ" secondAttribute="bottom" id="jW8-oD-hOH"/>
-                            <constraint firstAttribute="trailing" secondItem="Izx-jd-EcJ" secondAttribute="trailing" id="ziT-oX-Kbj"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="Izx-jd-EcJ"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="jW8-oD-hOH"/>
-                                <exclude reference="SHS-jJ-FBa"/>
-                                <exclude reference="XFd-pr-BMc"/>
-                                <exclude reference="ziT-oX-Kbj"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="Izx-jd-EcJ"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="jW8-oD-hOH"/>
-                                <include reference="SHS-jJ-FBa"/>
-                                <include reference="XFd-pr-BMc"/>
-                                <include reference="ziT-oX-Kbj"/>
-                            </mask>
-                        </variation>
-                    </view>
                     <navigationItem key="navigationItem" title="Cached" id="3RH-5B-fvS"/>
-                    <connections>
-                        <outlet property="tableView" destination="Izx-jd-EcJ" id="blB-UX-iGB"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

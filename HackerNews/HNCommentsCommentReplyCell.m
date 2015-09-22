@@ -142,10 +142,10 @@
             if (idx == 0) {
                 [threadLine autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCommentsCommentHorizontalInset];
             } else {
-                
-                [UIView autoSetPriority:UILayoutPriorityRequired forConstraints:^{
-                         [threadLine autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:[self.contentView viewWithTag:idx + 9] withOffset:kCommentsCommentHorizontalInset];
-                }];
+//                
+//                [UIView autoSetPriority:UILayoutPriorityRequired forConstraints:^{
+//                         [threadLine autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:[self.contentView viewWithTag:idx + 9] withOffset:kCommentsCommentHorizontalInset];
+//                }];
    
 
             }
@@ -159,12 +159,12 @@
         [self.originationLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kCommentsCommentVerticalInset];
         
         
-        [UIView autoSetPriority:996 forConstraints:^{
-            [self.originationLabel autoSetContentHuggingPriorityForAxis:ALAxisVertical];
-            [self.originationLabel autoSetContentCompressionResistancePriorityForAxis:ALAxisVertical];
-//            [self.originationLabel autoSetContentHuggingPriorityForAxis:ALAxisHorizontal];
-//            [self.originationLabel autoSetContentCompressionResistancePriorityForAxis:ALAxisHorizontal];
-        }];
+//        [UIView autoSetPriority:996 forConstraints:^{
+//            [self.originationLabel autoSetContentHuggingPriorityForAxis:ALAxisVertical];
+//            [self.originationLabel autoSetContentCompressionResistancePriorityForAxis:ALAxisVertical];
+////            [self.originationLabel autoSetContentHuggingPriorityForAxis:ALAxisHorizontal];
+////            [self.originationLabel autoSetContentCompressionResistancePriorityForAxis:ALAxisHorizontal];
+//        }];
         
         
         
@@ -178,13 +178,13 @@
 
         [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCommentsCommentHorizontalInset];
         
-        [UIView autoSetPriority:998 forConstraints:^{
-            [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsCommentVerticalInset];
-        }];
+//        [UIView autoSetPriority:998 forConstraints:^{
+//            [self.commentTextView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCommentsCommentVerticalInset];
+//        }];
         
-        [UIView autoSetPriority:749 forConstraints:^{
-            self.textViewHeightConstraint = [self.commentTextView autoSetDimension:ALDimensionHeight toSize:ceilf([self heightForWrappedTextView:self.commentTextView])];
-        }];
+//        [UIView autoSetPriority:749 forConstraints:^{
+//            self.textViewHeightConstraint = [self.commentTextView autoSetDimension:ALDimensionHeight toSize:ceilf([self heightForWrappedTextView:self.commentTextView])];
+//        }];
         
         
         

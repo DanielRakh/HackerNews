@@ -145,9 +145,9 @@
         [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeTop];
         [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kCardViewHorizontalInset];
         [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kCardViewHorizontalInset];
-        [UIView autoSetPriority:750 forConstraints:^{
-            [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCardViewVerticalInset];
-        }];
+//        [UIView autoSetPriority:750 forConstraints:^{
+//            [self.cardView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kCardViewVerticalInset];
+//        }];
 
 
         [self.scoreLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kCardViewVerticalInset];
