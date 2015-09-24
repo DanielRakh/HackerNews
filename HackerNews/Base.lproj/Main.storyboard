@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A279b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yqG-qj-OmD">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +15,7 @@
                         <viewControllerLayoutGuide type="bottom" id="SXO-CG-omK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fVJ-Yf-zwd">
-                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="103" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="D7T-Cv-dNV">
@@ -22,9 +23,10 @@
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="125" id="S0z-yP-H4F">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FeedCellLinked" rowHeight="125" id="S0z-yP-H4F" customClass="HNFeedCellLinked">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" layoutMarginsFollowReadableWidth="YES" tableViewCell="S0z-yP-H4F" id="dTo-mf-dCE">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="124.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can Genetic Engineering Bring Back Extinct Animals?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBA-dp-gIY" userLabel="Title">
@@ -55,7 +57,7 @@
                                                         </mask>
                                                     </variation>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3g-kj-PXX" userLabel="Link">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nationalgeographic.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3g-kj-PXX" userLabel="Link">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
@@ -125,20 +127,20 @@
                                                     <exclude reference="j62-Kx-lar"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <exclude reference="8v2-LL-nC0"/>
+                                                    <exclude reference="D7q-QJ-jdH"/>
+                                                    <exclude reference="fFZ-HF-19N"/>
+                                                    <exclude reference="rY4-rC-iyQ"/>
                                                     <exclude reference="FGH-kv-tuL"/>
                                                     <exclude reference="t9h-Og-59x"/>
                                                     <exclude reference="v0b-k2-QsC"/>
-                                                    <exclude reference="oek-PT-POf"/>
-                                                    <exclude reference="v7b-gD-zwB"/>
                                                     <exclude reference="7FP-t2-jj1"/>
                                                     <exclude reference="OtS-gt-eCd"/>
                                                     <exclude reference="nFO-gb-cIc"/>
                                                     <exclude reference="7F1-C3-yKZ"/>
                                                     <exclude reference="aHU-BT-ASW"/>
-                                                    <exclude reference="8v2-LL-nC0"/>
-                                                    <exclude reference="D7q-QJ-jdH"/>
-                                                    <exclude reference="fFZ-HF-19N"/>
-                                                    <exclude reference="rY4-rC-iyQ"/>
+                                                    <exclude reference="oek-PT-POf"/>
+                                                    <exclude reference="v7b-gD-zwB"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
@@ -150,26 +152,37 @@
                                                     <include reference="j62-Kx-lar"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <include reference="8v2-LL-nC0"/>
+                                                    <include reference="D7q-QJ-jdH"/>
+                                                    <include reference="fFZ-HF-19N"/>
+                                                    <include reference="rY4-rC-iyQ"/>
                                                     <include reference="FGH-kv-tuL"/>
                                                     <include reference="t9h-Og-59x"/>
                                                     <include reference="v0b-k2-QsC"/>
-                                                    <include reference="oek-PT-POf"/>
-                                                    <include reference="v7b-gD-zwB"/>
                                                     <include reference="7FP-t2-jj1"/>
                                                     <include reference="OtS-gt-eCd"/>
                                                     <include reference="nFO-gb-cIc"/>
                                                     <include reference="7F1-C3-yKZ"/>
                                                     <include reference="aHU-BT-ASW"/>
-                                                    <include reference="8v2-LL-nC0"/>
-                                                    <include reference="D7q-QJ-jdH"/>
-                                                    <include reference="fFZ-HF-19N"/>
-                                                    <include reference="rY4-rC-iyQ"/>
+                                                    <include reference="oek-PT-POf"/>
+                                                    <include reference="v7b-gD-zwB"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <connections>
+                                            <outlet property="commentsButton" destination="ohg-P5-JgD" id="31g-gE-AVO"/>
+                                            <outlet property="infoLabel" destination="j62-Kx-lar" id="Uld-oP-VpQ"/>
+                                            <outlet property="linkIconView" destination="MSF-gD-ue2" id="d3W-B2-78B"/>
+                                            <outlet property="linkLabel" destination="b3g-kj-PXX" id="b41-m1-eFh"/>
+                                            <outlet property="titleLabel" destination="MBA-dp-gIY" id="l52-iT-WDa"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="xsB-di-9K0"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="cEn-KB-sZC"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <animations/>
@@ -185,10 +198,10 @@
                                 <exclude reference="D7T-Cv-dNV"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="iQU-X9-msk"/>
                                 <exclude reference="6E4-CP-72b"/>
                                 <exclude reference="g6L-zz-t6u"/>
                                 <exclude reference="uwR-t1-ajn"/>
-                                <exclude reference="iQU-X9-msk"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -196,15 +209,16 @@
                                 <include reference="D7T-Cv-dNV"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="iQU-X9-msk"/>
                                 <include reference="6E4-CP-72b"/>
                                 <include reference="g6L-zz-t6u"/>
                                 <include reference="uwR-t1-ajn"/>
-                                <include reference="iQU-X9-msk"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Hacker News" id="3RH-5B-fvS"/>
                     <connections>
+                        <outlet property="tableView" destination="D7T-Cv-dNV" id="yqh-AT-zK8"/>
                         <outlet property="view" destination="fVJ-Yf-zwd" id="2Vf-aM-aHf"/>
                     </connections>
                 </viewController>

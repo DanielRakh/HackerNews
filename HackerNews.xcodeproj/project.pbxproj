@@ -17,7 +17,6 @@
 		8E23524E1ACC571F0009552D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E23524C1ACC571F0009552D /* LaunchScreen.xib */; };
 		8E23525A1ACC571F0009552D /* HackerNewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352591ACC571F0009552D /* HackerNewsTests.m */; };
 		8E23526C1ACC651F0009552D /* HNFeedViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E23526B1ACC651F0009552D /* HNFeedViewModel.m */; };
-		8E23526F1ACC69200009552D /* HNFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E23526E1ACC69200009552D /* HNFeedCell.m */; };
 		8E2352751ACC73BE0009552D /* UIColor+HNColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352741ACC73BE0009552D /* UIColor+HNColorPalette.m */; };
 		8E2352AD1ACD1C3C0009552D /* HNFeedCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352AC1ACD1C3C0009552D /* HNFeedCellViewModel.m */; };
 		8E2352B11ACDC34F0009552D /* HNNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352B01ACDC34F0009552D /* HNNetworkService.m */; };
@@ -35,6 +34,7 @@
 		8E87C43C1AE31FFD00CD004E /* HNThinLineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C43A1AE31FFD00CD004E /* HNThinLineButton.m */; };
 		8E87C43F1AE3421100CD004E /* HNUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C43E1AE3421100CD004E /* HNUtilities.m */; };
 		8E87C4421AE3424800CD004E /* NSString+RemoveTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C4411AE3424800CD004E /* NSString+RemoveTag.m */; };
+		8EA649D31BB46AB100C2A2FB /* HNFeedCellLinked.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA649D21BB46AB100C2A2FB /* HNFeedCellLinked.m */; settings = {ASSET_TAGS = (); }; };
 		8EA8736D1AD85A3C009C01F8 /* HNItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8736C1AD85A3C009C01F8 /* HNItem.m */; };
 		8ED20F441B2F78A700C6D37C /* DLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED20F431B2F78A700C6D37C /* DLog.m */; };
 		8ED3D3D11AF28DFD00E5E657 /* HNItemAbstract.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D3D01AF28DFD00E5E657 /* HNItemAbstract.m */; };
@@ -135,6 +135,8 @@
 		8E87C43E1AE3421100CD004E /* HNUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNUtilities.m; sourceTree = "<group>"; };
 		8E87C4401AE3424800CD004E /* NSString+RemoveTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RemoveTag.h"; sourceTree = "<group>"; };
 		8E87C4411AE3424800CD004E /* NSString+RemoveTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RemoveTag.m"; sourceTree = "<group>"; };
+		8EA649D11BB46AB100C2A2FB /* HNFeedCellLinked.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNFeedCellLinked.h; sourceTree = "<group>"; };
+		8EA649D21BB46AB100C2A2FB /* HNFeedCellLinked.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNFeedCellLinked.m; sourceTree = "<group>"; };
 		8EA8736B1AD85A3C009C01F8 /* HNItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNItem.h; sourceTree = "<group>"; };
 		8EA8736C1AD85A3C009C01F8 /* HNItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNItem.m; sourceTree = "<group>"; };
 		8ED20F401B2F780200C6D37C /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -354,6 +356,8 @@
 				8E2352451ACC571F0009552D /* HNFeedViewController.m */,
 				8E23526D1ACC69200009552D /* HNFeedCell.h */,
 				8E23526E1ACC69200009552D /* HNFeedCell.m */,
+				8EA649D11BB46AB100C2A2FB /* HNFeedCellLinked.h */,
+				8EA649D21BB46AB100C2A2FB /* HNFeedCellLinked.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -718,11 +722,11 @@
 				8ED20F441B2F78A700C6D37C /* DLog.m in Sources */,
 				8E87C43C1AE31FFD00CD004E /* HNThinLineButton.m in Sources */,
 				8ED923F61AEC3B2D00801543 /* HNCommentThread.m in Sources */,
-				8E23526F1ACC69200009552D /* HNFeedCell.m in Sources */,
 				8E395EDD1AD073F700EE0DB9 /* HNBrowserViewModel.m in Sources */,
 				8ED3D3D51AF28F1700E5E657 /* HNItemStory.m in Sources */,
 				8E395ED81AD0732F00EE0DB9 /* HNBrowserViewController.m in Sources */,
 				8E395F291AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld in Sources */,
+				8EA649D31BB46AB100C2A2FB /* HNFeedCellLinked.m in Sources */,
 				8E2352751ACC73BE0009552D /* UIColor+HNColorPalette.m in Sources */,
 				8E75303B1B3D1CBE004835CE /* HNAutosizingLabel.m in Sources */,
 				8E395F2C1AD475B000EE0DB9 /* HNCoreDataStack.m in Sources */,

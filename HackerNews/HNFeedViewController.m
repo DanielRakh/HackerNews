@@ -12,7 +12,7 @@
 // Views
 #import "HNFeedViewController.h"
 #import "HNBrowserViewController.h"
-#import "HNFeedCell.h"
+#import "HNFeedCellLinked.h"
 #import "HNTableView.h"
 
 //View Models
@@ -21,11 +21,11 @@
 #import "HNBrowserViewModel.h"
 
 
-NSString *const kFeedCellIdentifier = @"FeedCell";
+NSString *const kFeedCellIdentifier = @"FeedCellLinked";
 
 @interface HNFeedViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet HNTableView *tableView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -54,10 +54,11 @@ NSString *const kFeedCellIdentifier = @"FeedCell";
 }
 
 - (void)initalizeTableView {
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.estimatedRowHeight = 118;
-    [self.tableView registerClass:[HNFeedCell class] forCellReuseIdentifier:kFeedCellIdentifier];
+//    self.tableView.delegate = self;
+//    self.tableView.dataSource = self;
+    self.tableView.estimatedRowHeight = 125;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+//    [self.tableView registerClass:[HNFeedCell class] forCellReuseIdentifier:kFeedCellIdentifier];
 }
 
 
@@ -79,10 +80,10 @@ NSString *const kFeedCellIdentifier = @"FeedCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    HNFeedCell *cell = [tableView dequeueReusableCellWithIdentifier:kFeedCellIdentifier forIndexPath:indexPath];
+    HNFeedCellLinked *cell = [tableView dequeueReusableCellWithIdentifier:kFeedCellIdentifier forIndexPath:indexPath];
     
     [cell configureWithViewModel:[self.viewModel feedCellViewModelForIndexPath:indexPath]];
-    [cell setNavController:self.navigationController];
+//    [cell setNavController:self.navigationController];
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
     

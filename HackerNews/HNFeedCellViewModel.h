@@ -14,8 +14,8 @@
 
 @interface HNFeedCellViewModel : RVMViewModel
 
-@property (nonatomic, readonly) NSString *score;
-@property (nonatomic, readonly) NSAttributedString *title;
+@property (nonatomic, readonly) NSString *title;
+@property (nonatomic, readonly) NSString *url;
 @property (nonatomic, readonly) NSString *commentsCount;
 @property (nonatomic, readonly) NSString *info;
 

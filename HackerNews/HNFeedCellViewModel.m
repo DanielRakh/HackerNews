@@ -29,10 +29,10 @@
     if (self) {
         
         _story = story;
-        _score = [NSString stringWithFormat:@"%@ Points", story.score.stringValue];
-        _title = [HNUtilities proximaNovaStyleStringForTitle:story.title withURL:story.url];
+        _url = story.url;
+        _title = story.title;
         _commentsCount = [HNUtilities stringForCommentsCount:story.descendantsCount];
-        _info = [NSString stringWithFormat: @"by %@ | %@", story.by, [HNUtilities timeAgoFromTimestamp:story.time]];
+        _info = [NSString stringWithFormat: @"%@ Points | %@ | %@", story.score.stringValue, story.by, [HNUtilities timeAgoFromTimestamp:story.time]];
     }
     
     return self;
