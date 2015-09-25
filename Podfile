@@ -14,6 +14,7 @@ pod "Firebase-RACExtensions"
 pod 'RATreeView'
 pod 'RZCellSizeManager'
 pod 'TLIndexPathTools'
+pod 'JAMSVGImage'
 
 end
 
