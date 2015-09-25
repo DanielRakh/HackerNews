@@ -32,9 +32,19 @@
     self.titleLabel.text = self.viewModel.title;
     self.linkLabel.text = self.viewModel.url;
     self.infoLabel.text = self.viewModel.info;
+    [self iconForURL:@"https://www.google.com/s2/favicons?domain=www.stackoverflow.com"];
+}
+
+- (void)iconForURL:(NSString *)url {
     
+    NSURLSessionDataTask *faviconTask = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:url] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (!error) {
+            UIImage *favIcon = [UIImage imageWithData:data scale:[UIScreen mainScreen].scale];
+            NSLog(@"%@",favIcon);
+        }
+    }];
     
-    
+    [faviconTask resume];
 }
 
 
