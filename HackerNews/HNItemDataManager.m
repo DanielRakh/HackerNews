@@ -61,29 +61,29 @@
 
 
 #warning comment out when not testing
-- (RACSignal *)testStory {
-    
-    NSNumber *twoReplies = @9885801;
-    NSNumber *madReplies = @9720772;
-    
-    return [[[HNNetworkService sharedManager]valueForItem:madReplies] map:^id(NSDictionary *dict) {
-        
-        HNItemStory *story = [HNItemStory new];
-        story.idNum = dict[@"id"];
-        story.deleted = dict[@"deleted"];
-        story.by = dict[@"by"];
-        story.time = dict[@"time"];
-        story.text = dict[@"text"];
-        story.dead = dict[@"dead"];
-        story.url = dict[@"url"];
-        story.score = dict[@"score"];
-        story.title = dict[@"title"];
-        story.descendantsCount = dict[@"descendants"];
-        story.type = dict[@"type"];
-        return story;
-    }];
-    
-}
+//- (RACSignal *)testStory {
+//    
+//    NSNumber *twoReplies = @9885801;
+//    NSNumber *madReplies = @9720772;
+//    
+//    return [[[HNNetworkService sharedManager]valueForItem:madReplies] map:^id(NSDictionary *dict) {
+//        
+//        HNItemStory *story = [HNItemStory new];
+//        story.idNum = dict[@"id"];
+//        story.deleted = dict[@"deleted"];
+//        story.by = dict[@"by"];
+//        story.time = dict[@"time"];
+//        story.text = dict[@"text"];
+//        story.dead = dict[@"dead"];
+//        story.url = dict[@"url"];
+//        story.score = dict[@"score"];
+//        story.title = dict[@"title"];
+//        story.descendantsCount = dict[@"descendants"];
+//        story.type = dict[@"type"];
+//        return story;
+//    }];
+//    
+//}
 
 #pragma mark - Private
 #pragma mark -

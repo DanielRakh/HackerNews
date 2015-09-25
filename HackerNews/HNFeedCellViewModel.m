@@ -29,7 +29,7 @@
     if (self) {
         
         _story = story;
-        _url = story.url;
+        _url = [HNUtilities prettyURL:story.url];
         _title = story.title;
         _commentsCount = [HNUtilities stringForCommentsCount:story.descendantsCount];
         _info = [NSString stringWithFormat: @"%@ Points | %@ | %@", story.score.stringValue, story.by, [HNUtilities timeAgoFromTimestamp:story.time]];

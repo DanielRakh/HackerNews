@@ -58,6 +58,7 @@ NSString *const kFeedCellIdentifier = @"FeedCellLinked";
 //    self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 125;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
 //    [self.tableView registerClass:[HNFeedCell class] forCellReuseIdentifier:kFeedCellIdentifier];
 }
 
@@ -84,9 +85,7 @@ NSString *const kFeedCellIdentifier = @"FeedCellLinked";
     
     [cell configureWithViewModel:[self.viewModel feedCellViewModelForIndexPath:indexPath]];
 //    [cell setNavController:self.navigationController];
-    [cell setNeedsUpdateConstraints];
-    [cell updateConstraintsIfNeeded];
-    
+
     return cell;
 }
 

@@ -18,6 +18,12 @@
 @implementation HNFeedCellLinked
 
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.commentsButton.layer.cornerRadius = self.commentsButton.bounds.size.height / 2.0;
+    
+}
+
 - (void)configureWithViewModel:(HNFeedCellViewModel *)viewModel {
     
     self.viewModel = viewModel;

@@ -20,6 +20,12 @@
 
 #pragma mark - Strings
 
++ (NSString *)prettyURL:(NSString *)urlString {
+
+    NSString *pathlessString = urlString.pathComponents[1];
+    return [pathlessString stringByReplacingOccurrencesOfString:@"www." withString:@"" options:NSAnchoredSearch range:NSMakeRange(0, 4)];
+}
+
 + (NSString *)timeAgoFromTimestamp:(NSNumber *)timestamp {
     
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:timestamp.doubleValue];

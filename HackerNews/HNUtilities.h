@@ -11,10 +11,9 @@
 @interface HNUtilities : NSObject
 
 + (NSString *)timeAgoFromTimestamp:(NSNumber *)timestamp;
++ (NSString *)prettyURL:(NSString *)urlString;
 
 
-//+ (NSString *)makeThisPieceOfHTMLBeautiful: (NSString *)htmlString withFont:(NSString *)fontName ofSize:(int)size;
-//+ (NSAttributedString *)convertHTMLToAttributedString:(NSString *)string;
 + (NSAttributedString *)proximaNovaStyleStringForTitle:(NSString *)title withURL:(NSString *)url;
 + (NSAttributedString *)proximaNovaStyledCommentStringForHTML:(NSString *)uglyHTML;
 + (NSString *)stringForCommentsCount:(NSNumber *)commentsCount;
