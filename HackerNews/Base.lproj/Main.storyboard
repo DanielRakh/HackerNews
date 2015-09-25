@@ -29,22 +29,22 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8BI-cE-prV">
-                                                    <rect key="frame" x="-4" y="-14" width="312" height="6950"/>
+                                                    <rect key="frame" x="-4" y="-14" width="312" height="129"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8Wf-bZ-4Uc">
-                                                            <rect key="frame" x="0.0" y="0.0" width="312" height="6918"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="312" height="97"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="260" verticalCompressionResistancePriority="760" ambiguous="YES" misplaced="YES" text="Can Genetic Engineering Bring Back Extinct Animals?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBA-dp-gIY" userLabel="Title">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="6860"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="272" height="39"/>
                                                                     <animations/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                     <color key="textColor" red="0.23921568630000001" green="0.26274509800000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EOX-aU-56j">
-                                                                    <rect key="frame" x="0.0" y="6868" width="184" height="50"/>
+                                                                    <rect key="frame" x="0.0" y="47" width="184" height="50"/>
                                                                     <subviews>
-                                                                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MSF-gD-ue2" userLabel="Link Icon">
+                                                                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MSF-gD-ue2" userLabel="Link Icon" customClass="JAMSVGImageView">
                                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                             <animations/>
                                                                             <color key="backgroundColor" red="0.98823529409999999" green="0.40000000000000002" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -52,6 +52,9 @@
                                                                                 <constraint firstAttribute="width" constant="10" id="UAY-7W-MAg"/>
                                                                                 <constraint firstAttribute="height" constant="10" id="drZ-ej-HQt"/>
                                                                             </constraints>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="svgName" value="linkicon"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                             <variation key="default">
                                                                                 <mask key="constraints">
                                                                                     <exclude reference="UAY-7W-MAg"/>
@@ -79,16 +82,16 @@
                                                             <animations/>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" distribution="fillProportionally" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="zmO-h4-ffF">
-                                                            <rect key="frame" x="0.0" y="6926" width="312" height="24"/>
+                                                            <rect key="frame" x="0.0" y="105" width="312" height="24"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="9999 Points | hamburgefonstiv | 12 hrs ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j62-Kx-lar" userLabel="Info">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="9999 Points | hamburgefonstiv | 12 hrs ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j62-Kx-lar" userLabel="Info">
                                                                     <rect key="frame" x="0.0" y="0.0" width="224" height="24"/>
                                                                     <animations/>
                                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
                                                                     <color key="textColor" red="0.23921568630000001" green="0.26274509800000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohg-P5-JgD" userLabel="Comments">
+                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohg-P5-JgD" userLabel="Comments">
                                                                     <rect key="frame" x="240" y="0.0" width="72" height="24"/>
                                                                     <animations/>
                                                                     <color key="backgroundColor" red="0.94901960780000005" green="0.95686274510000002" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
