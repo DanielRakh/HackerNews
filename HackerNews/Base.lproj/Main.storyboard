@@ -171,7 +171,7 @@
                                         <connections>
                                             <outlet property="commentsButton" destination="ohg-P5-JgD" id="31g-gE-AVO"/>
                                             <outlet property="infoLabel" destination="j62-Kx-lar" id="Uld-oP-VpQ"/>
-                                            <outlet property="linkIconView" destination="MSF-gD-ue2" id="d3W-B2-78B"/>
+                                            <outlet property="linkIconView" destination="MSF-gD-ue2" id="KNP-Gp-mB9"/>
                                             <outlet property="linkLabel" destination="b3g-kj-PXX" id="b41-m1-eFh"/>
                                             <outlet property="titleLabel" destination="MBA-dp-gIY" id="l52-iT-WDa"/>
                                         </connections>

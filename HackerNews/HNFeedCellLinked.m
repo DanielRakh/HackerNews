@@ -8,6 +8,7 @@
 
 #import "HNFeedCellLinked.h"
 #import "HNFeedCellViewModel.h"
+#import "JAMSVGImageView.h"
 
 @interface HNFeedCellLinked ()
 
