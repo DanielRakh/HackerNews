@@ -4,7 +4,6 @@ PODS:
   - Firebase-RACExtensions (0.2.0):
     - Firebase (~> 2.0)
     - ReactiveCocoa (~> 2.3)
-  - JAMSVGImage (1.6.0)
   - PureLayout (3.0.1)
   - RATreeView (1.0.3)
   - Reachability (3.2)
@@ -28,7 +27,6 @@ DEPENDENCIES:
   - DateTools
   - Firebase (>= 2.2.0)
   - Firebase-RACExtensions
-  - JAMSVGImage
   - PureLayout
   - RATreeView
   - Reachability (>= 3.2)
@@ -42,7 +40,6 @@ SPEC CHECKSUMS:
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   Firebase: 2db60272f68ce40c7d47e5ae6eddc16977c65d4c
   Firebase-RACExtensions: 6ae340c67e7ec7e845e6603f8223770586278fe6
-  JAMSVGImage: 4828b40411c5b45221e59c590e6e031934d28202
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   RATreeView: abb5e11bb2f955c7f58b1295d2b0eab1de7c2920
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
