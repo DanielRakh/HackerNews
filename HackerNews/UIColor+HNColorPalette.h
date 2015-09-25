@@ -11,8 +11,14 @@
 @interface UIColor (HNColorPalette)
 
 + (UIColor *)HNOrange;
-+ (UIColor *)HNOffWhite;
++ (UIColor *)HNBlue;
++ (UIColor *)HNGrayDark;
++ (UIColor *)HNGrayLight;
 + (UIColor *)HNWhite;
-+ (UIColor *)HNLightGray;
++ (UIColor *)HNWhiteOff;
++ (UIColor *)HNWhiteCloudy;
++ (UIColor *)HNBlueConcrete;
+
+
 
 @end

@@ -48,7 +48,7 @@ NSString *const kFeedCellIdentifier = @"FeedCellLinked";
 - (void)viewDidLoad {
     [super viewDidLoad];
         
-    self.view.backgroundColor = [UIColor HNOffWhite];
+    self.view.backgroundColor = [UIColor HNWhiteOff];
     [self initalizeTableView];
     [self bindViewModel];
 }

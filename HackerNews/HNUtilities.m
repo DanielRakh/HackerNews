@@ -182,29 +182,29 @@
 }
 
 
-+ (NSAttributedString *)proximaNovaStyleStringForTitle:(NSString *)title withURL:(NSString *)url {
-    
-    NSAttributedString *titleString = [[NSAttributedString alloc]initWithString:title
-                                                                     attributes:@{NSForegroundColorAttributeName : [UIColor darkTextColor]}];
-    
-    NSAttributedString *urlString = [[NSAttributedString alloc]initWithString:@""];
-    
-    if (url.length > 0) {
-        urlString = [[NSAttributedString alloc]initWithString:
-                     [NSString stringWithFormat:@" (%@)", url.pathComponents[1]] attributes:@{
-                                                                                              NSForegroundColorAttributeName : [UIColor HNLightGray],
-                                                                                              NSFontAttributeName : [UIFont avenirNextWithWeight:ANTypeWeightDemibold size:12.0],
-                                                                                              NSBaselineOffsetAttributeName : @1.8}];
-    }
-    
-    NSMutableAttributedString *combinedString = [[NSMutableAttributedString alloc]initWithAttributedString:titleString];
-    
-    [combinedString appendAttributedString:urlString];
-    
-    return combinedString;
-    
-    
-}
+//+ (NSAttributedString *)proximaNovaStyleStringForTitle:(NSString *)title withURL:(NSString *)url {
+//    
+//    NSAttributedString *titleString = [[NSAttributedString alloc]initWithString:title
+//                                                                     attributes:@{NSForegroundColorAttributeName : [UIColor darkTextColor]}];
+//    
+//    NSAttributedString *urlString = [[NSAttributedString alloc]initWithString:@""];
+//    
+//    if (url.length > 0) {
+//        urlString = [[NSAttributedString alloc]initWithString:
+//                     [NSString stringWithFormat:@" (%@)", url.pathComponents[1]] attributes:@{
+//                                                                                              NSForegroundColorAttributeName : [UIColor HNLightGray],
+//                                                                                              NSFontAttributeName : [UIFont avenirNextWithWeight:ANTypeWeightDemibold size:12.0],
+//                                                                                              NSBaselineOffsetAttributeName : @1.8}];
+//    }
+//    
+//    NSMutableAttributedString *combinedString = [[NSMutableAttributedString alloc]initWithAttributedString:titleString];
+//    
+//    [combinedString appendAttributedString:urlString];
+//    
+//    return combinedString;
+//    
+//    
+//}
 
 
 + (NSString *)stringForCommentsCount:(NSNumber *)commentsCount {
@@ -242,17 +242,17 @@
     return prettyString;
 }
 
-+ (NSAttributedString *)originationLabelForAuthor:(NSString *)author time:(NSNumber *)time  {
-    
-    NSAttributedString *authorString = [[NSAttributedString alloc]initWithString:@"drak" attributes:@{NSForegroundColorAttributeName : [UIColor HNOrange]}];
-    
-    NSAttributedString *timeString = [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@" | %@", [HNUtilities timeAgoFromTimestamp:time]] attributes:@{NSForegroundColorAttributeName : [UIColor HNLightGray]}];
-    
-    NSMutableAttributedString *combinedStr = [[NSMutableAttributedString alloc] initWithAttributedString:authorString];
-    [combinedStr appendAttributedString:timeString];
-    
-    return combinedStr;
-}
+//+ (NSAttributedString *)originationLabelForAuthor:(NSString *)author time:(NSNumber *)time  {
+//    
+//    NSAttributedString *authorString = [[NSAttributedString alloc]initWithString:@"drak" attributes:@{NSForegroundColorAttributeName : [UIColor HNOrange]}];
+//    
+////    NSAttributedString *timeString = [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@" | %@", [HNUtilities timeAgoFromTimestamp:time]] attributes:@{NSForegroundColorAttributeName : [UIColor HNLightGray]}];
+//    
+//    NSMutableAttributedString *combinedStr = [[NSMutableAttributedString alloc] initWithAttributedString:authorString];
+//    [combinedStr appendAttributedString:timeString];
+//    
+//    return combinedStr;
+//}
 
 
 
