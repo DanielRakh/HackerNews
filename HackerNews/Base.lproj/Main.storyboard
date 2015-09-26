@@ -41,7 +41,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uJH-bn-vy8">
                                                             <rect key="frame" x="0.0" y="26" width="343" height="10"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="LinkIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Fw0-Xi-gQi">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="LinkIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Fw0-Xi-gQi">
                                                                     <rect key="frame" x="20" y="20" width="10" height="10"/>
                                                                     <animations/>
                                                                 </imageView>
