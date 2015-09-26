@@ -8,7 +8,6 @@
 
 #import "HNFeedCellLinked.h"
 #import "HNFeedCellViewModel.h"
-#import "JAMSVGImageView.h"
 
 @interface HNFeedCellLinked ()
 
@@ -32,7 +31,7 @@
     self.titleLabel.text = self.viewModel.title;
     self.linkLabel.text = self.viewModel.url;
     self.infoLabel.text = self.viewModel.info;
-    [self iconForURL:@"https://www.google.com/s2/favicons?domain=www.stackoverflow.com"];
+//    [self iconForURL:@"https://www.google.com/s2/favicons?domain=www.stackoverflow.com"];
 }
 
 - (void)iconForURL:(NSString *)url {

@@ -28,80 +28,50 @@
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="102.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8BI-cE-prV">
-                                                    <rect key="frame" x="-4" y="-14" width="312" height="129"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="n4c-Em-Krw">
+                                                    <rect key="frame" x="-4" y="-4" width="435" height="120"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8Wf-bZ-4Uc">
-                                                            <rect key="frame" x="0.0" y="0.0" width="312" height="97"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" ambiguous="YES" text="Can Genetic Engineering Bring Back Extinct Animals?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBA-dp-gIY" userLabel="Title">
+                                                            <rect key="frame" x="20" y="20" width="395" height="20"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                            <color key="textColor" red="0.23921568630000001" green="0.26274509800000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uJH-bn-vy8">
+                                                            <rect key="frame" x="0.0" y="26" width="343" height="10"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="260" verticalCompressionResistancePriority="760" ambiguous="YES" misplaced="YES" text="Can Genetic Engineering Bring Back Extinct Animals?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBA-dp-gIY" userLabel="Title">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="272" height="39"/>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="LinkIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Fw0-Xi-gQi">
+                                                                    <rect key="frame" x="20" y="20" width="10" height="10"/>
                                                                     <animations/>
-                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                                                    <color key="textColor" red="0.23921568630000001" green="0.26274509800000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" misplaced="YES" text="nationalgeographic.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3g-kj-PXX" userLabel="Link">
+                                                                    <rect key="frame" x="38" y="20" width="325" height="10"/>
+                                                                    <animations/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
+                                                                    <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EOX-aU-56j">
-                                                                    <rect key="frame" x="0.0" y="47" width="184" height="50"/>
-                                                                    <subviews>
-                                                                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MSF-gD-ue2" userLabel="Link Icon" customClass="JAMSVGImageView">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                                            <animations/>
-                                                                            <color key="backgroundColor" red="0.98823529409999999" green="0.40000000000000002" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="width" constant="10" id="UAY-7W-MAg"/>
-                                                                                <constraint firstAttribute="height" constant="10" id="drZ-ej-HQt"/>
-                                                                            </constraints>
-                                                                            <userDefinedRuntimeAttributes>
-                                                                                <userDefinedRuntimeAttribute type="string" keyPath="svgName" value="linkicon"/>
-                                                                            </userDefinedRuntimeAttributes>
-                                                                            <variation key="default">
-                                                                                <mask key="constraints">
-                                                                                    <exclude reference="UAY-7W-MAg"/>
-                                                                                    <exclude reference="drZ-ej-HQt"/>
-                                                                                </mask>
-                                                                            </variation>
-                                                                            <variation key="widthClass=compact">
-                                                                                <mask key="constraints">
-                                                                                    <include reference="UAY-7W-MAg"/>
-                                                                                    <include reference="drZ-ej-HQt"/>
-                                                                                </mask>
-                                                                            </variation>
-                                                                        </view>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="nationalgeographic.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3g-kj-PXX" userLabel="Link">
-                                                                            <rect key="frame" x="58" y="18" width="126" height="14"/>
-                                                                            <animations/>
-                                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
-                                                                            <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
-                                                                    </subviews>
-                                                                    <animations/>
-                                                                </stackView>
                                                             </subviews>
                                                             <animations/>
                                                         </stackView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" distribution="fillProportionally" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="zmO-h4-ffF">
-                                                            <rect key="frame" x="0.0" y="105" width="312" height="24"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kld-Jy-eoy">
+                                                            <rect key="frame" x="20" y="73" width="343" height="27"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="9999 Points | hamburgefonstiv | 12 hrs ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j62-Kx-lar" userLabel="Info">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="224" height="24"/>
+                                                                    <rect key="frame" x="20" y="29" width="224" height="14"/>
                                                                     <animations/>
                                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
                                                                     <color key="textColor" red="0.23921568630000001" green="0.26274509800000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohg-P5-JgD" userLabel="Comments">
-                                                                    <rect key="frame" x="240" y="0.0" width="72" height="24"/>
+                                                                    <rect key="frame" x="260" y="20" width="102" height="27"/>
                                                                     <animations/>
                                                                     <color key="backgroundColor" red="0.94901960780000005" green="0.95686274510000002" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="14" id="9nr-8K-w32">
-                                                                            <variation key="widthClass=compact" constant="27"/>
-                                                                        </constraint>
-                                                                        <constraint firstAttribute="width" constant="104" id="aer-sU-Ybh">
-                                                                            <variation key="widthClass=compact" constant="102"/>
-                                                                        </constraint>
+                                                                        <constraint firstAttribute="height" constant="27" id="9nr-8K-w32"/>
+                                                                        <constraint firstAttribute="width" constant="102" id="aer-sU-Ybh"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                     <state key="normal" title="176 Comments">
@@ -122,19 +92,6 @@
                                                                 </button>
                                                             </subviews>
                                                             <animations/>
-                                                            <constraints>
-                                                                <constraint firstItem="j62-Kx-lar" firstAttribute="centerY" secondItem="ohg-P5-JgD" secondAttribute="centerY" id="bh0-zk-EJv"/>
-                                                            </constraints>
-                                                            <variation key="default">
-                                                                <mask key="constraints">
-                                                                    <exclude reference="bh0-zk-EJv"/>
-                                                                </mask>
-                                                            </variation>
-                                                            <variation key="widthClass=compact">
-                                                                <mask key="constraints">
-                                                                    <include reference="bh0-zk-EJv"/>
-                                                                </mask>
-                                                            </variation>
                                                         </stackView>
                                                     </subviews>
                                                     <animations/>
@@ -143,26 +100,26 @@
                                             <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="8BI-cE-prV" firstAttribute="top" secondItem="dTo-mf-dCE" secondAttribute="topMargin" id="BeU-SY-Efe"/>
-                                                <constraint firstItem="8BI-cE-prV" firstAttribute="leading" secondItem="dTo-mf-dCE" secondAttribute="leadingMargin" id="C20-rT-NSl"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="8BI-cE-prV" secondAttribute="trailing" id="WjM-LP-R4t"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="8BI-cE-prV" secondAttribute="bottom" priority="999" id="fJM-IJ-F63"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="n4c-Em-Krw" secondAttribute="bottom" id="0aL-PU-27a"/>
+                                                <constraint firstItem="n4c-Em-Krw" firstAttribute="top" secondItem="dTo-mf-dCE" secondAttribute="topMargin" id="IcG-Gy-1iI"/>
+                                                <constraint firstItem="n4c-Em-Krw" firstAttribute="leading" secondItem="dTo-mf-dCE" secondAttribute="leadingMargin" id="Ikv-8a-0Zo"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="n4c-Em-Krw" secondAttribute="trailing" id="evB-Zh-WvV"/>
                                             </constraints>
                                             <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="16"/>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="BeU-SY-Efe"/>
-                                                    <exclude reference="C20-rT-NSl"/>
-                                                    <exclude reference="WjM-LP-R4t"/>
-                                                    <exclude reference="fJM-IJ-F63"/>
+                                                    <exclude reference="0aL-PU-27a"/>
+                                                    <exclude reference="IcG-Gy-1iI"/>
+                                                    <exclude reference="Ikv-8a-0Zo"/>
+                                                    <exclude reference="evB-Zh-WvV"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
                                                 <mask key="constraints">
-                                                    <include reference="BeU-SY-Efe"/>
-                                                    <include reference="C20-rT-NSl"/>
-                                                    <include reference="WjM-LP-R4t"/>
-                                                    <include reference="fJM-IJ-F63"/>
+                                                    <include reference="0aL-PU-27a"/>
+                                                    <include reference="IcG-Gy-1iI"/>
+                                                    <include reference="Ikv-8a-0Zo"/>
+                                                    <include reference="evB-Zh-WvV"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -171,7 +128,7 @@
                                         <connections>
                                             <outlet property="commentsButton" destination="ohg-P5-JgD" id="31g-gE-AVO"/>
                                             <outlet property="infoLabel" destination="j62-Kx-lar" id="Uld-oP-VpQ"/>
-                                            <outlet property="linkIconView" destination="MSF-gD-ue2" id="KNP-Gp-mB9"/>
+                                            <outlet property="linkIconView" destination="Fw0-Xi-gQi" id="pZd-jY-M9I"/>
                                             <outlet property="linkLabel" destination="b3g-kj-PXX" id="b41-m1-eFh"/>
                                             <outlet property="titleLabel" destination="MBA-dp-gIY" id="l52-iT-WDa"/>
                                         </connections>
@@ -410,4 +367,7 @@
             <point key="canvasLocation" x="378" y="-318"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="LinkIcon" width="10" height="11"/>
+    </resources>
 </document>
