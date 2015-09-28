@@ -26,6 +26,8 @@ static NSString *favIconURLString = @"https://www.google.com/s2/favicons?domain=
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.commentsButton.layer.cornerRadius = self.commentsButton.bounds.size.height / 2.0;
+    self.linkIconView.backgroundColor = [UIColor orangeColor];
+    self.linkIconView.layer.cornerRadius = self.linkIconView.layer.bounds.size.width / 2.0;
     
 }
 
@@ -37,11 +39,17 @@ static NSString *favIconURLString = @"https://www.google.com/s2/favicons?domain=
     self.linkLabel.text = self.viewModel.url;
     self.infoLabel.text = self.viewModel.info;
     
-    NSString *favIconPath = [favIconURLString stringByAppendingString:[self.viewModel.url stringByAppendingString:@"/apple-touch-icon.png"]];
+    [self.commentsButton setTitle:self.viewModel.commentsCount forState:UIControlStateNormal];
+    
+    
+    
+    NSString *favIconPath = [favIconURLString stringByAppendingString: self.viewModel.url];
     
 
     
-    [self.linkIconView sd_setImageWithURL:[NSURL URLWithString:@"http://icons.better-idea.org/api/icons?url=medium.com&i_am_feeling_lucky=yes"] placeholderImage:[UIImage imageNamed:@"LinkIcon"]];
+    [self.linkIconView sd_setImageWithURL:[NSURL URLWithString:favIconPath] placeholderImage:[UIImage imageNamed:@"LinkIcon"]];
+    
+    
     
 //    [[DSFavIconManager sharedInstance] iconForURL:[NSURL URLWithString:favIconPath] downloadHandler:^(UINSImage *icon) {
 //        self.linkIconView.image = icon;
@@ -49,6 +57,7 @@ static NSString *favIconURLString = @"https://www.google.com/s2/favicons?domain=
 
     
 //    [self iconForURL:@"https://www.google.com/s2/favicons?domain=www.stackoverflow.com"];
+    
 }
 
 /*
