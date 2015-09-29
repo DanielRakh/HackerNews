@@ -21,6 +21,8 @@
 		8E2352AD1ACD1C3C0009552D /* HNFeedCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352AC1ACD1C3C0009552D /* HNFeedCellViewModel.m */; };
 		8E2352B11ACDC34F0009552D /* HNNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352B01ACDC34F0009552D /* HNNetworkService.m */; };
 		8E2352B41ACE102C0009552D /* HNDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352B31ACE102C0009552D /* HNDataManager.m */; };
+		8E294EC01BBAEA8700DAE785 /* HNCommentsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E294EBF1BBAEA8700DAE785 /* HNCommentsController.m */; settings = {ASSET_TAGS = (); }; };
+		8E294EC31BBAFAE600DAE785 /* HNCommentsHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E294EC21BBAFAE600DAE785 /* HNCommentsHeaderCell.m */; settings = {ASSET_TAGS = (); }; };
 		8E395ED81AD0732F00EE0DB9 /* HNBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395ED71AD0732F00EE0DB9 /* HNBrowserViewController.m */; };
 		8E395EDD1AD073F700EE0DB9 /* HNBrowserViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395EDC1AD073F700EE0DB9 /* HNBrowserViewModel.m */; };
 		8E395EE71AD1A75300EE0DB9 /* HNCommentsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395EE61AD1A75300EE0DB9 /* HNCommentsViewModel.m */; };
@@ -98,6 +100,10 @@
 		8E2352B01ACDC34F0009552D /* HNNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNNetworkService.m; sourceTree = "<group>"; };
 		8E2352B21ACE102C0009552D /* HNDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNDataManager.h; sourceTree = "<group>"; };
 		8E2352B31ACE102C0009552D /* HNDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNDataManager.m; sourceTree = "<group>"; };
+		8E294EBE1BBAEA8700DAE785 /* HNCommentsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsController.h; sourceTree = "<group>"; };
+		8E294EBF1BBAEA8700DAE785 /* HNCommentsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsController.m; sourceTree = "<group>"; };
+		8E294EC11BBAFAE600DAE785 /* HNCommentsHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsHeaderCell.h; sourceTree = "<group>"; };
+		8E294EC21BBAFAE600DAE785 /* HNCommentsHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsHeaderCell.m; sourceTree = "<group>"; };
 		8E395ED61AD0732F00EE0DB9 /* HNBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNBrowserViewController.h; sourceTree = "<group>"; };
 		8E395ED71AD0732F00EE0DB9 /* HNBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNBrowserViewController.m; sourceTree = "<group>"; };
 		8E395EDB1AD073F700EE0DB9 /* HNBrowserViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNBrowserViewModel.h; sourceTree = "<group>"; };
@@ -394,6 +400,8 @@
 		8E395EE31AD1A73300EE0DB9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8E294EBE1BBAEA8700DAE785 /* HNCommentsController.h */,
+				8E294EBF1BBAEA8700DAE785 /* HNCommentsController.m */,
 				8E79635E1B4E343900B27CD2 /* HNCommentsHeaderCardView.h */,
 				8E79635F1B4E343900B27CD2 /* HNCommentsHeaderCardView.m */,
 				8E7963601B4E343900B27CD2 /* HNCommentsThreadCardView.h */,
@@ -549,6 +557,8 @@
 				8ED20F491B35E8F100C6D37C /* HNCommentsCommentReplyCell.m */,
 				8ED923A91AEB562300801543 /* HNCommentsCommentReplyWithRepliesCell.h */,
 				8ED923AA1AEB562300801543 /* HNCommentsCommentReplyWithRepliesCell.m */,
+				8E294EC11BBAFAE600DAE785 /* HNCommentsHeaderCell.h */,
+				8E294EC21BBAFAE600DAE785 /* HNCommentsHeaderCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -734,6 +744,7 @@
 				8E395EF11AD33AD200EE0DB9 /* HNCommentsCellViewModel.m in Sources */,
 				8E395EE71AD1A75300EE0DB9 /* HNCommentsViewModel.m in Sources */,
 				8E2352401ACC571F0009552D /* main.m in Sources */,
+				8E294EC01BBAEA8700DAE785 /* HNCommentsController.m in Sources */,
 				8ED3D3DC1AF2915800E5E657 /* HNItemDataManager.m in Sources */,
 				8EA8736D1AD85A3C009C01F8 /* HNItem.m in Sources */,
 				8ED3D3D81AF28F5600E5E657 /* HNItemComment.m in Sources */,
@@ -767,6 +778,7 @@
 				8ED804D01AE6D35100BE4AB0 /* UIFont+HNFont.m in Sources */,
 				8E87C43F1AE3421100CD004E /* HNUtilities.m in Sources */,
 				8E52515F1AD5FA3300EE080D /* HNStory.m in Sources */,
+				8E294EC31BBAFAE600DAE785 /* HNCommentsHeaderCell.m in Sources */,
 				8EA649F21BB5C4CB00C2A2FB /* JAMSVGImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
