@@ -21,6 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FeedCellLinked" id="S0z-yP-H4F" customClass="HNFeedCellLinked">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -31,17 +32,17 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="n4c-Em-Krw">
                                                     <rect key="frame" x="-4" y="-4" width="435" height="120"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" ambiguous="YES" misplaced="YES" text="Can Genetic Engineering Bring Back Extinct Animals?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBA-dp-gIY" userLabel="Title">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" ambiguous="YES" text="Can Genetic Engineering Bring Back Extinct Animals?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBA-dp-gIY" userLabel="Title">
                                                             <rect key="frame" x="0.0" y="0.0" width="395" height="20"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                             <color key="textColor" red="0.23921568630000001" green="0.26274509800000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uJH-bn-vy8">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uJH-bn-vy8">
                                                             <rect key="frame" x="0.0" y="28" width="395" height="12"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" ambiguous="YES" misplaced="YES" image="LinkIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Fw0-Xi-gQi">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" ambiguous="YES" image="LinkIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Fw0-Xi-gQi">
                                                                     <rect key="frame" x="0.0" y="1" width="10" height="11"/>
                                                                     <animations/>
                                                                     <constraints>
@@ -61,7 +62,7 @@
                                                                         </mask>
                                                                     </variation>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" misplaced="YES" text="nationalgeographic.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3g-kj-PXX" userLabel="Link">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" text="nationalgeographic.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3g-kj-PXX" userLabel="Link">
                                                                     <rect key="frame" x="18" y="0.0" width="377" height="12"/>
                                                                     <animations/>
                                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
@@ -71,17 +72,17 @@
                                                             </subviews>
                                                             <animations/>
                                                         </stackView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kld-Jy-eoy">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kld-Jy-eoy">
                                                             <rect key="frame" x="0.0" y="48" width="395" height="24"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="9999 Points | hamburgefonstiv | 12 hrs ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j62-Kx-lar" userLabel="Info">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="9999 Points | hamburgefonstiv | 12 hrs ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j62-Kx-lar" userLabel="Info">
                                                                     <rect key="frame" x="0.0" y="0.0" width="224" height="24"/>
                                                                     <animations/>
                                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
                                                                     <color key="textColor" red="0.23921568630000001" green="0.26274509800000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohg-P5-JgD" userLabel="Comments">
+                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohg-P5-JgD" userLabel="Comments">
                                                                     <rect key="frame" x="241" y="0.0" width="154" height="24"/>
                                                                     <animations/>
                                                                     <color key="backgroundColor" red="0.94901960780000005" green="0.95686274510000002" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -172,10 +173,10 @@
                                 <exclude reference="D7T-Cv-dNV"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="USP-Fo-Q2W"/>
                                 <exclude reference="Edu-xM-w2g"/>
                                 <exclude reference="cnT-9E-mPU"/>
                                 <exclude reference="r3N-ea-g4o"/>
-                                <exclude reference="USP-Fo-Q2W"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -183,10 +184,10 @@
                                 <include reference="D7T-Cv-dNV"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="USP-Fo-Q2W"/>
                                 <include reference="Edu-xM-w2g"/>
                                 <include reference="cnT-9E-mPU"/>
                                 <include reference="r3N-ea-g4o"/>
-                                <include reference="USP-Fo-Q2W"/>
                             </mask>
                         </variation>
                     </view>
@@ -209,12 +210,14 @@
                         <viewControllerLayoutGuide type="bottom" id="vwq-Yr-H8O"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Iod-9A-vBX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="103" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d9t-Rv-gnX">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HeaderCell" id="UwI-qI-iCg" customClass="HNCommentsHeaderCell">
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -225,24 +228,24 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="J2Q-cj-OVF">
                                                     <rect key="frame" x="-4" y="-4" width="435" height="120"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" ambiguous="YES" misplaced="YES" text="Can Genetic Engineering Bring Back Extinct Animals?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HpN-tf-Ywn" userLabel="Title">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" ambiguous="YES" text="Can Genetic Engineering Bring Back Extinct Animals?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HpN-tf-Ywn" userLabel="Title">
                                                             <rect key="frame" x="0.0" y="0.0" width="395" height="20"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                             <color key="textColor" red="0.23921568630000001" green="0.26274509800000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="vwD-hV-3Vm">
-                                                            <rect key="frame" x="0.0" y="48" width="395" height="24"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="vwD-hV-3Vm">
+                                                            <rect key="frame" x="0.0" y="28" width="395" height="24"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="9999 Points | hamburgefonstiv | 12 hrs ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCy-Ir-kjW" userLabel="Info">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="9999 Points | hamburgefonstiv | 12 hrs ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCy-Ir-kjW" userLabel="Info">
                                                                     <rect key="frame" x="0.0" y="0.0" width="224" height="24"/>
                                                                     <animations/>
                                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
                                                                     <color key="textColor" red="0.23921568630000001" green="0.26274509800000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vKb-cH-nAd" userLabel="Comments">
+                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vKb-cH-nAd" userLabel="Comments">
                                                                     <rect key="frame" x="241" y="0.0" width="154" height="24"/>
                                                                     <animations/>
                                                                     <color key="backgroundColor" red="0.94901960780000005" green="0.95686274510000002" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -285,17 +288,17 @@
                                             <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="16"/>
                                             <variation key="default">
                                                 <mask key="constraints">
+                                                    <exclude reference="C0T-S9-G1g"/>
                                                     <exclude reference="KEf-Rt-pj4"/>
                                                     <exclude reference="Rh8-gV-dom"/>
-                                                    <exclude reference="C0T-S9-G1g"/>
                                                     <exclude reference="ibk-7C-cOP"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
                                                 <mask key="constraints">
+                                                    <include reference="C0T-S9-G1g"/>
                                                     <include reference="KEf-Rt-pj4"/>
                                                     <include reference="Rh8-gV-dom"/>
-                                                    <include reference="C0T-S9-G1g"/>
                                                     <include reference="ibk-7C-cOP"/>
                                                 </mask>
                                             </variation>
@@ -307,6 +310,18 @@
                                             <outlet property="infoLabel" destination="hCy-Ir-kjW" id="zbP-60-uFA"/>
                                             <outlet property="titleLabel" destination="HpN-tf-Ywn" id="4VA-HJ-RFY"/>
                                         </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="9sx-d0-Ewf" customClass="HNCommentsHeaderCell">
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" layoutMarginsFollowReadableWidth="YES" tableViewCell="9sx-d0-Ewf" id="WB6-4v-0az">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="102.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <animations/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="16"/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                        <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -324,10 +339,10 @@
                                 <exclude reference="d9t-Rv-gnX"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Tk7-9O-Bt1"/>
                                 <exclude reference="6nf-2w-CMW"/>
                                 <exclude reference="Cia-RM-Guv"/>
                                 <exclude reference="PXJ-hN-sKQ"/>
-                                <exclude reference="Tk7-9O-Bt1"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -335,10 +350,10 @@
                                 <include reference="d9t-Rv-gnX"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="Tk7-9O-Bt1"/>
                                 <include reference="6nf-2w-CMW"/>
                                 <include reference="Cia-RM-Guv"/>
                                 <include reference="PXJ-hN-sKQ"/>
-                                <include reference="Tk7-9O-Bt1"/>
                             </mask>
                         </variation>
                     </view>

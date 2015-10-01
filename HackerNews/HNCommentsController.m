@@ -35,14 +35,29 @@
 
 #pragma mark - Table View Data Source
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 1;
+    return section == 0 ? 1 : 10;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    HNCommentsHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HeaderCell"];
+    UITableViewCell *cell;
+    
+    if (indexPath.section == 0) {
+       cell = (HNCommentsHeaderCell *)[tableView dequeueReusableCellWithIdentifier:@"HeaderCell" forIndexPath:indexPath];
+        [[(HNCommentsHeaderCell *)cell titleLabel] setText:@"This is the header cell bro look at all of this text pushing this shit down hopefully it works."];
+        
+    }
+//    
+//    else if (indexPath.section == 1) {
+//        cell
+//    }
+
     
     return cell;
 }
