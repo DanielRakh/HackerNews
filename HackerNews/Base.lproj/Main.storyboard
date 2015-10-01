@@ -244,64 +244,162 @@
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="16" y="16" width="343" height="14.5"/>
-                                                    </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUi-tb-9Bk">
-                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="J08-y5-dxU">
+                                                    <rect key="frame" x="-4" y="19" width="383" height="233"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUi-tb-9Bk">
+                                                            <rect key="frame" x="20" y="20" width="343" height="158"/>
+                                                            <animations/>
+                                                            <mutableString key="text">Bushwick meh Blue Bottle pork belly mustache skateboard 3 wolf moon. Actually beard single-origin coffee, twee 90's PBR Echo Park sartorial try-hard freegan Portland ennui. Selvage jean shorts 90's, Vice American Apparel try-hard food truck Shoreditch fap lomo Wes Anderson. Art party Thundercats High Life Tumblr, sartorial vinyl deep v fixie McSweeney's fap tousled Intelligentsia mumblecore. Deep v twee +1, roof party Thundercats PBR Etsy. Flexitarian Williamsburg tote bag iPhone American Apparel. Austin kitsch tofu chia, brunch hoodie Tonx semiotics trust fund kale chips.</mutableString>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" distribution="equalCentering" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="epL-xo-hLU" userLabel="Replies Button Stack View">
+                                                            <rect key="frame" x="20" y="186" width="343" height="27"/>
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJd-yQ-NVe" userLabel="Left Separator">
+                                                                    <rect key="frame" x="20" y="33" width="112" height="1"/>
+                                                                    <animations/>
+                                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="27" id="dL2-Ba-afN">
+                                                                            <variation key="widthClass=compact" constant="1"/>
+                                                                        </constraint>
+                                                                    </constraints>
+                                                                    <variation key="default">
+                                                                        <mask key="constraints">
+                                                                            <exclude reference="dL2-Ba-afN"/>
+                                                                        </mask>
+                                                                    </variation>
+                                                                    <variation key="widthClass=compact">
+                                                                        <mask key="constraints">
+                                                                            <include reference="dL2-Ba-afN"/>
+                                                                        </mask>
+                                                                    </variation>
+                                                                </view>
+                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IU5-Qk-UyH" userLabel="Comments">
+                                                                    <rect key="frame" x="140" y="20" width="102" height="27"/>
+                                                                    <animations/>
+                                                                    <color key="backgroundColor" red="0.94901960780000005" green="0.95686274510000002" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="27" id="BJP-31-wEI">
+                                                                            <variation key="widthClass=compact" constant="27"/>
+                                                                        </constraint>
+                                                                        <constraint firstAttribute="width" constant="102" id="J5p-fR-4hK"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                                    <state key="normal" title="176 Comments">
+                                                                        <color key="titleColor" red="0.98823529409999999" green="0.40000000000000002" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    </state>
+                                                                    <variation key="default">
+                                                                        <mask key="constraints">
+                                                                            <exclude reference="BJP-31-wEI"/>
+                                                                            <exclude reference="J5p-fR-4hK"/>
+                                                                        </mask>
+                                                                    </variation>
+                                                                    <variation key="widthClass=compact">
+                                                                        <mask key="constraints">
+                                                                            <include reference="BJP-31-wEI"/>
+                                                                            <include reference="J5p-fR-4hK"/>
+                                                                        </mask>
+                                                                    </variation>
+                                                                </button>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4Y-y6-iAI" userLabel="Right Separator">
+                                                                    <rect key="frame" x="250" y="33" width="113" height="1"/>
+                                                                    <animations/>
+                                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="27" id="eLK-Mf-8io">
+                                                                            <variation key="widthClass=compact" constant="1"/>
+                                                                        </constraint>
+                                                                    </constraints>
+                                                                    <variation key="default">
+                                                                        <mask key="constraints">
+                                                                            <exclude reference="eLK-Mf-8io"/>
+                                                                        </mask>
+                                                                    </variation>
+                                                                    <variation key="widthClass=compact">
+                                                                        <mask key="constraints">
+                                                                            <include reference="eLK-Mf-8io"/>
+                                                                        </mask>
+                                                                    </variation>
+                                                                </view>
+                                                            </subviews>
+                                                            <animations/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="27" id="1Wy-NF-EoG"/>
+                                                                <constraint firstItem="IU5-Qk-UyH" firstAttribute="leading" secondItem="hJd-yQ-NVe" secondAttribute="trailing" constant="8" id="4Ah-Zf-jFP"/>
+                                                                <constraint firstItem="hJd-yQ-NVe" firstAttribute="leading" secondItem="epL-xo-hLU" secondAttribute="leading" id="Nvh-Wx-qVr"/>
+                                                                <constraint firstItem="y4Y-y6-iAI" firstAttribute="leading" secondItem="IU5-Qk-UyH" secondAttribute="trailing" constant="70" id="rX6-Yh-zL3">
+                                                                    <variation key="widthClass=compact" constant="8"/>
+                                                                </constraint>
+                                                                <constraint firstAttribute="trailing" secondItem="y4Y-y6-iAI" secondAttribute="trailing" constant="-1" id="rx5-2Z-HLR">
+                                                                    <variation key="widthClass=compact" constant="0.0"/>
+                                                                </constraint>
+                                                            </constraints>
+                                                            <variation key="default">
+                                                                <mask key="constraints">
+                                                                    <exclude reference="1Wy-NF-EoG"/>
+                                                                    <exclude reference="Nvh-Wx-qVr"/>
+                                                                    <exclude reference="4Ah-Zf-jFP"/>
+                                                                    <exclude reference="rX6-Yh-zL3"/>
+                                                                    <exclude reference="rx5-2Z-HLR"/>
+                                                                </mask>
+                                                            </variation>
+                                                            <variation key="widthClass=compact">
+                                                                <mask key="constraints">
+                                                                    <include reference="1Wy-NF-EoG"/>
+                                                                    <include reference="Nvh-Wx-qVr"/>
+                                                                    <include reference="4Ah-Zf-jFP"/>
+                                                                    <include reference="rX6-Yh-zL3"/>
+                                                                    <include reference="rx5-2Z-HLR"/>
+                                                                </mask>
+                                                            </variation>
+                                                        </stackView>
+                                                    </subviews>
                                                     <animations/>
-                                                    <mutableString key="text">Bushwick meh Blue Bottle pork belly mustache skateboard 3 wolf moon. Actually beard single-origin coffee, twee 90's PBR Echo Park sartorial try-hard freegan Portland ennui. Selvage jean shorts 90's, Vice American Apparel try-hard food truck Shoreditch fap lomo Wes Anderson. Art party Thundercats High Life Tumblr, sartorial vinyl deep v fixie McSweeney's fap tousled Intelligentsia mumblecore. Deep v twee +1, roof party Thundercats PBR Etsy. Flexitarian Williamsburg tote bag iPhone American Apparel. Austin kitsch tofu chia, brunch hoodie Tonx semiotics trust fund kale chips.</mutableString>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="16" y="39" width="343" height="158"/>
-                                                    </variation>
-                                                </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJd-yQ-NVe">
-                                                    <rect key="frame" x="16" y="219" width="102" height="1"/>
-                                                    <animations/>
-                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="16" y="218" width="112" height="1"/>
-                                                    </variation>
-                                                </view>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IU5-Qk-UyH" userLabel="Comments">
-                                                    <rect key="frame" x="126" y="219" width="102" height="1"/>
-                                                    <animations/>
-                                                    <color key="backgroundColor" red="0.94901960780000005" green="0.95686274510000002" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <state key="normal" title="176 Comments">
-                                                        <color key="titleColor" red="0.98823529409999999" green="0.40000000000000002" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                    <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="136" y="205" width="102" height="27"/>
-                                                    </variation>
-                                                </button>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4Y-y6-iAI">
-                                                    <rect key="frame" x="16" y="219" width="102" height="1"/>
-                                                    <animations/>
-                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="246" y="218" width="113" height="1"/>
-                                                    </variation>
-                                                </view>
+                                                    <variation key="widthClass=compact" axis="vertical"/>
+                                                </stackView>
                                             </subviews>
                                             <animations/>
-                                            <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="J08-y5-dxU" secondAttribute="trailing" id="IaF-Vo-fcu"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="J08-y5-dxU" secondAttribute="bottom" id="Rqd-bn-DuX"/>
+                                                <constraint firstItem="mZB-Mu-BQP" firstAttribute="leading" secondItem="xWv-hC-V35" secondAttribute="leadingMargin" id="Xrg-w5-Tab"/>
+                                                <constraint firstItem="J08-y5-dxU" firstAttribute="leading" secondItem="xWv-hC-V35" secondAttribute="leadingMargin" id="i4e-ub-RDR"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="mZB-Mu-BQP" secondAttribute="trailing" id="nkH-UO-YdE"/>
+                                                <constraint firstItem="mZB-Mu-BQP" firstAttribute="top" secondItem="xWv-hC-V35" secondAttribute="topMargin" id="qKB-3a-EM9"/>
+                                                <constraint firstItem="J08-y5-dxU" firstAttribute="top" secondItem="mZB-Mu-BQP" secondAttribute="bottom" constant="8" id="tRx-Wq-h1T"/>
+                                            </constraints>
+                                            <edgeInsets key="layoutMargins" top="16" left="16" bottom="8" right="16"/>
                                             <variation key="default">
                                                 <mask key="subviews">
                                                     <exclude reference="mZB-Mu-BQP"/>
-                                                    <exclude reference="dUi-tb-9Bk"/>
-                                                    <exclude reference="y4Y-y6-iAI"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="Xrg-w5-Tab"/>
+                                                    <exclude reference="nkH-UO-YdE"/>
+                                                    <exclude reference="qKB-3a-EM9"/>
+                                                    <exclude reference="IaF-Vo-fcu"/>
+                                                    <exclude reference="Rqd-bn-DuX"/>
+                                                    <exclude reference="i4e-ub-RDR"/>
+                                                    <exclude reference="tRx-Wq-h1T"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
                                                 <mask key="subviews">
                                                     <include reference="mZB-Mu-BQP"/>
-                                                    <include reference="dUi-tb-9Bk"/>
-                                                    <include reference="y4Y-y6-iAI"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="Xrg-w5-Tab"/>
+                                                    <include reference="nkH-UO-YdE"/>
+                                                    <include reference="qKB-3a-EM9"/>
+                                                    <include reference="IaF-Vo-fcu"/>
+                                                    <include reference="Rqd-bn-DuX"/>
+                                                    <include reference="i4e-ub-RDR"/>
+                                                    <include reference="tRx-Wq-h1T"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
