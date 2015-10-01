@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *originLabel;
 @property (weak, nonatomic) IBOutlet UITextView *commentTextView;
+@property (weak, nonatomic) IBOutlet UIButton *repliesButton;
 
 
 

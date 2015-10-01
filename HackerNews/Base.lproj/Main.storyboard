@@ -370,6 +370,7 @@
                                         <connections>
                                             <outlet property="commentTextView" destination="cMW-aH-CLl" id="7aL-V1-pNh"/>
                                             <outlet property="originLabel" destination="mZB-Mu-BQP" id="Rfz-Gi-h90"/>
+                                            <outlet property="repliesButton" destination="IU5-Qk-UyH" id="Jvn-Lp-9dp"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

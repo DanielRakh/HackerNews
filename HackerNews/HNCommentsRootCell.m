@@ -15,6 +15,7 @@
     // Initialization code
     [super awakeFromNib];
     [self setupCommentTextView];
+    [self setupRepliesButton];
 }
 
 - (void)setupCommentTextView {
@@ -29,6 +30,11 @@
     self.commentTextView.textContainer.lineFragmentPadding = 0;
     self.commentTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
     self.commentTextView.textAlignment = NSTextAlignmentLeft;
-    
 }
+
+
+- (void)setupRepliesButton {
+    self.repliesButton.layer.cornerRadius = self.repliesButton.bounds.size.height / 2.0; 
+}
+
 @end
