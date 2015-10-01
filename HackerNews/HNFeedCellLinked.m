@@ -43,11 +43,11 @@ static NSString *favIconURLString = @"https://www.google.com/s2/favicons?domain=
     
     
     
-    NSString *favIconPath = [favIconURLString stringByAppendingString: self.viewModel.url];
+//    NSString *favIconPath = [favIconURLString stringByAppendingString: self.viewModel.url];
     
 
-    
-    [self.linkIconView sd_setImageWithURL:[NSURL URLWithString:favIconPath] placeholderImage:[UIImage imageNamed:@"LinkIcon"]];
+//    
+//    [self.linkIconView sd_setImageWithURL:[NSURL URLWithString:favIconPath] placeholderImage:[UIImage imageNamed:@"LinkIcon"]];
     
     
     
