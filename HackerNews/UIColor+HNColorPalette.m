@@ -14,6 +14,10 @@
     return [UIColor colorWithRed:0.988 green:0.400 blue:0.129 alpha:1.0];
 }
 
++ (UIColor *)HNOrangeTransparent {
+    return [UIColor colorWithRed:0.988 green:0.400 blue:0.129 alpha:0.8];
+}
+
 + (UIColor *)HNBlue {
     return [UIColor colorWithRed:0.169 green:0.482 blue:0.725 alpha:1.0];
 }
@@ -41,7 +45,5 @@
 + (UIColor *)HNBlueConcrete {
     return [UIColor colorWithRed:0.671 green:0.761 blue:0.812 alpha:1.0];
 }
-
-
 
 @end

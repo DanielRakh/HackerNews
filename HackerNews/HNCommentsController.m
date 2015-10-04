@@ -79,12 +79,12 @@
     
     UIView *header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, size.width, 0)];
     header.translatesAutoresizingMaskIntoConstraints = NO;
-    header.backgroundColor = [UIColor HNOrange];
+    header.backgroundColor = [UIColor HNOrangeTransparent];
     
     // Add subviews and their constraints to header
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    titleLabel.text = @"Can Genetic Engineering Bring Back Extinct Animals? Can Genetic Engineering Bring Back Extinct Animals? Can Genetic Engineering Bring Back Extinct Animals? Can Genetic Engineering Bring Back Extinct Animals? Can Genetic Engineering Bring Back Extinct Animals?";
+    titleLabel.text = @"Can Genetic Engineering Bring Back Extinct Animals?";
     titleLabel.numberOfLines = 0;
     titleLabel.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightMedium];
     titleLabel.textColor = [UIColor HNWhiteOff];

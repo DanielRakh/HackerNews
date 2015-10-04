@@ -217,6 +217,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="8ol-5l-6c3">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -422,7 +423,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dig-yb-Cro" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2798.25" y="-121.5"/>
+            <point key="canvasLocation" x="2708.25" y="33.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QXH-IO-ipJ">
@@ -459,51 +460,15 @@
                     <view key="view" contentMode="scaleToFill" id="dM9-gg-dLM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="109"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bPA-Js-4Cp" userLabel="Web View Container">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.06128438562" green="0.4794761837" blue="0.88656342030000002" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                        </subviews>
                         <animations/>
-                        <color key="backgroundColor" red="0.98823529409999999" green="0.40000000000000002" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="bPA-Js-4Cp" firstAttribute="top" secondItem="dM9-gg-dLM" secondAttribute="top" id="7uS-su-ZPx"/>
-                            <constraint firstItem="bPA-Js-4Cp" firstAttribute="leading" secondItem="dM9-gg-dLM" secondAttribute="leading" id="BdE-lV-gl5"/>
-                            <constraint firstAttribute="trailing" secondItem="bPA-Js-4Cp" secondAttribute="trailing" id="X2A-fJ-HxR"/>
-                            <constraint firstAttribute="bottom" secondItem="bPA-Js-4Cp" secondAttribute="bottom" id="XMf-9R-1Ek"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="bPA-Js-4Cp"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="7uS-su-ZPx"/>
-                                <exclude reference="BdE-lV-gl5"/>
-                                <exclude reference="X2A-fJ-HxR"/>
-                                <exclude reference="XMf-9R-1Ek"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="bPA-Js-4Cp"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="7uS-su-ZPx"/>
-                                <include reference="BdE-lV-gl5"/>
-                                <include reference="X2A-fJ-HxR"/>
-                                <include reference="XMf-9R-1Ek"/>
-                            </mask>
-                        </variation>
+                        <color key="backgroundColor" red="0.0" green="0.46666666670000001" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <connections>
-                        <outlet property="webViewContainer" destination="bPA-Js-4Cp" id="3F5-lg-4BH"/>
-                    </connections>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="auc-q0-J4J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2798.25" y="-870.5"/>
+            <point key="canvasLocation" x="2708.25" y="-714.5"/>
         </scene>
         <!--Container Controller-->
         <scene sceneID="F44-Ti-jOh">
@@ -527,7 +492,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4pI-Zh-tQ4" userLabel="Comments Container">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <animations/>
-                                <color key="backgroundColor" red="0.4315206707" green="0.8116003275" blue="0.1046745107" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="pSV-zm-l6v" kind="embed" id="HuR-Ha-7BE"/>
                                 </connections>
