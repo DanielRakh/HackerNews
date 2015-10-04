@@ -7,26 +7,17 @@
 //
 
 #import "HNCommentsController.h"
-//#import "HNCommentsHeaderCell.h"
 #import "HNCommentsRootCell.h"
 #import "HNBrowserViewController.h"
+#import "UIColor+HNColorPalette.h"
 
 @interface HNCommentsController () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 
 @property (nonatomic) UIView *headerView;
-@property (nonatomic, assign) CGFloat headerViewInitialHeight;
-@property (nonatomic) HNBrowserViewController *browserVC;
 
 @end
 
 @implementation HNCommentsController
-
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-//    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
-//    self.tableView.contentOffset = CGPointMake(0, -64);
-
-}
 
 
 - (void)viewDidLoad {
@@ -34,69 +25,24 @@
     // Do any additional setup after loading the view.
     
     [self initalizeTableView];
-    self.headerView = self.tableView.tableHeaderView;
+//    self.headerView = self.tableView.tableHeaderView;
+//    [self.tableView layoutIfNeeded];
 }
-
-
-
-
 
 - (void)initalizeTableView {
 
     self.tableView.estimatedRowHeight = 100;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.contentInset = UIEdgeInsetsMake(self.tableView.tableHeaderView.bounds.size.height, 0, 0, 0);
-    self.tableView.contentOffset = CGPointMake(0, -self.tableView.tableHeaderView.bounds.size.height);
-    self.automaticallyAdjustsScrollViewInsets = YES;
-//    self.edgesForExtendedLayout = UIRectEdgeNone;
-//    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
-//    self.tableView.contentOffset = CGPointMake(0, -64);
-//    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
-
-    
-//    self.headerView = self.tableView.tableHeaderView;
-//    self.tableView.tableHeaderView = nil;
-//    
-//    [self.tableView addSubview:self.headerView];
-//    
-////    
-//    self.headerViewInitialHeight = [self heightToFitView:self.headerView];
-    
-//    NSLog(@"before:%f",self.headerViewInitialHeight);
-    
-
-    
-//    self.tableView.contentInset = UIEdgeInsetsMake(107, 0, 0, 0);
-//    self.tableView.contentOffset = CGPointMake(0, -107);
-    
-//    
-//    self.headerViewInitialHeight = [self heightToFitView:self.headerView];
-//
-//    NSLog(@"init:%f",self.headerViewInitialHeight);
-//  
-    
 }
-
-
-
-
-
 
 #pragma mark - Table View Data Source
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return 2;
-//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-//    return section == 0 ? 1 : 10;
-    
     return 20;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
     
     HNCommentsRootCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RootCell"];
     
@@ -105,12 +51,9 @@
     } else {
         cell.commentTextView.text = @"Hey Man";
     }
-    
 
-    
     return cell;
 }
-
 
 
 #pragma mark - Scroll View Delegate
@@ -132,54 +75,85 @@
 //    self.headerView.frame = headerRect;
 //}
 
-
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     
-//    UIView *header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, size.width, 0)];
+    UIView *header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, size.width, 0)];
+    header.translatesAutoresizingMaskIntoConstraints = NO;
+    header.backgroundColor = [UIColor HNOrange];
     
-//    UIView *header = self.tableView.tableHeaderView;
-//    self.tableView.tableHeaderView = nil;
-//    header.translatesAutoresizingMaskIntoConstraints = NO;
-//    
-//    // Add subviews and their constraints to header
-//    
-////    UIStackView *contentStackView = self.browserVC.contentStackView;
-//    
-//    
-//    
-//    
-//    NSLayoutConstraint *width = [header.widthAnchor constraintEqualToConstant:size.width];
-//    width.active = YES;
-//    
-//    CGFloat height = [header systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-//    
-//    width.active = NO;
-//    
-//    header.frame = CGRectMake(0, 0, size.width, height);
-//    header.translatesAutoresizingMaskIntoConstraints = YES;
-//    self.tableView.tableHeaderView = header;
+    // Add subviews and their constraints to header
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+    titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    titleLabel.text = @"Can Genetic Engineering Bring Back Extinct Animals? Can Genetic Engineering Bring Back Extinct Animals? Can Genetic Engineering Bring Back Extinct Animals? Can Genetic Engineering Bring Back Extinct Animals? Can Genetic Engineering Bring Back Extinct Animals?";
+    titleLabel.numberOfLines = 0;
+    titleLabel.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightMedium];
+    titleLabel.textColor = [UIColor HNWhiteOff];
+    [titleLabel setContentCompressionResistancePriority:999.0 forAxis:UILayoutConstraintAxisVertical];
+    
+    UILabel *originLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+    originLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    originLabel.text = @"999 Points • hamburgefonstiv • 12 hrs";
+    originLabel.numberOfLines = 1;
+    originLabel.font = [UIFont systemFontOfSize:12.0 weight:UIFontWeightRegular];
+    originLabel.textColor = [UIColor HNWhiteOff];
+    originLabel.textAlignment = NSTextAlignmentLeft;
+    
+    UIButton *expandButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    expandButton.translatesAutoresizingMaskIntoConstraints = NO;
+    expandButton.backgroundColor = [UIColor HNWhiteCloudy];
+    [expandButton setTitle:@"Expand" forState:UIControlStateNormal];
+    expandButton.titleLabel.font = [UIFont systemFontOfSize:12.0 weight:UIFontWeightRegular];
+    expandButton.tintColor = [UIColor orangeColor];
+    [expandButton.widthAnchor constraintEqualToConstant:104.0].active = YES;
+    [expandButton.heightAnchor constraintEqualToConstant:28.0].active = YES;
+    expandButton.layer.cornerRadius = 28.0 / 2.0;
+
+    
+    UIStackView *bottomStackView = [[UIStackView alloc]initWithArrangedSubviews:@[originLabel, expandButton]];
+    bottomStackView.translatesAutoresizingMaskIntoConstraints = NO;
+    bottomStackView.alignment = UIStackViewAlignmentCenter;
+    bottomStackView.axis = UILayoutConstraintAxisHorizontal;
+    bottomStackView.distribution = UIStackViewDistributionFill;
+    bottomStackView.spacing = 16.0;
+    
+    UIStackView *containerStackView = [[UIStackView alloc]initWithArrangedSubviews:@[titleLabel, bottomStackView]];
+    containerStackView.translatesAutoresizingMaskIntoConstraints = NO;
+    containerStackView.axis = UILayoutConstraintAxisVertical;
+    containerStackView.distribution = UIStackViewDistributionFill;
+    containerStackView.alignment = UIStackViewAlignmentFill;
+    containerStackView.spacing = 16.0;
+    
+    [header addSubview:containerStackView];
+    
+    [containerStackView.topAnchor constraintEqualToAnchor:header.topAnchor constant:16.0].active = YES;
+    [containerStackView.leadingAnchor constraintEqualToAnchor:header.leadingAnchor constant:16.0].active = YES;
+    [containerStackView.bottomAnchor constraintEqualToAnchor:header.bottomAnchor constant:-16.0].active = YES;
+    [containerStackView.trailingAnchor constraintEqualToAnchor:header.trailingAnchor constant:-16.0].active = YES;
+    
+    NSLayoutConstraint *headerWidthConstraint = [header.widthAnchor constraintEqualToConstant:size.width];
+    headerWidthConstraint.active = YES;
+    
+    CGFloat height = [header systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    headerWidthConstraint.active = NO;
+    
+    header.frame = CGRectMake(0, 0, size.width, height);
+    header.translatesAutoresizingMaskIntoConstraints = YES;
+    self.tableView.tableHeaderView = header;
+    
+    
+    CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    
+    CGFloat navHeight = self.navigationController.navigationBar.bounds.size.height;
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(navHeight + statusBarHeight, 0, 0, 0);
+    self.tableView.contentOffset = CGPointMake(0, -navHeight - statusBarHeight);
+ 
 }
-//
-//- (void)viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-////    [self viewWillTransitionToSize:self.view.bounds.size withTransitionCoordinator:self.transitionCoordinator];
-//}
 
 
-//- (void)viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//}
-
-
-//- (void)viewDidLayoutSubviews {
-//    [super viewDidLayoutSubviews];
-//}
-
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if ([segue.identifier isEqualToString:@"BrowserContainer"]) {
-//        self.browserVC = segue.destinationViewController;
-//    }
-//}
+- (void)willMoveToParentViewController:(UIViewController *)parent {
+      [self viewWillTransitionToSize:self.view.bounds.size withTransitionCoordinator:self.transitionCoordinator];
+}
 
 
 @end
