@@ -16,6 +16,7 @@ pod 'RZCellSizeManager'
 pod 'TLIndexPathTools'
 pod 'SDWebImage'
 pod 'DSFavIconManager'
+pod 'FXBlurView'
 
 end
 

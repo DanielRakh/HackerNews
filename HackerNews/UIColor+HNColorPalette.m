@@ -15,7 +15,7 @@
 }
 
 + (UIColor *)HNOrangeTransparent {
-    return [UIColor colorWithRed:0.988 green:0.400 blue:0.129 alpha:0.8];
+    return [UIColor colorWithRed:0.988 green:0.400 blue:0.129 alpha:0.7];
 }
 
 + (UIColor *)HNBlue {

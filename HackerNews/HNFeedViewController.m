@@ -85,9 +85,9 @@ NSString *const kFeedCellIdentifier = @"FeedCellLinked";
     
     [cell configureWithViewModel:[self.viewModel feedCellViewModelForIndexPath:indexPath]];
 //    [cell setNavController:self.navigationController];
-
     return cell;
 }
+
 
 #pragma mark - UITableViewDelegate
 

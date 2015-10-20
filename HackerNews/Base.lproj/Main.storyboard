@@ -211,7 +211,7 @@
                         <viewControllerLayoutGuide type="bottom" id="vwq-Yr-H8O"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Iod-9A-vBX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="8ol-5l-6c3">
@@ -230,10 +230,10 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ozc-R0-pod">
                                                     <rect key="frame" x="-4" y="-4" width="3381" height="15"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="y9i-N4-Fbx">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="y9i-N4-Fbx">
                                                             <rect key="frame" x="0.0" y="0.0" width="3085" height="15"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" misplaced="YES" text="danielrak • 5 hrs ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZB-Mu-BQP">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" text="danielrak • 5 hrs ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZB-Mu-BQP">
                                                                     <rect key="frame" x="0.0" y="0.0" width="116" height="15"/>
                                                                     <animations/>
                                                                     <color key="backgroundColor" red="0.4315206707" green="0.8116003275" blue="0.1046745107" alpha="1" colorSpace="calibratedRGB"/>
@@ -241,7 +241,7 @@
                                                                     <color key="textColor" red="0.2392156869" green="0.26274511220000002" blue="0.30196079609999998" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="999" ambiguous="YES" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMW-aH-CLl">
+                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="999" ambiguous="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMW-aH-CLl">
                                                                     <rect key="frame" x="124" y="0.0" width="2961" height="15"/>
                                                                     <animations/>
                                                                     <color key="backgroundColor" red="0.98823529409999999" green="0.40000000000000002" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -397,10 +397,10 @@
                                 <exclude reference="8ol-5l-6c3"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="P3Y-Gh-bbR"/>
                                 <exclude reference="01S-1f-rHt"/>
                                 <exclude reference="8UI-WZ-WXh"/>
                                 <exclude reference="clK-XE-kxt"/>
-                                <exclude reference="P3Y-Gh-bbR"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -408,10 +408,10 @@
                                 <include reference="8ol-5l-6c3"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="P3Y-Gh-bbR"/>
                                 <include reference="01S-1f-rHt"/>
                                 <include reference="8UI-WZ-WXh"/>
                                 <include reference="clK-XE-kxt"/>
-                                <include reference="P3Y-Gh-bbR"/>
                             </mask>
                         </variation>
                     </view>
@@ -423,7 +423,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dig-yb-Cro" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2708.25" y="33.5"/>
+            <point key="canvasLocation" x="2708.25" y="80.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QXH-IO-ipJ">
@@ -458,7 +458,7 @@
                         <viewControllerLayoutGuide type="bottom" id="zSE-F9-2h0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dM9-gg-dLM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="109"/>
+                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" red="0.0" green="0.46666666670000001" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
@@ -479,6 +479,7 @@
                         <viewControllerLayoutGuide type="bottom" id="UhY-j4-bG6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Pa7-Gq-cjd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w7F-hc-Fec" userLabel="Browser Container">
@@ -489,7 +490,7 @@
                                     <segue destination="njo-df-lUt" kind="embed" id="yQ0-GS-hEi"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4pI-Zh-tQ4" userLabel="Comments Container">
+                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4pI-Zh-tQ4" userLabel="Comments Container">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -516,14 +517,14 @@
                                 <exclude reference="4pI-Zh-tQ4"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="fGY-gs-Fy7"/>
+                                <exclude reference="osQ-Jh-OPF"/>
                                 <exclude reference="0MC-kf-jPC"/>
                                 <exclude reference="I5g-PQ-bji"/>
                                 <exclude reference="MH7-2V-L7d"/>
                                 <exclude reference="6vd-1f-VTE"/>
                                 <exclude reference="AJq-Pl-ghp"/>
                                 <exclude reference="LP9-c0-PNl"/>
-                                <exclude reference="fGY-gs-Fy7"/>
-                                <exclude reference="osQ-Jh-OPF"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -532,17 +533,20 @@
                                 <include reference="4pI-Zh-tQ4"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="fGY-gs-Fy7"/>
+                                <include reference="osQ-Jh-OPF"/>
                                 <include reference="0MC-kf-jPC"/>
                                 <include reference="I5g-PQ-bji"/>
                                 <include reference="MH7-2V-L7d"/>
                                 <include reference="6vd-1f-VTE"/>
                                 <include reference="AJq-Pl-ghp"/>
                                 <include reference="LP9-c0-PNl"/>
-                                <include reference="fGY-gs-Fy7"/>
-                                <include reference="osQ-Jh-OPF"/>
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="browserContainer" destination="w7F-hc-Fec" id="6mK-yt-zVv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TBa-P4-ehZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

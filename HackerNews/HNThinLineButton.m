@@ -29,7 +29,6 @@
     return self;
 }
 
-
 - (void)initialize {
     
     self.backgroundColor = [UIColor clearColor];
@@ -39,6 +38,8 @@
     self.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:10.0];
     [self setTitleColor:[UIColor HNOrange] forState:UIControlStateNormal];
 //    [self setTitle:@"XX Comments" forState:UIControlStateNormal];
+    
+    
     
 }
 

@@ -62,6 +62,7 @@
 //    [self updateHeaderView];
 }
 
+
 #pragma mark -  Header View Magic
 
 //- (void)updateHeaderView {
@@ -79,7 +80,7 @@
     
     UIView *header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, size.width, 0)];
     header.translatesAutoresizingMaskIntoConstraints = NO;
-    header.backgroundColor = [UIColor HNOrangeTransparent];
+    header.backgroundColor = [UIColor clearColor];
     
     // Add subviews and their constraints to header
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];

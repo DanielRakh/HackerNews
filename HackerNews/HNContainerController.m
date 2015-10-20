@@ -7,8 +7,12 @@
 //
 
 #import "HNContainerController.h"
+#import "FXBlurView.h"
+#import "UIColor+HNColorPalette.h"
 
 @interface HNContainerController ()
+@property (weak, nonatomic) IBOutlet FXBlurView *blurView;
+@property (weak, nonatomic) IBOutlet UIView *browserContainer;
 
 @end
 
@@ -17,6 +21,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    self.blurView.tintColor = [UIColor HNOrange];
+//    self.blurView.blurRadius = 40;
+//    self.blurView.underlyingView = self.browserContainer;
     // Do any additional setup after loading the view.
 //    self.automaticallyAdjustsScrollViewInsets = NO;
 //    self.edgesForExtendedLayout = UIRectEdgeAll;

@@ -5,6 +5,7 @@ PODS:
   - Firebase-RACExtensions (0.2.0):
     - Firebase (~> 2.0)
     - ReactiveCocoa (~> 2.3)
+  - FXBlurView (1.6.4)
   - PureLayout (3.0.1)
   - RATreeView (1.0.3)
   - Reachability (3.2)
@@ -32,6 +33,7 @@ DEPENDENCIES:
   - DSFavIconManager
   - Firebase (>= 2.2.0)
   - Firebase-RACExtensions
+  - FXBlurView
   - PureLayout
   - RATreeView
   - Reachability (>= 3.2)
@@ -47,6 +49,7 @@ SPEC CHECKSUMS:
   DSFavIconManager: 2584af0b04c20e04aeb04e38ebf23b996eaee1cc
   Firebase: 2db60272f68ce40c7d47e5ae6eddc16977c65d4c
   Firebase-RACExtensions: 6ae340c67e7ec7e845e6603f8223770586278fe6
+  FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   RATreeView: abb5e11bb2f955c7f58b1295d2b0eab1de7c2920
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
