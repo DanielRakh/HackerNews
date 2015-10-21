@@ -205,7 +205,7 @@
         <!--Comments Controller-->
         <scene sceneID="Gz5-vb-jUA">
             <objects>
-                <viewController id="pSV-zm-l6v" customClass="HNCommentsController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="pSV-zm-l6v" customClass="HNCommentsController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8Fc-99-jKf"/>
                         <viewControllerLayoutGuide type="bottom" id="vwq-Yr-H8O"/>
@@ -416,14 +416,14 @@
                         </variation>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="8ol-5l-6c3" id="5FW-bn-DuJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dig-yb-Cro" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2708.25" y="80.5"/>
+            <point key="canvasLocation" x="2717.25" y="68.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QXH-IO-ipJ">
@@ -464,11 +464,11 @@
                         <color key="backgroundColor" red="0.0" green="0.46666666670000001" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <nil key="simulatedTopBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="auc-q0-J4J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2708.25" y="-714.5"/>
+            <point key="canvasLocation" x="2717.25" y="-683"/>
         </scene>
         <!--Container Controller-->
         <scene sceneID="F44-Ti-jOh">
@@ -482,15 +482,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w7F-hc-Fec" userLabel="Browser Container">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <animations/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <segue destination="njo-df-lUt" kind="embed" id="yQ0-GS-hEi"/>
-                                </connections>
-                            </containerView>
-                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4pI-Zh-tQ4" userLabel="Comments Container">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4pI-Zh-tQ4" userLabel="Comments Container">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -498,59 +490,78 @@
                                     <segue destination="pSV-zm-l6v" kind="embed" id="HuR-Ha-7BE"/>
                                 </connections>
                             </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w7F-hc-Fec" userLabel="Browser Container">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="208" id="I5H-Es-oqK"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="I5H-Es-oqK"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="I5H-Es-oqK"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <segue destination="njo-df-lUt" kind="embed" id="yQ0-GS-hEi"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.4315206707" green="0.8116003275" blue="0.1046745107" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="4pI-Zh-tQ4" firstAttribute="leading" secondItem="Pa7-Gq-cjd" secondAttribute="leading" id="0MC-kf-jPC"/>
-                            <constraint firstAttribute="trailing" secondItem="w7F-hc-Fec" secondAttribute="trailing" id="6vd-1f-VTE"/>
-                            <constraint firstItem="w7F-hc-Fec" firstAttribute="top" secondItem="DFc-NZ-QUe" secondAttribute="bottom" constant="-64" id="AJq-Pl-ghp"/>
-                            <constraint firstItem="4pI-Zh-tQ4" firstAttribute="top" secondItem="DFc-NZ-QUe" secondAttribute="bottom" constant="-64" id="I5g-PQ-bji"/>
-                            <constraint firstItem="w7F-hc-Fec" firstAttribute="leading" secondItem="Pa7-Gq-cjd" secondAttribute="leading" id="LP9-c0-PNl"/>
-                            <constraint firstAttribute="trailing" secondItem="4pI-Zh-tQ4" secondAttribute="trailing" id="MH7-2V-L7d"/>
-                            <constraint firstItem="UhY-j4-bG6" firstAttribute="top" secondItem="w7F-hc-Fec" secondAttribute="bottom" id="fGY-gs-Fy7"/>
-                            <constraint firstItem="UhY-j4-bG6" firstAttribute="top" secondItem="4pI-Zh-tQ4" secondAttribute="bottom" id="osQ-Jh-OPF"/>
+                            <constraint firstAttribute="trailing" secondItem="4pI-Zh-tQ4" secondAttribute="trailing" id="2iF-Fh-cGl"/>
+                            <constraint firstAttribute="trailing" secondItem="w7F-hc-Fec" secondAttribute="trailing" id="DVf-HA-LtY"/>
+                            <constraint firstItem="w7F-hc-Fec" firstAttribute="leading" secondItem="Pa7-Gq-cjd" secondAttribute="leading" id="Igd-Zu-7gW"/>
+                            <constraint firstItem="4pI-Zh-tQ4" firstAttribute="leading" secondItem="Pa7-Gq-cjd" secondAttribute="leading" id="L7c-33-qJ1"/>
+                            <constraint firstItem="w7F-hc-Fec" firstAttribute="top" secondItem="Pa7-Gq-cjd" secondAttribute="top" id="MhU-Zb-hdt"/>
+                            <constraint firstItem="UhY-j4-bG6" firstAttribute="top" secondItem="4pI-Zh-tQ4" secondAttribute="bottom" id="TRy-ET-c7U"/>
+                            <constraint firstItem="4pI-Zh-tQ4" firstAttribute="top" secondItem="Pa7-Gq-cjd" secondAttribute="top" id="xY8-La-PAg"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="w7F-hc-Fec"/>
                                 <exclude reference="4pI-Zh-tQ4"/>
+                                <exclude reference="w7F-hc-Fec"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="fGY-gs-Fy7"/>
-                                <exclude reference="osQ-Jh-OPF"/>
-                                <exclude reference="0MC-kf-jPC"/>
-                                <exclude reference="I5g-PQ-bji"/>
-                                <exclude reference="MH7-2V-L7d"/>
-                                <exclude reference="6vd-1f-VTE"/>
-                                <exclude reference="AJq-Pl-ghp"/>
-                                <exclude reference="LP9-c0-PNl"/>
+                                <exclude reference="TRy-ET-c7U"/>
+                                <exclude reference="2iF-Fh-cGl"/>
+                                <exclude reference="L7c-33-qJ1"/>
+                                <exclude reference="xY8-La-PAg"/>
+                                <exclude reference="DVf-HA-LtY"/>
+                                <exclude reference="Igd-Zu-7gW"/>
+                                <exclude reference="MhU-Zb-hdt"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="w7F-hc-Fec"/>
                                 <include reference="4pI-Zh-tQ4"/>
+                                <include reference="w7F-hc-Fec"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="fGY-gs-Fy7"/>
-                                <include reference="osQ-Jh-OPF"/>
-                                <include reference="0MC-kf-jPC"/>
-                                <include reference="I5g-PQ-bji"/>
-                                <include reference="MH7-2V-L7d"/>
-                                <include reference="6vd-1f-VTE"/>
-                                <include reference="AJq-Pl-ghp"/>
-                                <include reference="LP9-c0-PNl"/>
+                                <include reference="TRy-ET-c7U"/>
+                                <include reference="2iF-Fh-cGl"/>
+                                <include reference="L7c-33-qJ1"/>
+                                <include reference="xY8-La-PAg"/>
+                                <include reference="DVf-HA-LtY"/>
+                                <include reference="Igd-Zu-7gW"/>
+                                <include reference="MhU-Zb-hdt"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="browserContainer" destination="w7F-hc-Fec" id="6mK-yt-zVv"/>
+                        <outlet property="browserContainerTopConstraint" destination="MhU-Zb-hdt" id="eSb-Gv-zoL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TBa-P4-ehZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1974.75" y="-326.5"/>
+            <point key="canvasLocation" x="1982.25" y="-318.5"/>
         </scene>
     </scenes>
     <resources>

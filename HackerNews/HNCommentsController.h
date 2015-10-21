@@ -11,7 +11,7 @@
 @interface HNCommentsController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic) UIView *protoTypeHeader; 
+//@property (nonatomic) UIView *protoTypeHeader; 
 
 
 

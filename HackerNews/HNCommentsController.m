@@ -29,10 +29,21 @@
 //    [self.tableView layoutIfNeeded];
 }
 
-- (void)initalizeTableView {
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+//    self.tableView.contentInset = UIEdgeInsetsMake(208, 0, 0, 0);
 
+}
+
+- (void)initalizeTableView {
+    
+
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.tableView.estimatedRowHeight = 100;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.contentInset = UIEdgeInsetsMake(208, 0, 0, 0);
+    self.tableView.contentOffset = CGPointMake(0, -208);
+    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(208, 0, 0, 0);
 }
 
 #pragma mark - Table View Data Source
@@ -76,85 +87,85 @@
 //    self.headerView.frame = headerRect;
 //}
 
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
-    
-    UIView *header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, size.width, 0)];
-    header.translatesAutoresizingMaskIntoConstraints = NO;
-    header.backgroundColor = [UIColor clearColor];
-    
-    // Add subviews and their constraints to header
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
-    titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    titleLabel.text = @"Can Genetic Engineering Bring Back Extinct Animals?";
-    titleLabel.numberOfLines = 0;
-    titleLabel.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightMedium];
-    titleLabel.textColor = [UIColor HNWhiteOff];
-    [titleLabel setContentCompressionResistancePriority:999.0 forAxis:UILayoutConstraintAxisVertical];
-    
-    UILabel *originLabel = [[UILabel alloc]initWithFrame:CGRectZero];
-    originLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    originLabel.text = @"999 Points • hamburgefonstiv • 12 hrs";
-    originLabel.numberOfLines = 1;
-    originLabel.font = [UIFont systemFontOfSize:12.0 weight:UIFontWeightRegular];
-    originLabel.textColor = [UIColor HNWhiteOff];
-    originLabel.textAlignment = NSTextAlignmentLeft;
-    
-    UIButton *expandButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    expandButton.translatesAutoresizingMaskIntoConstraints = NO;
-    expandButton.backgroundColor = [UIColor HNWhiteCloudy];
-    [expandButton setTitle:@"Expand" forState:UIControlStateNormal];
-    expandButton.titleLabel.font = [UIFont systemFontOfSize:12.0 weight:UIFontWeightRegular];
-    expandButton.tintColor = [UIColor orangeColor];
-    [expandButton.widthAnchor constraintEqualToConstant:104.0].active = YES;
-    [expandButton.heightAnchor constraintEqualToConstant:28.0].active = YES;
-    expandButton.layer.cornerRadius = 28.0 / 2.0;
-
-    
-    UIStackView *bottomStackView = [[UIStackView alloc]initWithArrangedSubviews:@[originLabel, expandButton]];
-    bottomStackView.translatesAutoresizingMaskIntoConstraints = NO;
-    bottomStackView.alignment = UIStackViewAlignmentCenter;
-    bottomStackView.axis = UILayoutConstraintAxisHorizontal;
-    bottomStackView.distribution = UIStackViewDistributionFill;
-    bottomStackView.spacing = 16.0;
-    
-    UIStackView *containerStackView = [[UIStackView alloc]initWithArrangedSubviews:@[titleLabel, bottomStackView]];
-    containerStackView.translatesAutoresizingMaskIntoConstraints = NO;
-    containerStackView.axis = UILayoutConstraintAxisVertical;
-    containerStackView.distribution = UIStackViewDistributionFill;
-    containerStackView.alignment = UIStackViewAlignmentFill;
-    containerStackView.spacing = 16.0;
-    
-    [header addSubview:containerStackView];
-    
-    [containerStackView.topAnchor constraintEqualToAnchor:header.topAnchor constant:16.0].active = YES;
-    [containerStackView.leadingAnchor constraintEqualToAnchor:header.leadingAnchor constant:16.0].active = YES;
-    [containerStackView.bottomAnchor constraintEqualToAnchor:header.bottomAnchor constant:-16.0].active = YES;
-    [containerStackView.trailingAnchor constraintEqualToAnchor:header.trailingAnchor constant:-16.0].active = YES;
-    
-    NSLayoutConstraint *headerWidthConstraint = [header.widthAnchor constraintEqualToConstant:size.width];
-    headerWidthConstraint.active = YES;
-    
-    CGFloat height = [header systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-    headerWidthConstraint.active = NO;
-    
-    header.frame = CGRectMake(0, 0, size.width, height);
-    header.translatesAutoresizingMaskIntoConstraints = YES;
-    self.tableView.tableHeaderView = header;
-    
-    
-    CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
-    
-    CGFloat navHeight = self.navigationController.navigationBar.bounds.size.height;
-    
-    self.tableView.contentInset = UIEdgeInsetsMake(navHeight + statusBarHeight, 0, 0, 0);
-    self.tableView.contentOffset = CGPointMake(0, -navHeight - statusBarHeight);
- 
-}
-
-
-- (void)willMoveToParentViewController:(UIViewController *)parent {
-      [self viewWillTransitionToSize:self.view.bounds.size withTransitionCoordinator:self.transitionCoordinator];
-}
+//- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+//    
+//    UIView *header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, size.width, 0)];
+//    header.translatesAutoresizingMaskIntoConstraints = NO;
+//    header.backgroundColor = [UIColor clearColor];
+//    
+//    // Add subviews and their constraints to header
+//    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+//    titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+//    titleLabel.text = @"Can Genetic Engineering Bring Back Extinct Animals?";
+//    titleLabel.numberOfLines = 0;
+//    titleLabel.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightMedium];
+//    titleLabel.textColor = [UIColor HNWhiteOff];
+//    [titleLabel setContentCompressionResistancePriority:999.0 forAxis:UILayoutConstraintAxisVertical];
+//    
+//    UILabel *originLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+//    originLabel.translatesAutoresizingMaskIntoConstraints = NO;
+//    originLabel.text = @"999 Points • hamburgefonstiv • 12 hrs";
+//    originLabel.numberOfLines = 1;
+//    originLabel.font = [UIFont systemFontOfSize:12.0 weight:UIFontWeightRegular];
+//    originLabel.textColor = [UIColor HNWhiteOff];
+//    originLabel.textAlignment = NSTextAlignmentLeft;
+//    
+//    UIButton *expandButton = [UIButton buttonWithType:UIButtonTypeSystem];
+//    expandButton.translatesAutoresizingMaskIntoConstraints = NO;
+//    expandButton.backgroundColor = [UIColor HNWhiteCloudy];
+//    [expandButton setTitle:@"Expand" forState:UIControlStateNormal];
+//    expandButton.titleLabel.font = [UIFont systemFontOfSize:12.0 weight:UIFontWeightRegular];
+//    expandButton.tintColor = [UIColor orangeColor];
+//    [expandButton.widthAnchor constraintEqualToConstant:104.0].active = YES;
+//    [expandButton.heightAnchor constraintEqualToConstant:28.0].active = YES;
+//    expandButton.layer.cornerRadius = 28.0 / 2.0;
+//
+//    
+//    UIStackView *bottomStackView = [[UIStackView alloc]initWithArrangedSubviews:@[originLabel, expandButton]];
+//    bottomStackView.translatesAutoresizingMaskIntoConstraints = NO;
+//    bottomStackView.alignment = UIStackViewAlignmentCenter;
+//    bottomStackView.axis = UILayoutConstraintAxisHorizontal;
+//    bottomStackView.distribution = UIStackViewDistributionFill;
+//    bottomStackView.spacing = 16.0;
+//    
+//    UIStackView *containerStackView = [[UIStackView alloc]initWithArrangedSubviews:@[titleLabel, bottomStackView]];
+//    containerStackView.translatesAutoresizingMaskIntoConstraints = NO;
+//    containerStackView.axis = UILayoutConstraintAxisVertical;
+//    containerStackView.distribution = UIStackViewDistributionFill;
+//    containerStackView.alignment = UIStackViewAlignmentFill;
+//    containerStackView.spacing = 16.0;
+//    
+//    [header addSubview:containerStackView];
+//    
+//    [containerStackView.topAnchor constraintEqualToAnchor:header.topAnchor constant:16.0].active = YES;
+//    [containerStackView.leadingAnchor constraintEqualToAnchor:header.leadingAnchor constant:16.0].active = YES;
+//    [containerStackView.bottomAnchor constraintEqualToAnchor:header.bottomAnchor constant:-16.0].active = YES;
+//    [containerStackView.trailingAnchor constraintEqualToAnchor:header.trailingAnchor constant:-16.0].active = YES;
+//    
+//    NSLayoutConstraint *headerWidthConstraint = [header.widthAnchor constraintEqualToConstant:size.width];
+//    headerWidthConstraint.active = YES;
+//    
+//    CGFloat height = [header systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+//    headerWidthConstraint.active = NO;
+//    
+//    header.frame = CGRectMake(0, 0, size.width, height);
+//    header.translatesAutoresizingMaskIntoConstraints = YES;
+//    self.tableView.tableHeaderView = header;
+//    
+//    
+//    CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+//    
+//    CGFloat navHeight = self.navigationController.navigationBar.bounds.size.height;
+//    
+//    self.tableView.contentInset = UIEdgeInsetsMake(navHeight + statusBarHeight, 0, 0, 0);
+//    self.tableView.contentOffset = CGPointMake(0, -navHeight - statusBarHeight);
+// 
+//}
+//
+//
+//- (void)willMoveToParentViewController:(UIViewController *)parent {
+//      [self viewWillTransitionToSize:self.view.bounds.size withTransitionCoordinator:self.transitionCoordinator];
+//}
 
 
 @end

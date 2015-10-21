@@ -14,8 +14,5 @@
 
 @property (nonatomic) HNBrowserViewModel *viewModel;
 @property (weak, nonatomic) IBOutlet UIView *webViewContainer;
-@property (weak, nonatomic) IBOutlet UIView *overlayView;
-@property (weak, nonatomic) IBOutlet UIStackView *contentStackView;
-@property (weak, nonatomic) IBOutlet UIButton *expandButton;
 
 @end
