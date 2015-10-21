@@ -17,6 +17,7 @@ pod 'TLIndexPathTools'
 pod 'SDWebImage'
 pod 'DSFavIconManager'
 pod 'FXBlurView'
+pod 'AMScrollingNavbar', '< 2.0'
 
 end
 

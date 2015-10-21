@@ -378,10 +378,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="pSV-zm-l6v" id="FKX-gU-BPY"/>
-                                    <outlet property="delegate" destination="pSV-zm-l6v" id="Gz5-wP-krU"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <animations/>
@@ -473,7 +469,7 @@
         <!--Container Controller-->
         <scene sceneID="F44-Ti-jOh">
             <objects>
-                <viewController id="CRB-wZ-An5" customClass="HNContainerController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="CRB-wZ-An5" customClass="HNContainerController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DFc-NZ-QUe"/>
                         <viewControllerLayoutGuide type="bottom" id="UhY-j4-bG6"/>
@@ -557,6 +553,7 @@
                     <connections>
                         <outlet property="browserContainer" destination="w7F-hc-Fec" id="6mK-yt-zVv"/>
                         <outlet property="browserContainerTopConstraint" destination="MhU-Zb-hdt" id="eSb-Gv-zoL"/>
+                        <outlet property="commentsContainerTopConstraint" destination="xY8-La-PAg" id="25h-1W-7y5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TBa-P4-ehZ" userLabel="First Responder" sceneMemberID="firstResponder"/>

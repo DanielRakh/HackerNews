@@ -1,4 +1,5 @@
 PODS:
+  - AMScrollingNavbar (1.5.1)
   - DateTools (1.7.0)
   - DSFavIconManager (0.10.1)
   - Firebase (2.3.3)
@@ -29,6 +30,7 @@ PODS:
   - TLIndexPathTools (0.4.1)
 
 DEPENDENCIES:
+  - AMScrollingNavbar (< 2.0)
   - DateTools
   - DSFavIconManager
   - Firebase (>= 2.2.0)
@@ -45,6 +47,7 @@ DEPENDENCIES:
   - TLIndexPathTools
 
 SPEC CHECKSUMS:
+  AMScrollingNavbar: 767ed2db60d927a809bddff5d01b739b7020b12b
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   DSFavIconManager: 2584af0b04c20e04aeb04e38ebf23b996eaee1cc
   Firebase: 2db60272f68ce40c7d47e5ae6eddc16977c65d4c

@@ -27,6 +27,9 @@
     [self initalizeTableView];
 //    self.headerView = self.tableView.tableHeaderView;
 //    [self.tableView layoutIfNeeded];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
