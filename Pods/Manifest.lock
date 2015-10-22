@@ -2,10 +2,7 @@ PODS:
   - AMScrollingNavbar (2.0.6)
   - DateTools (1.7.0)
   - DSFavIconManager (0.10.1)
-  - Firebase (2.3.3)
-  - FXBlurView (1.6.4)
-  - PureLayout (3.0.1)
-  - RATreeView (1.0.3)
+  - Firebase (2.4.2)
   - Reachability (3.2)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
@@ -18,27 +15,20 @@ PODS:
     - ReactiveCocoa
   - ReactiveViewModel (0.3):
     - ReactiveCocoa (~> 2.4)
-  - RZCellSizeManager (1.1.2):
-    - RZCellSizeManager/Core (= 1.1.2)
-  - RZCellSizeManager/Core (1.1.2)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
   - TLIndexPathTools (0.4.1)
 
 DEPENDENCIES:
-  - AMScrollingNavbar (~> 2.0.1)
+  - AMScrollingNavbar
   - DateTools
   - DSFavIconManager
-  - Firebase (= 2.3.3)
-  - FXBlurView
-  - PureLayout
-  - RATreeView
-  - Reachability (>= 3.2)
+  - Firebase
+  - Reachability
   - ReactiveCocoa
-  - ReactiveCoreData (>= 0.0)
-  - ReactiveViewModel (>= 0.3)
-  - RZCellSizeManager
+  - ReactiveCoreData
+  - ReactiveViewModel
   - SDWebImage
   - TLIndexPathTools
 
@@ -46,15 +36,11 @@ SPEC CHECKSUMS:
   AMScrollingNavbar: 5feb35476990fcbe1134cec6a9dcd1ece2d1aa21
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   DSFavIconManager: 2584af0b04c20e04aeb04e38ebf23b996eaee1cc
-  Firebase: 2db60272f68ce40c7d47e5ae6eddc16977c65d4c
-  FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
-  PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
-  RATreeView: abb5e11bb2f955c7f58b1295d2b0eab1de7c2920
+  Firebase: 5e898ed5012c81d28ca5fae1113c6b61a172bc6d
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   ReactiveCoreData: 1ca5406c2d2fdab8a40ba939f59c41eda9f469a3
   ReactiveViewModel: 58918dcbcec2d3151195ab1ed9163c57a8163999
-  RZCellSizeManager: 04bd83953cb5a427ae3d9e430045a15ee4789699
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   TLIndexPathTools: 569dfaa167ed1a409f6ffed9e50393d1ba3cf9f2
 
