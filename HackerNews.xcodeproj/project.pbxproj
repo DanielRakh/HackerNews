@@ -10,7 +10,6 @@
 		8E0059FA1BBDA30100B21BA1 /* HNCommentsRootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0059F91BBDA30100B21BA1 /* HNCommentsRootCell.m */; settings = {ASSET_TAGS = (); }; };
 		8E005A431BC05A4B00B21BA1 /* HNContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E005A421BC05A4B00B21BA1 /* HNContainerController.m */; settings = {ASSET_TAGS = (); }; };
 		8E005A681BC1CC0000B21BA1 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E005A671BC1CC0000B21BA1 /* Accelerate.framework */; };
-		8E049EFE1B0AAE3100A0FBD5 /* UIView+FindUITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E049EFD1B0AAE3100A0FBD5 /* UIView+FindUITableView.m */; };
 		8E2352401ACC571F0009552D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E23523F1ACC571F0009552D /* main.m */; };
 		8E2352431ACC571F0009552D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352421ACC571F0009552D /* AppDelegate.m */; };
 		8E2352461ACC571F0009552D /* HNFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2352451ACC571F0009552D /* HNFeedViewController.m */; };
@@ -84,8 +83,6 @@
 		8E005A411BC05A4B00B21BA1 /* HNContainerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNContainerController.h; sourceTree = "<group>"; };
 		8E005A421BC05A4B00B21BA1 /* HNContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNContainerController.m; sourceTree = "<group>"; };
 		8E005A671BC1CC0000B21BA1 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		8E049EFC1B0AAE3100A0FBD5 /* UIView+FindUITableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FindUITableView.h"; sourceTree = "<group>"; };
-		8E049EFD1B0AAE3100A0FBD5 /* UIView+FindUITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FindUITableView.m"; sourceTree = "<group>"; };
 		8E23523A1ACC571F0009552D /* HackerNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackerNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E23523E1ACC571F0009552D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E23523F1ACC571F0009552D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -101,8 +98,6 @@
 		8E2352591ACC571F0009552D /* HackerNewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HackerNewsTests.m; sourceTree = "<group>"; };
 		8E23526A1ACC651F0009552D /* HNFeedViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNFeedViewModel.h; sourceTree = "<group>"; };
 		8E23526B1ACC651F0009552D /* HNFeedViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNFeedViewModel.m; sourceTree = "<group>"; };
-		8E23526D1ACC69200009552D /* HNFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNFeedCell.h; sourceTree = "<group>"; };
-		8E23526E1ACC69200009552D /* HNFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNFeedCell.m; sourceTree = "<group>"; };
 		8E2352731ACC73BE0009552D /* UIColor+HNColorPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HNColorPalette.h"; sourceTree = "<group>"; };
 		8E2352741ACC73BE0009552D /* UIColor+HNColorPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HNColorPalette.m"; sourceTree = "<group>"; };
 		8E2352AB1ACD1C3C0009552D /* HNFeedCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNFeedCellViewModel.h; sourceTree = "<group>"; };
@@ -135,10 +130,6 @@
 		8E6ABD1C1BD8AFB00097B9AB /* FQuery+RACExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FQuery+RACExtensions.m"; sourceTree = "<group>"; };
 		8E7530391B3D1CBE004835CE /* HNAutosizingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAutosizingLabel.h; sourceTree = "<group>"; };
 		8E75303A1B3D1CBE004835CE /* HNAutosizingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAutosizingLabel.m; sourceTree = "<group>"; };
-		8E79635E1B4E343900B27CD2 /* HNCommentsHeaderCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsHeaderCardView.h; sourceTree = "<group>"; };
-		8E79635F1B4E343900B27CD2 /* HNCommentsHeaderCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsHeaderCardView.m; sourceTree = "<group>"; };
-		8E7963601B4E343900B27CD2 /* HNCommentsThreadCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsThreadCardView.h; sourceTree = "<group>"; };
-		8E7963611B4E343900B27CD2 /* HNCommentsThreadCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsThreadCardView.m; sourceTree = "<group>"; };
 		8E7963641B4EEAD200B27CD2 /* HNCommentsCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsCommentCell.h; sourceTree = "<group>"; };
 		8E7963651B4EEAD200B27CD2 /* HNCommentsCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsCommentCell.m; sourceTree = "<group>"; };
 		8E7963691B4F1AE300B27CD2 /* HNConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNConstants.h; sourceTree = "<group>"; };
@@ -200,10 +191,6 @@
 		8ED923AA1AEB562300801543 /* HNCommentsCommentReplyWithRepliesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsCommentReplyWithRepliesCell.m; sourceTree = "<group>"; };
 		8ED923F41AEC3B2D00801543 /* HNCommentThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentThread.h; sourceTree = "<group>"; };
 		8ED923F51AEC3B2D00801543 /* HNCommentThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentThread.m; sourceTree = "<group>"; };
-		8EF0529E1B4C35010043CF08 /* HNCommentsContainerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsContainerController.h; sourceTree = "<group>"; };
-		8EF0529F1B4C35010043CF08 /* HNCommentsContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsContainerController.m; sourceTree = "<group>"; };
-		8EF052A11B4C8C6A0043CF08 /* HNCommentsCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsCardView.h; sourceTree = "<group>"; };
-		8EF052A21B4C8C6A0043CF08 /* HNCommentsCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsCardView.m; sourceTree = "<group>"; };
 		E6E214A4479710CF3CF8F84E /* Pods-HackerNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HackerNews/Pods-HackerNews.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -270,19 +257,16 @@
 		8E23523C1ACC571F0009552D /* HackerNews */ = {
 			isa = PBXGroup;
 			children = (
-				8E6ABD171BD8AFB00097B9AB /* Classes */,
-				8E005A411BC05A4B00B21BA1 /* HNContainerController.h */,
-				8E005A421BC05A4B00B21BA1 /* HNContainerController.m */,
-				8E2352681ACC5C480009552D /* Model */,
 				8E2352411ACC571F0009552D /* AppDelegate.h */,
 				8E2352421ACC571F0009552D /* AppDelegate.m */,
-				8E87C46F1AE466CC00CD004E /* Shared */,
-				8E87C46E1AE466BE00CD004E /* Utilities */,
 				8E2352AE1ACDC2380009552D /* Networking */,
+				8E2352681ACC5C480009552D /* Model */,
+				8E005A411BC05A4B00B21BA1 /* HNContainerController.h */,
+				8E005A421BC05A4B00B21BA1 /* HNContainerController.m */,
 				8E395EDF1AD1976800EE0DB9 /* Comments */,
 				8E395ED51AD0731100EE0DB9 /* Browser */,
 				8E2352691ACC5C560009552D /* Feed */,
-				8E395EDE1AD0742200EE0DB9 /* Categories */,
+				8E87C46E1AE466BE00CD004E /* Utilities */,
 				8E2352471ACC571F0009552D /* Main.storyboard */,
 				8E23524A1ACC571F0009552D /* Images.xcassets */,
 				8E23524C1ACC571F0009552D /* LaunchScreen.xib */,
@@ -381,8 +365,6 @@
 			children = (
 				8E2352441ACC571F0009552D /* HNFeedViewController.h */,
 				8E2352451ACC571F0009552D /* HNFeedViewController.m */,
-				8E23526D1ACC69200009552D /* HNFeedCell.h */,
-				8E23526E1ACC69200009552D /* HNFeedCell.m */,
 				8EA649D11BB46AB100C2A2FB /* HNFeedCellLinked.h */,
 				8EA649D21BB46AB100C2A2FB /* HNFeedCellLinked.m */,
 			);
@@ -400,15 +382,6 @@
 			name = "View Model";
 			sourceTree = "<group>";
 		};
-		8E395EDE1AD0742200EE0DB9 /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				8E2352731ACC73BE0009552D /* UIColor+HNColorPalette.h */,
-				8E2352741ACC73BE0009552D /* UIColor+HNColorPalette.m */,
-			);
-			name = Categories;
-			sourceTree = "<group>";
-		};
 		8E395EDF1AD1976800EE0DB9 /* Comments */ = {
 			isa = PBXGroup;
 			children = (
@@ -423,14 +396,6 @@
 			children = (
 				8E294EBE1BBAEA8700DAE785 /* HNCommentsController.h */,
 				8E294EBF1BBAEA8700DAE785 /* HNCommentsController.m */,
-				8E79635E1B4E343900B27CD2 /* HNCommentsHeaderCardView.h */,
-				8E79635F1B4E343900B27CD2 /* HNCommentsHeaderCardView.m */,
-				8E7963601B4E343900B27CD2 /* HNCommentsThreadCardView.h */,
-				8E7963611B4E343900B27CD2 /* HNCommentsThreadCardView.m */,
-				8EF052A11B4C8C6A0043CF08 /* HNCommentsCardView.h */,
-				8EF052A21B4C8C6A0043CF08 /* HNCommentsCardView.m */,
-				8EF0529E1B4C35010043CF08 /* HNCommentsContainerController.h */,
-				8EF0529F1B4C35010043CF08 /* HNCommentsContainerController.m */,
 				8ED20F4E1B35E90900C6D37C /* Cells */,
 			);
 			name = View;
@@ -462,7 +427,7 @@
 			name = "Managed Objects";
 			sourceTree = "<group>";
 		};
-		8E6ABD171BD8AFB00097B9AB /* Classes */ = {
+		8E6ABD171BD8AFB00097B9AB /* Firebase-RACExtensions */ = {
 			isa = PBXGroup;
 			children = (
 				8E6ABD181BD8AFB00097B9AB /* .gitkeep */,
@@ -471,12 +436,15 @@
 				8E6ABD1B1BD8AFB00097B9AB /* FQuery+RACExtensions.h */,
 				8E6ABD1C1BD8AFB00097B9AB /* FQuery+RACExtensions.m */,
 			);
+			name = "Firebase-RACExtensions";
 			path = Classes;
 			sourceTree = "<group>";
 		};
 		8E87C46E1AE466BE00CD004E /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				8E87C46F1AE466CC00CD004E /* Common */,
+				8E6ABD171BD8AFB00097B9AB /* Firebase-RACExtensions */,
 				8ED20F411B2F78A700C6D37C /* DLog */,
 				8E87C4401AE3424800CD004E /* NSString+RemoveTag.h */,
 				8E87C4411AE3424800CD004E /* NSString+RemoveTag.m */,
@@ -484,13 +452,13 @@
 				8E87C43E1AE3421100CD004E /* HNUtilities.m */,
 				8ED804CE1AE6D35100BE4AB0 /* UIFont+HNFont.h */,
 				8ED804CF1AE6D35100BE4AB0 /* UIFont+HNFont.m */,
-				8E049EFC1B0AAE3100A0FBD5 /* UIView+FindUITableView.h */,
-				8E049EFD1B0AAE3100A0FBD5 /* UIView+FindUITableView.m */,
+				8E2352731ACC73BE0009552D /* UIColor+HNColorPalette.h */,
+				8E2352741ACC73BE0009552D /* UIColor+HNColorPalette.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
 		};
-		8E87C46F1AE466CC00CD004E /* Shared */ = {
+		8E87C46F1AE466CC00CD004E /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				8E7963691B4F1AE300B27CD2 /* HNConstants.h */,
@@ -502,7 +470,7 @@
 				8E87C4391AE31FFD00CD004E /* HNThinLineButton.h */,
 				8E87C43A1AE31FFD00CD004E /* HNThinLineButton.m */,
 			);
-			name = Shared;
+			name = Common;
 			sourceTree = "<group>";
 		};
 		8EA649D41BB5C36F00C2A2FB /* SVG */ = {
@@ -813,7 +781,6 @@
 				8E6ABD1E1BD8AFB00097B9AB /* Firebase+RACExtensions.m in Sources */,
 				8E79636B1B4F1B1800B27CD2 /* HNConstants.m in Sources */,
 				8EA649F31BB5C4CB00C2A2FB /* UIImage+SVG.m in Sources */,
-				8E049EFE1B0AAE3100A0FBD5 /* UIView+FindUITableView.m in Sources */,
 				8E87C43B1AE31FFD00CD004E /* HNTableView.m in Sources */,
 				8EA649F11BB5C4CB00C2A2FB /* JAMSVGParser.m in Sources */,
 				8ED20F441B2F78A700C6D37C /* DLog.m in Sources */,
