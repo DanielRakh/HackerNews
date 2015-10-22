@@ -3,21 +3,24 @@
 
 target 'HackerNews' do
 
+use_frameworks!
+
+
 pod 'PureLayout'
-pod 'Firebase', '>= 2.2.0'
+pod 'Firebase', '2.3.3'
 pod 'ReactiveCocoa'
 pod 'DateTools'
 pod 'ReactiveCoreData', '>= 0.0'
 pod 'ReactiveViewModel', '>= 0.3'
 pod 'Reachability', '>= 3.2'
-pod "Firebase-RACExtensions"
 pod 'RATreeView'
 pod 'RZCellSizeManager'
 pod 'TLIndexPathTools'
 pod 'SDWebImage'
 pod 'DSFavIconManager'
 pod 'FXBlurView'
-pod 'AMScrollingNavbar', '< 2.0'
+pod 'AMScrollingNavbar', '~> 2.0.1'
+
 
 end
 

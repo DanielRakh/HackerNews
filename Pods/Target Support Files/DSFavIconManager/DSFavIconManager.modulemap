@@ -1,0 +1,6 @@
+framework module DSFavIconManager {
+  umbrella header "DSFavIconManager-umbrella.h"
+
+  export *
+  module * { export * }
+}

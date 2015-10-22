@@ -10,6 +10,7 @@
 #import "HNCommentsRootCell.h"
 #import "HNBrowserViewController.h"
 #import "UIColor+HNColorPalette.h"
+@import AMScrollingNavbar;
 
 @interface HNCommentsController () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 
@@ -32,11 +33,13 @@
 
 }
 
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    self.tableView.contentInset = UIEdgeInsetsMake(208, 0, 0, 0);
-
+    [(ScrollingNavigationController *)self.navigationController followScrollView:self.tableView delay:0];
+    
 }
+
 
 - (void)initalizeTableView {
     

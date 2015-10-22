@@ -10,7 +10,6 @@
 #import "UIColor+HNColorPalette.h"
 #import "HNCommentsController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "UIViewController+ScrollingNavbar.h"
 
 
 @interface HNContainerController ()
@@ -37,10 +36,6 @@
         CGFloat offset = 208 + offsetPoint.CGPointValue.y;
         self.browserContainerTopConstraint.constant = -offset;
     }];
-    
-    
-//    [self setUseSuperview:YES];
-//    [self followScrollView:self.commentsController.tableView usingTopConstraint:self.commentsContainerTopConstraint];
 
     
 }

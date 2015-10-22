@@ -1,1 +1,0 @@
-../../../ReactiveCoreData/ReactiveCoreData/NSManagedObject+ReactiveCoreData.h

@@ -1,11 +1,8 @@
 PODS:
-  - AMScrollingNavbar (1.5.1)
+  - AMScrollingNavbar (2.0.6)
   - DateTools (1.7.0)
   - DSFavIconManager (0.10.1)
   - Firebase (2.3.3)
-  - Firebase-RACExtensions (0.2.0):
-    - Firebase (~> 2.0)
-    - ReactiveCocoa (~> 2.3)
   - FXBlurView (1.6.4)
   - PureLayout (3.0.1)
   - RATreeView (1.0.3)
@@ -30,11 +27,10 @@ PODS:
   - TLIndexPathTools (0.4.1)
 
 DEPENDENCIES:
-  - AMScrollingNavbar (< 2.0)
+  - AMScrollingNavbar (~> 2.0.1)
   - DateTools
   - DSFavIconManager
-  - Firebase (>= 2.2.0)
-  - Firebase-RACExtensions
+  - Firebase (= 2.3.3)
   - FXBlurView
   - PureLayout
   - RATreeView
@@ -47,11 +43,10 @@ DEPENDENCIES:
   - TLIndexPathTools
 
 SPEC CHECKSUMS:
-  AMScrollingNavbar: 767ed2db60d927a809bddff5d01b739b7020b12b
+  AMScrollingNavbar: 5feb35476990fcbe1134cec6a9dcd1ece2d1aa21
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   DSFavIconManager: 2584af0b04c20e04aeb04e38ebf23b996eaee1cc
   Firebase: 2db60272f68ce40c7d47e5ae6eddc16977c65d4c
-  Firebase-RACExtensions: 6ae340c67e7ec7e845e6603f8223770586278fe6
   FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   RATreeView: abb5e11bb2f955c7f58b1295d2b0eab1de7c2920

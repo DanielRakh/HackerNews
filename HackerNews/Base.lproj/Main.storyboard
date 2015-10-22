@@ -38,6 +38,9 @@
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                             <color key="textColor" red="0.23921568630000001" green="0.26274509800000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
+                                                            <variation key="widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="16"/>
+                                                            </variation>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uJH-bn-vy8">
                                                             <rect key="frame" x="0.0" y="28" width="395" height="12"/>
@@ -68,9 +71,15 @@
                                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
                                                                     <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
+                                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="18" y="0.0" width="325" height="12"/>
+                                                                    </variation>
                                                                 </label>
                                                             </subviews>
                                                             <animations/>
+                                                            <variation key="widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="0.0" y="24" width="343" height="12"/>
+                                                            </variation>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kld-Jy-eoy">
                                                             <rect key="frame" x="0.0" y="48" width="395" height="24"/>
@@ -81,6 +90,9 @@
                                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
                                                                     <color key="textColor" red="0.23921568630000001" green="0.26274509800000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
+                                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="224" height="27"/>
+                                                                    </variation>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohg-P5-JgD" userLabel="Comments">
                                                                     <rect key="frame" x="241" y="0.0" width="154" height="24"/>
@@ -100,7 +112,8 @@
                                                                             <exclude reference="aer-sU-Ybh"/>
                                                                         </mask>
                                                                     </variation>
-                                                                    <variation key="widthClass=compact">
+                                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="241" y="0.0" width="102" height="27"/>
                                                                         <mask key="constraints">
                                                                             <include reference="9nr-8K-w32"/>
                                                                             <include reference="aer-sU-Ybh"/>
@@ -112,9 +125,15 @@
                                                                 </button>
                                                             </subviews>
                                                             <animations/>
+                                                            <variation key="widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="0.0" y="44" width="343" height="27"/>
+                                                            </variation>
                                                         </stackView>
                                                     </subviews>
                                                     <animations/>
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="16" y="16" width="343" height="71"/>
+                                                    </variation>
                                                 </stackView>
                                             </subviews>
                                             <animations/>
@@ -270,7 +289,8 @@
                                                                             <exclude reference="eLK-Mf-8io"/>
                                                                         </mask>
                                                                     </variation>
-                                                                    <variation key="widthClass=compact">
+                                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="0.0" y="13" width="45" height="1"/>
                                                                         <mask key="constraints">
                                                                             <include reference="eLK-Mf-8io"/>
                                                                         </mask>
@@ -296,7 +316,8 @@
                                                                             <exclude reference="J5p-fR-4hK"/>
                                                                         </mask>
                                                                     </variation>
-                                                                    <variation key="widthClass=compact">
+                                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="53" y="0.0" width="102" height="27"/>
                                                                         <mask key="constraints">
                                                                             <include reference="BJP-31-wEI"/>
                                                                             <include reference="J5p-fR-4hK"/>
@@ -317,7 +338,8 @@
                                                                             <exclude reference="dL2-Ba-afN"/>
                                                                         </mask>
                                                                     </variation>
-                                                                    <variation key="widthClass=compact">
+                                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="163" y="13" width="45" height="1"/>
                                                                         <mask key="constraints">
                                                                             <include reference="dL2-Ba-afN"/>
                                                                         </mask>

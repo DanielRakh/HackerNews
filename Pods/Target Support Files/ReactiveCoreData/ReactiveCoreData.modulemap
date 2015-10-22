@@ -1,0 +1,6 @@
+framework module ReactiveCoreData {
+  umbrella header "ReactiveCoreData-umbrella.h"
+
+  export *
+  module * { export * }
+}

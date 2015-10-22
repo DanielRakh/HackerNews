@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		232EA86ED3B142439FDB2337 /* libPods-HackerNews.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B63D98C41D195B8CB7E9733 /* libPods-HackerNews.a */; };
 		8E0059FA1BBDA30100B21BA1 /* HNCommentsRootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0059F91BBDA30100B21BA1 /* HNCommentsRootCell.m */; settings = {ASSET_TAGS = (); }; };
 		8E005A431BC05A4B00B21BA1 /* HNContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E005A421BC05A4B00B21BA1 /* HNContainerController.m */; settings = {ASSET_TAGS = (); }; };
 		8E005A681BC1CC0000B21BA1 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E005A671BC1CC0000B21BA1 /* Accelerate.framework */; };
@@ -52,6 +51,9 @@
 		8E395F291AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8E395F271AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld */; };
 		8E395F2C1AD475B000EE0DB9 /* HNCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E395F2B1AD475B000EE0DB9 /* HNCoreDataStack.m */; };
 		8E52515F1AD5FA3300EE080D /* HNStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E52515E1AD5FA3300EE080D /* HNStory.m */; };
+		8E6ABD1D1BD8AFB00097B9AB /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 8E6ABD181BD8AFB00097B9AB /* .gitkeep */; settings = {ASSET_TAGS = (); }; };
+		8E6ABD1E1BD8AFB00097B9AB /* Firebase+RACExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6ABD1A1BD8AFB00097B9AB /* Firebase+RACExtensions.m */; settings = {ASSET_TAGS = (); }; };
+		8E6ABD1F1BD8AFB00097B9AB /* FQuery+RACExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6ABD1C1BD8AFB00097B9AB /* FQuery+RACExtensions.m */; settings = {ASSET_TAGS = (); }; };
 		8E75303B1B3D1CBE004835CE /* HNAutosizingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E75303A1B3D1CBE004835CE /* HNAutosizingLabel.m */; };
 		8E79636B1B4F1B1800B27CD2 /* HNConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E79636A1B4F1B1800B27CD2 /* HNConstants.m */; };
 		8E87C43B1AE31FFD00CD004E /* HNTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C4381AE31FFD00CD004E /* HNTableView.m */; };
@@ -80,6 +82,7 @@
 		8ED435021AE999FB00A99D9F /* HNComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED435011AE999FB00A99D9F /* HNComment.m */; };
 		8ED804D01AE6D35100BE4AB0 /* UIFont+HNFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED804CF1AE6D35100BE4AB0 /* UIFont+HNFont.m */; };
 		8ED923F61AEC3B2D00801543 /* HNCommentThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED923F51AEC3B2D00801543 /* HNCommentThread.m */; };
+		A22CCEB8397230C8F208BCF4 /* Pods_HackerNews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DB19F30B305CFE46D6BD248 /* Pods_HackerNews.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,7 +96,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2B63D98C41D195B8CB7E9733 /* libPods-HackerNews.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HackerNews.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0DB19F30B305CFE46D6BD248 /* Pods_HackerNews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HackerNews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49EEA4C5D50304781D65B10B /* Pods-HackerNews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNews.release.xcconfig"; path = "Pods/Target Support Files/Pods-HackerNews/Pods-HackerNews.release.xcconfig"; sourceTree = "<group>"; };
 		8E0059F81BBDA30100B21BA1 /* HNCommentsRootCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsRootCell.h; sourceTree = "<group>"; };
 		8E0059F91BBDA30100B21BA1 /* HNCommentsRootCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsRootCell.m; sourceTree = "<group>"; };
@@ -181,6 +184,11 @@
 		8E395F2B1AD475B000EE0DB9 /* HNCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCoreDataStack.m; sourceTree = "<group>"; };
 		8E52515D1AD5FA3300EE080D /* HNStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNStory.h; sourceTree = "<group>"; };
 		8E52515E1AD5FA3300EE080D /* HNStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNStory.m; sourceTree = "<group>"; };
+		8E6ABD181BD8AFB00097B9AB /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		8E6ABD191BD8AFB00097B9AB /* Firebase+RACExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Firebase+RACExtensions.h"; sourceTree = "<group>"; };
+		8E6ABD1A1BD8AFB00097B9AB /* Firebase+RACExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Firebase+RACExtensions.m"; sourceTree = "<group>"; };
+		8E6ABD1B1BD8AFB00097B9AB /* FQuery+RACExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FQuery+RACExtensions.h"; sourceTree = "<group>"; };
+		8E6ABD1C1BD8AFB00097B9AB /* FQuery+RACExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FQuery+RACExtensions.m"; sourceTree = "<group>"; };
 		8E7530391B3D1CBE004835CE /* HNAutosizingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAutosizingLabel.h; sourceTree = "<group>"; };
 		8E75303A1B3D1CBE004835CE /* HNAutosizingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAutosizingLabel.m; sourceTree = "<group>"; };
 		8E79635E1B4E343900B27CD2 /* HNCommentsHeaderCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsHeaderCardView.h; sourceTree = "<group>"; };
@@ -262,7 +270,7 @@
 			files = (
 				8E005A681BC1CC0000B21BA1 /* Accelerate.framework in Frameworks */,
 				8EA649F81BB5C53300C2A2FB /* libz.tbd in Frameworks */,
-				232EA86ED3B142439FDB2337 /* libPods-HackerNews.a in Frameworks */,
+				A22CCEB8397230C8F208BCF4 /* Pods_HackerNews.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,7 +298,7 @@
 			children = (
 				8E005A671BC1CC0000B21BA1 /* Accelerate.framework */,
 				8EA649F71BB5C53300C2A2FB /* libz.tbd */,
-				2B63D98C41D195B8CB7E9733 /* libPods-HackerNews.a */,
+				0DB19F30B305CFE46D6BD248 /* Pods_HackerNews.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -394,6 +402,7 @@
 		8E23523C1ACC571F0009552D /* HackerNews */ = {
 			isa = PBXGroup;
 			children = (
+				8E6ABD171BD8AFB00097B9AB /* Classes */,
 				8E1AFCF51BC23BF0003A538F /* BLR */,
 				8E1AFCBB1BC22F27003A538F /* MSLiveBlur */,
 				8E005A411BC05A4B00B21BA1 /* HNContainerController.h */,
@@ -587,6 +596,18 @@
 			name = "Managed Objects";
 			sourceTree = "<group>";
 		};
+		8E6ABD171BD8AFB00097B9AB /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8E6ABD181BD8AFB00097B9AB /* .gitkeep */,
+				8E6ABD191BD8AFB00097B9AB /* Firebase+RACExtensions.h */,
+				8E6ABD1A1BD8AFB00097B9AB /* Firebase+RACExtensions.m */,
+				8E6ABD1B1BD8AFB00097B9AB /* FQuery+RACExtensions.h */,
+				8E6ABD1C1BD8AFB00097B9AB /* FQuery+RACExtensions.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		8E87C46E1AE466BE00CD004E /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -759,6 +780,7 @@
 				8E2352371ACC571F0009552D /* Frameworks */,
 				8E2352381ACC571F0009552D /* Resources */,
 				3AB1753236B14E7F452B4CCE /* Copy Pods Resources */,
+				4861B57F0A67CA4A905549FD /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -833,6 +855,7 @@
 				8E2352491ACC571F0009552D /* Main.storyboard in Resources */,
 				8EA649D61BB5C38900C2A2FB /* linkicon.svg in Resources */,
 				8E23524E1ACC571F0009552D /* LaunchScreen.xib in Resources */,
+				8E6ABD1D1BD8AFB00097B9AB /* .gitkeep in Resources */,
 				8E23524B1ACC571F0009552D /* Images.xcassets in Resources */,
 				8E1AFE221BC23BF1003A538F /* BLRView.xib in Resources */,
 			);
@@ -861,6 +884,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HackerNews/Pods-HackerNews-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4861B57F0A67CA4A905549FD /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HackerNews/Pods-HackerNews-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E4A53ACA6F188E28D1842467 /* Check Pods Manifest.lock */ = {
@@ -913,6 +951,7 @@
 				8E1AFCE61BC22F27003A538F /* GPUImageTwoPassTextureSamplingFilter.m in Sources */,
 				8ED435021AE999FB00A99D9F /* HNComment.m in Sources */,
 				8EA649F01BB5C4CB00C2A2FB /* JAMSVGGradientParts.m in Sources */,
+				8E6ABD1E1BD8AFB00097B9AB /* Firebase+RACExtensions.m in Sources */,
 				8E79636B1B4F1B1800B27CD2 /* HNConstants.m in Sources */,
 				8EA649F31BB5C4CB00C2A2FB /* UIImage+SVG.m in Sources */,
 				8E1AFCEB1BC22F27003A538F /* MSLiveBlur.m in Sources */,
@@ -934,6 +973,7 @@
 				8E395ED81AD0732F00EE0DB9 /* HNBrowserViewController.m in Sources */,
 				8E1AFCE31BC22F27003A538F /* GPUImageTextureInput.m in Sources */,
 				8E395F291AD46BE500EE0DB9 /* HNPostModel.xcdatamodeld in Sources */,
+				8E6ABD1F1BD8AFB00097B9AB /* FQuery+RACExtensions.m in Sources */,
 				8E1AFCDF1BC22F27003A538F /* GPUImageBuffer.m in Sources */,
 				8E1AFCE21BC22F27003A538F /* GPUImageOutput.m in Sources */,
 				8EA649D31BB46AB100C2A2FB /* HNFeedCellLinked.m in Sources */,
